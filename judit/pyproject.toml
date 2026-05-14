@@ -1,0 +1,58 @@
+[project]
+name = "judit-workspace"
+version = "0.1.0"
+description = "Judit: legal divergence workbench"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.39.3",
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.6.0",
+    "pytest>=9.0.3",
+    "ruff>=0.15.12",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = [
+  "apps/api",
+  "packages/domain",
+  "packages/exporters",
+  "packages/llm",
+  "packages/pipeline",
+  "packages/storage",
+]
+
+[tool.uv.sources]
+judit-domain = { workspace = true }
+judit-exporters = { workspace = true }
+judit-llm = { workspace = true }
+judit-pipeline = { workspace = true }
+judit-storage = { workspace = true }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "N", "RUF"]
+ignore = ["E501"]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"packages/pipeline/src/judit_pipeline/cli.py" = ["B008"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

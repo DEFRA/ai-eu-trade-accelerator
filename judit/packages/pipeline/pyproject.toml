@@ -1,0 +1,23 @@
+[project]
+name = "judit-pipeline"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+  "judit-domain",
+  "judit-exporters",
+  "judit-llm",
+  "rich>=14.0.0",
+  "typer>=0.16.0",
+]
+
+[project.scripts]
+judit-demo = "judit_pipeline.cli:demo_command"
+judit-run-case = "judit_pipeline.cli:run_case_command"
+judit-export-case = "judit_pipeline.cli:export_case_command"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/judit_pipeline"]

@@ -1,0 +1,27 @@
+[project]
+name = "beatrice"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "beatrice-guidance-api",
+    "beatrice-guidance",
+    "beatrice-llm",
+    "beatrice-matching",
+    "beatrice-domain",
+]
+
+[tool.uv.workspace]
+members = [
+    "apps/guidance-api",
+    "packages/domain",
+    "packages/guidance",
+    "packages/llm",
+    "packages/matching",
+]
+
+[tool.uv.sources]
+beatrice-domain = { workspace = true }
+beatrice-guidance = { workspace = true }
+beatrice-guidance-api = { workspace = true }
+beatrice-llm = { workspace = true }
+beatrice-matching = { workspace = true }

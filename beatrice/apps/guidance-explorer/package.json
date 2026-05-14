@@ -1,0 +1,32 @@
+{
+  "name": "@beatrice/guidance-explorer",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "WATCHPACK_POLLING=true next dev --port 3001",
+    "build": "next build",
+    "start": "next start --port 3001",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "next": "^14.2.29",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.29",
+    "postcss": "^8.4.49",
+    "prettier": "^3.6.2",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2"
+  }
+}

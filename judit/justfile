@@ -1,0 +1,93 @@
+set dotenv-load := true
+
+default:
+    @just --list
+
+setup:
+    uv sync
+    npm install
+    npm --prefix apps/web install
+
+test:
+    uv run --all-packages pytest
+
+lint:
+    uv run --all-packages ruff check .
+    uv run --all-packages basedpyright --level error
+    just frontend-lint
+    npm run format:check
+
+format:
+    uv run --all-packages ruff format .
+    just frontend-format
+    npm run format
+
+frontend-lint:
+    npm --prefix apps/web run lint
+
+frontend-format:
+    npm --prefix apps/web run lint:fix
+    npm --prefix apps/web run format
+
+api:
+    uv run --package judit-api uvicorn judit_api.main:app --reload --host 127.0.0.1 --port 8010
+
+web:
+    npm --prefix apps/web run dev
+
+docs port="8001" host="127.0.0.1":
+    NO_MKDOCS_2_WARNING=true uv run mkdocs serve --dev-addr {{host}}:{{port}}
+
+build-docs:
+    NO_MKDOCS_2_WARNING=true uv run mkdocs build
+
+diagrams:
+    ./scripts/render_diagrams.sh
+
+decks:
+    ./scripts/render_decks.sh
+
+infographics:
+    ./scripts/render_infographics.sh
+
+infographic-context:
+    ./scripts/build_infographic_prompt_context.sh
+
+assets:
+    just diagrams
+    just infographics
+    just decks
+    just infographic-context
+
+all-docs-assets:
+    just assets
+    just build-docs
+
+docs-refresh:
+    just assets
+    just build-docs
+
+litellm:
+    env -u DATABASE_URL uvx 'litellm[proxy]==1.83.14' --config config/litellm.yaml
+
+demo-export:
+    uv run --package judit-pipeline python -m judit_pipeline.demo
+
+run-case case="data/demo/example_case.json":
+    uv run --package judit-pipeline python -m judit_pipeline run-case {{case}}
+
+export-case case="data/demo/example_case.json" out="dist/static-report":
+    uv run --package judit-pipeline python -m judit_pipeline export-case {{case}} --output-dir {{out}}
+
+# Equine corpus: merge family discovery, export bundle + equine_*_coverage artifacts (default heuristic; add flags for frontier/LLM)
+build-equine-corpus:
+    uv run --package judit-pipeline python -m judit_pipeline build-equine-corpus
+
+# Dev/demo: Article 109 equine pilot → OPERATIONS_EXPORT_DIR (default dist/static-report); prints Propositions URL
+run-art109-equine-pilot:
+    ./scripts/run-art109-equine-pilot.sh
+
+pre-demo:
+    just lint
+    just test
+    just docs-refresh

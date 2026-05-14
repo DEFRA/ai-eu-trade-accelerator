@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Basic prose styles for GOV.UK rendered HTML */
+.gov-content h2 { @apply mb-3 mt-6 text-xl font-semibold; }
+.gov-content h3 { @apply mb-2 mt-4 text-base font-semibold; }
+.gov-content p  { @apply mb-3; }
+.gov-content ul { @apply mb-3 ml-5 list-disc; }
+.gov-content ol { @apply mb-3 ml-5 list-decimal; }
+.gov-content li { @apply mb-1; }
+.gov-content a  { @apply text-blue-600 underline; }
+.gov-content table { @apply mb-4 w-full border-collapse text-sm; }
+.gov-content th { @apply border border-border bg-muted px-3 py-2 text-left font-medium; }
+.gov-content td { @apply border border-border px-3 py-2; }
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+}
