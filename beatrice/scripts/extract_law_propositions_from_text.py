@@ -31,8 +31,8 @@ sys.path.insert(0, str(_root / "packages" / "pipeline" / "src"))
 sys.path.insert(0, str(_root / "packages" / "domain" / "src"))
 sys.path.insert(0, str(_root / "packages" / "llm" / "src"))
 
-from beatrice_domain import Cluster, SourceRecord, Topic
-from beatrice_pipeline.extract import extract_propositions
+from beatrice.domain import Cluster, SourceRecord, Topic
+from beatrice.pipeline.extract import extract_propositions
 
 _ARTICLE_RE = re.compile(
     r"^(Article\s+\d+[\w\-\.]*|ARTICLE\s+\d+[\w\-\.]*)",
@@ -102,7 +102,7 @@ def main() -> None:
     llm_client = None
     if not args.no_llm:
         try:
-            from beatrice_llm import BeatriceLLMClient
+            from beatrice.llm import BeatriceLLMClient
             llm_client = BeatriceLLMClient()
             print(f"LLM enabled: {llm_client.settings.base_url} model={llm_client.settings.local_extract_model}")
         except Exception as e:

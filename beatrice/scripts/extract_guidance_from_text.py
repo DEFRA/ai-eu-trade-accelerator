@@ -29,7 +29,7 @@ _root = Path(__file__).parent.parent
 sys.path.insert(0, str(_root / "packages" / "guidance" / "src"))
 sys.path.insert(0, str(_root / "packages" / "llm" / "src"))
 
-from beatrice_guidance import extract_propositions
+from beatrice.guidance import extract_propositions
 
 # Matches lines that look like section headings:
 # - Short (under 80 chars), no trailing period, not a bullet
@@ -116,7 +116,7 @@ def main() -> None:
     llm_client = None
     if not args.no_llm:
         try:
-            from beatrice_llm import BeatriceLLMClient
+            from beatrice.llm import BeatriceLLMClient
             llm_client = BeatriceLLMClient()
             print(f"LLM enabled: {llm_client.settings.base_url} model={llm_client.settings.guidance_extract_model}")
         except Exception as e:

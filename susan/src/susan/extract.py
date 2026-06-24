@@ -64,45 +64,48 @@ class ExtractionError(Exception):
     """Anything that went wrong during extraction. Loud, not silent."""
 
 
-def extract_propositions(
+def build_request_params(
     page: FetchedPage,
     *,
     topic: str = "guidance",
     model: str = DEFAULT_MODEL,
     max_tokens: int = DEFAULT_MAX_TOKENS,
-    timeout: int = DEFAULT_TIMEOUT_SECONDS,
-) -> list[GuidanceProposition]:
-    """Extract atomic propositions from one fetched gov.uk page.
+) -> dict:
+    """Build the Messages API params for one page.
 
-    Raises ExtractionError on truncation, missing tool call, or schema
-    mismatch. Raises anthropic exceptions on API failure.
+    Shared by the synchronous and batch paths so both send a byte-identical
+    request (and therefore the same prompt hash and validated behaviour).
     """
-    import anthropic  # imported lazily so importing susan is cheap
-
     body = render_structured_body(page)
     prompt = render(body=body, source_url=page.url, topic=topic)
+    return {
+        "model": model,
+        "max_tokens": max_tokens,
+        "tools": [_EMIT_TOOL],
+        "tool_choice": {"type": "tool", "name": "emit_propositions"},
+        "messages": [{"role": "user", "content": prompt}],
+    }
 
-    client = anthropic.Anthropic(timeout=timeout)
-    response = client.messages.create(
-        model=model,
-        max_tokens=max_tokens,
-        tools=[_EMIT_TOOL],
-        tool_choice={"type": "tool", "name": "emit_propositions"},
-        messages=[{"role": "user", "content": prompt}],
-    )
 
-    if response.stop_reason == "max_tokens":
+def parse_message(message) -> list[GuidanceProposition]:
+    """Turn a Messages API response (sync response or batch result) into
+    propositions.
+
+    Raises ExtractionError on truncation, missing tool call, or schema
+    mismatch — Susan never substitutes a degraded result.
+    """
+    if message.stop_reason == "max_tokens":
         raise ExtractionError(
-            f"response truncated at {max_tokens} tokens — raise --max-tokens or split the page"
+            "response truncated at max_tokens — raise --max-tokens or split the page"
         )
 
     tool_block = next(
-        (b for b in response.content if getattr(b, "type", None) == "tool_use"),
+        (b for b in message.content if getattr(b, "type", None) == "tool_use"),
         None,
     )
     if tool_block is None:
         raise ExtractionError(
-            f"model did not emit the tool call. stop_reason={response.stop_reason!r}"
+            f"model did not emit the tool call. stop_reason={message.stop_reason!r}"
         )
 
     raw_dicts = tool_block.input.get("propositions")  # type: ignore[union-attr]
@@ -112,3 +115,24 @@ def extract_propositions(
         )
 
     return [GuidanceProposition(**d) for d in raw_dicts]
+
+
+def extract_propositions(
+    page: FetchedPage,
+    *,
+    topic: str = "guidance",
+    model: str = DEFAULT_MODEL,
+    max_tokens: int = DEFAULT_MAX_TOKENS,
+    timeout: int = DEFAULT_TIMEOUT_SECONDS,
+) -> list[GuidanceProposition]:
+    """Extract atomic propositions from one fetched gov.uk page (synchronous).
+
+    Raises ExtractionError on truncation, missing tool call, or schema
+    mismatch. Raises anthropic exceptions on API failure.
+    """
+    import anthropic  # imported lazily so importing susan is cheap
+
+    params = build_request_params(page, topic=topic, model=model, max_tokens=max_tokens)
+    client = anthropic.Anthropic(timeout=timeout)
+    response = client.messages.create(**params)
+    return parse_message(response)

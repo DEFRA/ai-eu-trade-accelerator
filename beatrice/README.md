@@ -1,80 +1,54 @@
 # Beatrice
 
-A tool for checking whether GOV.UK guidance accurately reflects the law. It extracts propositions from guidance pages, matches them against law propositions using semantic similarity, classifies the relationship using an LLM, and highlights discrepancies in an overlay on the live GOV.UK page.
+The matching stage of the Radia → Susan → Beatrice pipeline. It takes Susan's
+guidance propositions and Judit's law propositions, retrieves the closest law
+candidates by semantic similarity, then **group-reranks** each guidance
+proposition — a single LLM call sees all of its surviving law candidates at once
+and labels each one — to find where guidance conflicts with, matches, or omits
+the law.
+
+This is a **headless pipeline** (JSON in, JSON out) run via `beatrice run`. No
+server, no UI.
 
 ## What it does
 
-1. **Extract** — fetches a GOV.UK guidance page via the Content API and extracts discrete legal propositions (what the guidance says someone must/should/may do)
-2. **Match** — embeds guidance and law propositions and finds the closest law candidates using cosine similarity, then ranks the closest by BERTScore
-3. **Classify** — uses an LLM to judge the relationship between each guidance proposition and its matched law propositions: `confirmed`, `outdated`, `guidance omits detail`, `guidance contains additional detail`, `contradicts`, or `does not match`
-4. **Summarise** — generates a concise compliance summary for each guidance proposition that is a match i.e. it is not `does not match`
-5. **Overlay** — highlights propositions directly on the live GOV.UK page with colour-coded markers (green = confirmed, amber = partial, red = contradicts/outdated)
-6. **Export** — downloads results as a CSV for reporting
+1. **Retrieve** — embeds guidance and law propositions and selects a small survivor set of the closest law candidates per guidance proposition (cosine threshold + an adaptive `score_gap` window, capped at `top_k`)
+2. **Group-rerank** — a single LLM call per guidance proposition judges every surviving candidate together, using typed clause-function / topic rules, and labels each: `GROUNDED`, `UNGROUNDED`, `CONFLICTS`, `GUIDANCE_INCOMPLETE`, `GUIDANCE_BROADER`, or `GUIDANCE_MISSING`. A proposition with no candidate above the threshold costs no LLM call.
+3. **Summarise** — generates a concise compliance summary for each guidance proposition that has at least one non-`UNGROUNDED` match
+4. **Output** — writes `results.json` + `results.csv` (one row per guidance/law match) plus `metrics.json` and a human-readable `MODEL.md`
 
 ## Architecture
 
+A single package (`src/beatrice/`), like Radia and Susan. Run via `./run.sh` or
+`uv run beatrice`.
+
 ```
-apps/
-  guidance-explorer/    Next.js frontend (port 3001)
-  guidance-api/         FastAPI backend  (port 8011)
-packages/
-  domain/               Proposition and SourceRecord models
-  llm/                  LiteLLM-compatible client (OpenAI API)
-  guidance/             GOV.UK Content API extraction
-  matching/             Embeddings, BERTScore, classification cache
+src/beatrice/
+  cli.py                beatrice {run|tag-topics|type-law}
+  domain/               Proposition (law) model + SourceRecord models
+  guidance/             GuidanceProposition model + GOV.UK Content API extraction
+  llm/                  LiteLLM-compatible client (OpenAI API) — used by extraction
+  matching/             Embeddings + cosine retrieval, group-rerank matcher, prompts
+  pipeline/             batch_match (Susan -> Beatrice runner), Susan mapping,
+                        the typed-tag enrichment tools, and the topic taxonomy
 scripts/
-  extract_guidance_from_text.py       Extract guidance propositions from a .txt file
+  extract_guidance_from_text.py          Extract guidance propositions from a .txt file
   extract_law_propositions_from_text.py  Extract law propositions from a .txt file
 ```
 
 ## Prerequisites
 
 - Python 3.13+
-- Node.js 18+
 - [uv](https://docs.astral.sh/uv/)
-- [LiteLLM](https://docs.litellm.ai/) (`pip install litellm`)
-- [Ollama](https://ollama.com/) with `nomic-embed-text:v1.5` pulled (`ollama pull nomic-embed-text:v1.5`) for embeddings
+- An `ANTHROPIC_API_KEY` (the group-rerank + summarise calls go to the Anthropic Message Batches API)
+- [Ollama](https://ollama.com/) with `nomic-embed-text:v1.5` pulled (`ollama pull nomic-embed-text:v1.5`) for local embeddings
 
 ## Setup
 
 ```bash
-# 1. Clone the repo
-git clone <repo-url> beatrice
-cd beatrice
-
-# 2. Copy and fill in environment variables
-cp .env.example .env
-# Edit .env — set ANTHROPIC_API_KEY and LiteLLM connection details
-
-# 3. Install Python dependencies
+cp .env.example .env        # set ANTHROPIC_API_KEY
 uv sync
-
-# 4. Install frontend dependencies
-npm --prefix apps/guidance-explorer install
 ```
-
-## Running
-
-Start all three services in separate terminals:
-
-```bash
-# Terminal 1 — LiteLLM proxy (port 4000)
-set -a && source .env && set +a && litellm --config config/litellm.yaml
-```
-
-```bash
-# Terminal 2 — Guidance API (port 8011)
-uv run --env-file .env --package beatrice-guidance-api uvicorn beatrice_guidance_api.main:app --reload --host 127.0.0.1 --port 8011
-```
-
-```bash
-# Terminal 3 — Frontend (port 3001)
-npm --prefix apps/guidance-explorer run dev
-```
-
-Then open [http://localhost:3001](http://localhost:3001).
-
-> **Note:** LiteLLM requires `litellm` to be installed (`pip install litellm`) and Ollama running locally for the `local_embed` model. Edit `config/litellm.yaml` to change which models are used.
 
 ## Configuration
 
@@ -84,10 +58,9 @@ All configuration is via environment variables in `.env`. Key settings:
 |---|---|---|
 | `LLM_BASE_URL` | `http://127.0.0.1:4000/v1` | LiteLLM proxy URL |
 | `LLM_API_KEY` | — | LiteLLM API key |
-| `MODEL_GUIDANCE_CLASSIFY` | `claude_sonnet` | Model alias for classification |
+| `MODEL_GUIDANCE_CLASSIFY` | `claude_sonnet` | Model alias for the group-rerank call |
 | `MODEL_GUIDANCE_SUMMARISE` | `claude_sonnet` | Model alias for summarisation |
 | `MODEL_EMBED` | `local_embed` | Model alias for embeddings |
-| `MODEL_BERT_SCORE` | `microsoft/deberta-xlarge-mnli` | HuggingFace model for BERTScore re-ranking |
 
 See `.env.example` for all options.
 
@@ -95,7 +68,7 @@ See `.env.example` for all options.
 
 Results are cached to `/tmp/beatrice/` by default:
 
-- `classify-cache.json` — LLM classification results, keyed by SHA256 of model+prompt
+- `group-rerank-cache.json` — group-rerank verdicts, keyed by SHA256 of the rendered prompt
 - `summarise-cache.json` — LLM summaries
 - `extract-cache.json` — Extracted propositions per URL+section
 - `law-embeddings-cache.json` — Law proposition embeddings
@@ -121,12 +94,37 @@ uv run scripts/extract_law_propositions_from_text.py "my-law.txt" \
   --output law_propositions.json
 ```
 
-## BERTScore model
+## Batch matching (Susan -> Beatrice)
 
-The default BERTScore model is `microsoft/deberta-xlarge-mnli`. This is an NLI-tuned model well suited to judging semantic entailment between guidance and law text. It will be downloaded from HuggingFace on first use (~900MB).
+Runs the full corpus through group-rerank via the Anthropic Message Batches API
+(50% cost), one grouped request per guidance proposition:
 
-For a lighter alternative, use `roberta-large` (the `bert-score` library default, ~500MB):
-
+```bash
+./run.sh run \
+  --guidance path/to/susan-output.json \
+  --law path/to/judit-propositions.json \
+  --out runs/my-run/
+  # tuning knobs (defaults shown): --top-k 15 --threshold 0.65 --score-gap 0.04
+  # optional typed-tag caches: --clause-functions <json> --law-topics <json> --guidance-topics <json>
+  # --no-sidebar to omit Judit's per-candidate confidence sidebar
 ```
-MODEL_BERT_SCORE=roberta-large
+
+(`./run.sh run …` is shorthand for `uv run beatrice run …`.) Outputs
+`results.json`, `results.csv`, `metrics.json`, and a human-readable `MODEL.md`.
+Use `--dry-run` to embed + retrieve and count requests without any API spend.
+
+## Typed-tag enrichment
+
+The group-rerank prompt keys off `clause_function` (law side) and `topic` /
+`regulatory_kind` (guidance side). `regulatory_kind` arrives from Susan; the
+`clause_function` and `topic` tags are produced by two typing/tagging passes and
+fed into `beatrice run` via the optional cache arguments above:
+
+```bash
+./run.sh type-law    judit-propositions.json --out clause-functions.json
+./run.sh tag-topics  law  judit-propositions.json --out law-topics.json
+./run.sh tag-topics  guidance susan-output.json   --out guidance-topics.json
 ```
+
+When a tag is missing it renders as `unknown` and the prompt's typed rules
+degrade gracefully to reading the candidate on its merits.
