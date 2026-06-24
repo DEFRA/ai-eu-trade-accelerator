@@ -1,0 +1,262 @@
+[
+  {
+    "id": "artifact-run-001-source-records",
+    "run_id": "run-001",
+    "artifact_type": "source_records",
+    "provenance": "pipeline.intake",
+    "created_at": "2026-06-02T11:29:41.887748Z",
+    "content_hash": "950d897ee024c597da6c4bd59eacb1b1878ef32756ba0a7d5bf14a3821e99032",
+    "storage_uri": null,
+    "metadata": {
+      "source_record_count": 5
+    }
+  },
+  {
+    "id": "artifact-run-001-source-snapshots",
+    "run_id": "run-001",
+    "artifact_type": "source_snapshots",
+    "provenance": "pipeline.intake",
+    "created_at": "2026-06-02T11:29:41.890185Z",
+    "content_hash": "74265ad88105303c28e4742d984c1a96caa9d4c69fe1b7644f44d6611d6ae125",
+    "storage_uri": null,
+    "metadata": {
+      "source_snapshot_count": 5
+    }
+  },
+  {
+    "id": "artifact-run-001-source-fragments",
+    "run_id": "run-001",
+    "artifact_type": "source_fragments",
+    "provenance": "pipeline.intake",
+    "created_at": "2026-06-02T11:29:41.902399Z",
+    "content_hash": "1707f8e6587f89fc3045633b1c0d1ffb610be7e2298fa10ce4871463048148ff",
+    "storage_uri": null,
+    "metadata": {
+      "source_fragment_count": 279
+    }
+  },
+  {
+    "id": "artifact-run-001-source-parse-traces",
+    "run_id": "run-001",
+    "artifact_type": "source_parse_traces",
+    "provenance": "pipeline.intake",
+    "created_at": "2026-06-02T11:29:41.902545Z",
+    "content_hash": "c47943bf9c37813beae763f71d3cdd258156cc27e22a55b39ae0f3d6bedd47fa",
+    "storage_uri": null,
+    "metadata": {
+      "source_parse_trace_count": 5
+    }
+  },
+  {
+    "id": "artifact-run-001-source-fetch-metadata",
+    "run_id": "run-001",
+    "artifact_type": "source_fetch_metadata",
+    "provenance": "pipeline.intake",
+    "created_at": "2026-06-02T11:29:41.902602Z",
+    "content_hash": "fbf8892da52387f8530bb172832336863d0cefe5ab7952311447532e10fc21cd",
+    "storage_uri": null,
+    "metadata": {
+      "source_fetch_metadata_count": 5
+    }
+  },
+  {
+    "id": "artifact-run-001-source-fetch-attempts",
+    "run_id": "run-001",
+    "artifact_type": "source_fetch_attempts",
+    "provenance": "pipeline.intake",
+    "created_at": "2026-06-02T11:29:41.902659Z",
+    "content_hash": "0dd9d60ad9a957145bd7b68b1c7ccbede5f06ceebfeada8c35a7d4f183f41530",
+    "storage_uri": null,
+    "metadata": {
+      "source_fetch_attempt_count": 5
+    }
+  },
+  {
+    "id": "artifact-run-001-source-inventory",
+    "run_id": "run-001",
+    "artifact_type": "source_inventory",
+    "provenance": "pipeline.intake",
+    "created_at": "2026-06-02T11:29:41.902664Z",
+    "content_hash": "df4993ba915ec29bff18bcdb624a857f52dfb3d73fa4c878732d29d12b735077",
+    "storage_uri": null,
+    "metadata": {
+      "source_inventory_row_count": 5
+    }
+  },
+  {
+    "id": "artifact-run-001-source-target-links",
+    "run_id": "run-001",
+    "artifact_type": "source_target_links",
+    "provenance": "pipeline.intake",
+    "created_at": "2026-06-02T11:29:41.902723Z",
+    "content_hash": "015b283394ff34f39eff24d3c9ab7f5f5212eb103822e2fdb58eb053a05fff89",
+    "storage_uri": null,
+    "metadata": {
+      "source_target_link_count": 5
+    }
+  },
+  {
+    "id": "artifact-run-001-source-categorisation-rationales",
+    "run_id": "run-001",
+    "artifact_type": "source_categorisation_rationales",
+    "provenance": "pipeline.intake",
+    "created_at": "2026-06-02T11:29:41.902756Z",
+    "content_hash": "26016471f2edb094c1ef5fda9dd9c7cb0f2953a2b7271092d5fd88d6f92e9254",
+    "storage_uri": null,
+    "metadata": {
+      "source_categorisation_rationale_count": 5
+    }
+  },
+  {
+    "id": "artifact-run-001-propositions",
+    "run_id": "run-001",
+    "artifact_type": "propositions",
+    "provenance": "pipeline.extract",
+    "created_at": "2026-06-02T11:29:41.903244Z",
+    "content_hash": "f260fef59bb8fc9812ad955d5a9fb5b24fa3d76cbb381101e4d5d16dfc3b6c70",
+    "storage_uri": null,
+    "metadata": {
+      "proposition_count": 34
+    }
+  },
+  {
+    "id": "artifact-run-001-proposition-inventory",
+    "run_id": "run-001",
+    "artifact_type": "proposition_inventory",
+    "provenance": "pipeline.extract",
+    "created_at": "2026-06-02T11:29:41.903321Z",
+    "content_hash": "f0b23161126d090b93a0657e50fe343bafb0431a63b2dbea2f18e78db75c6258",
+    "storage_uri": null,
+    "metadata": {
+      "category_count": 4
+    }
+  },
+  {
+    "id": "artifact-run-001-proposition-extraction-traces",
+    "run_id": "run-001",
+    "artifact_type": "proposition_extraction_traces",
+    "provenance": "pipeline.extract",
+    "created_at": "2026-06-02T11:29:41.903681Z",
+    "content_hash": "99ed94d11b132cc7e875ee99d0959b8e73de9d2cc402ae4e493d8e4935cd0a39",
+    "storage_uri": null,
+    "metadata": {
+      "proposition_extraction_trace_count": 34
+    }
+  },
+  {
+    "id": "artifact-run-001-proposition-extraction-jobs",
+    "run_id": "run-001",
+    "artifact_type": "proposition_extraction_jobs",
+    "provenance": "pipeline.extract",
+    "created_at": "2026-06-02T11:29:41.905387Z",
+    "content_hash": "b1f9c78d4a8b277f0b81859d3f821eb89e2a4c63368e9b1535d7397b6a425937",
+    "storage_uri": null,
+    "metadata": {
+      "proposition_extraction_job_count": 279
+    }
+  },
+  {
+    "id": "artifact-run-001-proposition-completeness-assessments",
+    "run_id": "run-001",
+    "artifact_type": "proposition_completeness_assessments",
+    "provenance": "pipeline.proposition_completeness",
+    "created_at": "2026-06-02T11:29:41.905522Z",
+    "content_hash": "65df49acb418bfb308494d65605d6f07b636413ecfce8df115740fd7d00addab",
+    "storage_uri": null,
+    "metadata": {
+      "proposition_completeness_assessment_count": 34
+    }
+  },
+  {
+    "id": "artifact-run-001-legal-scopes",
+    "run_id": "run-001",
+    "artifact_type": "legal_scopes",
+    "provenance": "pipeline.scope_link",
+    "created_at": "2026-06-02T11:29:41.905574Z",
+    "content_hash": "bc3e5bab5387037c05aa3f59ef0f64a3286e4862d62cac3ed87d8e117401f894",
+    "storage_uri": null,
+    "metadata": {
+      "legal_scope_count": 11
+    }
+  },
+  {
+    "id": "artifact-run-001-proposition-scope-links",
+    "run_id": "run-001",
+    "artifact_type": "proposition_scope_links",
+    "provenance": "pipeline.scope_link",
+    "created_at": "2026-06-02T11:29:41.907024Z",
+    "content_hash": "2dafdc97f17354e2bb885eb5d4dc82565d5002c48b0582529e9c847397a7257b",
+    "storage_uri": null,
+    "metadata": {
+      "proposition_scope_link_count": 211
+    }
+  },
+  {
+    "id": "artifact-run-001-scope-inventory",
+    "run_id": "run-001",
+    "artifact_type": "scope_inventory",
+    "provenance": "pipeline.scope_link",
+    "created_at": "2026-06-02T11:29:41.907056Z",
+    "content_hash": "fe355dce90bc03147d6e5723fae5cef0e545e47a035349c3c8a91ad959ebfb0e",
+    "storage_uri": null,
+    "metadata": {}
+  },
+  {
+    "id": "artifact-run-001-scope-review-candidates",
+    "run_id": "run-001",
+    "artifact_type": "scope_review_candidates",
+    "provenance": "pipeline.scope_link",
+    "created_at": "2026-06-02T11:29:41.907806Z",
+    "content_hash": "11f29f878696d391f79edaeddacf21760d4c1a3fec725e9de61f7d920581147d",
+    "storage_uri": null,
+    "metadata": {
+      "scope_review_candidate_count": 167
+    }
+  },
+  {
+    "id": "artifact-run-001-assessments",
+    "run_id": "run-001",
+    "artifact_type": "divergence_assessments",
+    "provenance": "pipeline.compare",
+    "created_at": "2026-06-02T11:29:41.907813Z",
+    "content_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "storage_uri": null,
+    "metadata": {
+      "assessment_count": 0
+    }
+  },
+  {
+    "id": "artifact-run-001-narrative",
+    "run_id": "run-001",
+    "artifact_type": "narrative_export",
+    "provenance": "pipeline.export",
+    "created_at": "2026-06-02T11:29:41.907830Z",
+    "content_hash": "981f8e4a1e5c9dae5609ea4ac3be783e033ef26678bade036cc9ccbcf5a591ac",
+    "storage_uri": null,
+    "metadata": {
+      "title": "slurry manure agricultural effluent narrative"
+    }
+  },
+  {
+    "id": "artifact-run-001-review-decisions",
+    "run_id": "run-001",
+    "artifact_type": "review_decisions",
+    "provenance": "pipeline.review",
+    "created_at": "2026-06-02T11:29:41.910179Z",
+    "content_hash": "36f6c6ea280198daf41a1a98bbba219acc45acb57933e18aef81087e91fce358",
+    "storage_uri": null,
+    "metadata": {
+      "review_decision_count": 313
+    }
+  },
+  {
+    "id": "artifact-run-001-run-quality-summary",
+    "run_id": "run-001",
+    "artifact_type": "run_quality_summary",
+    "provenance": "pipeline.export",
+    "created_at": "2026-06-02T11:40:19.312201Z",
+    "content_hash": "15880c67d21617f7cee5ff8435141c50707a36e89a1bb319807422ad15723542",
+    "storage_uri": null,
+    "metadata": {}
+  }
+]

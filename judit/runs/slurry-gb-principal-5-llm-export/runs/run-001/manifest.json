@@ -1,0 +1,147 @@
+{
+  "run_id": "run-001",
+  "workflow_mode": "single_jurisdiction",
+  "proposition_count": 34,
+  "divergence_assessment_count": 0,
+  "source_fetch_attempt_count": 5,
+  "source_parse_trace_count": 5,
+  "source_fragment_count": 279,
+  "proposition_extraction_trace_count": 34,
+  "has_proposition_extraction_jobs": true,
+  "proposition_extraction_job_count": 279,
+  "proposition_completeness_assessment_count": 34,
+  "has_proposition_completeness_assessments": true,
+  "proposition_completeness_status_counts": {
+    "complete": 34,
+    "context_dependent": 0,
+    "fragmentary": 0
+  },
+  "source_target_link_count": 5,
+  "source_categorisation_rationale_count": 5,
+  "has_run_quality_summary": true,
+  "has_pipeline_review_decisions": false,
+  "pipeline_review_decision_count": 0,
+  "has_legal_scopes": true,
+  "has_proposition_scope_links": true,
+  "has_scope_inventory": true,
+  "legal_scope_count": 11,
+  "proposition_scope_link_count": 211,
+  "scope_review_candidate_count": 167,
+  "source_family_candidate_count": 0,
+  "has_source_family_candidates": false,
+  "artifact_count": 22,
+  "stage_trace_count": 7,
+  "trace_manifest_uri": "runs/run-001/trace-manifest.json",
+  "artifacts": [
+    {
+      "id": "artifact-run-001-source-records",
+      "artifact_type": "source_records",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-source-records.json"
+    },
+    {
+      "id": "artifact-run-001-source-snapshots",
+      "artifact_type": "source_snapshots",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-source-snapshots.json"
+    },
+    {
+      "id": "artifact-run-001-source-fragments",
+      "artifact_type": "source_fragments",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-source-fragments.json"
+    },
+    {
+      "id": "artifact-run-001-source-parse-traces",
+      "artifact_type": "source_parse_traces",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-source-parse-traces.json"
+    },
+    {
+      "id": "artifact-run-001-source-fetch-metadata",
+      "artifact_type": "source_fetch_metadata",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-source-fetch-metadata.json"
+    },
+    {
+      "id": "artifact-run-001-source-fetch-attempts",
+      "artifact_type": "source_fetch_attempts",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-source-fetch-attempts.json"
+    },
+    {
+      "id": "artifact-run-001-source-inventory",
+      "artifact_type": "source_inventory",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-source-inventory.json"
+    },
+    {
+      "id": "artifact-run-001-source-target-links",
+      "artifact_type": "source_target_links",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-source-target-links.json"
+    },
+    {
+      "id": "artifact-run-001-source-categorisation-rationales",
+      "artifact_type": "source_categorisation_rationales",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-source-categorisation-rationales.json"
+    },
+    {
+      "id": "artifact-run-001-propositions",
+      "artifact_type": "propositions",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-propositions.json"
+    },
+    {
+      "id": "artifact-run-001-proposition-inventory",
+      "artifact_type": "proposition_inventory",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-proposition-inventory.json"
+    },
+    {
+      "id": "artifact-run-001-proposition-extraction-traces",
+      "artifact_type": "proposition_extraction_traces",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-proposition-extraction-traces.json"
+    },
+    {
+      "id": "artifact-run-001-proposition-extraction-jobs",
+      "artifact_type": "proposition_extraction_jobs",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-proposition-extraction-jobs.json"
+    },
+    {
+      "id": "artifact-run-001-proposition-completeness-assessments",
+      "artifact_type": "proposition_completeness_assessments",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-proposition-completeness-assessments.json"
+    },
+    {
+      "id": "artifact-run-001-legal-scopes",
+      "artifact_type": "legal_scopes",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-legal-scopes.json"
+    },
+    {
+      "id": "artifact-run-001-proposition-scope-links",
+      "artifact_type": "proposition_scope_links",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-proposition-scope-links.json"
+    },
+    {
+      "id": "artifact-run-001-scope-inventory",
+      "artifact_type": "scope_inventory",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-scope-inventory.json"
+    },
+    {
+      "id": "artifact-run-001-scope-review-candidates",
+      "artifact_type": "scope_review_candidates",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-scope-review-candidates.json"
+    },
+    {
+      "id": "artifact-run-001-assessments",
+      "artifact_type": "divergence_assessments",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-assessments.json"
+    },
+    {
+      "id": "artifact-run-001-narrative",
+      "artifact_type": "narrative_export",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-narrative.json"
+    },
+    {
+      "id": "artifact-run-001-review-decisions",
+      "artifact_type": "review_decisions",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-review-decisions.json"
+    },
+    {
+      "id": "artifact-run-001-run-quality-summary",
+      "artifact_type": "run_quality_summary",
+      "storage_uri": "runs/run-001/artifacts/artifact-run-001-run-quality-summary.json"
+    }
+  ]
+}

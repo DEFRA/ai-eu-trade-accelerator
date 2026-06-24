@@ -1,0 +1,118 @@
+[
+  {
+    "id": "target-link-lex-120b4f9c395b3f94",
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "target_source_record_id": "lex-120b4f9c395b3f94",
+    "target_citation": "UKSI 2015/668",
+    "target_instrument_id": "UKSI 2015/668",
+    "link_type": "is_target",
+    "confidence": "high",
+    "method": "deterministic",
+    "reason": "Source marked/resolved as primary analysis target.",
+    "evidence": [
+      "source_record_id=lex-120b4f9c395b3f94",
+      "target_source_record_id=lex-120b4f9c395b3f94"
+    ],
+    "signals": {
+      "target_reference_match": true,
+      "primary_target_source_id": "lex-120b4f9c395b3f94",
+      "primary_target_citation": "UKSI 2015/668",
+      "primary_target_title": "The Nitrate Pollution Prevention Regulations 2015",
+      "authority": "legislation_gov_uk",
+      "kind": "uksi",
+      "source_url": "https://www.legislation.gov.uk/uksi/2015/668/data.xml"
+    }
+  },
+  {
+    "id": "target-link-lex-2459c955ee13be52",
+    "source_record_id": "lex-2459c955ee13be52",
+    "target_source_record_id": "lex-120b4f9c395b3f94",
+    "target_citation": "UKSI 2015/668",
+    "target_instrument_id": "UKSI 2015/668",
+    "link_type": "contextual",
+    "confidence": "low",
+    "method": "deterministic",
+    "reason": "Source treated as contextual because no target linkage signals matched.",
+    "evidence": [
+      "title=The Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018"
+    ],
+    "signals": {
+      "target_reference_match": false,
+      "primary_target_source_id": "lex-120b4f9c395b3f94",
+      "primary_target_citation": "UKSI 2015/668",
+      "primary_target_title": "The Nitrate Pollution Prevention Regulations 2015",
+      "authority": "legislation_gov_uk",
+      "kind": "uksi",
+      "source_url": "https://www.legislation.gov.uk/uksi/2018/151/data.xml"
+    }
+  },
+  {
+    "id": "target-link-lex-805b03f284dcf364",
+    "source_record_id": "lex-805b03f284dcf364",
+    "target_source_record_id": "lex-120b4f9c395b3f94",
+    "target_citation": "UKSI 2015/668",
+    "target_instrument_id": "UKSI 2015/668",
+    "link_type": "contextual",
+    "confidence": "low",
+    "method": "deterministic",
+    "reason": "Source treated as contextual because no target linkage signals matched.",
+    "evidence": [
+      "title=The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021"
+    ],
+    "signals": {
+      "target_reference_match": false,
+      "primary_target_source_id": "lex-120b4f9c395b3f94",
+      "primary_target_citation": "UKSI 2015/668",
+      "primary_target_title": "The Nitrate Pollution Prevention Regulations 2015",
+      "authority": "legislation_gov_uk",
+      "kind": "unknown",
+      "source_url": "https://www.legislation.gov.uk/wsi/2021/77/data.xml"
+    }
+  },
+  {
+    "id": "target-link-lex-96613ffe71589e1e",
+    "source_record_id": "lex-96613ffe71589e1e",
+    "target_source_record_id": "lex-120b4f9c395b3f94",
+    "target_citation": "UKSI 2015/668",
+    "target_instrument_id": "UKSI 2015/668",
+    "link_type": "contextual",
+    "confidence": "low",
+    "method": "deterministic",
+    "reason": "Source treated as contextual because no target linkage signals matched.",
+    "evidence": [
+      "title=The Control of Pollution (Silage, Slurry and Agricultural Fuel Oil) (Scotland) Regulations 2003"
+    ],
+    "signals": {
+      "target_reference_match": false,
+      "primary_target_source_id": "lex-120b4f9c395b3f94",
+      "primary_target_citation": "UKSI 2015/668",
+      "primary_target_title": "The Nitrate Pollution Prevention Regulations 2015",
+      "authority": "legislation_gov_uk",
+      "kind": "unknown",
+      "source_url": "https://www.legislation.gov.uk/ssi/2003/531/data.xml"
+    }
+  },
+  {
+    "id": "target-link-lex-e71fbbe3342ac0be",
+    "source_record_id": "lex-e71fbbe3342ac0be",
+    "target_source_record_id": "lex-120b4f9c395b3f94",
+    "target_citation": "UKSI 2015/668",
+    "target_instrument_id": "UKSI 2015/668",
+    "link_type": "contextual",
+    "confidence": "low",
+    "method": "deterministic",
+    "reason": "Source treated as contextual because no target linkage signals matched.",
+    "evidence": [
+      "title=The Water Resources (Control of Pollution) (Silage, Slurry and Agricultural Fuel Oil) (England) Regulations 2010"
+    ],
+    "signals": {
+      "target_reference_match": false,
+      "primary_target_source_id": "lex-120b4f9c395b3f94",
+      "primary_target_citation": "UKSI 2015/668",
+      "primary_target_title": "The Nitrate Pollution Prevention Regulations 2015",
+      "authority": "legislation_gov_uk",
+      "kind": "uksi",
+      "source_url": "https://www.legislation.gov.uk/uksi/2010/639/data.xml"
+    }
+  }
+]

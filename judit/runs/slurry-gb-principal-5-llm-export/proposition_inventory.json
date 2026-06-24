@@ -1,0 +1,539 @@
+{
+  "proposition_count": 34,
+  "proposition_ids": [
+    "prop:9a84e5adb74f96ec",
+    "prop:8c9bdb350fdf1bc7",
+    "prop:7330463e891bbb41",
+    "prop:46f553c082a9270c",
+    "prop:4ebc206f66f4fa1b",
+    "prop:158e699357b754ae",
+    "prop:d2f993d73e3fb955",
+    "prop:525a890de9335a59",
+    "prop:61b363a883f4b779",
+    "prop:eabdd3814099e393",
+    "prop:4e4134271b0028fb",
+    "prop:27778bd51187ad25",
+    "prop:9698552230fa3c10",
+    "prop:d653900adc37b3b9",
+    "prop:e68f750a59ab2834",
+    "prop:d2ad679ff479335f",
+    "prop:f5f7f0d4309eab92",
+    "prop:bd52b4a79928edba",
+    "prop:1d12ca439cc02a18",
+    "prop:492b7d7877437b14",
+    "prop:f3a8e13d3b944c11",
+    "prop:b4bea7a8d882017b",
+    "prop:8ab1a744f78383af",
+    "prop:ee39fa295eaf7eda",
+    "prop:3717953c3a49a6ef",
+    "prop:f748f41a6cf9938b",
+    "prop:35bdddef3db5f6e7",
+    "prop:35de31be17713de8",
+    "prop:e498f41801bcf68f",
+    "prop:2dada8c0f842e336",
+    "prop:641088352d081b6b",
+    "prop:ac2a1ab4e4baf870",
+    "prop:aef8ade55bca94fa",
+    "prop:f75a1e417b5305ce"
+  ],
+  "by_jurisdiction": {
+    "UK": [
+      "prop:9a84e5adb74f96ec",
+      "prop:8c9bdb350fdf1bc7",
+      "prop:7330463e891bbb41",
+      "prop:46f553c082a9270c",
+      "prop:4ebc206f66f4fa1b",
+      "prop:158e699357b754ae",
+      "prop:d2f993d73e3fb955",
+      "prop:525a890de9335a59",
+      "prop:61b363a883f4b779",
+      "prop:eabdd3814099e393",
+      "prop:4e4134271b0028fb",
+      "prop:27778bd51187ad25",
+      "prop:9698552230fa3c10",
+      "prop:d653900adc37b3b9",
+      "prop:e68f750a59ab2834",
+      "prop:d2ad679ff479335f",
+      "prop:f5f7f0d4309eab92",
+      "prop:bd52b4a79928edba",
+      "prop:1d12ca439cc02a18",
+      "prop:492b7d7877437b14",
+      "prop:f3a8e13d3b944c11",
+      "prop:b4bea7a8d882017b",
+      "prop:8ab1a744f78383af",
+      "prop:ee39fa295eaf7eda",
+      "prop:3717953c3a49a6ef",
+      "prop:f748f41a6cf9938b",
+      "prop:35bdddef3db5f6e7",
+      "prop:35de31be17713de8",
+      "prop:e498f41801bcf68f",
+      "prop:2dada8c0f842e336",
+      "prop:641088352d081b6b",
+      "prop:ac2a1ab4e4baf870",
+      "prop:aef8ade55bca94fa",
+      "prop:f75a1e417b5305ce"
+    ]
+  },
+  "categories": {
+    "conditional": [
+      "prop:9a84e5adb74f96ec",
+      "prop:158e699357b754ae",
+      "prop:d2f993d73e3fb955",
+      "prop:525a890de9335a59",
+      "prop:61b363a883f4b779",
+      "prop:eabdd3814099e393",
+      "prop:4e4134271b0028fb",
+      "prop:27778bd51187ad25",
+      "prop:9698552230fa3c10",
+      "prop:d653900adc37b3b9",
+      "prop:e68f750a59ab2834",
+      "prop:d2ad679ff479335f",
+      "prop:f5f7f0d4309eab92",
+      "prop:bd52b4a79928edba",
+      "prop:f748f41a6cf9938b",
+      "prop:35bdddef3db5f6e7",
+      "prop:35de31be17713de8",
+      "prop:e498f41801bcf68f"
+    ],
+    "documentary": [
+      "prop:9a84e5adb74f96ec",
+      "prop:d2f993d73e3fb955",
+      "prop:eabdd3814099e393",
+      "prop:4e4134271b0028fb",
+      "prop:27778bd51187ad25",
+      "prop:9698552230fa3c10",
+      "prop:d2ad679ff479335f",
+      "prop:f5f7f0d4309eab92"
+    ],
+    "obligation": [
+      "prop:9a84e5adb74f96ec",
+      "prop:8c9bdb350fdf1bc7",
+      "prop:7330463e891bbb41",
+      "prop:46f553c082a9270c",
+      "prop:4ebc206f66f4fa1b",
+      "prop:158e699357b754ae",
+      "prop:d2f993d73e3fb955",
+      "prop:525a890de9335a59",
+      "prop:61b363a883f4b779",
+      "prop:eabdd3814099e393",
+      "prop:4e4134271b0028fb",
+      "prop:27778bd51187ad25",
+      "prop:9698552230fa3c10",
+      "prop:d653900adc37b3b9",
+      "prop:e68f750a59ab2834",
+      "prop:d2ad679ff479335f",
+      "prop:f5f7f0d4309eab92",
+      "prop:bd52b4a79928edba",
+      "prop:1d12ca439cc02a18",
+      "prop:492b7d7877437b14",
+      "prop:f3a8e13d3b944c11",
+      "prop:b4bea7a8d882017b",
+      "prop:8ab1a744f78383af",
+      "prop:ee39fa295eaf7eda",
+      "prop:3717953c3a49a6ef",
+      "prop:f748f41a6cf9938b",
+      "prop:35bdddef3db5f6e7",
+      "prop:35de31be17713de8",
+      "prop:e498f41801bcf68f",
+      "prop:2dada8c0f842e336",
+      "prop:641088352d081b6b",
+      "prop:ac2a1ab4e4baf870",
+      "prop:aef8ade55bca94fa",
+      "prop:f75a1e417b5305ce"
+    ],
+    "record_keeping": [
+      "prop:9a84e5adb74f96ec",
+      "prop:d2f993d73e3fb955",
+      "prop:eabdd3814099e393",
+      "prop:4e4134271b0028fb",
+      "prop:27778bd51187ad25",
+      "prop:9698552230fa3c10",
+      "prop:d2ad679ff479335f",
+      "prop:f5f7f0d4309eab92"
+    ]
+  },
+  "tags": {
+    "occupier-of-a-holding": [
+      "prop:9a84e5adb74f96ec"
+    ],
+    "the-crop-sown-and-the-date-of-sowing": [
+      "prop:9a84e5adb74f96ec"
+    ],
+    "uk": [
+      "prop:9a84e5adb74f96ec",
+      "prop:8c9bdb350fdf1bc7",
+      "prop:7330463e891bbb41",
+      "prop:46f553c082a9270c",
+      "prop:4ebc206f66f4fa1b",
+      "prop:158e699357b754ae",
+      "prop:d2f993d73e3fb955",
+      "prop:525a890de9335a59",
+      "prop:61b363a883f4b779",
+      "prop:eabdd3814099e393",
+      "prop:4e4134271b0028fb",
+      "prop:27778bd51187ad25",
+      "prop:9698552230fa3c10",
+      "prop:d653900adc37b3b9",
+      "prop:e68f750a59ab2834",
+      "prop:d2ad679ff479335f",
+      "prop:f5f7f0d4309eab92",
+      "prop:bd52b4a79928edba",
+      "prop:1d12ca439cc02a18",
+      "prop:492b7d7877437b14",
+      "prop:f3a8e13d3b944c11",
+      "prop:b4bea7a8d882017b",
+      "prop:8ab1a744f78383af",
+      "prop:ee39fa295eaf7eda",
+      "prop:3717953c3a49a6ef",
+      "prop:f748f41a6cf9938b",
+      "prop:35bdddef3db5f6e7",
+      "prop:35de31be17713de8",
+      "prop:e498f41801bcf68f",
+      "prop:2dada8c0f842e336",
+      "prop:641088352d081b6b",
+      "prop:ac2a1ab4e4baf870",
+      "prop:aef8ade55bca94fa",
+      "prop:f75a1e417b5305ce"
+    ],
+    "sample-collection": [
+      "prop:8c9bdb350fdf1bc7",
+      "prop:7330463e891bbb41",
+      "prop:46f553c082a9270c",
+      "prop:1d12ca439cc02a18",
+      "prop:492b7d7877437b14",
+      "prop:f3a8e13d3b944c11"
+    ],
+    "solid-manures": [
+      "prop:8c9bdb350fdf1bc7",
+      "prop:7330463e891bbb41",
+      "prop:46f553c082a9270c",
+      "prop:4ebc206f66f4fa1b",
+      "prop:1d12ca439cc02a18",
+      "prop:492b7d7877437b14",
+      "prop:f3a8e13d3b944c11"
+    ],
+    "sample-preparation": [
+      "prop:4ebc206f66f4fa1b"
+    ],
+    "crop-rotation-on-the-holding": [
+      "prop:158e699357b754ae"
+    ],
+    "leguminous-or-other-plants-fixing-atmospheric-nitrogen": [
+      "prop:158e699357b754ae",
+      "prop:e68f750a59ab2834"
+    ],
+    "date-of-spreading": [
+      "prop:d2f993d73e3fb955"
+    ],
+    "occupier": [
+      "prop:d2f993d73e3fb955",
+      "prop:27778bd51187ad25",
+      "prop:9698552230fa3c10",
+      "prop:d2ad679ff479335f",
+      "prop:f5f7f0d4309eab92",
+      "prop:bd52b4a79928edba"
+    ],
+    "on-tillage-land-with-sandy-or-shallow-soil": [
+      "prop:525a890de9335a59"
+    ],
+    "spreading-organic-manure-with-high-readily-available-nitrogen": [
+      "prop:525a890de9335a59"
+    ],
+    "spreading": [
+      "prop:61b363a883f4b779"
+    ],
+    "three-weeks": [
+      "prop:61b363a883f4b779"
+    ],
+    "number-and-category-of-animals-in-a-building-or-on-a-hardstanding-during-the-storage-period": [
+      "prop:eabdd3814099e393"
+    ],
+    "occupier-of-a-holding-with-livestock": [
+      "prop:eabdd3814099e393",
+      "prop:4e4134271b0028fb"
+    ],
+    "sites-used-for-field-heaps-and-the-dates-of-use": [
+      "prop:4e4134271b0028fb"
+    ],
+    "yield-achieved-by-an-arable-crop": [
+      "prop:27778bd51187ad25"
+    ],
+    "how-any-grassland-was-managed-in-the-previous-calendar-year": [
+      "prop:9698552230fa3c10"
+    ],
+    "occupier-of-a-qualifying-grassland-holding": [
+      "prop:d653900adc37b3b9"
+    ],
+    "the-occupier": [
+      "prop:d653900adc37b3b9"
+    ],
+    "crop-rotation-on-the-holding-during-the-relevant-period": [
+      "prop:e68f750a59ab2834"
+    ],
+    "crop-sown-and-date-of-sowing": [
+      "prop:d2ad679ff479335f"
+    ],
+    "date-of-ploughing-grass-on-the-holding": [
+      "prop:f5f7f0d4309eab92"
+    ],
+    "no-person-spreads-organic-manure-within-15-metres-of-surface-water": [
+      "prop:bd52b4a79928edba"
+    ],
+    "sample-handling": [
+      "prop:b4bea7a8d882017b"
+    ],
+    "sub-samples": [
+      "prop:b4bea7a8d882017b"
+    ],
+    "silo-base": [
+      "prop:8ab1a744f78383af",
+      "prop:ee39fa295eaf7eda"
+    ],
+    "walls-of-the-silo": [
+      "prop:8ab1a744f78383af"
+    ],
+    "channels": [
+      "prop:ee39fa295eaf7eda"
+    ],
+    "drainage-from-channels": [
+      "prop:3717953c3a49a6ef"
+    ],
+    "effluent-tank": [
+      "prop:3717953c3a49a6ef",
+      "prop:f748f41a6cf9938b"
+    ],
+    "silo-capacity": [
+      "prop:f748f41a6cf9938b"
+    ],
+    "slurry-storage-tank-and-effluent-tank-channels-pipes-and-reception-pit": [
+      "prop:35bdddef3db5f6e7"
+    ],
+    "so-that-with-proper-maintenance-they-are-likely-to-continue-to-satisfy-the-requirements-of-paragraphs-2-to-4-for-at-least-20-years": [
+      "prop:35bdddef3db5f6e7"
+    ],
+    "person-having-custody-or-control-of-slurry": [
+      "prop:35de31be17713de8"
+    ],
+    "slurry-storage-system-that-satisfies-the-requirements-of-schedule-2": [
+      "prop:35de31be17713de8"
+    ],
+    "inland-freshwaters-or-coastal-waters-into-which-slurry-could-enter-if-it-were-to-escape": [
+      "prop:e498f41801bcf68f"
+    ],
+    "slurry-storage-tank-effluent-tank-channels-reception-pit": [
+      "prop:e498f41801bcf68f"
+    ],
+    "impermeability": [
+      "prop:2dada8c0f842e336"
+    ],
+    "slurry-storage-system-components": [
+      "prop:2dada8c0f842e336",
+      "prop:641088352d081b6b",
+      "prop:ac2a1ab4e4baf870"
+    ],
+    "load-capacity": [
+      "prop:641088352d081b6b"
+    ],
+    "location-restriction": [
+      "prop:ac2a1ab4e4baf870"
+    ],
+    "freeboard-level": [
+      "prop:aef8ade55bca94fa"
+    ],
+    "slurry-storage-tank": [
+      "prop:aef8ade55bca94fa"
+    ],
+    "tank": [
+      "prop:f75a1e417b5305ce"
+    ],
+    "tap-or-valve": [
+      "prop:f75a1e417b5305ce"
+    ]
+  },
+  "cross_reference_index": {
+    "uk:occupier-of-a-holding:must-record-the-crop-sown-and-the-date-of-sowing": [
+      "prop:9a84e5adb74f96ec"
+    ],
+    "uk:sample-collection:requirement": [
+      "prop:8c9bdb350fdf1bc7",
+      "prop:7330463e891bbb41",
+      "prop:46f553c082a9270c",
+      "prop:1d12ca439cc02a18",
+      "prop:492b7d7877437b14",
+      "prop:f3a8e13d3b944c11"
+    ],
+    "uk:sample-preparation:requirement": [
+      "prop:4ebc206f66f4fa1b"
+    ],
+    "uk:crop-rotation-on-the-holding:must-not-include-leguminous-or-other-plants-fixing-atmospher": [
+      "prop:158e699357b754ae"
+    ],
+    "uk:occupier:must-record": [
+      "prop:d2f993d73e3fb955",
+      "prop:27778bd51187ad25",
+      "prop:9698552230fa3c10",
+      "prop:f5f7f0d4309eab92"
+    ],
+    "uk:spreading-organic-manure-with-high-readily-available-nitrogen:permitted": [
+      "prop:525a890de9335a59"
+    ],
+    "uk:spreading:minimum-interval-between-spreadings": [
+      "prop:61b363a883f4b779"
+    ],
+    "uk:occupier-of-a-holding-with-livestock:must-record": [
+      "prop:eabdd3814099e393",
+      "prop:4e4134271b0028fb"
+    ],
+    "uk:occupier-of-a-qualifying-grassland-holding:enhanced-nutrient-management-requirements-apply": [
+      "prop:d653900adc37b3b9"
+    ],
+    "uk:crop-rotation-on-the-holding-during-the-relevant-period:must-not-include-leguminous-or-other-plants-fixing-atmospher": [
+      "prop:e68f750a59ab2834"
+    ],
+    "uk:occupier:must-record-crop-sown-and-date-of-sowing": [
+      "prop:d2ad679ff479335f"
+    ],
+    "uk:occupier:must-ensure": [
+      "prop:bd52b4a79928edba"
+    ],
+    "uk:sample-handling:requirement": [
+      "prop:b4bea7a8d882017b"
+    ],
+    "uk:silo-base:must-extend-beyond-walls": [
+      "prop:8ab1a744f78383af"
+    ],
+    "uk:silo-base:must-have-perimeter-channels": [
+      "prop:ee39fa295eaf7eda"
+    ],
+    "uk:effluent-tank:must-have-adequate-drainage": [
+      "prop:3717953c3a49a6ef"
+    ],
+    "uk:effluent-tank:capacity-must-not-be-less-than-20-litres-per-cubic-metre": [
+      "prop:f748f41a6cf9938b"
+    ],
+    "uk:slurry-storage-tank-and-effluent-tank-channels-pipes-and-reception-pit:must-be-designed-and-constructed": [
+      "prop:35bdddef3db5f6e7"
+    ],
+    "uk:person-having-custody-or-control-of-slurry:must-store": [
+      "prop:35de31be17713de8"
+    ],
+    "uk:slurry-storage-tank-effluent-tank-channels-reception-pit:may-not-be-situated-within-10-metres-of-inland-freshwaters-o": [
+      "prop:e498f41801bcf68f"
+    ],
+    "uk:slurry-storage-system-components:requirement": [
+      "prop:2dada8c0f842e336",
+      "prop:641088352d081b6b",
+      "prop:ac2a1ab4e4baf870"
+    ],
+    "uk:slurry-storage-tank:requirement": [
+      "prop:aef8ade55bca94fa"
+    ],
+    "uk:tap-or-valve:shall-be-within-the-bund": [
+      "prop:f75a1e417b5305ce"
+    ]
+  },
+  "lineage_index": {
+    "lex-120b4f9c395b3f94:regulation-30-1:p001": [
+      "pver:lex-120b4f9c395b3f94:regulation-30-1:p001:snap-lex-120b4f9c395b3f94-v1:run-001"
+    ],
+    "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p001": [
+      "pver:lex-120b4f9c395b3f94:schedule-2-paragraph-2:p001:snap-lex-120b4f9c395b3f94-v1:run-001"
+    ],
+    "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p002": [
+      "pver:lex-120b4f9c395b3f94:schedule-2-paragraph-2:p002:snap-lex-120b4f9c395b3f94-v1:run-001"
+    ],
+    "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p003": [
+      "pver:lex-120b4f9c395b3f94:schedule-2-paragraph-2:p003:snap-lex-120b4f9c395b3f94-v1:run-001"
+    ],
+    "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p004": [
+      "pver:lex-120b4f9c395b3f94:schedule-2-paragraph-2:p004:snap-lex-120b4f9c395b3f94-v1:run-001"
+    ],
+    "lex-120b4f9c395b3f94:schedule-3-paragraph-11:p001": [
+      "pver:lex-120b4f9c395b3f94:schedule-3-paragraph-11:p001:snap-lex-120b4f9c395b3f94-v1:run-001"
+    ],
+    "lex-120b4f9c395b3f94:schedule-3-paragraph-17-b-i:p001": [
+      "pver:lex-120b4f9c395b3f94:schedule-3-paragraph-17-b-i:p001:snap-lex-120b4f9c395b3f94-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:regulation-19:p001": [
+      "pver:lex-805b03f284dcf364:regulation-19:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:regulation-21-b:p001": [
+      "pver:lex-805b03f284dcf364:regulation-21-b:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:regulation-35-1:p001": [
+      "pver:lex-805b03f284dcf364:regulation-35-1:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:regulation-35-2:p002": [
+      "pver:lex-805b03f284dcf364:regulation-35-2:p002:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:regulation-41-1:p001": [
+      "pver:lex-805b03f284dcf364:regulation-41-1:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:regulation-41-2:p002": [
+      "pver:lex-805b03f284dcf364:regulation-41-2:p002:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-1a-paragraph-1:p001": [
+      "pver:lex-805b03f284dcf364:schedule-1a-paragraph-1:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-1a-paragraph-15:p001": [
+      "pver:lex-805b03f284dcf364:schedule-1a-paragraph-15:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-1a-paragraph-19:p001": [
+      "pver:lex-805b03f284dcf364:schedule-1a-paragraph-19:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-1a-paragraph-21:p001": [
+      "pver:lex-805b03f284dcf364:schedule-1a-paragraph-21:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-1a-paragraph-26:p001": [
+      "pver:lex-805b03f284dcf364:schedule-1a-paragraph-26:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-3-paragraph-2:p001": [
+      "pver:lex-805b03f284dcf364:schedule-3-paragraph-2:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-3-paragraph-2:p002": [
+      "pver:lex-805b03f284dcf364:schedule-3-paragraph-2:p002:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-3-paragraph-2:p003": [
+      "pver:lex-805b03f284dcf364:schedule-3-paragraph-2:p003:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-3-paragraph-2:p004": [
+      "pver:lex-805b03f284dcf364:schedule-3-paragraph-2:p004:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-5-2-a:p001": [
+      "pver:lex-805b03f284dcf364:schedule-5-2-a:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-5-2-b:p002": [
+      "pver:lex-805b03f284dcf364:schedule-5-2-b:p002:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-5-2-c:p003": [
+      "pver:lex-805b03f284dcf364:schedule-5-2-c:p003:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-5-3-a:p004": [
+      "pver:lex-805b03f284dcf364:schedule-5-3-a:p004:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-805b03f284dcf364:schedule-6-paragraph-8:p001": [
+      "pver:lex-805b03f284dcf364:schedule-6-paragraph-8:p001:snap-lex-805b03f284dcf364-v1:run-001"
+    ],
+    "lex-e71fbbe3342ac0be:regulation-4-1:p001": [
+      "pver:lex-e71fbbe3342ac0be:regulation-4-1:p001:snap-lex-e71fbbe3342ac0be-v1:run-001"
+    ],
+    "lex-e71fbbe3342ac0be:schedule-2-paragraph-7:p001": [
+      "pver:lex-e71fbbe3342ac0be:schedule-2-paragraph-7:p001:snap-lex-e71fbbe3342ac0be-v1:run-001"
+    ],
+    "lex-96613ffe71589e1e:schedule-2-2:p001": [
+      "pver:lex-96613ffe71589e1e:schedule-2-2:p001:snap-lex-96613ffe71589e1e-v1:run-001"
+    ],
+    "lex-96613ffe71589e1e:schedule-2-4:p002": [
+      "pver:lex-96613ffe71589e1e:schedule-2-4:p002:snap-lex-96613ffe71589e1e-v1:run-001"
+    ],
+    "lex-96613ffe71589e1e:schedule-2-7:p003": [
+      "pver:lex-96613ffe71589e1e:schedule-2-7:p003:snap-lex-96613ffe71589e1e-v1:run-001"
+    ],
+    "lex-96613ffe71589e1e:schedule-2-11:p004": [
+      "pver:lex-96613ffe71589e1e:schedule-2-11:p004:snap-lex-96613ffe71589e1e-v1:run-001"
+    ],
+    "lex-96613ffe71589e1e:schedule-3-paragraph-5:p001": [
+      "pver:lex-96613ffe71589e1e:schedule-3-paragraph-5:p001:snap-lex-96613ffe71589e1e-v1:run-001"
+    ]
+  }
+}

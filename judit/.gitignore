@@ -25,3 +25,8 @@ node_modules/
 # OS / editor
 .DS_Store
 .vscode/
+
+# Generated source bundles (local intake/export); optional smoke copies at repo root
+/source-bundle-*.json
+runs/**/source-bundle-*.json
+!tests/fixtures/**/source-bundle-*.json

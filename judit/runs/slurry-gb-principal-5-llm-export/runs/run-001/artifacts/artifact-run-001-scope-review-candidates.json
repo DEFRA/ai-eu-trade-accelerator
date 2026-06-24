@@ -1,0 +1,2892 @@
+[
+  {
+    "id": "lscr:5a3c9c8b4348523d",
+    "run_id": "run-001",
+    "suggested_slug": "bovine",
+    "raw_label": "Bovine",
+    "source": "other",
+    "reason": "Multiple sibling species scopes matched deterministically for the same proposition; reconcile applicability: ['bovine', 'equine']",
+    "evidence": [
+      "\u2026or the growing of crops in soil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fert\u2026",
+      "\u2026oil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fertiliser\u201d means a nitrogen fer\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:9a84e5adb74f96ec",
+      "canonical_scope_id": "bovine",
+      "review_kind": "sibling_species_ambiguity",
+      "related_scope_ids": [
+        "bovine",
+        "equine"
+      ]
+    }
+  },
+  {
+    "id": "lscr:1c1990324e18b81f",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:9a84e5adb74f96ec",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:40cd84a13e8eb7e5",
+    "run_id": "run-001",
+    "suggested_slug": "certification",
+    "raw_label": "Certification",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026the quality of the water;\u201cfacts adviser\u201d means a person who is a member of the fertiliser advisers certification and training scheme and qualified to advise on matters relating to crop nutrient management;\u201cfertil\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:9a84e5adb74f96ec",
+      "canonical_scope_id": "certification",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:5adef77fdaf3cb52",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:9a84e5adb74f96ec",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:aa9b294d40fd6270",
+    "run_id": "run-001",
+    "suggested_slug": "bovine",
+    "raw_label": "Bovine",
+    "source": "other",
+    "reason": "Multiple sibling species scopes matched deterministically for the same proposition; reconcile applicability: ['bovine', 'equine']",
+    "evidence": [
+      "\u2026or the growing of crops in soil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fert\u2026",
+      "\u2026oil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fertiliser\u201d means a nitrogen fer\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8c9bdb350fdf1bc7",
+      "canonical_scope_id": "bovine",
+      "review_kind": "sibling_species_ambiguity",
+      "related_scope_ids": [
+        "bovine",
+        "equine"
+      ]
+    }
+  },
+  {
+    "id": "lscr:e4ff103559c77b17",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8c9bdb350fdf1bc7",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:9f1a1fa76a100146",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8c9bdb350fdf1bc7",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:39d02cd43666b2f2",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026art 2 of schedule 1 to the environmental permitting (england and wales) regulations 2016;\u201cderogated holding\u201d means a holding over which a derogation has effect;\u201cderogation\u201d and \u201cderogation conditions\u201d each h\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8c9bdb350fdf1bc7",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:18cdb89c3a768490",
+    "run_id": "run-001",
+    "suggested_slug": "certification",
+    "raw_label": "Certification",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026the quality of the water;\u201cfacts adviser\u201d means a person who is a member of the fertiliser advisers certification and training scheme and qualified to advise on matters relating to crop nutrient management;\u201cfertil\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8c9bdb350fdf1bc7",
+      "canonical_scope_id": "certification",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:fb0a8e8f88a87be0",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8c9bdb350fdf1bc7",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:29aec332d71e3bdf",
+    "run_id": "run-001",
+    "suggested_slug": "bovine",
+    "raw_label": "Bovine",
+    "source": "other",
+    "reason": "Multiple sibling species scopes matched deterministically for the same proposition; reconcile applicability: ['bovine', 'equine']",
+    "evidence": [
+      "\u2026or the growing of crops in soil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fert\u2026",
+      "\u2026oil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fertiliser\u201d means a nitrogen fer\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:7330463e891bbb41",
+      "canonical_scope_id": "bovine",
+      "review_kind": "sibling_species_ambiguity",
+      "related_scope_ids": [
+        "bovine",
+        "equine"
+      ]
+    }
+  },
+  {
+    "id": "lscr:a4343fb00e4d1d16",
+    "run_id": "run-001",
+    "suggested_slug": "bovine",
+    "raw_label": "Bovine",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026or the growing of crops in soil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fert\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:7330463e891bbb41",
+      "canonical_scope_id": "bovine",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:72064be5c72a7f1d",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:7330463e891bbb41",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:80870ea225ecf0a1",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026art 2 of schedule 1 to the environmental permitting (england and wales) regulations 2016;\u201cderogated holding\u201d means a holding over which a derogation has effect;\u201cderogation\u201d and \u201cderogation conditions\u201d each h\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:7330463e891bbb41",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:0694d467d997f540",
+    "run_id": "run-001",
+    "suggested_slug": "equine",
+    "raw_label": "Equine",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026oil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fertiliser\u201d means a nitrogen fer\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:7330463e891bbb41",
+      "canonical_scope_id": "equine",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:3b8478291e5a1835",
+    "run_id": "run-001",
+    "suggested_slug": "certification",
+    "raw_label": "Certification",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026the quality of the water;\u201cfacts adviser\u201d means a person who is a member of the fertiliser advisers certification and training scheme and qualified to advise on matters relating to crop nutrient management;\u201cfertil\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:7330463e891bbb41",
+      "canonical_scope_id": "certification",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:333dde5272f26c0c",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:7330463e891bbb41",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:844bf3aaa59b510b",
+    "run_id": "run-001",
+    "suggested_slug": "bovine",
+    "raw_label": "Bovine",
+    "source": "other",
+    "reason": "Multiple sibling species scopes matched deterministically for the same proposition; reconcile applicability: ['bovine', 'equine']",
+    "evidence": [
+      "\u2026or the growing of crops in soil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fert\u2026",
+      "\u2026oil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fertiliser\u201d means a nitrogen fer\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:46f553c082a9270c",
+      "canonical_scope_id": "bovine",
+      "review_kind": "sibling_species_ambiguity",
+      "related_scope_ids": [
+        "bovine",
+        "equine"
+      ]
+    }
+  },
+  {
+    "id": "lscr:449e93b8dc2b1134",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:46f553c082a9270c",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:6b7b36fece61ab0e",
+    "run_id": "run-001",
+    "suggested_slug": "bovine",
+    "raw_label": "Bovine",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026or the growing of crops in soil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fert\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:46f553c082a9270c",
+      "canonical_scope_id": "bovine",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:d53a63a3ab0971d3",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:46f553c082a9270c",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:866b853a87fd885c",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026art 2 of schedule 1 to the environmental permitting (england and wales) regulations 2016;\u201cderogated holding\u201d means a holding over which a derogation has effect;\u201cderogation\u201d and \u201cderogation conditions\u201d each h\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:46f553c082a9270c",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:8789996df5faa0bb",
+    "run_id": "run-001",
+    "suggested_slug": "equine",
+    "raw_label": "Equine",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026oil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fertiliser\u201d means a nitrogen fer\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:46f553c082a9270c",
+      "canonical_scope_id": "equine",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:ee89d6ce0903aba1",
+    "run_id": "run-001",
+    "suggested_slug": "certification",
+    "raw_label": "Certification",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026the quality of the water;\u201cfacts adviser\u201d means a person who is a member of the fertiliser advisers certification and training scheme and qualified to advise on matters relating to crop nutrient management;\u201cfertil\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:46f553c082a9270c",
+      "canonical_scope_id": "certification",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:964015c5474fd6a1",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:46f553c082a9270c",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:6d97deac85d45cbe",
+    "run_id": "run-001",
+    "suggested_slug": "bovine",
+    "raw_label": "Bovine",
+    "source": "other",
+    "reason": "Multiple sibling species scopes matched deterministically for the same proposition; reconcile applicability: ['bovine', 'equine']",
+    "evidence": [
+      "\u2026or the growing of crops in soil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fert\u2026",
+      "\u2026oil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fertiliser\u201d means a nitrogen fer\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:4ebc206f66f4fa1b",
+      "canonical_scope_id": "bovine",
+      "review_kind": "sibling_species_ambiguity",
+      "related_scope_ids": [
+        "bovine",
+        "equine"
+      ]
+    }
+  },
+  {
+    "id": "lscr:abd2dafcc1967b0b",
+    "run_id": "run-001",
+    "suggested_slug": "bovine",
+    "raw_label": "Bovine",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026or the growing of crops in soil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fert\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:4ebc206f66f4fa1b",
+      "canonical_scope_id": "bovine",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:f291673a03de1ff4",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:4ebc206f66f4fa1b",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:a02d22dab232cb6d",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026art 2 of schedule 1 to the environmental permitting (england and wales) regulations 2016;\u201cderogated holding\u201d means a holding over which a derogation has effect;\u201cderogation\u201d and \u201cderogation conditions\u201d each h\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:4ebc206f66f4fa1b",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:b7695221e670f1ab",
+    "run_id": "run-001",
+    "suggested_slug": "equine",
+    "raw_label": "Equine",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026oil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fertiliser\u201d means a nitrogen fer\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:4ebc206f66f4fa1b",
+      "canonical_scope_id": "equine",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:1f78615dddd94d37",
+    "run_id": "run-001",
+    "suggested_slug": "certification",
+    "raw_label": "Certification",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026the quality of the water;\u201cfacts adviser\u201d means a person who is a member of the fertiliser advisers certification and training scheme and qualified to advise on matters relating to crop nutrient management;\u201cfertil\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:4ebc206f66f4fa1b",
+      "canonical_scope_id": "certification",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:b80ba8a93f8592f3",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:4ebc206f66f4fa1b",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:15840d4047875189",
+    "run_id": "run-001",
+    "suggested_slug": "bovine",
+    "raw_label": "Bovine",
+    "source": "other",
+    "reason": "Multiple sibling species scopes matched deterministically for the same proposition; reconcile applicability: ['bovine', 'equine']",
+    "evidence": [
+      "\u2026or the growing of crops in soil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fert\u2026",
+      "\u2026oil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fertiliser\u201d means a nitrogen fer\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:158e699357b754ae",
+      "canonical_scope_id": "bovine",
+      "review_kind": "sibling_species_ambiguity",
+      "related_scope_ids": [
+        "bovine",
+        "equine"
+      ]
+    }
+  },
+  {
+    "id": "lscr:3f92f132b0ca3846",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:158e699357b754ae",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:5792c797ce91fdcf",
+    "run_id": "run-001",
+    "suggested_slug": "bovine",
+    "raw_label": "Bovine",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026or the growing of crops in soil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fert\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:158e699357b754ae",
+      "canonical_scope_id": "bovine",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:617b693b612aaf41",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:158e699357b754ae",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:f219753435c38d5c",
+    "run_id": "run-001",
+    "suggested_slug": "equine",
+    "raw_label": "Equine",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026oil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fertiliser\u201d means a nitrogen fer\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:158e699357b754ae",
+      "canonical_scope_id": "equine",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:8ffe34935af64ce9",
+    "run_id": "run-001",
+    "suggested_slug": "certification",
+    "raw_label": "Certification",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026the quality of the water;\u201cfacts adviser\u201d means a person who is a member of the fertiliser advisers certification and training scheme and qualified to advise on matters relating to crop nutrient management;\u201cfertil\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:158e699357b754ae",
+      "canonical_scope_id": "certification",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:eb88d179fd595dd4",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:158e699357b754ae",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:b966ef8b3c6cab62",
+    "run_id": "run-001",
+    "suggested_slug": "bovine",
+    "raw_label": "Bovine",
+    "source": "other",
+    "reason": "Multiple sibling species scopes matched deterministically for the same proposition; reconcile applicability: ['bovine', 'equine']",
+    "evidence": [
+      "\u2026or the growing of crops in soil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fert\u2026",
+      "\u2026oil or rearing of livestock for agricultural purposes;\u201clivestock\u201d means cattle, sheep, goats, deer, horses, poultry or pigs as specified in schedule 1;\u201cmanufactured nitrogen fertiliser\u201d means a nitrogen fer\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2f993d73e3fb955",
+      "canonical_scope_id": "bovine",
+      "review_kind": "sibling_species_ambiguity",
+      "related_scope_ids": [
+        "bovine",
+        "equine"
+      ]
+    }
+  },
+  {
+    "id": "lscr:df1f292fb6a73be9",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2f993d73e3fb955",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:f0675a365498bb29",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2f993d73e3fb955",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:815fb1df29722c3f",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026art 2 of schedule 1 to the environmental permitting (england and wales) regulations 2016;\u201cderogated holding\u201d means a holding over which a derogation has effect;\u201cderogation\u201d and \u201cderogation conditions\u201d each h\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2f993d73e3fb955",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:ae0c02f5919bd95c",
+    "run_id": "run-001",
+    "suggested_slug": "certification",
+    "raw_label": "Certification",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026the quality of the water;\u201cfacts adviser\u201d means a person who is a member of the fertiliser advisers certification and training scheme and qualified to advise on matters relating to crop nutrient management;\u201cfertil\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2f993d73e3fb955",
+      "canonical_scope_id": "certification",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:9ff3629669fa23e3",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026wth of vegetation;\u201corganic manure\u201d means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);\u201cphosphate fertiliser\u201d means any substance\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2f993d73e3fb955",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:c6a166268dd0cda8",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:525a890de9335a59",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:ccff4daecc5c88d4",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:525a890de9335a59",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:91adf47ce7b36778",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:525a890de9335a59",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:ccca8ba1dea1e068",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:525a890de9335a59",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:a94274793a976e73",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:525a890de9335a59",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:3be749f5e49206e0",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:525a890de9335a59",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:6518296f40f78041",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:61b363a883f4b779",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:21bc26dbab22f64a",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:61b363a883f4b779",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:365c6f0c9456f0f4",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:61b363a883f4b779",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:8d2b486080ea4232",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:eabdd3814099e393",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:02ec768de323c588",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:eabdd3814099e393",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:f726793a817ab8e1",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:eabdd3814099e393",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:8672e10c8588f1a7",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:eabdd3814099e393",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:97e19f3395a41a50",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:eabdd3814099e393",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:ccb078022bae9d2c",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:4e4134271b0028fb",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:2aaf158891ceb2ac",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:4e4134271b0028fb",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:9a7a167c479f633e",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:27778bd51187ad25",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:cc441643bc7001c9",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:27778bd51187ad25",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:318bd28a6b2db017",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:27778bd51187ad25",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:4a3074cef86ea0c8",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:27778bd51187ad25",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:234500d2d2ed961c",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:27778bd51187ad25",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:8bb7711748689620",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:27778bd51187ad25",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:9048b9832c37e47e",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:9698552230fa3c10",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:12ea420f046f9bf9",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:9698552230fa3c10",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:9e776ceb8cd8bd44",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:9698552230fa3c10",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:f4e96dcb0d090d10",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:9698552230fa3c10",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:cfb6b3be8e4f618f",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:9698552230fa3c10",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:91d8b1b78840d1d3",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:9698552230fa3c10",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:1095706d16ad2175",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d653900adc37b3b9",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:7248ff862489b721",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d653900adc37b3b9",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:8b52a00e9f2e3b96",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d653900adc37b3b9",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:43d91f70dfee860c",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d653900adc37b3b9",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:73bdc42d2392bea4",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d653900adc37b3b9",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:0300d132fbae9e0b",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:e68f750a59ab2834",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:4d635bfaf055a577",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:e68f750a59ab2834",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:28818b1740cb75d5",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2ad679ff479335f",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:02e44d1bb6f5fcd1",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2ad679ff479335f",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:b484aead9c6b9cf8",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2ad679ff479335f",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:3faac70224728207",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2ad679ff479335f",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:2e6384177374d201",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2ad679ff479335f",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:3f355c220ea459cd",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:d2ad679ff479335f",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:a8980e589acc16a7",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f5f7f0d4309eab92",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:c4c005aab18fca4c",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f5f7f0d4309eab92",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:ea3f5f02b2b929b6",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:bd52b4a79928edba",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:1e020a9c9cc9627e",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:bd52b4a79928edba",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:d139ea1c3125aaa5",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:bd52b4a79928edba",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:b1b14c499b8dd785",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:bd52b4a79928edba",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:68d86ac820e5c4a3",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:bd52b4a79928edba",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:18a8c367de7440db",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:bd52b4a79928edba",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:ddebeaf538da8a47",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:1d12ca439cc02a18",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:5e76e179934f879b",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:1d12ca439cc02a18",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:e22c6dd2d60c6369",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:1d12ca439cc02a18",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:851db44fae556175",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:492b7d7877437b14",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:a58191a82fe52e25",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:492b7d7877437b14",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:8fc55642c79cafb5",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:492b7d7877437b14",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:5e96110422232ad1",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:492b7d7877437b14",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:94956a6123e739f2",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:492b7d7877437b14",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:4a8adbef94a02f0c",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:492b7d7877437b14",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:7b503ba4bcfa663a",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f3a8e13d3b944c11",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:24d9b16cf2d325e7",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f3a8e13d3b944c11",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:303f75eb0b16f108",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f3a8e13d3b944c11",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:c30ad49023295f10",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f3a8e13d3b944c11",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:ad23d8ed26739159",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f3a8e13d3b944c11",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:41541f4fb61d6119",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f3a8e13d3b944c11",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:04e34944366ccb05",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:b4bea7a8d882017b",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:27e214904417a04b",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:b4bea7a8d882017b",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:9651f14d54591f89",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:b4bea7a8d882017b",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:ac94bd8b8a7c66d5",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:b4bea7a8d882017b",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:65f1df16766ca7d0",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:b4bea7a8d882017b",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:fa2a6655ef0ea832",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:b4bea7a8d882017b",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:f7abe602b2cbe726",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8ab1a744f78383af",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:e14c9a5b5705ac53",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8ab1a744f78383af",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:4dd9d91780fa4851",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8ab1a744f78383af",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:fc5354ec065624c5",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8ab1a744f78383af",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:9417c80aad67465f",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8ab1a744f78383af",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:777a96a36aed4402",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:8ab1a744f78383af",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:49722f41aec1eb54",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:ee39fa295eaf7eda",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:de3a1a76f431000f",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:ee39fa295eaf7eda",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:38380aa97cd522de",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:ee39fa295eaf7eda",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:6d3cce1941ba66e9",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:ee39fa295eaf7eda",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:33bdf3396bef4c3d",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:ee39fa295eaf7eda",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:68bdd08ad510a56c",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:ee39fa295eaf7eda",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:3f8b1f10b3faf9d0",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:3717953c3a49a6ef",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:87c3b8410531cb83",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:3717953c3a49a6ef",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:9675b6bdad606659",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:3717953c3a49a6ef",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:1433ff825f2cde34",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:3717953c3a49a6ef",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:28e2f7930cc8a71e",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:3717953c3a49a6ef",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:798a6b99cf55cfc7",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:3717953c3a49a6ef",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:f88536befad83f76",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f748f41a6cf9938b",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:9ccdcfd242c619c8",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f748f41a6cf9938b",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:a6e5052942bad8a8",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f748f41a6cf9938b",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:c914d007167c4cfc",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f748f41a6cf9938b",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:f0022f6cf777e7ab",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f748f41a6cf9938b",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:da2c27669cfaa6fd",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f748f41a6cf9938b",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:679b8b653007cd38",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:35bdddef3db5f6e7",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:28da40e181646091",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026regulations apply in relation to wales. 3 these regulations come into force on 1 april 2021. 2in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:35bdddef3db5f6e7",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:5392c7b8c6ed3191",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:35bdddef3db5f6e7",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:979ca2fa6790b2f8",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 the title of these regulations is the water resources (control of agricultural pollution) (wales) regulations 2021. 2 these regulations apply in relation to wales\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:35bdddef3db5f6e7",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:4ba1cb37ac4aeda2",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:35bdddef3db5f6e7",
+      "canonical_scope_id": "animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:85bf9394652a9d48",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026s not include grassland with 50 % or more clover;\u201cgrazing livestock\u201d (\u201cda byw sy\u2019n pori\u201d) means any animal specified in table 1 in schedule 1;\u201cholding\u201d (\u201cdaliad\u201d) means all land and its associated buildings\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:35bdddef3db5f6e7",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:53f19ad4aaea320e",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026other residential premises on a farm and stored separately from other oil;\u201clivestock\u201d means\u2014animals kept for the production of food or wool, orbirds kept for the production of food;\u201creception pit\u201d means a\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:35de31be17713de8",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:b6dc0d72e4a62b90",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026not include oil intended for use exclusively as a fuel for heating a farmhouse or other residential premises on a farm and stored separately from other oil;\u201clivestock\u201d means\u2014animals kept for the production of\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:35de31be17713de8",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:102f17cbcf0e1398",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Ancestor scope link is inherited from a low-confidence or contextual-only child match ('kept_terrestrial_animal').",
+    "evidence": [
+      "narrower_scope:kept_terrestrial_animal"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:35de31be17713de8",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "inherited_from_weak_child",
+      "related_scope_ids": [
+        "kept_terrestrial_animal",
+        "terrestrial_animal"
+      ]
+    }
+  },
+  {
+    "id": "lscr:d7f51ea04dfe85fa",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Ancestor scope link is inherited from a low-confidence or contextual-only child match ('kept_terrestrial_animal').",
+    "evidence": [
+      "narrower_scope:kept_terrestrial_animal"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:35de31be17713de8",
+      "canonical_scope_id": "animal",
+      "review_kind": "inherited_from_weak_child",
+      "related_scope_ids": [
+        "kept_terrestrial_animal",
+        "animal"
+      ]
+    }
+  },
+  {
+    "id": "lscr:6c2ac6e20cb6b8f5",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026to silage while it is stored temporarily in a container, trailer or vehicle in connection with its transport about the farm or elsewhere.4a person who has custody or control of a silage bale must not open or\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:e498f41801bcf68f",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:3c6bca2e36095e60",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1these regulations\u2014amay be cited as the water resources (control of pollution) (silage, slurry and agricultural fuel oil) (england) regulations 2010;bapply to engla\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:e498f41801bcf68f",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:39f233f86c3588e1",
+    "run_id": "run-001",
+    "suggested_slug": "kept_terrestrial_animal",
+    "raw_label": "Kept terrestrial animal",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026other residential premises on a farm and stored separately from other oil;\u201clivestock\u201d means\u2014animals kept for the production of food or wool, orbirds kept for the production of food;\u201creception pit\u201d means a\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:e498f41801bcf68f",
+      "canonical_scope_id": "kept_terrestrial_animal",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:eb931430de5b2d22",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026not include oil intended for use exclusively as a fuel for heating a farmhouse or other residential premises on a farm and stored separately from other oil;\u201clivestock\u201d means\u2014animals kept for the production of\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:e498f41801bcf68f",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:eb66a470ece1f032",
+    "run_id": "run-001",
+    "suggested_slug": "terrestrial_animal",
+    "raw_label": "Terrestrial animal",
+    "source": "other",
+    "reason": "Ancestor scope link is inherited from a low-confidence or contextual-only child match ('kept_terrestrial_animal').",
+    "evidence": [
+      "narrower_scope:kept_terrestrial_animal"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:e498f41801bcf68f",
+      "canonical_scope_id": "terrestrial_animal",
+      "review_kind": "inherited_from_weak_child",
+      "related_scope_ids": [
+        "kept_terrestrial_animal",
+        "terrestrial_animal"
+      ]
+    }
+  },
+  {
+    "id": "lscr:18c034a9e84f9830",
+    "run_id": "run-001",
+    "suggested_slug": "animal",
+    "raw_label": "Animal",
+    "source": "other",
+    "reason": "Ancestor scope link is inherited from a low-confidence or contextual-only child match ('kept_terrestrial_animal').",
+    "evidence": [
+      "narrower_scope:kept_terrestrial_animal"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:e498f41801bcf68f",
+      "canonical_scope_id": "animal",
+      "review_kind": "inherited_from_weak_child",
+      "related_scope_ids": [
+        "kept_terrestrial_animal",
+        "animal"
+      ]
+    }
+  },
+  {
+    "id": "lscr:7775bbc139581606",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 these regulations may be cited as the control of pollution (silage, slurry and agricultural fuel oil) (scotland) regulations 2003 and shall come\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:2dada8c0f842e336",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:5bd3801fb1783a41",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 these regulations may be cited as the control of pollution (silage, slurry and agricultural fuel oil) (scotland) regulations 2003 and shall come\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:2dada8c0f842e336",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:ded33cb23c1d04d4",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 these regulations may be cited as the control of pollution (silage, slurry and agricultural fuel oil) (scotland) regulations 2003 and shall come\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:641088352d081b6b",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:8a6b2b54b00f8ae2",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 these regulations may be cited as the control of pollution (silage, slurry and agricultural fuel oil) (scotland) regulations 2003 and shall come\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:641088352d081b6b",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:b82de1f0456f5645",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 these regulations may be cited as the control of pollution (silage, slurry and agricultural fuel oil) (scotland) regulations 2003 and shall come\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:ac2a1ab4e4baf870",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:57992fd7245f3eb6",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 these regulations may be cited as the control of pollution (silage, slurry and agricultural fuel oil) (scotland) regulations 2003 and shall come\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:ac2a1ab4e4baf870",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:0768c1a70053048c",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 these regulations may be cited as the control of pollution (silage, slurry and agricultural fuel oil) (scotland) regulations 2003 and shall come\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:aef8ade55bca94fa",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:269ca639adb5e440",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 these regulations may be cited as the control of pollution (silage, slurry and agricultural fuel oil) (scotland) regulations 2003 and shall come\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:aef8ade55bca94fa",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:b4bb00d441937e9f",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026not include oil intended for use exclusively as a fuel for heating a farmhouse or other residential premises on a farm and which is stored separately from other oil; \u201clivestock\u201d means\u2013 any animals kept for th\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:aef8ade55bca94fa",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:ffbeb4b98548bf90",
+    "run_id": "run-001",
+    "suggested_slug": "movement_control",
+    "raw_label": "Movement control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 these regulations may be cited as the control of pollution (silage, slurry and agricultural fuel oil) (scotland) regulations 2003 and shall come\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f75a1e417b5305ce",
+      "canonical_scope_id": "movement_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:58cb410b1a7b8910",
+    "run_id": "run-001",
+    "suggested_slug": "disease_control",
+    "raw_label": "Disease control",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "1 1 these regulations may be cited as the control of pollution (silage, slurry and agricultural fuel oil) (scotland) regulations 2003 and shall come\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f75a1e417b5305ce",
+      "canonical_scope_id": "disease_control",
+      "review_kind": "weak_source_context_only"
+    }
+  },
+  {
+    "id": "lscr:e5f960948774c923",
+    "run_id": "run-001",
+    "suggested_slug": "establishments",
+    "raw_label": "Establishments",
+    "source": "other",
+    "reason": "Scope match relied only on broad source body context (low confidence).",
+    "evidence": [
+      "\u2026not include oil intended for use exclusively as a fuel for heating a farmhouse or other residential premises on a farm and which is stored separately from other oil; \u201clivestock\u201d means\u2013 any animals kept for th\u2026"
+    ],
+    "signals": {
+      "review_subtype": "scope_link_quality",
+      "proposition_id": "prop:f75a1e417b5305ce",
+      "canonical_scope_id": "establishments",
+      "review_kind": "weak_source_context_only"
+    }
+  }
+]

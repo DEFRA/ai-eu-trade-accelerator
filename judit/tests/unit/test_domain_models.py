@@ -177,6 +177,15 @@ def test_proposition_defaults_for_single_jurisdiction_inventory() -> None:
     assert proposition.label == ""
     assert proposition.short_name == ""
     assert proposition.slug == ""
+    assert proposition.proposition_tier.value == "substantive_rule"
+    assert proposition.legal_effect_type.value == "recordkeeping"
+    assert proposition.source_jurisdiction == "UK"
+    assert proposition.territorial_application == []
+    assert proposition.extent == []
+    assert proposition.is_compliance_relevant is True
+    assert proposition.is_comparison_anchor is True
+    assert proposition.review_notes is None
+    assert proposition.extraction_trace_id is None
 
 
 def test_legacy_source_document_aliases_still_validate_during_migration() -> None:

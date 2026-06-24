@@ -3,7 +3,10 @@ from typing import Any, Literal
 
 from pydantic import AliasChoices, BaseModel, Field, field_validator, model_validator
 
-from .enums import ConfidenceLevel, DivergenceType, ReviewStatus
+from .enums import ConfidenceLevel, DivergenceType, LegalEffectType, PropositionTier, ReviewStatus
+from .proposition_classification import enrich_proposition_classification
+from .proposition_jurisdiction import enrich_proposition_jurisdiction
+from .proposition_notes import apply_notes_separation
 
 
 def utc_now() -> datetime:
@@ -317,6 +320,7 @@ class Proposition(BaseModel):
     source_fragment_id: str | None = None
     fragment_locator: str | None = None
     jurisdiction: str
+    source_jurisdiction: str = ""
     article_reference: str | None = None
     proposition_text: str
     label: str = ""
@@ -328,12 +332,43 @@ class Proposition(BaseModel):
     authority: str | None = None
     required_documents: list[str] = Field(default_factory=list)
     affected_subjects: list[str] = Field(default_factory=list)
-    categories: list[str] = Field(default_factory=list)
+    categories: list[str] = Field(
+        default_factory=list,
+        description=(
+            "Non-authoritative legacy LLM/tag output from extraction. "
+            "Do not use to decide obligation type, compliance relevance, or comparison anchors — "
+            "use legal_effect_type, is_compliance_relevant, and is_comparison_anchor."
+        ),
+    )
     tags: list[str] = Field(default_factory=list)
-    cross_reference_key: str | None = None
+    cross_reference_key: str | None = None  # Deprecated: use source_scoped_key (same value when set).
+    source_scoped_key: str | None = None
+    semantic_comparison_key: str | None = None
+    explicit_cross_reference_targets: list[str] = Field(default_factory=list)
     cross_reference_targets: list[str] = Field(default_factory=list)
     review_status: ReviewStatus = ReviewStatus.PROPOSED
     notes: str = ""
+    proposition_tier: PropositionTier = PropositionTier.UNKNOWN
+    legal_effect_type: LegalEffectType = LegalEffectType.UNKNOWN
+    territorial_application: list[str] = Field(default_factory=list)
+    extent: list[str] = Field(default_factory=list)
+    is_compliance_relevant: bool | None = None
+    is_comparison_anchor: bool | None = None
+    review_notes: str | None = None
+    extraction_trace_id: str | None = None
+    extraction_debug_meta: dict[str, Any] | None = None
+
+    @model_validator(mode="after")
+    def _separate_extraction_notes(self) -> "Proposition":
+        return apply_notes_separation(self)
+
+    @model_validator(mode="after")
+    def _apply_classification_defaults(self) -> "Proposition":
+        return enrich_proposition_classification(self)
+
+    @model_validator(mode="after")
+    def _apply_jurisdiction_fields(self) -> "Proposition":
+        return enrich_proposition_jurisdiction(self)
 
 
 PropositionCompletenessStatus = Literal["complete", "context_dependent", "fragmentary"]

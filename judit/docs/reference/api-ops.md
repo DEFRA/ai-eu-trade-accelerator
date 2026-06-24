@@ -31,6 +31,8 @@
 | `GET /ops/effective/source-categorisation-rationales` | read-only | Effective source rationale rows. | (none currently) |
 | `GET /ops/propositions` | read-only | List propositions. | `operations-inspector.tsx` |
 | `GET /ops/effective/propositions` | read-only | Effective/merged propositions. | `proposition-explorer.tsx` |
+| `GET /ops/effective-law-statements` | read-only | Effective law statement bundles (`presentation_role`, proposition composition). | `law-statements-explorer.tsx` |
+| `GET /ops/beatrice-law-candidates` | read-only | Beatrice guidance-matching candidate queue. | `law-statements-explorer.tsx` |
 | `GET /ops/proposition-extraction-traces` | read-only | Proposition extraction traces. | (none currently) |
 | `GET /ops/effective/proposition-extraction-traces` | read-only | Effective extraction traces. | `proposition-explorer.tsx` |
 | `GET /ops/proposition-completeness-assessments` | read-only | Completeness rows by run/proposition/status. | `proposition-explorer.tsx` |

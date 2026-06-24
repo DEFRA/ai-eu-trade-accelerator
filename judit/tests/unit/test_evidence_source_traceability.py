@@ -9,7 +9,7 @@ from judit_pipeline.extract import (
     _v2_model_prompt,
     evidence_locates_verbatim_after_normalisation,
     extract_propositions_from_source,
-    parse_judit_extraction_meta,
+    resolve_extraction_meta_for_proposition,
 )
 
 
@@ -89,6 +89,38 @@ def test_paraphrase_does_not_match() -> None:
     )[0]
 
 
+def test_table_numeric_token_match_on_flattened_schedule_row() -> None:
+    src = (
+        "After first calf and—annual milk yield more than 9000 litres64315142"
+        "annual milk yield between 6000 and 9000 litres53276121"
+    )
+    ok, strat, diag = evidence_locates_verbatim_after_normalisation(
+        "After first calf and—annual milk yield more than 9000 litres 64 315 142",
+        src,
+    )
+    assert ok is True
+    assert strat == "table_numeric_token_match"
+    assert diag.get("table_match", {}).get("column_tokens") == ["64", "315", "142"]
+
+
+def test_table_numeric_token_match_weighing_row() -> None:
+    src = "females for breeding—weighing more than 500kg4522786Bulls"
+    ok, strat, _ = evidence_locates_verbatim_after_normalisation(
+        "weighing more than 500kg 45 227 86", src
+    )
+    assert ok is True
+    assert strat == "table_numeric_token_match"
+
+
+def test_table_numeric_token_match_decimal_poultry_row() -> None:
+    src = "from 17 weeks (caged)0.121.131.0from 17 weeks (not caged)"
+    ok, strat, _ = evidence_locates_verbatim_after_normalisation(
+        "from 17 weeks (caged) 0.12 1.13 1.0", src
+    )
+    assert ok is True
+    assert strat == "table_numeric_token_match"
+
+
 def test_empty_evidence_without_reason_records_validation_issues() -> None:
     payload = json.dumps({"propositions": [_v2_row(evidence_text="", reason="")]})
     client = _mock_llm()
@@ -150,7 +182,11 @@ def test_success_stamps_evidence_quote_meta() -> None:
         prompt_version="v2",
     )
     assert len(out.propositions) == 1
-    meta = parse_judit_extraction_meta(out.propositions[0].notes)
+    p0 = out.propositions[0]
+    meta = resolve_extraction_meta_for_proposition(
+        notes=p0.notes,
+        extraction_debug_meta=p0.extraction_debug_meta,
+    )
     assert meta is not None
     assert meta.get("evidence_quote") == row["evidence_text"]
 
@@ -212,7 +248,11 @@ def test_art109_equine_list_item_accepted_with_focus_scope_config() -> None:
         focus_scopes=("equine",),
     )
     assert len(out.propositions) == 1
-    meta = parse_judit_extraction_meta(out.propositions[0].notes)
+    p0 = out.propositions[0]
+    meta = resolve_extraction_meta_for_proposition(
+        notes=p0.notes,
+        extraction_debug_meta=p0.extraction_debug_meta,
+    )
     assert meta is not None
     assert meta.get("focus_scopes") == ["equine"]
     q = meta.get("evidence_quote")

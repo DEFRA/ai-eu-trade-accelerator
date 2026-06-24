@@ -5,11 +5,16 @@ from typing import Any, Literal
 
 from judit_domain import RunArtifact, RunQualityGateResult, RunQualitySummary
 
-from .cli_run_summary import extraction_mode_from_bundle
+from .cli_run_summary import (
+    count_extraction_fallback_traces,
+    extraction_mode_from_bundle,
+    extraction_mode_requested_from_bundle,
+)
 from .extraction_llm_metrics import (
     compute_extraction_llm_trace_summary_metrics,
     extraction_llm_call_traces_from_bundle,
 )
+from .extraction_progress import extraction_timing_metrics_from_bundle
 from .intake import content_hash
 from .linting import lint_bundle
 
@@ -239,6 +244,27 @@ def build_run_quality_summary(
             )
         )
 
+    ext_mode_effective = extraction_mode_from_bundle(bundle)
+    ext_mode_requested = extraction_mode_requested_from_bundle(bundle)
+    fallback_count = count_extraction_fallback_traces(bundle)
+    extra_metrics: dict[str, Any] = {
+        "extraction_mode_requested": ext_mode_requested,
+        "extraction_mode_effective": ext_mode_effective,
+        "fallback_count": fallback_count,
+    }
+    if ext_mode_effective in {"local", "frontier"}:
+        from judit_pipeline.extraction_llm_metrics import merge_extraction_observability_metrics
+
+        jobs = bundle.get("proposition_extraction_jobs")
+        job_rows = [row for row in jobs if isinstance(row, dict)] if isinstance(jobs, list) else []
+        llm_metrics = merge_extraction_observability_metrics(
+            jobs=job_rows,
+            llm_traces=extraction_llm_call_traces_from_bundle(bundle),
+        )
+        llm_metrics["source_fragments_total"] = _safe_len_list(bundle, "source_fragments")
+        llm_metrics.update(extraction_timing_metrics_from_bundle(bundle))
+        extra_metrics.update(llm_metrics)
+
     overall_status: Literal["pass", "pass_with_warnings", "fail"]
     if lint.get("ok") and len(warnings) > 0:
         overall_status = "pass_with_warnings"
@@ -247,7 +273,65 @@ def build_run_quality_summary(
     else:
         overall_status = "fail"
 
+    llm_extraction_failure_message: str | None = None
+    if ext_mode_effective in {"local", "frontier"}:
+        live_success = int(extra_metrics.get("live_llm_calls_successful") or 0)
+        cached_success = int(extra_metrics.get("cached_llm_results_successful") or 0)
+        any_llm_success = live_success + cached_success
+        attempted = int(extra_metrics.get("live_llm_calls_attempted") or extra_metrics.get("attempted_llm_calls") or 0)
+        if any_llm_success == 0 and fallback_count > 0:
+            overall_status = "fail"
+            llm_extraction_failure_message = "No successful LLM extraction occurred."
+        elif len(propositions) == 0 and attempted == 0:
+            selected_jobs = int(extra_metrics.get("extraction_jobs_selected") or 0)
+            if not selected_jobs:
+                pex_jobs = bundle.get("proposition_extraction_jobs")
+                if isinstance(pex_jobs, list):
+                    selected_jobs = sum(
+                        1
+                        for row in pex_jobs
+                        if isinstance(row, dict) and row.get("selected_for_extraction")
+                    )
+            jobs_created = int(extra_metrics.get("extraction_jobs_created") or 0)
+            if selected_jobs > 0:
+                overall_status = "fail"
+                skip_hist = extra_metrics.get("skip_reasons_by_type") or {}
+                skip_hint = (
+                    ", ".join(f"{k}={v}" for k, v in list(skip_hist.items())[:6])
+                    if isinstance(skip_hist, dict) and skip_hist
+                    else "see extraction_llm_call_traces"
+                )
+                from judit_pipeline.cli_run_summary import derived_cache_dir_from_bundle
+                from judit_pipeline.llm_extraction_config import format_failed_chunk_cache_operator_hint
+
+                derived_dir = derived_cache_dir_from_bundle(bundle)
+                cache_hint = ""
+                if isinstance(skip_hist, dict):
+                    cache_hint = format_failed_chunk_cache_operator_hint(
+                        derived_cache_dir=derived_dir,
+                        skip_reasons_by_type=skip_hist,
+                    )
+                llm_extraction_failure_message = (
+                    f"No LLM extraction calls were attempted for {selected_jobs} selected fragment job(s) "
+                    f"({jobs_created} created, {extra_metrics.get('llm_extraction_skipped_count', 0)} skipped). "
+                    f"Skip reasons: {skip_hint}."
+                    + (f" {cache_hint}" if cache_hint else "")
+                )
+            elif jobs_created == 0 and int(extra_metrics.get("source_fragments_total") or 0) == 0:
+                overall_status = "fail"
+                llm_extraction_failure_message = (
+                    "No extraction jobs were created (no source fragments and no extractable source text)."
+                )
+        elif len(propositions) == 0 and attempted > 0 and any_llm_success == 0:
+            overall_status = "fail"
+            llm_extraction_failure_message = (
+                "LLM extraction was attempted but produced no valid propositions "
+                f"({int(extra_metrics.get('failed_llm_calls') or 0)} failed call(s))."
+            )
+
     recommendations: list[str] = []
+    if llm_extraction_failure_message:
+        recommendations.append(llm_extraction_failure_message)
     if not lint.get("ok"):
         failed = [g for g in gate_results if g.status == "fail"]
         if failed:
@@ -256,13 +340,6 @@ def build_run_quality_summary(
             )
     if warnings:
         recommendations.append("Review lint warnings for data-quality and lineage completeness.")
-
-    ext_mode_rq = extraction_mode_from_bundle(bundle)
-    extra_metrics: dict[str, Any] = {}
-    if ext_mode_rq in {"local", "frontier"}:
-        extra_metrics = compute_extraction_llm_trace_summary_metrics(
-            extraction_llm_call_traces_from_bundle(bundle)
-        )
 
     from judit_pipeline.extraction_repair import repairable_extraction_metrics_from_bundle
 
@@ -308,16 +385,21 @@ def build_run_quality_summary(
     return summary.model_dump(mode="json")
 
 
-def attach_run_quality_summary(bundle: dict[str, Any]) -> dict[str, Any]:
-    """Mutates bundle: adds run_quality_summary, flag, and run artifact. Idempotent."""
+def attach_run_quality_summary(bundle: dict[str, Any], *, force_refresh: bool = False) -> dict[str, Any]:
+    """Mutates bundle: adds run_quality_summary, flag, and run artifact. Idempotent unless force_refresh."""
     run_artifacts = bundle.get("run_artifacts")
     if not isinstance(run_artifacts, list):
         run_artifacts = []
         bundle["run_artifacts"] = run_artifacts
-    if any(
-        isinstance(a, dict) and str(a.get("artifact_type")) == "run_quality_summary"
-        for a in run_artifacts
-    ):
+    existing = next(
+        (
+            a
+            for a in run_artifacts
+            if isinstance(a, dict) and str(a.get("artifact_type")) == "run_quality_summary"
+        ),
+        None,
+    )
+    if existing is not None and not force_refresh:
         return bundle["run_quality_summary"] if isinstance(bundle.get("run_quality_summary"), dict) else {}
 
     run = bundle.get("run") if isinstance(bundle.get("run"), dict) else {}
@@ -326,14 +408,16 @@ def attach_run_quality_summary(bundle: dict[str, Any]) -> dict[str, Any]:
     payload = json.dumps(summary, sort_keys=True)
     bundle["run_quality_summary"] = summary
     bundle["has_run_quality_summary"] = True
-    run_artifacts.append(
-        RunArtifact(
-            id=f"artifact-{run_id}-run-quality-summary",
-            run_id=run_id,
-            artifact_type="run_quality_summary",
-            provenance="pipeline.export",
-            content_hash=content_hash(payload),
-            metadata={},
-        ).model_dump(mode="json")
-    )
+    artifact = RunArtifact(
+        id=f"artifact-{run_id}-run-quality-summary",
+        run_id=run_id,
+        artifact_type="run_quality_summary",
+        provenance="pipeline.export",
+        content_hash=content_hash(payload),
+        metadata={},
+    ).model_dump(mode="json")
+    if existing is not None:
+        existing.update(artifact)
+    else:
+        run_artifacts.append(artifact)
     return summary

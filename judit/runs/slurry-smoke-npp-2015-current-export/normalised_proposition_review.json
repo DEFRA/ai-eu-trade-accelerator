@@ -1,0 +1,1253 @@
+{
+  "counts": {
+    "application_scope_rows": 7,
+    "compliance_without_clear_actor": 0,
+    "cross_reference_rows": 2,
+    "legacy_category_conflicts": 0,
+    "longest_labels": 30,
+    "semantic_comparison_buckets": 17,
+    "shortest_generic_labels": 30,
+    "unknown_classifications": 0
+  },
+  "export_dir": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/slurry-smoke-npp-2015-current-export",
+  "proposition_count": 231,
+  "sections": {
+    "application_scope_rows": [
+      {
+        "affected_subjects": [
+          "England only"
+        ],
+        "label": "Application to England",
+        "legal_effect_type": "application_scope",
+        "locator": "regulation 1(3)",
+        "proposition_id": "prop:4d933b91dd01103d",
+        "proposition_tier": "scope_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+        "territorial_application": [
+          "England"
+        ]
+      },
+      {
+        "affected_subjects": [
+          "holdings that are in nitrate vulnerable zones designated for the purposes of these Regulations"
+        ],
+        "label": "Application to nitrate vulnerable zones",
+        "legal_effect_type": "application_scope",
+        "locator": "regulation 1(4)",
+        "proposition_id": "prop:de935c0fcdf5d5a7",
+        "proposition_tier": "scope_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+        "territorial_application": []
+      },
+      {
+        "affected_subjects": [
+          "for the purposes of these Regulations"
+        ],
+        "label": "Designation of nitrate vulnerable zones",
+        "legal_effect_type": "application_scope",
+        "locator": "regulation 3(1)",
+        "proposition_id": "prop:204ed1287e94d38f",
+        "proposition_tier": "scope_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+        "territorial_application": []
+      },
+      {
+        "affected_subjects": [
+          "a new holding",
+          "a new holding until the dates set out in that Schedule"
+        ],
+        "label": "Transitional exemption for new holdings from Schedule 4 requirements",
+        "legal_effect_type": "application_scope",
+        "locator": "regulation 5A",
+        "proposition_id": "prop:ade5560b077db2e2",
+        "proposition_tier": "scope_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+        "territorial_application": []
+      },
+      {
+        "affected_subjects": [
+          "the expected number of livestock animals to be kept on the holding during the calendar year to which the derogation relates, and the category for each animal by reference to the categories in Schedule 1"
+        ],
+        "label": "Record expected livestock numbers and categories",
+        "legal_effect_type": "application_scope",
+        "locator": "Schedule 3, paragraph 14(1)",
+        "proposition_id": "prop:8c7cfdac35bdb33c",
+        "proposition_tier": "scope_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+        "territorial_application": []
+      },
+      {
+        "affected_subjects": [
+          "regulations 7, 8, 10, 11, 12, 13, 15, 16, 17, 19, 23, 25A, 25B, 26, 27, 28, 29, 30, 31, 32, and 34",
+          "a new holding until the beginning of the second calendar year after the year in which the Secretary of State revises or adds to the designation of nitrate vulnerable zones under regulation 4(5) so as to include the new holding"
+        ],
+        "label": "Transitional exemption for new holdings in nitrate vulnerable zones",
+        "legal_effect_type": "application_scope",
+        "locator": "schedule 4, paragraph 1",
+        "proposition_id": "prop:146a2dd2e3b9db01",
+        "proposition_tier": "scope_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+        "territorial_application": []
+      },
+      {
+        "affected_subjects": [
+          "until the beginning of the second calendar year after the year of designation revision",
+          "a new holding until the beginning of the second calendar year after the year in which the Secretary of State revises or adds to the designation of nitrate vulnerable zones under regulation 4(5) so as to include the new holding"
+        ],
+        "label": "Transitional exemption for new holdings \u2013 first set of regulations",
+        "legal_effect_type": "application_scope",
+        "locator": "Schedule 4, paragraph 1",
+        "proposition_id": "prop:28c134de2f220dd0",
+        "proposition_tier": "scope_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+        "territorial_application": []
+      }
+    ],
+    "compliance_without_clear_actor": [],
+    "cross_reference_rows": [
+      {
+        "explicit_targets": [
+          "regulation 12",
+          "regulation 13"
+        ],
+        "label": "Regulation 12 subject to regulation 13 and independent of fertilisation plan",
+        "legal_effect_type": "cross_reference",
+        "locator": "regulation 12(3)",
+        "proposition_id": "prop:639fb399243fffa6",
+        "proposition_text": "Regulation 12 is subject to regulation 13 and applies irrespective of the figure given in the fertilisation plan.",
+        "proposition_tier": "relationship_reference",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "explicit_targets": [
+          "regulation 42"
+        ],
+        "label": "Incorporation of Environmental Civil Sanctions Order provisions",
+        "legal_effect_type": "cross_reference",
+        "locator": "regulation 42(3)",
+        "proposition_id": "prop:72b085a51cee4288",
+        "proposition_text": "The provisions of the Environmental Civil Sanctions (England) Order 2010 relating to the sanctions referred to in regulation 42(1) apply as if they were provisions of these Regulations.",
+        "proposition_tier": "relationship_reference",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      }
+    ],
+    "legacy_category_conflicts": [],
+    "longest_labels": [
+      {
+        "label": "Revocation of regulations 2 to 25 of Nitrate Pollution Prevention (Amendment) and Water Resources (Control of Pollution) (Silage, Slurry and Agricultural Fuel Oil) (England) (Amendment) Regulations 2013",
+        "label_length": 202,
+        "legal_effect_type": "commencement",
+        "locator": "regulation 44(e)",
+        "proposition_id": "prop:0254b2b187cc256c",
+        "proposition_tier": "instrument_metadata",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Effect of successful appeal on ground (b): water de-designation and consequential treatment of all draining holdings",
+        "label_length": 116,
+        "legal_effect_type": "appeal",
+        "locator": "regulation 6(4)",
+        "proposition_id": "prop:b54cf081b7bb5e28",
+        "proposition_tier": "procedural_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Revocation of regulation 10 of Environmental Civil Sanctions (Miscellaneous Amendments) (England) Regulations 2010",
+        "label_length": 114,
+        "legal_effect_type": "commencement",
+        "locator": "regulation 44(c)",
+        "proposition_id": "prop:319689437c4700cb",
+        "proposition_tier": "instrument_metadata",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Secretary of State must review derogations against environmental criteria and pollution reduction objectives",
+        "label_length": 108,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 36(7)",
+        "proposition_id": "prop:203d17636aa0781f",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Duty to calculate soil nitrogen, optimum nitrogen amount, and produce fertilisation plan before spreading",
+        "label_length": 105,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 10(1)",
+        "proposition_id": "prop:93a87610e7e3595b",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Maximum nitrogen limits for high-protein grass: 700 kg (irrigated) or 500 kg (non-irrigated) per hectare",
+        "label_length": 104,
+        "legal_effect_type": "prohibition",
+        "locator": "regulation 13(3)(a)\u2013(b)",
+        "proposition_id": "prop:55ca01e6cb15fac7",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Derogation for high-protein grass: nitrogen spreading above standard limits permitted with FACTS advice",
+        "label_length": 103,
+        "legal_effect_type": "permission",
+        "locator": "regulation 13(1)\u2013(2)",
+        "proposition_id": "prop:c389492be0ad74a3",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Post-application duty: occupier must provide autumn soil analyses to FACTS adviser for future advice",
+        "label_length": 100,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 13(5)\u2013(6)",
+        "proposition_id": "prop:8158e737399aafb0",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Organic holdings: spreading high readily available nitrogen manure on other crops with FACTS advice",
+        "label_length": 99,
+        "legal_effect_type": "permission",
+        "locator": "regulation 21(1)(b), 21(2)",
+        "proposition_id": "prop:24d1c229990274dc",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Prohibition on spreading organic manure with high readily available nitrogen during closed period",
+        "label_length": 97,
+        "legal_effect_type": "prohibition",
+        "locator": "regulation 20(1)",
+        "proposition_id": "prop:587b94efa9e930d6",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Daily manure, nitrogen and phosphate production by sow with litter (amino acid-supplemented diet)",
+        "label_length": 97,
+        "legal_effect_type": "definition",
+        "locator": "Schedule 1, Non-grazing livestock table, Pigs \u2013 sow (including litter up to 7kg) fed on a diet supplemented with synthetic amino acids",
+        "proposition_id": "prop:2eb37c76a3a69cef",
+        "proposition_tier": "definitional_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Prohibition on ploughing grass not on sandy soils after manure spreading (until 16 January)",
+        "label_length": 91,
+        "legal_effect_type": "prohibition",
+        "locator": "schedule 3, paragraph 9(3)",
+        "proposition_id": "prop:afba52efcf1a034e",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Daily manure, nitrogen and phosphate production by sow with litter (non-supplemented diet)",
+        "label_length": 90,
+        "legal_effect_type": "definition",
+        "locator": "Schedule 1, Non-grazing livestock table, Pigs \u2013 sow (including litter up to 7kg) fed on a diet without synthetic amino acids",
+        "proposition_id": "prop:b016a06775fa8b79",
+        "proposition_tier": "definitional_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Duty to retain original laboratory report for nitrogen content analysis in organic manure",
+        "label_length": 89,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 29",
+        "proposition_id": "prop:3173feb23ed6a5c4",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Duty to calculate and record expected manure production on first introduction of animals",
+        "label_length": 88,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 34(4)(a)",
+        "proposition_id": "prop:cda733054cc0fd73",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Duty to calculate and record required storage capacity on first introduction of animals",
+        "label_length": 87,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 34(4)(b)",
+        "proposition_id": "prop:e4404fc36ec0cf91",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Prohibition on ploughing grass on sandy soils after manure spreading (until 16 January)",
+        "label_length": 87,
+        "legal_effect_type": "prohibition",
+        "locator": "schedule 3, paragraph 9(2)",
+        "proposition_id": "prop:9083d3605b80689b",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Calculation and recording of required storage capacity for new holdings with livestock",
+        "label_length": 86,
+        "legal_effect_type": "recordkeeping",
+        "locator": "regulation 25B(b)",
+        "proposition_id": "prop:36aa97b61148b798",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Organic holdings: spreading high readily available nitrogen manure on specified crops",
+        "label_length": 85,
+        "legal_effect_type": "permission",
+        "locator": "regulation 21(1)(a), 21(2)",
+        "proposition_id": "prop:43fed9099ef11684",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Calculation and recording of current storage capacity for new holdings with livestock",
+        "label_length": 85,
+        "legal_effect_type": "recordkeeping",
+        "locator": "regulation 25B(c)",
+        "proposition_id": "prop:5097e42798c958de",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Record phosphate supplied for crop uptake within one week of spreading organic manure",
+        "label_length": 85,
+        "legal_effect_type": "obligation",
+        "locator": "schedule 3, paragraph 17(a)(ii)",
+        "proposition_id": "prop:311b55eea27bef7b",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Exception for slurry, sewage sludge and anaerobic digestate with precision equipment",
+        "label_length": 84,
+        "legal_effect_type": "permission",
+        "locator": "regulation 17(4)(a)\u2013(c)",
+        "proposition_id": "prop:b2d013f402dc64e9",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Exception to storage requirement for off-holding disposal or low run-off spreading",
+        "label_length": 82,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 25(4)",
+        "proposition_id": "prop:0c7a3b8e8b4edab9",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Incorporation timing for other organic manure near surface water on sloping land",
+        "label_length": 80,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 19(4)",
+        "proposition_id": "prop:bd3d6c6fe53c5c61",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Definition of 'Nngl' (nitrogen from non-grazing livestock) in derogation formula",
+        "label_length": 80,
+        "legal_effect_type": "definition",
+        "locator": "schedule 3, paragraph 2(2), definition of 'Nngl'",
+        "proposition_id": "prop:722c6c67ed4026f4",
+        "proposition_tier": "definitional_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Prohibition on ploughing temporary grassland on sandy soils (1 July\u201331 December)",
+        "label_length": 80,
+        "legal_effect_type": "prohibition",
+        "locator": "schedule 3, paragraph 9(1)",
+        "proposition_id": "prop:469ac509d66ad0e4",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Alternative nitrogen calculation methods for permanently housed pigs or poultry",
+        "label_length": 79,
+        "legal_effect_type": "permission",
+        "locator": "regulation 27(3)",
+        "proposition_id": "prop:47ea87a0fa084f10",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Pre-spreading recording obligation for manufactured phosphate fertiliser amount",
+        "label_length": 79,
+        "legal_effect_type": "obligation",
+        "locator": "schedule 3, paragraph 6(2)(a)",
+        "proposition_id": "prop:8c96adad51bf8ec0",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Pre-spreading recording obligation for manufactured phosphate fertiliser timing",
+        "label_length": 79,
+        "legal_effect_type": "obligation",
+        "locator": "schedule 3, paragraph 6(2)(b)",
+        "proposition_id": "prop:f1f1f05063630971",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "label": "Prohibition on spreading manufactured nitrogen fertiliser during closed period",
+        "label_length": 78,
+        "legal_effect_type": "prohibition",
+        "locator": "regulation 22(1)",
+        "proposition_id": "prop:ad3f8dbb83f6d96f",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      }
+    ],
+    "semantic_comparison_buckets": [
+      {
+        "members": [
+          {
+            "label": "Transitional exemption from slurry spreading restrictions for new holdings",
+            "legal_effect_type": "derogation",
+            "locator": "schedule 4, paragraph 2(a)",
+            "proposition_id": "prop:d8734c618cea0178",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Transitional exemption from organic manure closed periods for new holdings",
+            "legal_effect_type": "derogation",
+            "locator": "schedule 4, paragraph 2(b)",
+            "proposition_id": "prop:fe9d9da567372fae",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Transitional exemption from slurry separation requirements for new holdings",
+            "legal_effect_type": "derogation",
+            "locator": "schedule 4, paragraph 2(e)",
+            "proposition_id": "prop:f829874f6f5358fc",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Transitional exemption from storage capacity requirements for new holdings",
+            "legal_effect_type": "derogation",
+            "locator": "schedule 4, paragraph 2(f)",
+            "proposition_id": "prop:d6023706803362f8",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "derogation:does_not_apply_in_relation_to_a_new_holding",
+        "size": 4
+      },
+      {
+        "members": [
+          {
+            "label": "Prohibition on spreading organic manure within 10 metres of surface water",
+            "legal_effect_type": "prohibition",
+            "locator": "regulation 17(1), (2), (4)",
+            "proposition_id": "prop:7a349b08ba3650ca",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Prohibition on spreading organic manure within 50 metres of water sources",
+            "legal_effect_type": "prohibition",
+            "locator": "regulation 17(6)",
+            "proposition_id": "prop:3cfaaf1a19293d55",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Prohibition on spreading organic manure with high readily available nitrogen during closed period",
+            "legal_effect_type": "prohibition",
+            "locator": "regulation 20(1)",
+            "proposition_id": "prop:587b94efa9e930d6",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Prohibition on spreading manufactured nitrogen fertiliser during closed period",
+            "legal_effect_type": "prohibition",
+            "locator": "regulation 22(1)",
+            "proposition_id": "prop:ad3f8dbb83f6d96f",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "prohibition:a_person_must_not_spread",
+        "size": 4
+      },
+      {
+        "members": [
+          {
+            "label": "Greenhouse exception to record-keeping obligations",
+            "legal_effect_type": "derogation",
+            "locator": "regulation 31(3)",
+            "proposition_id": "prop:bbd608a46cce603c",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Low-intensity farming exception to record-keeping obligations",
+            "legal_effect_type": "derogation",
+            "locator": "regulation 31(4)-(5)",
+            "proposition_id": "prop:e4e6f5b3bb6fe563",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Greenhouse exemption from nitrogen fertiliser spreading rules",
+            "legal_effect_type": "derogation",
+            "locator": "regulation 9",
+            "proposition_id": "prop:9c8987c8a6c368a3",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "derogation:does_not_apply",
+        "size": 3
+      },
+      {
+        "members": [
+          {
+            "label": "Fertilisation plan: phosphorus amount and calculation method",
+            "legal_effect_type": "obligation",
+            "locator": "Schedule 3, paragraph 4(2)(a)",
+            "proposition_id": "prop:bfcf7befede3507c",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Fertilisation plan: optimum phosphate fertiliser amount",
+            "legal_effect_type": "obligation",
+            "locator": "Schedule 3, paragraph 4(2)(b)",
+            "proposition_id": "prop:e0d780f0c24d8020",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Fertilisation plan: nitrogen from organic manure",
+            "legal_effect_type": "obligation",
+            "locator": "Schedule 3, paragraph 4(2)(c)",
+            "proposition_id": "prop:c568937225ca641b",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "obligation:fertilisation_plan_must_record",
+        "size": 3
+      },
+      {
+        "members": [
+          {
+            "label": "Nitrogen calculation obligation",
+            "legal_effect_type": "obligation",
+            "locator": "regulation 27(2)",
+            "proposition_id": "prop:0b25dc61842f0b28",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Calculation of available soil phosphorus",
+            "legal_effect_type": "obligation",
+            "locator": "schedule 3, paragraph 3(1)(a)",
+            "proposition_id": "prop:aa312863145a968f",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Calculation of optimum phosphate fertiliser amount",
+            "legal_effect_type": "obligation",
+            "locator": "schedule 3, paragraph 3(1)(b)",
+            "proposition_id": "prop:0e1f1ce5e8538eea",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "obligation:occupier_must_calculate",
+        "size": 3
+      },
+      {
+        "members": [
+          {
+            "label": "Ground of appeal: holding does not drain into polluted water",
+            "legal_effect_type": "appeal",
+            "locator": "regulation 6(2)(a) and 6(2)(aa)",
+            "proposition_id": "prop:6456dff152f40fd2",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Ground of appeal: water should not be identified as polluted",
+            "legal_effect_type": "appeal",
+            "locator": "regulation 6(2)(b)",
+            "proposition_id": "prop:5e494cb1e7bad37c",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "appeal:may_be_brought_on_the_ground_that",
+        "size": 2
+      },
+      {
+        "members": [
+          {
+            "label": "Transitional exemption for new holdings \u2013 first set of regulations",
+            "legal_effect_type": "application_scope",
+            "locator": "Schedule 4, paragraph 1",
+            "proposition_id": "prop:28c134de2f220dd0",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Transitional exemption for new holdings in nitrate vulnerable zones",
+            "legal_effect_type": "application_scope",
+            "locator": "schedule 4, paragraph 1",
+            "proposition_id": "prop:146a2dd2e3b9db01",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "application_scope:a_new_holding_until_the_beginning_of_the_second_calendar",
+        "size": 2
+      },
+      {
+        "members": [
+          {
+            "label": "Definition of relevant map (initial period)",
+            "legal_effect_type": "definition",
+            "locator": "regulation 3(2)(a)",
+            "proposition_id": "prop:5e76402e434f88c4",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Definition of relevant map (post-review)",
+            "legal_effect_type": "definition",
+            "locator": "regulation 3(2)(b)",
+            "proposition_id": "prop:7427842461f5ddd6",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "definition:relevant_map",
+        "size": 2
+      },
+      {
+        "members": [
+          {
+            "label": "Closed period definition for grassland",
+            "legal_effect_type": "definition",
+            "locator": "regulation 22(2)(a)",
+            "proposition_id": "prop:712dd64f9b3224f4",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Closed period definition for tillage land",
+            "legal_effect_type": "definition",
+            "locator": "regulation 22(2)(b)",
+            "proposition_id": "prop:e269106e8d6ddd0f",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "definition:the_closed_period",
+        "size": 2
+      },
+      {
+        "members": [
+          {
+            "label": "Report must contain details of steps to promote good agricultural practice",
+            "legal_effect_type": "obligation",
+            "locator": "regulation 40A(2)(a)",
+            "proposition_id": "prop:b9f510fe7cf08b8b",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Report must contain NVZ map with statement of revisions",
+            "legal_effect_type": "obligation",
+            "locator": "regulation 40A(2)(b)",
+            "proposition_id": "prop:bc5aa3a65c2a00f5",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "obligation:a_report_under_paragraph_1_must_contain",
+        "size": 2
+      },
+      {
+        "members": [
+          {
+            "label": "Derogation accounts: agricultural area and crop recording",
+            "legal_effect_type": "obligation",
+            "locator": "Schedule 3, paragraph 19(3)(a)-(b)",
+            "proposition_id": "prop:e456d294078c5807",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Derogation accounts: livestock, manure and fertiliser recording",
+            "legal_effect_type": "obligation",
+            "locator": "Schedule 3, paragraph 19(3)(c)-(h)",
+            "proposition_id": "prop:242ea7f5b6e6b29a",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "obligation:accounts_must_record",
+        "size": 2
+      },
+      {
+        "members": [
+          {
+            "label": "Calculate and record expected nitrogen and phosphate in manure",
+            "legal_effect_type": "obligation",
+            "locator": "Schedule 3, paragraph 14(2)",
+            "proposition_id": "prop:744e667b08ba6e92",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Calculate and record nitrogen in livestock manure",
+            "legal_effect_type": "obligation",
+            "locator": "Schedule 3, paragraph 15(1)(b)",
+            "proposition_id": "prop:3e58f26dae040b04",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "obligation:occupier_must_calculate_and_record",
+        "size": 2
+      },
+      {
+        "members": [
+          {
+            "label": "Initial phosphorus sampling requirement (75% within 12 months)",
+            "legal_effect_type": "obligation",
+            "locator": "schedule 3, paragraph 5(3)(a)",
+            "proposition_id": "prop:8822c97a0cd43cfe",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Complete phosphorus sampling requirement (100% at next derogation)",
+            "legal_effect_type": "obligation",
+            "locator": "schedule 3, paragraph 5(3)(b)",
+            "proposition_id": "prop:8e97116bf78c1e44",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "obligation:occupier_must_carry_out_phosphorus_soil_sampling_and_analysis",
+        "size": 2
+      },
+      {
+        "members": [
+          {
+            "label": "Mandatory refusal for adverse effect on European sites",
+            "legal_effect_type": "obligation",
+            "locator": "regulation 37(5)",
+            "proposition_id": "prop:43ad9f88358547b5",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Mandatory refusal for prior breach of derogation conditions",
+            "legal_effect_type": "obligation",
+            "locator": "regulation 37(7)",
+            "proposition_id": "prop:4ec5f0041248b27a",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "obligation:the_agency_must_refuse_the_application",
+        "size": 2
+      },
+      {
+        "members": [
+          {
+            "label": "Organic holdings: spreading high readily available nitrogen manure on specified crops",
+            "legal_effect_type": "permission",
+            "locator": "regulation 21(1)(a), 21(2)",
+            "proposition_id": "prop:43fed9099ef11684",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Organic holdings: spreading high readily available nitrogen manure on other crops with FACTS advice",
+            "legal_effect_type": "permission",
+            "locator": "regulation 21(1)(b), 21(2)",
+            "proposition_id": "prop:24d1c229990274dc",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "permission:occupier_of_a_holding_who_has_submitted_undertaking_to_o_may_spread_organic_manu",
+        "size": 2
+      },
+      {
+        "members": [
+          {
+            "label": "Prohibition on spreading where significant surface water risk",
+            "legal_effect_type": "prohibition",
+            "locator": "regulation 16(2)",
+            "proposition_id": "prop:afc485ae1766e523",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Prohibition on spreading in adverse soil conditions",
+            "legal_effect_type": "prohibition",
+            "locator": "regulation 16(3)",
+            "proposition_id": "prop:c38f7cc0ab5ef3cf",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "prohibition:a_person_must_not_spread_nitrogen_fertiliser",
+        "size": 2
+      },
+      {
+        "members": [
+          {
+            "label": "Calculation and recording of manure production for new holdings with livestock",
+            "legal_effect_type": "recordkeeping",
+            "locator": "regulation 25B(a)",
+            "proposition_id": "prop:b687e4541874fe0f",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          },
+          {
+            "label": "Calculation and recording of required storage capacity for new holdings with livestock",
+            "legal_effect_type": "recordkeeping",
+            "locator": "regulation 25B(b)",
+            "proposition_id": "prop:36aa97b61148b798",
+            "source_record_id": "lex-120b4f9c395b3f94",
+            "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+            "territorial_application": []
+          }
+        ],
+        "semantic_comparison_key": "recordkeeping:occupier_of_a_new_holding_with_livestock_must_calculate_and_record_the_amount_of",
+        "size": 2
+      }
+    ],
+    "shortest_generic_labels": [
+      {
+        "generic_label": false,
+        "label": "Definition of slurry",
+        "label_length": 20,
+        "legal_effect_type": "definition",
+        "locator": "regulation 2(1), definition of 'slurry'",
+        "proposition_id": "prop:2d3577630a9c6c03",
+        "proposition_tier": "definitional_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Application to England",
+        "label_length": 22,
+        "legal_effect_type": "application_scope",
+        "locator": "regulation 1(3)",
+        "proposition_id": "prop:4d933b91dd01103d",
+        "proposition_tier": "scope_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Factors for NVZ review",
+        "label_length": 22,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 39(3)",
+        "proposition_id": "prop:f5d7f8197260d14b",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Definition of spreading",
+        "label_length": 23,
+        "legal_effect_type": "derogation",
+        "locator": "regulation 2(1), definition of 'spreading'",
+        "proposition_id": "prop:c6c82abaf0fe9568",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Basis for panel decision",
+        "label_length": 24,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 38(6)",
+        "proposition_id": "prop:10ade765359fecdc",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Commencement on 1 May 2015",
+        "label_length": 26,
+        "legal_effect_type": "commencement",
+        "locator": "regulation 1(2)",
+        "proposition_id": "prop:2ad380ca2d9206e9",
+        "proposition_tier": "instrument_metadata",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Risk map update obligation",
+        "label_length": 26,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 15(3)",
+        "proposition_id": "prop:3b469740fa37e251",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Duty to review Regulations",
+        "label_length": 26,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 40(1)",
+        "proposition_id": "prop:2864db431b25b706",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Agency enforcement function",
+        "label_length": 27,
+        "legal_effect_type": "enforcement",
+        "locator": "regulation 43",
+        "proposition_id": "prop:5ceee9e4aa59fe13",
+        "proposition_tier": "procedural_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Notice content requirements",
+        "label_length": 27,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 5(4)",
+        "proposition_id": "prop:613ad9fb092eac7f",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Definition of organic manure",
+        "label_length": 28,
+        "legal_effect_type": "definition",
+        "locator": "regulation 2(1), definition of 'organic manure'",
+        "proposition_id": "prop:8560e7285cdf5fa7",
+        "proposition_tier": "definitional_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Risk map: completion deadline",
+        "label_length": 29,
+        "legal_effect_type": "obligation",
+        "locator": "schedule 3, paragraph 7(1)(c)",
+        "proposition_id": "prop:59fd32a5940f49b5",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Risk map retention requirement",
+        "label_length": 30,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 15(4)",
+        "proposition_id": "prop:210f93b2ec28ba59",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Solid manure sampling location",
+        "label_length": 30,
+        "legal_effect_type": "obligation",
+        "locator": "Schedule 2, paragraph 2, subparagraph 1",
+        "proposition_id": "prop:c0cc12c2dfea98f5",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Nitrogen calculation obligation",
+        "label_length": 31,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 27(2)",
+        "proposition_id": "prop:0b25dc61842f0b28",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Offline access to relevant maps",
+        "label_length": 31,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 3(3)",
+        "proposition_id": "prop:5b80071f2f7ccf0b",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Time limit for submitting appeal",
+        "label_length": 32,
+        "legal_effect_type": "appeal",
+        "locator": "regulation 38(2)",
+        "proposition_id": "prop:ed8c5c44e861947d",
+        "proposition_tier": "procedural_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Consequence of successful appeal",
+        "label_length": 32,
+        "legal_effect_type": "appeal",
+        "locator": "regulation 38(8)",
+        "proposition_id": "prop:0bf4fa7851fa723a",
+        "proposition_tier": "procedural_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Nitrogen calculation methodology",
+        "label_length": 32,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 7(3)",
+        "proposition_id": "prop:90e8197b468b5efa",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Definition of 'certified' compost",
+        "label_length": 33,
+        "legal_effect_type": "certification",
+        "locator": "regulation 8(11)",
+        "proposition_id": "prop:c58fd4b932b03905",
+        "proposition_tier": "procedural_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Risk map: field reference marking",
+        "label_length": 33,
+        "legal_effect_type": "obligation",
+        "locator": "schedule 3, paragraph 7(1)(a)",
+        "proposition_id": "prop:98267568c1171060",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Public participation in NVZ review",
+        "label_length": 34,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 39(4)-(5)",
+        "proposition_id": "prop:c6cd533b8458e707",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Nitrogen application limit per crop",
+        "label_length": 35,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 12(1)",
+        "proposition_id": "prop:495cdf6289028ee7",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Pre-spreading field inspection duty",
+        "label_length": 35,
+        "legal_effect_type": "inspection",
+        "locator": "regulation 16(1)",
+        "proposition_id": "prop:8163c007990580ae",
+        "proposition_tier": "procedural_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Definition of low run-off risk land",
+        "label_length": 35,
+        "legal_effect_type": "definition",
+        "locator": "regulation 25(8)",
+        "proposition_id": "prop:ee7bf7fa5daed41d",
+        "proposition_tier": "definitional_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Slurry separation method requirement",
+        "label_length": 36,
+        "legal_effect_type": "obligation",
+        "locator": "regulation 24",
+        "proposition_id": "prop:7229173a15e4f2d0",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Solid manure sample depth requirement",
+        "label_length": 37,
+        "legal_effect_type": "obligation",
+        "locator": "Schedule 2, paragraph 2, subparagraph 3",
+        "proposition_id": "prop:92271df9fa02c9a4",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Deadline for livestock manure records",
+        "label_length": 37,
+        "legal_effect_type": "obligation",
+        "locator": "Schedule 3, paragraph 15(2)",
+        "proposition_id": "prop:20b02ae4c3ac2ebd",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Risk map: update obligation on change",
+        "label_length": 37,
+        "legal_effect_type": "obligation",
+        "locator": "schedule 3, paragraph 7(2)",
+        "proposition_id": "prop:f25adcaea658efa6",
+        "proposition_tier": "substantive_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      },
+      {
+        "generic_label": false,
+        "label": "Definition of total amount of nitrogen",
+        "label_length": 38,
+        "legal_effect_type": "definition",
+        "locator": "regulation 12(2)",
+        "proposition_id": "prop:accc524f2643afb7",
+        "proposition_tier": "definitional_rule",
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015"
+      }
+    ],
+    "unknown_classifications": []
+  }
+}

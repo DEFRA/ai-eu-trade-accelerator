@@ -415,6 +415,41 @@ class PersistingPipelineProgress:
         msg = f"Proposition extraction — {mode} source {index}/{total} ({source_label})"
         self._touch_job_stage("proposition_extraction", msg)
 
+    def begin_extraction_run(
+        self,
+        plan: Any,
+        *,
+        derived_cache_dir: str | None = None,
+        print_estimate: bool = True,
+    ) -> None:
+        return
+
+    def extraction_job_started(
+        self,
+        *,
+        overall_index: int,
+        source_id: str,
+        source_title: str,
+        fragment_locator: str,
+    ) -> None:
+        return
+
+    def extraction_job_finished(
+        self,
+        *,
+        overall_index: int,
+        source_id: str,
+        source_title: str,
+        fragment_locator: str,
+        traces: list[dict[str, Any]] | None = None,
+        propositions_added: int = 0,
+        duration_seconds: float | None = None,
+    ) -> None:
+        return
+
+    def finish_extraction_run(self) -> dict[str, Any]:
+        return {}
+
     def before_model_extract(
         self,
         kind: Literal["frontier", "local"],

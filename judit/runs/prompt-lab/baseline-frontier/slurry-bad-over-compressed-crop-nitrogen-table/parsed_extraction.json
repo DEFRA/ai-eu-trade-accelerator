@@ -1,0 +1,148 @@
+[
+  {
+    "proposition_text": "The occupier of a holding must ensure that the total amount of nitrogen spread on a crop or group of crops does not exceed the figure specified in the table in paragraph (4) in any twelve-month period, adjusted as specified in the notes and multiplied by the total area in hectares of the crop or group sown on the holding.",
+    "display_label": "Nitrogen application limit per crop",
+    "subject": "occupier of a holding",
+    "rule": "must ensure that the total amount of nitrogen spread on a crop or group of crops does not exceed",
+    "object": "the figure specified in the table in paragraph (4) in any twelve-month period, adjusted as specified in the notes and multiplied by the total area in hectares of the crop or group sown on the holding",
+    "conditions": [],
+    "exceptions": [],
+    "temporal_condition": "in any twelve-month period",
+    "provision_type": "core",
+    "source_locator": "regulation 12(1)",
+    "evidence_text": "The occupier of a holding must ensure that the total amount of nitrogen spread on a crop or group of crops specified in the table in paragraph (4) does not exceed the figure specified in the second column in any twelve-month period, adjusted as specified in the notes and multiplied by the total area in hectares of the crop or group sown on the holding.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Core obligation establishing nitrogen application limits per crop type.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "The total amount of nitrogen means the total of the amount of nitrogen from manufactured nitrogen fertiliser and the amount of nitrogen available for crop uptake from organic manure in the growing season in which it is spread (calculated in accordance with regulation 14).",
+    "display_label": "Definition of total amount of nitrogen",
+    "subject": "total amount of nitrogen",
+    "rule": "means",
+    "object": "the total of the amount of nitrogen from manufactured nitrogen fertiliser and the amount of nitrogen available for crop uptake from organic manure in the growing season in which it is spread (calculated in accordance with regulation 14)",
+    "conditions": [],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "definition",
+    "source_locator": "regulation 12(2)",
+    "evidence_text": "The \"total amount of nitrogen\" means the total of— a the amount of nitrogen from manufactured nitrogen fertiliser, and b the amount of nitrogen available for crop uptake from organic manure in the growing season in which it is spread (calculated in accordance with regulation 14).",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Definition provision clarifying the scope of nitrogen calculation.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "Regulation 12 is subject to regulation 13 and applies irrespective of the figure given in the fertilisation plan.",
+    "display_label": "Regulation 12 subject to regulation 13 and independent of fertilisation plan",
+    "subject": "regulation 12",
+    "rule": "is subject to regulation 13 and applies irrespective of",
+    "object": "the figure given in the fertilisation plan",
+    "conditions": [],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "cross_reference",
+    "source_locator": "regulation 12(3)",
+    "evidence_text": "This regulation is subject to regulation 13 and applies irrespective of the figure given in the fertilisation plan.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Cross-reference and clarification of regulatory hierarchy.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "An additional 80kg per hectare of nitrogen is permitted to all crops grown in fields if the current or previous crop has had straw or paper sludge applied to it.",
+    "display_label": "Additional nitrogen for straw or paper sludge application",
+    "subject": "all crops grown in fields",
+    "rule": "are permitted an additional 80kg per hectare of nitrogen",
+    "object": "if the current or previous crop has had straw or paper sludge applied to it",
+    "conditions": [
+      "the current or previous crop has had straw or paper sludge applied to it"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 12(4), table note (1)",
+    "evidence_text": "An additional 80kg per hectare is permitted to all crops grown in fields if the current or previous crop has had straw or paper sludge applied to it.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Adjustment provision for nitrogen limits based on prior straw or paper sludge application.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "An additional 20kg per hectare of nitrogen is permitted on fields with shallow soil (other than shallow soils over sandstone).",
+    "display_label": "Additional nitrogen for shallow soil",
+    "subject": "fields with shallow soil",
+    "rule": "are permitted an additional 20kg per hectare of nitrogen",
+    "object": "",
+    "conditions": [
+      "shallow soil (other than shallow soils over sandstone)"
+    ],
+    "exceptions": [
+      "shallow soils over sandstone"
+    ],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 12(4), table note (2)",
+    "evidence_text": "An additional 20kg per hectare is permitted on fields with shallow soil (other than shallow soils over sandstone).",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Adjustment provision for nitrogen limits based on soil type.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "An additional 20kg per hectare of nitrogen is permitted for every tonne that the expected yield exceeds the standard yield specified in the third column.",
+    "display_label": "Additional nitrogen for yield exceeding standard",
+    "subject": "crops",
+    "rule": "are permitted an additional 20kg per hectare of nitrogen",
+    "object": "for every tonne that the expected yield exceeds the standard yield",
+    "conditions": [
+      "the expected yield exceeds the standard yield specified in the third column"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 12(4), table note (3)",
+    "evidence_text": "An additional 20kg per hectare is permitted for every tonne that the expected yield exceeds the standard yield specified in the third column.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Adjustment provision for nitrogen limits based on expected yield.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "An additional 40kg per hectare of nitrogen is permitted to milling wheat varieties.",
+    "display_label": "Additional nitrogen for milling wheat",
+    "subject": "milling wheat varieties",
+    "rule": "are permitted an additional 40kg per hectare of nitrogen",
+    "object": "",
+    "conditions": [],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 12(4), table note (4)",
+    "evidence_text": "An additional 40kg per hectare is permitted to milling wheat varieties.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Adjustment provision for nitrogen limits for specific wheat variety.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "An additional 40kg per hectare of nitrogen is permitted to grass that is cut at least three times a year.",
+    "display_label": "Additional nitrogen for frequently cut grass",
+    "subject": "grass",
+    "rule": "is permitted an additional 40kg per hectare of nitrogen",
+    "object": "",
+    "conditions": [
+      "cut at least three times a year"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 12(4), table note (6)",
+    "evidence_text": "An additional 40kg per hectare is permitted to grass that is cut at least three times a year.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Adjustment provision for nitrogen limits based on grass cutting frequency.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  }
+]

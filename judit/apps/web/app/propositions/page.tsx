@@ -19,6 +19,18 @@ export default function PropositionsPage(): JSX.Element {
               Propositions
             </span>
             <Link
+              href="/statements"
+              className="rounded border border-border/80 bg-background px-2 py-1 text-[11px] font-medium text-foreground/80 hover:bg-accent/50"
+            >
+              Review workbench
+            </Link>
+            <Link
+              href="/review-analysis"
+              className="rounded border border-border/80 bg-background px-2 py-1 text-[11px] font-medium text-foreground/80 hover:bg-accent/50"
+            >
+              Review analysis
+            </Link>
+            <Link
               href="/ops"
               className="rounded border border-border/80 bg-background px-2 py-1 text-[11px] font-medium text-foreground/80 hover:bg-accent/50"
             >

@@ -1,0 +1,11 @@
+{
+  "run_id": "run-001",
+  "stage_count": 1,
+  "stages": [
+    {
+      "order": 1,
+      "stage_name": "final export",
+      "storage_uri": "runs/run-001/traces/01-final-export.json"
+    }
+  ]
+}

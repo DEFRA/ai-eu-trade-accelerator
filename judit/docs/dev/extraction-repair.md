@@ -141,7 +141,8 @@ Important options:
 - `--extraction-mode`
 - `--extraction-fallback`
 - `--use-llm`
-- `--retry-failed-llm`
+- `--retry-failed-extraction-cache` / `--no-retry-failed-extraction-cache` (alias: `--retry-failed-llm`)
+- `--ignore-failed-extraction-cache` (reuse cached chunk failures without LLM calls)
 - `--derived-cache-dir`
 - `--quiet` / `--verbose`
 

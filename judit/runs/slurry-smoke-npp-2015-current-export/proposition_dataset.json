@@ -1,0 +1,15 @@
+{
+  "dataset_id": "pd:run-001",
+  "run_id": "run-001",
+  "jurisdiction_scope": "UK",
+  "source_ids": [
+    "lex-120b4f9c395b3f94"
+  ],
+  "corpus_id": null,
+  "extraction_settings": {
+    "analysis_mode": "auto",
+    "analysis_scope": "selected_sources"
+  },
+  "created_at": "2026-06-04T12:23:31.210082Z",
+  "quality_status": "fail"
+}

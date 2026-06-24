@@ -1,0 +1,35 @@
+{
+  "inventory_version": "0.1",
+  "run_id": "run-001",
+  "taxonomy_seed_version": "judit.v1",
+  "scope_count": 11,
+  "scope_counts_by_type": {
+    "species": 5,
+    "subject": 1,
+    "process": 3,
+    "institution": 1,
+    "disease": 1
+  },
+  "proposition_scope_link_count": 4337,
+  "explicit_link_count": 3975,
+  "inherited_link_count": 362,
+  "link_counts_by_relevance": {
+    "contextual": 3626,
+    "direct": 711
+  },
+  "link_counts_by_inheritance": {
+    "explicit": 3975,
+    "inherited": 362
+  },
+  "link_counts_by_scope_id": {
+    "terrestrial_animal": 678,
+    "equine": 256,
+    "establishments": 640,
+    "kept_terrestrial_animal": 678,
+    "bovine": 257,
+    "certification": 226,
+    "animal": 678,
+    "movement_control": 462,
+    "disease_control": 462
+  }
+}

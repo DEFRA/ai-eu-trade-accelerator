@@ -12,10 +12,12 @@ import {
   citationForSourceRecord,
   formatArticleClusterHeading,
   jurisdictionForSource,
-  propositionDisplayLabel,
+  territorialApplicationFromProposition,
+  TERRITORIAL_APPLICATION_CHIP_TOOLTIP,
   propositionGroupMetaChipText,
   propositionSubtitleParts,
-  verbatimEvidenceUiFromNotes,
+  humanReviewNotesForDisplay,
+  verbatimEvidenceUiFromProposition,
 } from "@/components/proposition-explorer-helpers";
 import type { PropositionDisplayMode } from "@/components/structured-proposition-ui";
 import {
@@ -28,6 +30,12 @@ import {
   PropositionReviewPanel,
   type PipelineReviewAction,
 } from "@/components/proposition-review-panel";
+import {
+  PropositionClassificationMeta,
+  partitionSummariesByScopeSecondary,
+  propositionInformativeLabel,
+  type ExplorerClassificationFilters,
+} from "@/components/proposition-classification-ui";
 
 function extractionNeedsReviewFromArtifacts(
   oa: UnknownRecord,
@@ -92,6 +100,8 @@ export function PropositionExplorerServerList(props: {
   traceByPropId: Map<string, UnknownRecord>;
   initialArticleSectionsOpen: number;
   filtersActive: boolean;
+  classificationFilters: ExplorerClassificationFilters;
+  propositionArtifactById: ReadonlyMap<string, UnknownRecord>;
 }): JSX.Element {
   const {
     sections,
@@ -112,7 +122,11 @@ export function PropositionExplorerServerList(props: {
     traceByPropId,
     initialArticleSectionsOpen,
     filtersActive,
+    classificationFilters,
+    propositionArtifactById,
   } = props;
+
+  const showExtractionDebug = propositionDisplayMode === "raw";
 
   const onGroupToggle = useCallback(
     async (groupId: string, open: boolean) => {
@@ -159,10 +173,22 @@ export function PropositionExplorerServerList(props: {
               )}
             </summary>
             <div className="space-y-4 border-t border-border/50 px-2 pb-3 pt-3">
-              {sec.summaries.map((sum) => {
+              {(() => {
+                const { primary, scopeSecondary } = partitionSummariesByScopeSecondary(
+                  sec.summaries,
+                  propositionArtifactById,
+                  classificationFilters.collapseScopeRules
+                );
+
+                const renderGroupSummary = (sum: PropositionGroupSummary) => {
                 const detail = groupDetailById[sum.group_id];
                 const rows = (detail?.effective_propositions as UnknownRecord[] | undefined) ?? [];
                 const busy = groupDetailLoading[sum.group_id];
+                const repOa =
+                  sum.row_ids
+                    .map((id) => propositionArtifactById.get(id))
+                    .find((oa): oa is UnknownRecord => Boolean(oa)) ?? null;
+                const groupTitle = repOa ? propositionInformativeLabel(repOa) : sum.display_label;
                 const metaChip = propositionGroupMetaChipText({
                   sourceRowCount: sum.source_row_count,
                   allSameWording: sum.wording_status !== "diff",
@@ -180,7 +206,7 @@ export function PropositionExplorerServerList(props: {
                     <summary className={PROPOSITION_SUMMARY_CLASS}>
                       <p className={`${HIER_SECTION_LABEL} mb-1`}>Proposition group</p>
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-sm font-medium text-foreground">{sum.display_label}</span>
+                        <span className="text-sm font-medium text-foreground">{groupTitle}</span>
                         <span className="rounded border border-border/70 bg-muted/80 px-2 py-0.5 font-mono text-[11px]">
                           {metaChip}
                         </span>
@@ -193,6 +219,11 @@ export function PropositionExplorerServerList(props: {
                           noAssessment={!sum.completeness_status}
                         />
                       </div>
+                      {repOa ? (
+                        <div className="mt-2">
+                          <PropositionClassificationMeta oa={repOa} compact />
+                        </div>
+                      ) : null}
                       <p className="mt-1 text-[11px] text-muted-foreground">
                         {formatArticleClusterHeading(sum.article_key)} ·{" "}
                         {Object.entries(sum.review_summary)
@@ -218,6 +249,7 @@ export function PropositionExplorerServerList(props: {
                         const scopeRows = pid ? (scopeLinkRowsByPropId.get(pid) ?? []) : [];
 
                         const jl = jurisdictionForSource(sources, sid);
+                        const territorial = territorialApplicationFromProposition(oa);
                         const compRows = (detail?.completeness_assessments as UnknownRecord[] | undefined) ?? [];
                         const compRow = compRows.find(
                           (c) => String(c.proposition_id ?? "").trim() === pid
@@ -229,7 +261,8 @@ export function PropositionExplorerServerList(props: {
                           typeof compRow.context_injections === "object"
                             ? (compRow.context_injections as UnknownRecord)
                             : null;
-                        const evidUi = verbatimEvidenceUiFromNotes(oa.notes);
+                        const evidUi = verbatimEvidenceUiFromProposition(oa);
+                        const reviewNotes = humanReviewNotesForDisplay(oa);
                         const suggStmt =
                           typeof compRow?.suggested_display_statement === "string"
                             ? compRow.suggested_display_statement.trim()
@@ -245,10 +278,25 @@ export function PropositionExplorerServerList(props: {
                             <summary className="cursor-pointer list-none text-[12px] outline-none marker:content-none [&::-webkit-details-marker]:hidden">
                               <div className="flex flex-wrap items-center gap-2">
                                 <PropositionJurisdictionChip jurisdiction={jl} sourceId={sid} />
-                                <span className="font-medium">{propositionDisplayLabel(oa)}</span>
+                                {territorial.length > 0 ? (
+                                  <span
+                                    title={TERRITORIAL_APPLICATION_CHIP_TOOLTIP}
+                                    className="rounded border border-amber-600/40 bg-amber-950/20 px-2 py-0.5 font-mono text-[11px] text-amber-100/90"
+                                  >
+                                    applies: {territorial.join(", ")}
+                                  </span>
+                                ) : null}
+                                <span className="font-medium">{propositionInformativeLabel(oa)}</span>
+                                <PropositionClassificationMeta oa={oa} compact />
                               </div>
                             </summary>
                             <div className="mt-2 space-y-2 border-t border-border/40 pt-2">
+                              <div className="rounded-md border border-border/50 bg-muted/[0.12] px-2.5 py-2">
+                                <PropositionClassificationMeta
+                                  oa={oa}
+                                  showExtractionDebug={showExtractionDebug}
+                                />
+                              </div>
                               <PropositionScopeLinksSection
                                 propositionId={pid}
                                 scopeRows={scopeRows}
@@ -273,6 +321,12 @@ export function PropositionExplorerServerList(props: {
                                   />
                                 }
                               />
+                              {reviewNotes ? (
+                                <p className="text-[12px] leading-relaxed text-muted-foreground">
+                                  <span className="font-medium text-foreground">Review note: </span>
+                                  {reviewNotes}
+                                </p>
+                              ) : null}
                               <PropositionEvidenceDetails
                                 rawText={txt}
                                 verbatimEvidenceKnown={evidUi.known}
@@ -347,7 +401,24 @@ export function PropositionExplorerServerList(props: {
                     </div>
                   </details>
                 );
-              })}
+                };
+
+                return (
+                  <>
+                    {primary.map(renderGroupSummary)}
+                    {scopeSecondary.length > 0 ? (
+                      <details className="rounded-lg border border-dashed border-border/60 bg-muted/[0.08] px-2 py-2 open:bg-muted/[0.14]">
+                        <summary className="cursor-pointer list-none px-1 py-1.5 text-[12px] font-medium text-muted-foreground marker:content-none [&::-webkit-details-marker]:hidden">
+                          Scope &amp; application ({scopeSecondary.length})
+                        </summary>
+                        <div className="mt-2 space-y-4 border-t border-border/40 pt-3">
+                          {scopeSecondary.map(renderGroupSummary)}
+                        </div>
+                      </details>
+                    ) : null}
+                  </>
+                );
+              })()}
             </div>
           </details>
         );

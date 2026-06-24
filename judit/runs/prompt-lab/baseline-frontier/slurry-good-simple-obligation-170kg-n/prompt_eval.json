@@ -1,0 +1,177 @@
+{
+  "case_id": "slurry-good-simple-obligation-170kg-n",
+  "label": "GOOD — simple obligation (170 kg N per hectare holding limit)",
+  "fixture_path": "",
+  "run_dir": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-good-simple-obligation-170kg-n",
+  "passed": true,
+  "eval_status": "pass",
+  "generated_at": "2026-06-04T12:01:18.580703Z",
+  "actual_count": 5,
+  "expected_count": 1,
+  "matched_expected_count": 1,
+  "warnings": [
+    "4 extra actual propositions (allowed by targeted mode)"
+  ],
+  "summary": {
+    "pass": true,
+    "eval_status": "pass",
+    "evaluation_mode": "targeted",
+    "allow_extra_actual": true,
+    "matched_expected": "1/1",
+    "extra_actual_count": 4,
+    "suggested_focus": []
+  },
+  "checks": {
+    "load": {
+      "passed": true,
+      "source_file": "propositions.normalised.json",
+      "warnings": [
+        "4 extra actual propositions (allowed by targeted mode)"
+      ]
+    },
+    "evaluation_mode": {
+      "passed": true,
+      "mode": "targeted",
+      "strict_proposition_count": false,
+      "allow_extra_actual": true,
+      "max_extra_actual": null
+    },
+    "proposition_count": {
+      "passed": true,
+      "status": "ok",
+      "strict": false,
+      "mode": "targeted",
+      "detail": "actual=5, expected=1, mode=targeted"
+    },
+    "extra_actual": {
+      "passed": true,
+      "status": "extras_allowed",
+      "extra_count": 4,
+      "allow_extra_actual": true,
+      "mode": "targeted",
+      "detail": "4 extra actual propositions (allowed by targeted mode)"
+    },
+    "no_actual_propositions": {
+      "passed": true,
+      "reason": null
+    },
+    "expected_row_matches": {
+      "passed": true,
+      "matched": 1,
+      "expected": 1
+    },
+    "legal_effect_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "obligation"
+      ],
+      "actual": [
+        "definition",
+        "derogation",
+        "obligation"
+      ]
+    },
+    "tier_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "substantive_rule"
+      ],
+      "actual": [
+        "definitional_rule",
+        "substantive_rule"
+      ]
+    },
+    "boilerplate_classification": {
+      "passed": true,
+      "findings": []
+    },
+    "over_compression": {
+      "passed": true,
+      "findings": [],
+      "warn_only": true
+    },
+    "checkable_count": {
+      "passed": true,
+      "checkable_count": 2,
+      "unexpected_boilerplate_checkable": []
+    }
+  },
+  "expected_matches": [
+    {
+      "expected_index": 0,
+      "expected": {
+        "legal_effect_type": "obligation",
+        "proposition_tier": "substantive_rule",
+        "proposition_text": "The occupier of a holding must ensure that the total nitrogen in livestock manure applied to the holding in any calendar year does not exceed 170 kg per hectare of the holding.",
+        "legal_subject": "the occupier of a holding",
+        "action": "must ensure that the total amount of nitrogen in livestock manure applied does not exceed 170kg per hectare",
+        "affected_subjects": [
+          "the occupier of a holding"
+        ],
+        "conditions": [
+          "in any calendar year",
+          "whether applied directly by an animal or by spreading"
+        ],
+        "exceptions": [],
+        "authority": null,
+        "required_documents": [],
+        "territorial_application": [
+          "England"
+        ],
+        "extent": [],
+        "evidence_quote": "The occupier of a holding must ensure that, in any calendar year, the total amount of nitrogen in livestock manure applied to the holding"
+      },
+      "matched_actual_index": 0,
+      "matched_actual_id": "prop-lex-120b4f9c395b3f94-001",
+      "legal_effect_ok": true,
+      "tier_ok": true,
+      "evidence_ok": true,
+      "subject_ok": true,
+      "action_ok": true,
+      "conditions_ok": true,
+      "matched": true,
+      "match_score": 1.05,
+      "match_kind": "exact",
+      "contained_evidence_ok": false,
+      "classification_mismatch": false,
+      "suggested_failure_reason": null
+    }
+  ],
+  "extra_actual": [
+    {
+      "actual_index": 1,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-002",
+      "legal_effect_type": "derogation",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "The nitrogen limit in paragraph (1) does not apply where the occupier has been granted a derogation.",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 2,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-003",
+      "legal_effect_type": "obligation",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "The amount of nitrogen for the purposes of this regulation is to be calculated in accordance with Schedule 1.",
+      "is_compliance_relevant": true
+    },
+    {
+      "actual_index": 3,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-004",
+      "legal_effect_type": "definition",
+      "proposition_tier": "definitional_rule",
+      "proposition_text": "In calculating the area of a holding for nitrogen spreading purposes, no account is to be taken of surface waters, hardstanding, buildings, roads or woodland (unless the woodland is used for grazing).",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 4,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-005",
+      "legal_effect_type": "definition",
+      "proposition_tier": "definitional_rule",
+      "proposition_text": "In calculating the area of a holding for nitrogen spreading purposes, no account is to be taken of land which is covered by a greenhouse for the whole of the year concerned.",
+      "is_compliance_relevant": false
+    }
+  ],
+  "missing_effects": []
+}

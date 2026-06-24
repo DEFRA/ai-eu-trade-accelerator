@@ -1,0 +1,158 @@
+[
+  {
+    "proposition_text": "The occupier of a holding must ensure that in any twelve-month period, the total amount of nitrogen in organic manure spread on any given hectare of land on the holding does not exceed 250kg.",
+    "display_label": "Nitrogen limit in organic manure (250kg/ha/year)",
+    "subject": "occupier of a holding",
+    "rule": "must ensure that the total amount of nitrogen in organic manure spread does not exceed",
+    "object": "250kg per hectare in any twelve-month period",
+    "conditions": [],
+    "exceptions": [
+      "if the three conditions for certified green compost or certified green/food compost are met (paragraphs 3–5)",
+      "if the low-intensity grassland requirements in paragraph (7) are met and recorded (paragraph 6)"
+    ],
+    "temporal_condition": "in any twelve-month period",
+    "provision_type": "core",
+    "source_locator": "regulation 8(1)",
+    "evidence_text": "The occupier of a holding must ensure that in any twelve-month period, the total amount of nitrogen in organic manure spread on any given hectare of land on the holding does not exceed 250kg.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Core nitrogen limit obligation with clear subject, rule, object, and temporal scope; exceptions enumerated separately.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "The occupier may exceed the 250kg nitrogen limit if organic manure is in the form of certified green compost or certified green/food compost (Condition 1).",
+    "display_label": "Exception: certified green/food compost (Condition 1)",
+    "subject": "occupier",
+    "rule": "may exceed the 250kg limit if organic manure is in the form of",
+    "object": "certified green compost or certified green/food compost",
+    "conditions": [
+      "Condition 2: nitrogen in green compost or green/food compost does not exceed specified limits (paragraph 4)",
+      "Condition 3: no other form of organic manure is spread during the applicable period (paragraph 5)"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "exception",
+    "source_locator": "regulation 8(2)–(3)",
+    "evidence_text": "But the occupier may exceed that limit if the following three conditions are met. 3 Condition 1 is that organic manure is in the form of certified green compost or certified green/food compost.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "First condition of a three-part exception; other conditions extracted separately for clarity.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "The total amount of nitrogen in the form of green compost or green/food compost spread on any given hectare must not exceed 500kg in any two-year period, whether spread as mulch or incorporated into the soil (Condition 2(a)).",
+    "display_label": "Nitrogen limit for green/food compost (500kg/ha/2 years)",
+    "subject": "total amount of nitrogen in the form of green compost or green/food compost",
+    "rule": "must not exceed",
+    "object": "500kg per hectare in any two-year period",
+    "conditions": [
+      "whether the compost is spread as mulch or incorporated into the soil"
+    ],
+    "exceptions": [],
+    "temporal_condition": "in any two-year period",
+    "provision_type": "exception",
+    "source_locator": "regulation 8(4)(a)",
+    "evidence_text": "the total amount of nitrogen in the form of green compost or green/food compost which is spread on any given hectare of land on the holding does not exceed— a 500kg in any two-year period, whether the compost is spread as mulch or incorporated into the soil",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Condition 2(a) specifies nitrogen limit for green/food compost; distinct from orchard land provision in (b).",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "In the case of orchard land, the total amount of nitrogen in the form of green compost or green/food compost spread as mulch must not exceed 1,000kg in any four-year period (Condition 2(b)).",
+    "display_label": "Nitrogen limit for orchard land (1,000kg/ha/4 years)",
+    "subject": "total amount of nitrogen in the form of green compost or green/food compost on orchard land",
+    "rule": "must not exceed",
+    "object": "1,000kg per hectare in any four-year period if spread as mulch",
+    "conditions": [
+      "orchard land",
+      "spread as mulch"
+    ],
+    "exceptions": [],
+    "temporal_condition": "in any four-year period",
+    "provision_type": "exception",
+    "source_locator": "regulation 8(4)(b)",
+    "evidence_text": "in the case of orchard land, 1,000kg in any four-year period if it is spread as mulch.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Condition 2(b) provides distinct limit for orchard land; legally separate from general two-year limit.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "No other form of organic manure may be spread over the land during the applicable two-year or four-year period when certified green/food compost is used (Condition 3).",
+    "display_label": "Prohibition on other organic manure (Condition 3)",
+    "subject": "occupier",
+    "rule": "must ensure that no other form of organic manure is spread over the land during",
+    "object": "the applicable period provided for under paragraph (4)(a) or (b)",
+    "conditions": [
+      "when exceeding the 250kg limit using certified green/food compost"
+    ],
+    "exceptions": [],
+    "temporal_condition": "during the applicable period provided for under paragraph (4)(a) or (b)",
+    "provision_type": "exception",
+    "source_locator": "regulation 8(5)",
+    "evidence_text": "Condition 3 is that no other form of organic manure is spread over the land in question during the applicable period provided for under paragraph (4)(a) or (b).",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Condition 3 completes the three-part exception; prohibits mixing organic manure types.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "Regulation 8 does not apply if the low-intensity grassland requirements in paragraph (7) are met and the occupier makes a record demonstrating that they are met.",
+    "display_label": "Low-intensity grassland exemption (with record)",
+    "subject": "regulation 8",
+    "rule": "does not apply if",
+    "object": "the requirements in paragraph (7) are met and the occupier makes a record demonstrating that they are met",
+    "conditions": [
+      "requirements in paragraph (7) are met",
+      "occupier makes a record demonstrating compliance"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "exception",
+    "source_locator": "regulation 8(6)",
+    "evidence_text": "This regulation does not apply in a case where— a the requirements in paragraph (7) are met, and b the occupier makes a record demonstrating that they are met.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Gateway provision for low-intensity grassland exemption; detailed requirements in paragraph (7) extracted separately.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "For the low-intensity grassland exemption, at least 80% of the holding's agricultural area must be sown with grass throughout the year, total nitrogen in organic manure must not exceed 100kg per hectare, total nitrogen from manufactured fertiliser must not exceed 90kg per hectare, and the occupier must not bring organic manure onto the holding.",
+    "display_label": "Low-intensity grassland requirements (80% grass, 100kg organic N, 90kg manufactured N, no imports)",
+    "subject": "occupier seeking exemption under paragraph (6)",
+    "rule": "must meet throughout the year",
+    "object": "at least 80% grass cover, ≤100kg/ha organic manure nitrogen, ≤90kg/ha manufactured nitrogen fertiliser, and no organic manure brought onto the holding",
+    "conditions": [
+      "throughout the year concerned"
+    ],
+    "exceptions": [],
+    "temporal_condition": "throughout the year concerned",
+    "provision_type": "exception",
+    "source_locator": "regulation 8(7)(a)–(d)",
+    "evidence_text": "The requirements in this paragraph are that throughout the year concerned— a at least 80% of the holding's agricultural area is sown with grass, b the total amount of nitrogen in organic manure applied to the holding, whether directly by an animal or spreading, does not exceed 100kg multiplied by the area of the holding in hectares, c the total amount of nitrogen from manufactured nitrogen fertiliser applied to the holding does not exceed 90kg multiplied by the area of the holding in hectares, and d the occupier does not bring organic manure on to the holding.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Four distinct requirements (a)–(d) for low-intensity exemption; combined into one proposition as they form a conjunctive test.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "The reference to land on the holding in paragraph (1) does not include any land which is covered by a greenhouse for the whole of the period concerned.",
+    "display_label": "Exclusion of greenhouse-covered land",
+    "subject": "land on the holding (paragraph (1))",
+    "rule": "does not include",
+    "object": "any land which is covered by a greenhouse for the whole of the period concerned",
+    "conditions": [
+      "land covered by a greenhouse for the whole of the period concerned"
+    ],
+    "exceptions": [],
+    "temporal_condition": "for the whole of the period concerned",
+    "provision_type": "exception",
+    "source_locator": "regulation 8(10)",
+    "evidence_text": "The reference in paragraph (1) to the land on the holding does not include any land which is covered by a greenhouse for the whole of the period concerned.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Scope exclusion for greenhouse-covered land; modifies the application of the core 250kg limit.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  }
+]

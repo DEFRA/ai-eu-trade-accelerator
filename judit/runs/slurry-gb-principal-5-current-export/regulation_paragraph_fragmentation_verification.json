@@ -1,0 +1,83 @@
+{
+  "generated_at": "2026-06-11T18:19:45.712018Z",
+  "source_kind": "intake",
+  "authority_source_id": "wsi/2021/77",
+  "source_record_id": "lex-805b03f284dcf364",
+  "locator_prefix": "regulation:36",
+  "expected_locators": [
+    "regulation:36",
+    "regulation:36:paragraph:1",
+    "regulation:36:paragraph:2",
+    "regulation:36:paragraph:3",
+    "regulation:36:paragraph:4"
+  ],
+  "matching_locators": [
+    "regulation:36",
+    "regulation:36:paragraph:1",
+    "regulation:36:paragraph:2",
+    "regulation:36:paragraph:3",
+    "regulation:36:paragraph:4",
+    "regulation:36:paragraph:5",
+    "regulation:36:paragraph:6"
+  ],
+  "missing_locators": [],
+  "extra_locators": [
+    "regulation:36:paragraph:5",
+    "regulation:36:paragraph:6"
+  ],
+  "fragment_rows": [
+    {
+      "fragment_id": "frag-lex-805b03f284dcf364-131",
+      "locator": "regulation:36",
+      "parent_fragment_id": "frag-lex-805b03f284dcf364-001",
+      "text_preview": "36. (1) Before the relevant date every year the occupier must make a record of\u2014 (a) the number and category (in accorda\u2026",
+      "text_length": 958
+    },
+    {
+      "fragment_id": "frag-lex-805b03f284dcf364-132",
+      "locator": "regulation:36:paragraph:1",
+      "parent_fragment_id": "frag-lex-805b03f284dcf364-131",
+      "text_preview": "(1) Before the relevant date every year the occupier must make a record of\u2014 (a) the number and category (in accordance \u2026",
+      "text_length": 282
+    },
+    {
+      "fragment_id": "frag-lex-805b03f284dcf364-133",
+      "locator": "regulation:36:paragraph:2",
+      "parent_fragment_id": "frag-lex-805b03f284dcf364-131",
+      "text_preview": "(2) The occupier must then calculate the amount of nitrogen in the manure produced by the animals on the holding during\u2026",
+      "text_length": 160
+    },
+    {
+      "fragment_id": "frag-lex-805b03f284dcf364-134",
+      "locator": "regulation:36:paragraph:3",
+      "parent_fragment_id": "frag-lex-805b03f284dcf364-131",
+      "text_preview": "(3) Alternatively, in the case of permanently housed pigs or poultry, the occupier may use\u2014 (a) software approved by th\u2026",
+      "text_length": 285
+    },
+    {
+      "fragment_id": "frag-lex-805b03f284dcf364-135",
+      "locator": "regulation:36:paragraph:4",
+      "parent_fragment_id": "frag-lex-805b03f284dcf364-131",
+      "text_preview": "(4) The occupier must make a record of the calculations and how the final figures were arrived at.",
+      "text_length": 98
+    },
+    {
+      "fragment_id": "frag-lex-805b03f284dcf364-136",
+      "locator": "regulation:36:paragraph:5",
+      "parent_fragment_id": "frag-lex-805b03f284dcf364-131",
+      "text_preview": "(5) An occupier who used software approved by the Welsh Ministers must keep a printout of the result.",
+      "text_length": 101
+    },
+    {
+      "fragment_id": "frag-lex-805b03f284dcf364-137",
+      "locator": "regulation:36:paragraph:6",
+      "parent_fragment_id": "frag-lex-805b03f284dcf364-131",
+      "text_preview": "(6) In this regulation\u2014",
+      "text_length": 23
+    }
+  ],
+  "passed": true,
+  "notes": [
+    "case=/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/slurry-gb-principal-5-current/case.json"
+  ]
+}

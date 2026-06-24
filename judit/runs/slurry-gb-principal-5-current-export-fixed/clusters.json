@@ -1,0 +1,15 @@
+[
+  {
+    "id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "name": "slurry_manure_agricultural_effluent",
+    "description": "Cluster scoped to Ada category slurry_manure_agricultural_effluent.",
+    "source_record_ids": [
+      "lex-120b4f9c395b3f94",
+      "lex-805b03f284dcf364",
+      "lex-e71fbbe3342ac0be",
+      "lex-2459c955ee13be52",
+      "lex-96613ffe71589e1e"
+    ]
+  }
+]

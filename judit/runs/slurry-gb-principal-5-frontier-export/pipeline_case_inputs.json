@@ -1,0 +1,13 @@
+{
+  "comparison": {
+    "jurisdiction_a": "EU",
+    "jurisdiction_b": "UK"
+  },
+  "narrative": {},
+  "extraction": {},
+  "prompts": {},
+  "analysis_mode": "auto",
+  "analysis_scope": "selected_sources",
+  "strategy_versions": {},
+  "pipeline_version": "0.1.0"
+}

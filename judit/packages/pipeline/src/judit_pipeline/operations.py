@@ -115,7 +115,7 @@ class OperationalStore:
                 out["source_universe"] = su
         return out
 
-    def list_stage_traces(self, run_id: str | None = None) -> dict[str, Any]:
+    def list_stage_traces(self, run_id: str | None = None, *, compact: bool = True) -> dict[str, Any]:
         entry = self._resolve_run_entry(run_id)
         trace_manifest = self._read_json_file(entry.run_dir / "trace-manifest.json", default={})
         stages_raw = trace_manifest.get("stages", [])
@@ -139,7 +139,35 @@ class OperationalStore:
                 }
             )
 
-        return {"run_id": entry.run_id, "trace_count": len(traces), "traces": traces}
+        extraction_inspection: dict[str, Any] | None = None
+        try:
+            from judit_pipeline.extraction_llm_metrics import build_extraction_job_inspection
+            from judit_pipeline.linting import load_exported_bundle
+
+            bundle = load_exported_bundle(self.export_dir)
+            if str(bundle.get("run", {}).get("id") or "") == entry.run_id or not run_id:
+                extraction_inspection = build_extraction_job_inspection(bundle)
+        except (ValueError, OSError):
+            extraction_inspection = None
+
+        out: dict[str, Any] = {"run_id": entry.run_id, "trace_count": len(traces), "traces": traces}
+        if extraction_inspection is not None:
+            out["extraction_job_inspection"] = extraction_inspection
+        elif (self.export_dir / "case.json").is_file() and not (entry.run_dir / "trace-manifest.json").is_file():
+            out["hint"] = (
+                "Export directory contains case.json only (run-bundle output). "
+                "Re-run with `judit-run-case export-run` (or `export-case` on a persisted run) to inspect extraction jobs."
+            )
+        if compact:
+            from judit_pipeline.extraction_llm_metrics import summarize_stage_traces_compact
+
+            compact_out = summarize_stage_traces_compact(
+                traces,
+                extraction_job_inspection=extraction_inspection,
+            )
+            compact_out["run_id"] = entry.run_id
+            return compact_out
+        return out
 
     def list_review_decisions(self, run_id: str | None = None) -> dict[str, Any]:
         entry = self._resolve_run_entry(run_id)
@@ -1026,6 +1054,64 @@ class OperationalStore:
         summary["metrics"] = metrics
 
         return {"run_id": entry.run_id, "run_quality_summary": summary}
+
+    def _read_run_scoped_export_object(
+        self,
+        *,
+        entry: RunIndexEntry,
+        root_filename: str,
+        artifact_type: str,
+    ) -> dict[str, Any] | None:
+        root_path = self.export_dir / root_filename
+        if root_path.is_file():
+            root_payload = self._read_json_file(root_path, default={})
+            if isinstance(root_payload, dict) and str(root_payload.get("run_id", "")) == entry.run_id:
+                return dict(root_payload)
+
+        payload = self._artifact_payload(entry=entry, artifact_type=artifact_type, default={})
+        if isinstance(payload, dict) and str(payload.get("run_id", "")) == entry.run_id:
+            return dict(payload)
+        return None
+
+    def read_effective_law_statements(self, run_id: str | None = None) -> dict[str, Any]:
+        entry = self._resolve_run_entry(run_id)
+        payload = self._read_run_scoped_export_object(
+            entry=entry,
+            root_filename="effective_law_statements.json",
+            artifact_type="effective_law_statements",
+        )
+        if payload is None:
+            raise OperationsError(
+                "Effective law statements are not available for this export "
+                "(expected effective_law_statements.json)."
+            )
+        statements = payload.get("statements")
+        statement_rows = [row for row in statements if isinstance(row, dict)] if isinstance(statements, list) else []
+        return {
+            "run_id": entry.run_id,
+            "effective_law_statements": payload,
+            "statement_count": len(statement_rows),
+        }
+
+    def read_beatrice_law_candidates(self, run_id: str | None = None) -> dict[str, Any]:
+        entry = self._resolve_run_entry(run_id)
+        payload = self._read_run_scoped_export_object(
+            entry=entry,
+            root_filename="beatrice_law_candidates.json",
+            artifact_type="beatrice_law_candidates",
+        )
+        if payload is None:
+            raise OperationsError(
+                "Beatrice law candidates are not available for this export "
+                "(expected beatrice_law_candidates.json)."
+            )
+        candidates = payload.get("candidates")
+        candidate_rows = [row for row in candidates if isinstance(row, dict)] if isinstance(candidates, list) else []
+        return {
+            "run_id": entry.run_id,
+            "beatrice_law_candidates": payload,
+            "candidate_count": len(candidate_rows),
+        }
 
     def get_source_detail(self, source_id: str, run_id: str | None = None) -> dict[str, Any]:
         entry = self._resolve_run_entry(run_id)

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "target-link-lex-120b4f9c395b3f94",
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "target_source_record_id": "lex-120b4f9c395b3f94",
+    "target_citation": "UKSI 2015/668",
+    "target_instrument_id": "UKSI 2015/668",
+    "link_type": "is_target",
+    "confidence": "high",
+    "method": "deterministic",
+    "reason": "Source marked/resolved as primary analysis target.",
+    "evidence": [
+      "source_record_id=lex-120b4f9c395b3f94",
+      "target_source_record_id=lex-120b4f9c395b3f94"
+    ],
+    "signals": {
+      "target_reference_match": true,
+      "primary_target_source_id": "lex-120b4f9c395b3f94",
+      "primary_target_citation": "UKSI 2015/668",
+      "primary_target_title": "The Nitrate Pollution Prevention Regulations 2015",
+      "authority": "legislation_gov_uk",
+      "kind": "uksi",
+      "source_url": "https://www.legislation.gov.uk/uksi/2015/668/data.xml"
+    }
+  }
+]

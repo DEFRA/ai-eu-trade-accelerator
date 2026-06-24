@@ -1,0 +1,166 @@
+{
+  "batch": "baseline-frontier",
+  "mode": "frontier",
+  "generated_at": "2026-06-04T12:00:00Z",
+  "source_summary": "runs/prompt-lab/baseline-frontier/prompt_lab_summary.json",
+  "revised_verdict": "fixture_policy_review_needed",
+  "counts": {
+    "fixtures": 10,
+    "pass": 1,
+    "warn": 2,
+    "fail": 7,
+    "true_prompt_failures": 0,
+    "fixture_eval_policy_failures": 5,
+    "classifier_or_evidence_failures": 2,
+    "acceptable_with_extras": 2
+  },
+  "fixtures": [
+    {
+      "case_id": "slurry-bad-diffuse-2018-reg-1-boilerplate",
+      "batch_status": "pass",
+      "triage_category": "pass",
+      "matched_expected": "4/4",
+      "actual_vs_expected": "4/4",
+      "primary_failure_mode": null,
+      "notes": "Exhaustive boilerplate case; count and rows align."
+    },
+    {
+      "case_id": "slurry-bad-over-compressed-crop-nitrogen-table",
+      "batch_status": "fail",
+      "triage_category": "fixture_mode_too_strict",
+      "matched_expected": "1/1",
+      "actual_vs_expected": "8/1",
+      "primary_failure_mode": "extras_only",
+      "notes": "Gold row (table obligation) matched. Seven extras are valid reg 12 definitional/permission rows (N definition, reg 13 cross-ref, straw/shallow/yield/milling/grass permissions). Exhaustive mode inappropriate for a multi-paragraph regulation fragment."
+    },
+    {
+      "case_id": "slurry-bad-unless-except-organic-manure-250kg",
+      "batch_status": "fail",
+      "triage_category": "evaluator_matching_issue",
+      "matched_expected": "5/8",
+      "actual_vs_expected": "8/8",
+      "primary_failure_mode": "unmatched_gold_rows",
+      "notes": "Three gold misses are not raw omissions: Condition 3 bundled into prop-002 (already matched to expected[1]); grassland para (7) bundled as single derogation prop-005; greenhouse exclusion prop-008 present as application_scope vs gold derogation. Two evidence_failures on expected[4] and [6] are greedy-match artefacts. Recommend evaluator: many-to-one / effect-type equivalence before changing prompts."
+    },
+    {
+      "case_id": "slurry-good-definition-slurry-sssaho-2010",
+      "batch_status": "fail",
+      "triage_category": "acceptable_with_extras",
+      "matched_expected": "1/1",
+      "actual_vs_expected": "8/1",
+      "primary_failure_mode": "extras_only",
+      "notes": "Slurry definition matched (prop-004). Seven sibling definitions from the interpretation block are legitimate; one BS-equivalence row classified unknown (classifier_issue, non-blocking for slurry definition gold)."
+    },
+    {
+      "case_id": "slurry-good-simple-obligation-170kg-n",
+      "batch_status": "fail",
+      "triage_category": "fixture_mode_too_strict",
+      "matched_expected": "1/1",
+      "actual_vs_expected": "5/1",
+      "primary_failure_mode": "extras_only",
+      "notes": "170 kg obligation matched. Extras: derogation carve-out, reg 14 calculation cross-ref, two holding-area definition exclusions — all in fragment text."
+    },
+    {
+      "case_id": "slurry-good-simple-prohibition-spread-buffer",
+      "batch_status": "warn",
+      "triage_category": "acceptable_with_extras",
+      "matched_expected": "1/1",
+      "actual_vs_expected": "7/1",
+      "primary_failure_mode": null,
+      "notes": "Targeted mode working as designed (6 allowed extras)."
+    },
+    {
+      "case_id": "slurry-ugly-appeal-nvz-designation-reg-6",
+      "batch_status": "fail",
+      "triage_category": "fixture_expected_rows_incomplete",
+      "matched_expected": "1/1",
+      "actual_vs_expected": "8/1",
+      "primary_failure_mode": "extras_only",
+      "notes": "Appeal right matched. Seven additional appeal-ground and tribunal-procedure rows are substantive and in-fragment; gold lists only the headline appeal permission."
+    },
+    {
+      "case_id": "slurry-ugly-cross-reference-derogation-directive",
+      "batch_status": "fail",
+      "triage_category": "classifier_issue",
+      "matched_expected": "0/2",
+      "actual_vs_expected": "8/2",
+      "primary_failure_mode": "legal_effect_type_mismatch",
+      "notes": "Substantive content for both gold rows exists: prop-001 (may apply) tagged application_scope not permission; prop-002 ('Derogation' means…) tagged derogation not definition. Six further reg-36 paragraphs correctly extracted. Fixture uses exhaustive with 2 gold rows; fragment has 8 operative provisions."
+    },
+    {
+      "case_id": "slurry-ugly-schedule-livestock-manure-table",
+      "batch_status": "warn",
+      "triage_category": "acceptable_with_extras",
+      "matched_expected": "4/4",
+      "actual_vs_expected": "8/4",
+      "primary_failure_mode": null,
+      "notes": "table_rows mode; all table gold rows matched; 4 extras allowed."
+    },
+    {
+      "case_id": "slurry-ugly-transitional-nvz-wales-reg-2",
+      "batch_status": "fail",
+      "triage_category": "acceptable_with_extras",
+      "matched_expected": "2/2",
+      "actual_vs_expected": "4/2",
+      "primary_failure_mode": "extras_only",
+      "notes": "Both commencement gold rows matched. Two application_scope rows restate the same transitional rules with NVZ holding scope — valid, should be allowed or folded into gold."
+    }
+  ],
+  "recommendations": {
+    "fixture_mode_changes": [
+      {
+        "case_id": "slurry-bad-over-compressed-crop-nitrogen-table",
+        "from": "exhaustive",
+        "to": "minimum",
+        "risk": "low",
+        "rationale": "Single anchor obligation; fragment contains many valid additional rows."
+      },
+      {
+        "case_id": "slurry-good-definition-slurry-sssaho-2010",
+        "from": "exhaustive",
+        "to": "targeted",
+        "risk": "low",
+        "rationale": "Test is the slurry definition only; interpretation block is out of scope."
+      },
+      {
+        "case_id": "slurry-good-simple-obligation-170kg-n",
+        "from": "exhaustive",
+        "to": "targeted",
+        "risk": "low",
+        "rationale": "Same pattern as spread-buffer good case."
+      },
+      {
+        "case_id": "slurry-ugly-appeal-nvz-designation-reg-6",
+        "from": "exhaustive",
+        "to": "minimum",
+        "risk": "medium",
+        "rationale": "Either allow extras or expand gold to cover reg-6 appeal grounds; minimum unblocks batch while gold is expanded."
+      },
+      {
+        "case_id": "slurry-ugly-cross-reference-derogation-directive",
+        "from": "exhaustive",
+        "to": "minimum",
+        "risk": "medium",
+        "rationale": "Pair of anchor rows plus classifier-tolerant matching; or expand gold to full reg-36 row set."
+      },
+      {
+        "case_id": "slurry-ugly-transitional-nvz-wales-reg-2",
+        "from": "exhaustive",
+        "to": "minimum",
+        "risk": "low",
+        "rationale": "Both commencement rows matched; scope rows are duplicates in different legal_effect_type."
+      }
+    ],
+    "prompt_changes": [],
+    "evaluator_changes": [
+      "Treat legal_effect permission vs application_scope as equivalent when proposition_text and evidence_quote match gold for eligibility-to-apply rows.",
+      "Treat statutory 'X means…' rows as definition even when tagged derogation if evidence is definitional.",
+      "Allow one actual row to satisfy multiple gold rows when conditions are enumerated inside a single extracted proposition (reg 8 compost block).",
+      "Do not consume a consolidated actual row exclusively on the first gold match when later gold rows are subsets of the same row."
+    ],
+    "classifier_changes": [
+      "Map BS-equivalence silo/tank sentences to obligation or permission, not unknown.",
+      "Prefer definition over derogation for inline 'means' clauses in Part 4 derogation regulations."
+    ]
+  }
+}

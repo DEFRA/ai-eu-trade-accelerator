@@ -12,6 +12,10 @@ def resolve_case_path(path: str | Path) -> Path:
 
 def load_case_file(path: str | Path) -> dict[str, Any]:
     resolved = resolve_case_path(path)
+    if resolved.is_dir():
+        resolved = resolved / "case.json"
+    if not resolved.is_file():
+        raise ValueError(f"Case file not found: {resolved}")
     payload = json.loads(resolved.read_text(encoding="utf-8"))
     if "topic" not in payload:
         raise ValueError("Case file must contain a 'topic' object.")

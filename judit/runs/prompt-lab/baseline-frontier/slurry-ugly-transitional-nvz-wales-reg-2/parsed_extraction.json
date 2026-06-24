@@ -1,0 +1,81 @@
+[
+  {
+    "proposition_text": "In a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the NVZ index map 2013, regulations 5 to 11, 15, 23, 27, 33 to 35, and 37 to 43 do not apply until 1 January 2023.",
+    "display_label": "Transitional exemption for non-NVZ holdings: regulations 5–11, 15, 23, 27, 33–35, 37–43",
+    "subject": "holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the NVZ index map 2013",
+    "rule": "do not apply until",
+    "object": "regulations 5 to 11, 15, 23, 27, 33 to 35, and 37 to 43",
+    "conditions": [
+      "holding or part of a holding was not previously situated within a nitrate vulnerable zone as shown on the relevant map marked 'Nitrate Vulnerable Zones Index Map 2013'"
+    ],
+    "exceptions": [],
+    "temporal_condition": "until 1 January 2023",
+    "provision_type": "transitional",
+    "source_locator": "regulation 2(a)",
+    "evidence_text": "In a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the relevant map marked \"Nitrate Vulnerable Zones Index Map 2013\" (the \"NVZ index map\")—aregulations 5 to 11, 15, 23, 27, 33 to 35, and 37 to 43 do not apply until 1 January 2023",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Standalone transitional provision with clear temporal scope, subject, and list of regulations exempted.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "In a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the NVZ index map 2013, regulations 4 and 36 do not apply until 1 January 2024.",
+    "display_label": "Transitional exemption for non-NVZ holdings: regulations 4 and 36",
+    "subject": "holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the NVZ index map 2013",
+    "rule": "do not apply until",
+    "object": "regulations 4 and 36",
+    "conditions": [
+      "holding or part of a holding was not previously situated within a nitrate vulnerable zone as shown on the relevant map marked 'Nitrate Vulnerable Zones Index Map 2013'"
+    ],
+    "exceptions": [
+      "regulation 4 does not apply to qualifying grassland holdings until 1 January 2025"
+    ],
+    "temporal_condition": "until 1 January 2024",
+    "provision_type": "transitional",
+    "source_locator": "regulation 2(b)",
+    "evidence_text": "bregulations 4 and 36 do not apply until 1 January 2024 however, regulation 4 does not apply to qualifying grassland holdings until 1 January 2025",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Distinct transitional rule for regulations 4 and 36 with an embedded exception for qualifying grassland holdings.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "In a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the NVZ index map 2013, regulation 4 does not apply to qualifying grassland holdings until 1 January 2025.",
+    "display_label": "Extended transitional exemption for qualifying grassland holdings: regulation 4",
+    "subject": "qualifying grassland holdings in a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the NVZ index map 2013",
+    "rule": "does not apply until",
+    "object": "regulation 4",
+    "conditions": [
+      "holding or part of a holding was not previously situated within a nitrate vulnerable zone as shown on the relevant map marked 'Nitrate Vulnerable Zones Index Map 2013'",
+      "holding is a qualifying grassland holding"
+    ],
+    "exceptions": [],
+    "temporal_condition": "until 1 January 2025",
+    "provision_type": "exception",
+    "source_locator": "regulation 2(b) (proviso)",
+    "evidence_text": "regulation 4 does not apply to qualifying grassland holdings until 1 January 2025",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Exception to the general rule in 2(b), granting qualifying grassland holdings an additional year before regulation 4 applies.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "In a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the NVZ index map 2013, regulations 17 to 21, 25, 26, and 28 to 31 do not apply until 1 August 2024.",
+    "display_label": "Transitional exemption for non-NVZ holdings: regulations 17–21, 25, 26, 28–31",
+    "subject": "holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the NVZ index map 2013",
+    "rule": "do not apply until",
+    "object": "regulations 17 to 21, 25, 26, and 28 to 31",
+    "conditions": [
+      "holding or part of a holding was not previously situated within a nitrate vulnerable zone as shown on the relevant map marked 'Nitrate Vulnerable Zones Index Map 2013'"
+    ],
+    "exceptions": [],
+    "temporal_condition": "until 1 August 2024",
+    "provision_type": "transitional",
+    "source_locator": "regulation 2(c)",
+    "evidence_text": "cregulations 17 to 21, 25, 26, and 28 to 31 do not apply until 1 August 2024.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Distinct transitional provision with a different temporal threshold (1 August 2024) and a separate list of regulations.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  }
+]

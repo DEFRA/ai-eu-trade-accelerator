@@ -172,7 +172,7 @@ def test_operational_store_reads_runs_sources_traces_and_reviews(tmp_path: Path)
         for item in filtered_parse_traces["source_parse_traces"]
     )
 
-    traces = store.list_stage_traces(run_id=run_id)
+    traces = store.list_stage_traces(run_id=run_id, compact=False)
     assert traces["trace_count"] >= 7
     assert traces["traces"][0]["trace"]["run_id"] == run_id
 
@@ -181,6 +181,16 @@ def test_operational_store_reads_runs_sources_traces_and_reviews(tmp_path: Path)
 
     quality = store.read_run_quality_summary(run_id=run_id)
     assert quality["run_quality_summary"]["run_id"] == run_id
+
+    law_statements = store.read_effective_law_statements(run_id=run_id)
+    assert law_statements["run_id"] == run_id
+    assert law_statements["statement_count"] >= 1
+    assert isinstance(law_statements["effective_law_statements"]["statements"], list)
+
+    beatrice_candidates = store.read_beatrice_law_candidates(run_id=run_id)
+    assert beatrice_candidates["run_id"] == run_id
+    assert beatrice_candidates["candidate_count"] >= 0
+    assert isinstance(beatrice_candidates["beatrice_law_candidates"]["candidates"], list)
 
     propositions = store.list_propositions(run_id=run_id)
     assert propositions["propositions"]

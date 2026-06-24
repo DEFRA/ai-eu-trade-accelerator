@@ -32,6 +32,8 @@ Important interpretation rules:
 
 ### A) Run from a case and export (provider-free / default onboarding path)
 
+`run-bundle` writes the materialised case with `--output`; `export-case` writes the static bundle with `--output-dir` (or `--output` as an alias).
+
 ```bash
 uv run --package judit-pipeline python -m judit_pipeline export-case \
   data/demo/example_case.json \
@@ -51,7 +53,7 @@ uv run --package judit-pipeline python -m judit_pipeline export-case \
   --extraction-mode local
 ```
 
-`--extraction-mode local` and `--extraction-mode frontier` call configured model endpoints. If model infrastructure is unavailable or output is invalid, extraction may fallback depending on `--extraction-fallback`.
+`--extraction-mode local` and `--extraction-mode frontier` call configured model endpoints via the LiteLLM proxy (`just litellm`). With `run-bundle --use-llm`, the default `--extraction-fallback` is **`fail_closed`** (no silent heuristic substitution). See [`docs/dev/llm-extraction-local-mode.md`](docs/dev/llm-extraction-local-mode.md) for service wiring and the `400 No connected db.` LiteLLM error.
 
 ### B) Build staged equine passport profile (EUR 2015/262, requires model credentials/configuration for `--use-llm`)
 

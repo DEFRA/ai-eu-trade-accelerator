@@ -1,0 +1,100 @@
+[
+  {
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_fragment_id": "frag-lex-120b4f9c395b3f94-002",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 18 column 26 (char 1240)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 18 column 26 (char 1240)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+        "source_fragment_id": "frag-lex-120b4f9c395b3f94-002",
+        "fragment_locator": "regulation:2",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 3234,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "extraction_output_mode": "json_object",
+        "response_format_type": "json_object",
+        "response_format": {
+          "type": "json_object"
+        },
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"Slurry is defined as excreta produced by livestock (other than poultry) while in a yard or building (including any bedding, rainwater or washings mixed with it) that has a consistency that allows it to be pumped or discharged by gravity; in the case of excreta separated into its liquid and solid fractions, the slurry is the liquid fraction.\",\n      \"display_label\": \"Definition of slurry\",\n      \"subject\": \"slurry\",\n      \"rule\": \"means\",\n      \"object\": \"excreta produced by livestock (other than poultry) while in a yard or building (including any bedding, rainwater or washings mixed with it) that has a consistency that allows it to be pumped or discharged by gravity (and in the case of excreta separated into its liquid and solid fractions, the slurry is the liquid fraction)\",\n      \"conditions\": [\n        \"produced by livestock other than poultry\",\n        \"produced while in a yard or building\",\n        \"has a consistency that allows it to be pumped or discharged by gravity\"\n      ],\n      \"exceptions\": [],\n      \"temporal_condition\": \"\",\n      \"provision_type\": \"definition\",\n      \"source_locator\": \"regulation 2(1), definition of 'slurry'\",\n      \"evidence_text\": \"\"slurry\" means excreta produced by livestock (other than poultry) while in a yard or building (including any bedding, rainwater or washings mixed with it) that has a consistency that allows it to be pumped or discharged by gravity (and in the case of excreta separated into its liquid and solid fractions, the slurry is the liquid fraction);\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Complete statutory definition of slurry directly relevant to the topic cluster slurry_manure_agricultural_effluent.\"\n    },\n    {\n      \"proposition_text\": \"Organic manure is defined as a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources and includes livestock manure.\",\n      \"display_label\": \"Definition of organic manure\",\n      \"",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "5678f156a7671114",
+        "parse_error_message": "Expecting ',' delimiter: line 18 column 26 (char 1240)",
+        "parse_error_line": 18,
+        "parse_error_column": 26
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-080",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Extra data: line 4 column 1 (char 25)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Extra data: line 4 column 1 (char 25)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-805b03f284dcf364",
+        "source_title": "The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021",
+        "source_fragment_id": "frag-lex-805b03f284dcf364-080",
+        "fragment_locator": "schedule:2",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1159,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "extraction_output_mode": "json_object",
+        "response_format_type": "json_object",
+        "response_format": {
+          "type": "json_object"
+        },
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": []\n}\n```\n\n**Reason:** Schedule 2 is a definitional table listing botanical and common names of fruit species referenced by Regulation 5. It contains no legal obligations, prohibitions, permissions, exceptions, or transitional rules related to slurry, manure, or agricultural effluent (the Topic and Cluster). The schedule serves solely as a taxonomic reference and does not establish any substantive legal proposition that can be expressed in the required schema fields (subject, rule, object, conditions, exceptions). Returning an empty array is appropriate because no legally distinct obligation, definition relevant to the Topic, exception, or transitional rule exists in this fragment that warrants extraction under the audit rules.",
+        "raw_model_output_truncated": false,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "a2fa398c30459b27",
+        "parse_error_message": "Extra data: line 4 column 1 (char 25)",
+        "parse_error_line": 4,
+        "parse_error_column": 1
+      }
+    ]
+  }
+]

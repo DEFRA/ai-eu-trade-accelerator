@@ -1,0 +1,24 @@
+[project]
+name = "mary"
+version = "0.1.0"
+description = "Mary — download all DEFRA guidance gov.uk pages (search discovery + body fetch)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.27",
+    "typer>=0.15",
+]
+
+# Mary is a pair of flat scripts under src/, not an installable library, so tell
+# uv not to try to build/install it as a package — just manage its dependencies.
+[tool.uv]
+package = false
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

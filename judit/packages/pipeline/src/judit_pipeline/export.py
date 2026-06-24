@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Any
 
 from judit_domain import (
@@ -25,7 +26,29 @@ from judit_exporters import export_static_bundle
 
 from .pipeline_reviews import attach_pipeline_review_decisions_artifact
 from .proposition_dataset import attach_proposition_dataset_metadata
+from .proposition_quality_gates import (
+    run_proposition_quality_gates,
+    write_normalisation_quality_artifacts,
+)
+from .run_model_md import MODEL_MD_FILENAME, attach_run_model_metadata, load_case_data_for_run, render_model_md
 from .run_quality import attach_run_quality_summary
+
+
+def attach_proposition_normalisation_quality(
+    bundle: dict[str, Any],
+    *,
+    output_dir: str | Path | None = None,
+) -> dict[str, Any] | None:
+    """Run normalisation quality gates and persist JSON (and summary markdown) on export."""
+    propositions = bundle.get("propositions")
+    if not isinstance(propositions, list) or not propositions:
+        return None
+    report = run_proposition_quality_gates(propositions, newly_normalised=True)
+    payload = report.to_dict()
+    bundle["proposition_normalisation_quality"] = payload
+    if output_dir is not None:
+        write_normalisation_quality_artifacts(output_dir, report)
+    return payload
 
 
 def build_bundle(
@@ -175,8 +198,122 @@ def build_bundle(
     }
 
 
-def export_bundle(bundle: dict[str, Any], output_dir: str = "dist/static-report") -> None:
-    attach_run_quality_summary(bundle)
+def export_bundle(
+    bundle: dict[str, Any],
+    output_dir: str = "dist/static-report",
+    *,
+    case_data: dict[str, Any] | None = None,
+    run_path: str | None = None,
+) -> None:
+    refresh_extraction_observability_in_bundle(bundle)
+    attach_run_quality_summary(bundle, force_refresh=True)
+    attach_proposition_normalisation_quality(bundle, output_dir=output_dir)
     attach_proposition_dataset_metadata(bundle)
     attach_pipeline_review_decisions_artifact(bundle)
+    from .effective_law import attach_effective_law_artifacts
+
+    attach_effective_law_artifacts(bundle)
+    _attach_export_run_metadata(bundle)
+    resolved_case = case_data if case_data is not None else load_case_data_for_run(run_path, bundle)
+    attach_run_model_metadata(
+        bundle,
+        case_data=resolved_case,
+        output_dir=output_dir,
+        output_path_anchor=Path(output_dir).resolve(),
+    )
     export_static_bundle(bundle, output_dir=output_dir)
+    from .evaluation import write_run_evaluation_after_export
+
+    write_run_evaluation_after_export(output_dir, bundle)
+    meta = bundle.get("run_model_metadata")
+    if isinstance(meta, dict):
+        Path(output_dir).joinpath(MODEL_MD_FILENAME).write_text(
+            render_model_md(meta),
+            encoding="utf-8",
+        )
+
+
+def refresh_extraction_observability_in_bundle(bundle: dict[str, Any]) -> dict[str, Any]:
+    """Recompute extraction job / LLM metrics and chunk statuses from persisted artifacts."""
+    from .extraction_inspection import (
+        build_proposition_extraction_chunk_statuses,
+        summarize_extraction_inspection,
+    )
+    from .extraction_llm_metrics import (
+        extraction_llm_call_traces_from_bundle,
+        merge_extraction_observability_metrics,
+    )
+
+    jobs = [
+        row for row in (bundle.get("proposition_extraction_jobs") or []) if isinstance(row, dict)
+    ]
+    llm_traces = extraction_llm_call_traces_from_bundle(bundle)
+    if llm_traces:
+        bundle["extraction_llm_call_traces"] = llm_traces
+    bundle["proposition_extraction_chunk_statuses"] = build_proposition_extraction_chunk_statuses(
+        llm_traces
+    )
+    metrics = merge_extraction_observability_metrics(jobs=jobs, llm_traces=llm_traces)
+    inspection = summarize_extraction_inspection(bundle)
+    bundle["extraction_inspection_summary"] = {
+        k: inspection[k]
+        for k in inspection
+        if k not in {"failure_records", "repairable_chunks_detail"}
+    }
+    for tr in bundle.get("stage_traces") or []:
+        if not isinstance(tr, dict):
+            continue
+        if str(tr.get("stage_name") or "") != "proposition extraction":
+            continue
+        inputs = tr.setdefault("inputs", {})
+        if isinstance(inputs, dict):
+            inputs.update({k: metrics[k] for k in metrics if k not in inputs})
+            inputs["extraction_llm_call_traces"] = llm_traces
+        outputs = tr.setdefault("outputs", {})
+        if isinstance(outputs, dict):
+            for key in (
+                "extraction_jobs_total",
+                "extraction_jobs_failed",
+                "live_llm_calls_attempted",
+                "live_llm_calls_successful",
+                "live_llm_calls_failed",
+                "cached_llm_results_successful",
+                "cached_llm_results_failed",
+            ):
+                if key in metrics:
+                    outputs[key] = metrics[key]
+        break
+    existing_quality = bundle.get("run_quality_summary")
+    if isinstance(existing_quality, dict):
+        existing_metrics = existing_quality.get("metrics")
+        if isinstance(existing_metrics, dict):
+            existing_metrics.update(metrics)
+    return metrics
+
+
+def _attach_export_run_metadata(bundle: dict[str, Any]) -> None:
+    from .cli_run_summary import build_cli_completion_summary
+    from .run_quality import build_run_quality_summary
+
+    quality = bundle.get("run_quality_summary")
+    if not isinstance(quality, dict):
+        quality = build_run_quality_summary(bundle)
+        bundle["run_quality_summary"] = quality
+    summary = build_cli_completion_summary(bundle, quality_summary=quality, output_dir=None)
+    bundle["export_run_metadata"] = {
+        "extraction_mode_requested": summary.get("extraction_mode_requested"),
+        "extraction_mode_effective": summary.get("extraction_mode_effective"),
+        "proposition_count": summary.get("propositions"),
+        "attempted_llm_calls": summary.get("attempted_llm_calls"),
+        "successful_llm_calls": summary.get("successful_llm_calls"),
+        "failed_llm_calls": summary.get("failed_llm_calls"),
+        "live_llm_calls_attempted": summary.get("live_llm_calls_attempted"),
+        "live_llm_calls_successful": summary.get("live_llm_calls_successful"),
+        "live_llm_calls_failed": summary.get("live_llm_calls_failed"),
+        "cached_llm_results_successful": summary.get("cached_llm_results_successful"),
+        "cached_llm_results_failed": summary.get("cached_llm_results_failed"),
+        "cached_successful_llm_results": summary.get("cached_successful_llm_results"),
+        "cached_failed_llm_results": summary.get("cached_failed_llm_results"),
+        "llm_results_reused_from_cache": summary.get("llm_results_reused_from_cache"),
+        "fallback_count": summary.get("fallback_count"),
+    }

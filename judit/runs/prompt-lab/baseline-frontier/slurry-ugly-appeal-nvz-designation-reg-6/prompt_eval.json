@@ -1,0 +1,197 @@
+{
+  "case_id": "slurry-ugly-appeal-nvz-designation-reg-6",
+  "label": "UGLY — appeal and designation procedure (regulation 6)",
+  "fixture_path": "",
+  "run_dir": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-ugly-appeal-nvz-designation-reg-6",
+  "passed": true,
+  "eval_status": "pass",
+  "generated_at": "2026-06-04T12:01:18.606461Z",
+  "actual_count": 8,
+  "expected_count": 1,
+  "matched_expected_count": 1,
+  "warnings": [
+    "7 extra actual propositions (allowed by minimum mode)"
+  ],
+  "summary": {
+    "pass": true,
+    "eval_status": "pass",
+    "evaluation_mode": "minimum",
+    "allow_extra_actual": true,
+    "matched_expected": "1/1",
+    "extra_actual_count": 7,
+    "suggested_focus": []
+  },
+  "checks": {
+    "load": {
+      "passed": true,
+      "source_file": "propositions.normalised.json",
+      "warnings": [
+        "7 extra actual propositions (allowed by minimum mode)"
+      ]
+    },
+    "evaluation_mode": {
+      "passed": true,
+      "mode": "minimum",
+      "strict_proposition_count": false,
+      "allow_extra_actual": true,
+      "max_extra_actual": null
+    },
+    "proposition_count": {
+      "passed": true,
+      "status": "ok",
+      "strict": false,
+      "mode": "minimum",
+      "detail": "actual=8, expected=1, mode=minimum"
+    },
+    "extra_actual": {
+      "passed": true,
+      "status": "extras_allowed",
+      "extra_count": 7,
+      "allow_extra_actual": true,
+      "mode": "minimum",
+      "detail": "7 extra actual propositions (allowed by minimum mode)"
+    },
+    "no_actual_propositions": {
+      "passed": true,
+      "reason": null
+    },
+    "expected_row_matches": {
+      "passed": true,
+      "matched": 1,
+      "expected": 1
+    },
+    "legal_effect_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "appeal"
+      ],
+      "actual": [
+        "appeal"
+      ]
+    },
+    "tier_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "procedural_rule"
+      ],
+      "actual": [
+        "procedural_rule"
+      ]
+    },
+    "boilerplate_classification": {
+      "passed": true,
+      "findings": []
+    },
+    "over_compression": {
+      "passed": true,
+      "findings": [],
+      "warn_only": true
+    },
+    "checkable_count": {
+      "passed": true,
+      "checkable_count": 0,
+      "unexpected_boilerplate_checkable": []
+    }
+  },
+  "expected_matches": [
+    {
+      "expected_index": 0,
+      "expected": {
+        "legal_effect_type": "appeal",
+        "proposition_tier": "procedural_rule",
+        "proposition_text": "An owner or occupier may appeal to the First-tier Tribunal against an NVZ designation notice under regulation 5.",
+        "legal_subject": "an owner or occupier of a relevant holding",
+        "action": "may appeal to the First-tier Tribunal",
+        "affected_subjects": [
+          "an owner or occupier of a relevant holding"
+        ],
+        "conditions": [
+          "sent a notice under regulation 5(3)(b) or 5(3A)(b)"
+        ],
+        "exceptions": [],
+        "authority": "First-tier Tribunal",
+        "required_documents": [],
+        "territorial_application": [
+          "England"
+        ],
+        "extent": [],
+        "evidence_quote": "may appeal to the First-tier Tribunal against the proposals or designation"
+      },
+      "matched_actual_index": 0,
+      "matched_actual_id": "prop-lex-120b4f9c395b3f94-001",
+      "legal_effect_ok": true,
+      "tier_ok": true,
+      "evidence_ok": true,
+      "subject_ok": true,
+      "action_ok": true,
+      "conditions_ok": true,
+      "matched": true,
+      "match_score": 1.05,
+      "match_kind": "exact",
+      "contained_evidence_ok": false,
+      "classification_mismatch": false,
+      "suggested_failure_reason": null
+    }
+  ],
+  "extra_actual": [
+    {
+      "actual_index": 1,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-002",
+      "legal_effect_type": "appeal",
+      "proposition_tier": "procedural_rule",
+      "proposition_text": "The only ground of appeal is that the relevant holding (or any part of it) does not drain into water which the Secretary of State proposes to identify, or to continue to identify, as polluted or which has been similarly identified in Wales ",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 2,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-003",
+      "legal_effect_type": "appeal",
+      "proposition_tier": "procedural_rule",
+      "proposition_text": "In a case within regulation 5(3A), a ground of appeal is that the relevant holding (or any part of it) does not drain into water which the Secretary of State has identified as polluted or which has been similarly identified in Wales or Scot",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 3,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-004",
+      "legal_effect_type": "appeal",
+      "proposition_tier": "procedural_rule",
+      "proposition_text": "A ground of appeal is that the relevant holding (or any part of it) drains into water which the Secretary of State should not identify, or should not continue to identify, as polluted.",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 4,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-005",
+      "legal_effect_type": "appeal",
+      "proposition_tier": "procedural_rule",
+      "proposition_text": "If the First-tier Tribunal upholds an appeal under paragraph (2)(a), the Secretary of State, when acting under regulation 4(5), must treat the relevant holding (or the part of it in respect of which the appeal was upheld) as not draining in",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 5,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-006",
+      "legal_effect_type": "appeal",
+      "proposition_tier": "procedural_rule",
+      "proposition_text": "If the First-tier Tribunal upholds an appeal under paragraph (2)(b), the Secretary of State, when acting under regulation 4(5), must treat the water concerned as water which should not be identified, or should not continue to be identified,",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 6,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-007",
+      "legal_effect_type": "appeal",
+      "proposition_tier": "procedural_rule",
+      "proposition_text": "If the First-tier Tribunal upholds an appeal under paragraph (2)(b), the Secretary of State, when acting under regulation 4(5), must treat any holding (or part of any holding) which drains into that water accordingly (regardless of whether ",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 7,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-008",
+      "legal_effect_type": "appeal",
+      "proposition_tier": "procedural_rule",
+      "proposition_text": "For the purposes of rule 22(2)(g) of the Tribunal Procedure (First-tier Tribunal) (General Regulatory Chamber) Rules 2009 (notice of appeal: grounds), the only grounds of an appeal under this regulation are those specified in paragraph (2).",
+      "is_compliance_relevant": false
+    }
+  ],
+  "missing_effects": []
+}

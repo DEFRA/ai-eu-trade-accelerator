@@ -9,6 +9,7 @@ from judit_pipeline.runner import (
     _build_source_derived_proposition_key,
     _derive_slug,
     _opaque_machine_proposition_id,
+    _proposition_identity_anchor,
 )
 
 
@@ -84,3 +85,62 @@ def test_machine_id_never_resembles_legacy_slug_identity(bad_fragment: str) -> N
     prop = _sample_proposition(id=f"prop-anchor-{bad_fragment}-001")
     oid = _opaque_machine_proposition_id(prop, "001")
     assert bad_fragment not in oid
+
+
+def test_same_locator_different_fragment_ids_get_distinct_opaque_ids() -> None:
+    shared = {
+        "source_record_id": "lex-wales",
+        "fragment_locator": "Schedule 1A, paragraph 3",
+        "proposition_key": "lex-wales:schedule-1a-paragraph-3:p001",
+    }
+    a = _sample_proposition(
+        id="prop-lex-wales-frag-053-001",
+        source_fragment_id="frag-lex-wales-053",
+        proposition_text="The occupier must ensure manure is from the holding only.",
+        **shared,
+    )
+    b = _sample_proposition(
+        id="prop-lex-wales-frag-056-001",
+        source_fragment_id="frag-lex-wales-056",
+        proposition_text=(
+            "An occupier of a qualifying grassland holding must ensure "
+            "manure is from the holding only."
+        ),
+        **shared,
+    )
+    id_a = _opaque_machine_proposition_id(a, "001")
+    id_b = _opaque_machine_proposition_id(b, "001")
+    assert id_a != id_b
+    assert _proposition_identity_anchor(a) == "frag-lex-wales-053"
+    assert _proposition_identity_anchor(b) == "frag-lex-wales-056"
+
+
+def test_same_semantic_key_across_sources_get_distinct_opaque_ids() -> None:
+    text = "The base and walls of a slurry storage tank must be impermeable."
+    eng = _sample_proposition(
+        id="prop-eng-001",
+        source_record_id="lex-england",
+        source_fragment_id="frag-lex-england-010",
+        fragment_locator="schedule 2, paragraph 1",
+        semantic_comparison_key="obligation:base_and_walls_impermeable",
+        proposition_text=text,
+    )
+    wal = _sample_proposition(
+        id="prop-wal-001",
+        source_record_id="lex-wales",
+        source_fragment_id="frag-lex-wales-010",
+        fragment_locator="Schedule 6, paragraph 1",
+        semantic_comparison_key="obligation:base_and_walls_impermeable",
+        proposition_text=text,
+    )
+    assert _opaque_machine_proposition_id(eng, "001") != _opaque_machine_proposition_id(wal, "001")
+
+
+def test_fragment_segment_prefers_source_fragment_id() -> None:
+    prop = _sample_proposition(
+        source_fragment_id="frag-lex-805b03f284dcf364-053",
+        fragment_locator="Schedule 1A, paragraph 3",
+    )
+    key = _build_source_derived_proposition_key(prop, "001")
+    assert "frag-lex-805b03f284dcf364-053" in key
+    assert "schedule-1a-paragraph-3" not in key

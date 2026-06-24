@@ -1,0 +1,207 @@
+{
+  "case_id": "slurry-ugly-transitional-nvz-wales-reg-2",
+  "label": "UGLY — transitional commencement (Wales NVZ reg 2)",
+  "fixture_path": "",
+  "run_dir": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-ugly-transitional-nvz-wales-reg-2",
+  "passed": true,
+  "eval_status": "pass",
+  "generated_at": "2026-06-04T12:01:18.697627Z",
+  "actual_count": 4,
+  "expected_count": 2,
+  "matched_expected_count": 2,
+  "warnings": [
+    "3 extra actual propositions (allowed by minimum mode)",
+    "expected[0]: contained_in_actual match (expected row found inside actual conditions/evidence envelope)"
+  ],
+  "summary": {
+    "pass": true,
+    "eval_status": "pass",
+    "evaluation_mode": "minimum",
+    "allow_extra_actual": true,
+    "matched_expected": "2/2",
+    "extra_actual_count": 3,
+    "suggested_focus": []
+  },
+  "checks": {
+    "load": {
+      "passed": true,
+      "source_file": "propositions.normalised.json",
+      "warnings": [
+        "3 extra actual propositions (allowed by minimum mode)",
+        "expected[0]: contained_in_actual match (expected row found inside actual conditions/evidence envelope)"
+      ]
+    },
+    "evaluation_mode": {
+      "passed": true,
+      "mode": "minimum",
+      "strict_proposition_count": false,
+      "allow_extra_actual": true,
+      "max_extra_actual": null
+    },
+    "proposition_count": {
+      "passed": true,
+      "status": "ok",
+      "strict": false,
+      "mode": "minimum",
+      "detail": "actual=4, expected=2, mode=minimum"
+    },
+    "extra_actual": {
+      "passed": true,
+      "status": "extras_allowed",
+      "extra_count": 3,
+      "allow_extra_actual": true,
+      "mode": "minimum",
+      "detail": "3 extra actual propositions (allowed by minimum mode)"
+    },
+    "no_actual_propositions": {
+      "passed": true,
+      "reason": null
+    },
+    "expected_row_matches": {
+      "passed": true,
+      "matched": 2,
+      "expected": 2
+    },
+    "legal_effect_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "commencement"
+      ],
+      "actual": [
+        "commencement",
+        "derogation"
+      ]
+    },
+    "tier_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "instrument_metadata"
+      ],
+      "actual": [
+        "instrument_metadata",
+        "substantive_rule"
+      ]
+    },
+    "boilerplate_classification": {
+      "passed": true,
+      "findings": []
+    },
+    "over_compression": {
+      "passed": true,
+      "findings": [],
+      "warn_only": true
+    },
+    "checkable_count": {
+      "passed": true,
+      "checkable_count": 0,
+      "unexpected_boilerplate_checkable": []
+    }
+  },
+  "expected_matches": [
+    {
+      "expected_index": 0,
+      "expected": {
+        "legal_effect_type": "commencement",
+        "proposition_tier": "instrument_metadata",
+        "proposition_text": "Specified regulations do not apply until 1 January 2023 for holdings newly within the NVZ on the 2013 index map.",
+        "legal_subject": "regulations 5 to 11, 15, 23, 27, 33 to 35, and 37 to 43",
+        "action": "do not apply until",
+        "affected_subjects": [
+          "holdings not previously in an NVZ"
+        ],
+        "conditions": [
+          "holding not previously in NVZ per 2013 index map"
+        ],
+        "exceptions": [],
+        "authority": null,
+        "required_documents": [],
+        "territorial_application": [
+          "Wales"
+        ],
+        "extent": [],
+        "evidence_quote": "do not apply until 1 January 2023"
+      },
+      "matched_actual_index": 0,
+      "matched_actual_id": "prop-lex-805b03f284dcf364-001",
+      "legal_effect_ok": true,
+      "tier_ok": true,
+      "evidence_ok": true,
+      "subject_ok": true,
+      "action_ok": true,
+      "conditions_ok": true,
+      "matched": true,
+      "match_score": 1.05,
+      "match_kind": "contained_in_actual",
+      "contained_evidence_ok": true,
+      "classification_mismatch": false,
+      "suggested_failure_reason": null
+    },
+    {
+      "expected_index": 1,
+      "expected": {
+        "legal_effect_type": "commencement",
+        "proposition_tier": "instrument_metadata",
+        "proposition_text": "Regulations 4 and 36 do not apply until 1 January 2024 (or 1 January 2025 for qualifying grassland holdings).",
+        "legal_subject": "regulations 4 and 36",
+        "action": "do not apply until",
+        "affected_subjects": [
+          "holdings not previously in an NVZ"
+        ],
+        "conditions": [],
+        "exceptions": [
+          "qualifying grassland holdings until 1 January 2025"
+        ],
+        "authority": null,
+        "required_documents": [],
+        "territorial_application": [
+          "Wales"
+        ],
+        "extent": [],
+        "evidence_quote": "regulations 4 and 36 do not apply until 1 January 2024"
+      },
+      "matched_actual_index": 0,
+      "matched_actual_id": "prop-lex-805b03f284dcf364-001",
+      "legal_effect_ok": true,
+      "tier_ok": true,
+      "evidence_ok": true,
+      "subject_ok": false,
+      "action_ok": true,
+      "conditions_ok": true,
+      "matched": true,
+      "match_score": 0.95,
+      "match_kind": "exact",
+      "contained_evidence_ok": false,
+      "classification_mismatch": false,
+      "suggested_failure_reason": null
+    }
+  ],
+  "extra_actual": [
+    {
+      "actual_index": 1,
+      "proposition_id": "prop-lex-805b03f284dcf364-002",
+      "legal_effect_type": "derogation",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "In a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the NVZ index map 2013, regulations 4 and 36 do not apply until 1 January 2024.",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 2,
+      "proposition_id": "prop-lex-805b03f284dcf364-003",
+      "legal_effect_type": "derogation",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "In a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the NVZ index map 2013, regulation 4 does not apply to qualifying grassland holdings until 1 January 2025.",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 3,
+      "proposition_id": "prop-lex-805b03f284dcf364-004",
+      "legal_effect_type": "commencement",
+      "proposition_tier": "instrument_metadata",
+      "proposition_text": "In a holding or part of a holding that was not previously situated within a nitrate vulnerable zone as shown on the NVZ index map 2013, regulations 17 to 21, 25, 26, and 28 to 31 do not apply until 1 August 2024.",
+      "is_compliance_relevant": false
+    }
+  ],
+  "missing_effects": []
+}

@@ -1,0 +1,68 @@
+=== system ===
+You extract legal propositions as strict JSON only.
+
+=== user ===
+Extract legal propositions from the source text. Return JSON only with this exact shape:
+{
+  "propositions": [
+    {
+      "proposition_text": "string",
+      "display_label": "string",
+      "subject": "string",
+      "rule": "string",
+      "object": "string",
+      "conditions": ["string"],
+      "exceptions": ["string"],
+      "temporal_condition": "string or empty",
+      "provision_type": "core | definition | exception | transitional | cross_reference",
+      "source_locator": "string",
+      "evidence_text": "string",
+      "completeness_status": "complete | context_dependent | fragmentary",
+      "confidence": "high | medium | low",
+      "reason": "string"
+    }
+  ]
+}
+
+Local extraction rules:
+- Extract at most 6 legally distinct propositions for this response (hard cap — omit lower-salience rows if needed).
+Structured lists:
+- Where the Source uses numbered paragraphs, lettered subparagraphs ((a), (b), …), or roman sub-items ((i), (ii), …), treat each substantive obligation as its own proposition when it is legally distinct from neighbouring rows.
+- Do not merge unrelated list items; do not stop after an early subset when later items in the same list remain legally distinct and within the cap below.
+No focus scopes:
+- Within the cap below, prefer the most legally salient obligations for the Topic and Cluster; stay within the cap rather than enumerating every peripheral line.
+- Returning propositions=[] is unusual for substantive regulatory text that was selected for extraction. Use propositions=[] only when the Source chunk contains no legally distinct obligation, definition, exception, or transitional rule you can support with schema fields — and set reason on any retained row explaining omissions.
+- source_locator SHOULD identify where the obligation sits when identifiable from the Source.
+- Returning propositions=[] is unusual for ordinary statutory provisions. If the text states citation, commencement, territorial extent, application, duty, prohibition, power, definition, exception, or cross-reference, extract at least one proposition.
+- Only return an empty propositions array when the fragment is genuinely non-substantive; add top-level "empty_rationale" (string) explaining why.
+- Invalid outputs: {}, {"propositions":null}, and any prose outside JSON. Valid output MUST have top-level "propositions" as an array.
+
+[LOCAL_FEWSHOT_V1]
+Worked example (local mode — match this JSON shape on the real fragment below):
+
+INVALID outputs (never return these): {} | {"propositions":null} | prose outside JSON
+
+Guidance:
+- For ordinary statutory provisions, returning no propositions is unusual.
+- If the text states citation, commencement, territorial extent, application, duty, prohibition, power, definition, exception, or cross-reference, extract at least one proposition.
+- Only return "propositions":[] when the fragment is genuinely non-substantive; include top-level "empty_rationale".
+
+SOURCE TEXT:
+1 These Regulations may be cited as the Example Regulations 2026.
+2 These Regulations come into force on 1 May 2026.
+3 These Regulations apply in relation to England only.
+
+VALID JSON:
+{"propositions":[{"proposition_text":"These Regulations may be cited as the Example Regulations 2026.","display_label":"Citation","subject":"These Regulations","rule":"may be cited as","object":"the Example Regulations 2026","conditions":[],"exceptions":[],"temporal_condition":"","provision_type":"core","source_locator":"regulation:1","evidence_text":"These Regulations may be cited as the Example Regulations 2026.","completeness_status":"complete","confidence":"high","reason":"The fragment states the short title/citation of the instrument."},{"proposition_text":"These Regulations come into force on 1 May 2026.","display_label":"Commencement","subject":"These Regulations","rule":"come into force on","object":"1 May 2026","conditions":[],"exceptions":[],"temporal_condition":"1 May 2026","provision_type":"transitional","source_locator":"regulation:1","evidence_text":"These Regulations come into force on 1 May 2026.","completeness_status":"complete","confidence":"high","reason":"The fragment states the commencement date."},{"proposition_text":"These Regulations apply in relation to England only.","display_label":"Territorial application","subject":"These Regulations","rule":"apply in relation to","object":"England only","conditions":[],"exceptions":[],"temporal_condition":"","provision_type":"core","source_locator":"regulation:1","evidence_text":"These Regulations apply in relation to England only.","completeness_status":"complete","confidence":"high","reason":"The fragment states the territorial application of the instrument."}]}
+
+Now extract from the following real fragment.
+
+Topic: slurry prompt-lab
+Cluster: Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018
+Jurisdiction: England
+Citation: 
+
+Fragment locator (traceability): regulation:1
+
+Source text:
+1 These Regulations— a may be cited as the Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018, b come into force on 2nd April 2018, c extend to England and Wales, and d apply to agricultural land in England.

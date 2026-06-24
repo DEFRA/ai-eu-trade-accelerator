@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 from unittest.mock import patch
 
+import pytest
+
 from judit_pipeline.extract import (
     attach_judit_extraction_meta,
     attach_judit_extraction_reuse,
@@ -16,6 +18,14 @@ from judit_pipeline.runner import run_registry_sources
 from judit_pipeline.sources import SourceRegistryService
 
 
+@pytest.fixture(autouse=True)
+def _noop_llm_preflight(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(
+        "judit_pipeline.runner.preflight_llm_extraction",
+        lambda _client, _mode: None,
+    )
+
+
 class _FakeJuditLLMClient:
     call_prompts: list[str] = []
 
@@ -24,14 +34,15 @@ class _FakeJuditLLMClient:
         local_extract_model = "local_extract"
         max_extract_input_tokens = 150_000
         extract_model_context_limit = 200_000
+        skip_llm_preflight = True
 
     def __init__(self) -> None:
         self.settings = self._Settings()
 
     def complete_text(  # type: ignore[no-untyped-def]
-        self, *, prompt, model, system_prompt=None, temperature=0.0
+        self, *, prompt, model, system_prompt=None, temperature=0.0, **kwargs: object
     ) -> str:
-        _ = (model, system_prompt, temperature)
+        _ = (model, system_prompt, temperature, kwargs)
         self.call_prompts.append(str(prompt))
         if "Article 1 text" in prompt:
             proposition_text = "Article 1 proposition"
@@ -180,10 +191,20 @@ def test_identical_eu_uk_text_reuses_extraction_once_and_preserves_snapshots(
     uk_props = [p for p in bundle["propositions"] if p["source_record_id"] == uk_rec["id"]]
     assert eu_props
     assert uk_props
-    assert all(parse_judit_extraction_reuse(str(p.get("notes") or "")) is None for p in eu_props)
+    assert all(
+        parse_judit_extraction_reuse(
+            str(p.get("notes") or ""),
+            extraction_debug_meta=p.get("extraction_debug_meta"),
+        )
+        is None
+        for p in eu_props
+    )
     for p in uk_props:
         assert p["jurisdiction"] == "UK"
-        reuse = parse_judit_extraction_reuse(str(p.get("notes") or ""))
+        reuse = parse_judit_extraction_reuse(
+            str(p.get("notes") or ""),
+            extraction_debug_meta=p.get("extraction_debug_meta"),
+        )
         assert reuse is not None
         assert reuse["original_source_record_id"] == eu_rec["id"]
         assert reuse["reused_for_source_record_id"] == uk_rec["id"]

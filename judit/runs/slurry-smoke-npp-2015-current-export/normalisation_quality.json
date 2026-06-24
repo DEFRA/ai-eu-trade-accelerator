@@ -1,0 +1,75 @@
+{
+  "by_check": {
+    "scope_application_conflict": {
+      "errors": 0,
+      "warnings": 6
+    }
+  },
+  "error_count": 0,
+  "findings": [
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:de935c0fcdf5d5a7",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:204ed1287e94d38f",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:ade5560b077db2e2",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:8c7cfdac35bdb33c",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:28c134de2f220dd0",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:146a2dd2e3b9db01",
+      "severity": "warning"
+    }
+  ],
+  "generated_at": "2026-06-04T12:23:39.612549Z",
+  "newly_normalised": true,
+  "proposition_count": 231,
+  "warning_count": 6
+}

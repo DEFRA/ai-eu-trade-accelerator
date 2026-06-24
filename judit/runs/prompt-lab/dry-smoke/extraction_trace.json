@@ -1,0 +1,24 @@
+{
+  "extraction_mode": "dry",
+  "model_alias": null,
+  "estimated_input_tokens": 1749,
+  "prompt_hash": "d8f705aebcfcae7b",
+  "local_few_shot_prompt_mode": true,
+  "retry_empty_extraction": true,
+  "repair_attempts": 0,
+  "llm_call_count": 0,
+  "finish_reason": null,
+  "failure_type": null,
+  "extraction_output_mode": null,
+  "response_format_type": null,
+  "schema_hash": null,
+  "evidence_match_strategies": [
+    "whitespace_quote_fold_lc_substring_match",
+    "whitespace_quote_fold_lc_substring_match"
+  ],
+  "validation_errors": [],
+  "fallback_used": false,
+  "llm_traces": [],
+  "prompt_version": "v2",
+  "schema_version": "v2"
+}

@@ -1,0 +1,247 @@
+{
+  "case_id": "slurry-bad-diffuse-2018-reg-1-boilerplate",
+  "label": "BAD — Regulation 1 boilerplate (Diffuse Pollution 2018)",
+  "fixture_path": "",
+  "run_dir": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-bad-diffuse-2018-reg-1-boilerplate",
+  "passed": true,
+  "eval_status": "pass",
+  "generated_at": "2026-06-04T12:01:18.512625Z",
+  "actual_count": 4,
+  "expected_count": 4,
+  "matched_expected_count": 4,
+  "warnings": [],
+  "summary": {
+    "pass": true,
+    "eval_status": "pass",
+    "evaluation_mode": "exhaustive",
+    "allow_extra_actual": false,
+    "matched_expected": "4/4",
+    "extra_actual_count": 0,
+    "suggested_focus": []
+  },
+  "checks": {
+    "load": {
+      "passed": true,
+      "source_file": "propositions.normalised.json",
+      "warnings": []
+    },
+    "evaluation_mode": {
+      "passed": true,
+      "mode": "exhaustive",
+      "strict_proposition_count": true,
+      "allow_extra_actual": false,
+      "max_extra_actual": null
+    },
+    "proposition_count": {
+      "passed": true,
+      "status": "ok",
+      "strict": true,
+      "mode": "exhaustive",
+      "detail": "actual=4, expected=4, mode=exhaustive"
+    },
+    "extra_actual": {
+      "passed": true,
+      "status": "none",
+      "extra_count": 0,
+      "allow_extra_actual": false,
+      "mode": "exhaustive",
+      "detail": "no extra actual propositions"
+    },
+    "no_actual_propositions": {
+      "passed": true,
+      "reason": null
+    },
+    "expected_row_matches": {
+      "passed": true,
+      "matched": 4,
+      "expected": 4
+    },
+    "legal_effect_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "application_scope",
+        "citation",
+        "commencement",
+        "extent"
+      ],
+      "actual": [
+        "application_scope",
+        "citation",
+        "commencement",
+        "extent"
+      ]
+    },
+    "tier_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "instrument_metadata",
+        "scope_rule"
+      ],
+      "actual": [
+        "instrument_metadata",
+        "scope_rule"
+      ]
+    },
+    "boilerplate_classification": {
+      "passed": true,
+      "findings": []
+    },
+    "over_compression": {
+      "passed": true,
+      "findings": [],
+      "warn_only": false
+    },
+    "checkable_count": {
+      "passed": true,
+      "checkable_count": 0,
+      "unexpected_boilerplate_checkable": [],
+      "expected_checkable_count": 0
+    }
+  },
+  "expected_matches": [
+    {
+      "expected_index": 0,
+      "expected": {
+        "legal_effect_type": "citation",
+        "proposition_tier": "instrument_metadata",
+        "proposition_text": "These Regulations may be cited as the Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018.",
+        "legal_subject": "These Regulations",
+        "action": "may be cited as",
+        "affected_subjects": [
+          "These Regulations"
+        ],
+        "conditions": [],
+        "exceptions": [],
+        "authority": null,
+        "required_documents": [],
+        "territorial_application": [],
+        "extent": [],
+        "evidence_quote": "may be cited as the Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018"
+      },
+      "matched_actual_index": 0,
+      "matched_actual_id": "prop-lex-2459c955ee13be52-001",
+      "legal_effect_ok": true,
+      "tier_ok": true,
+      "evidence_ok": true,
+      "subject_ok": true,
+      "action_ok": true,
+      "conditions_ok": true,
+      "matched": true,
+      "match_score": 1.0,
+      "match_kind": "exact",
+      "contained_evidence_ok": false,
+      "classification_mismatch": false,
+      "suggested_failure_reason": null
+    },
+    {
+      "expected_index": 1,
+      "expected": {
+        "legal_effect_type": "commencement",
+        "proposition_tier": "instrument_metadata",
+        "proposition_text": "These Regulations come into force on 2 April 2018.",
+        "legal_subject": "These Regulations",
+        "action": "come into force on",
+        "affected_subjects": [
+          "These Regulations"
+        ],
+        "conditions": [],
+        "exceptions": [],
+        "authority": null,
+        "required_documents": [],
+        "territorial_application": [],
+        "extent": [],
+        "evidence_quote": "come into force on 2nd April 2018"
+      },
+      "matched_actual_index": 1,
+      "matched_actual_id": "prop-lex-2459c955ee13be52-002",
+      "legal_effect_ok": true,
+      "tier_ok": true,
+      "evidence_ok": true,
+      "subject_ok": true,
+      "action_ok": true,
+      "conditions_ok": true,
+      "matched": true,
+      "match_score": 1.0,
+      "match_kind": "exact",
+      "contained_evidence_ok": false,
+      "classification_mismatch": false,
+      "suggested_failure_reason": null
+    },
+    {
+      "expected_index": 2,
+      "expected": {
+        "legal_effect_type": "extent",
+        "proposition_tier": "instrument_metadata",
+        "proposition_text": "These Regulations extend to England and Wales.",
+        "legal_subject": "These Regulations",
+        "action": "extend to",
+        "affected_subjects": [
+          "These Regulations"
+        ],
+        "conditions": [],
+        "exceptions": [],
+        "authority": null,
+        "required_documents": [],
+        "territorial_application": [],
+        "extent": [
+          "England and Wales"
+        ],
+        "evidence_quote": "extend to England and Wales"
+      },
+      "matched_actual_index": 2,
+      "matched_actual_id": "prop-lex-2459c955ee13be52-003",
+      "legal_effect_ok": true,
+      "tier_ok": true,
+      "evidence_ok": true,
+      "subject_ok": true,
+      "action_ok": true,
+      "conditions_ok": true,
+      "matched": true,
+      "match_score": 1.0,
+      "match_kind": "exact",
+      "contained_evidence_ok": false,
+      "classification_mismatch": false,
+      "suggested_failure_reason": null
+    },
+    {
+      "expected_index": 3,
+      "expected": {
+        "legal_effect_type": "application_scope",
+        "proposition_tier": "scope_rule",
+        "proposition_text": "These Regulations apply to agricultural land in England.",
+        "legal_subject": "These Regulations",
+        "action": "apply to",
+        "affected_subjects": [
+          "agricultural land in England"
+        ],
+        "conditions": [],
+        "exceptions": [],
+        "authority": null,
+        "required_documents": [],
+        "territorial_application": [
+          "England"
+        ],
+        "extent": [],
+        "evidence_quote": "apply to agricultural land in England"
+      },
+      "matched_actual_index": 3,
+      "matched_actual_id": "prop-lex-2459c955ee13be52-004",
+      "legal_effect_ok": true,
+      "tier_ok": true,
+      "evidence_ok": true,
+      "subject_ok": true,
+      "action_ok": true,
+      "conditions_ok": true,
+      "matched": true,
+      "match_score": 1.0,
+      "match_kind": "exact",
+      "contained_evidence_ok": false,
+      "classification_mismatch": false,
+      "suggested_failure_reason": null
+    }
+  ],
+  "extra_actual": [],
+  "missing_effects": []
+}

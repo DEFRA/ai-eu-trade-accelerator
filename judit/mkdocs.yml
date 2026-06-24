@@ -22,6 +22,7 @@ nav:
   - Architecture:
       - System overview: architecture/system-overview.md
       - Pipeline overview: architecture/pipeline-overview.md
+      - Proposition classification: architecture/proposition-classification.md
   - Process:
       - Method: process/method.md
       - Asset generation: process/asset-generation.md

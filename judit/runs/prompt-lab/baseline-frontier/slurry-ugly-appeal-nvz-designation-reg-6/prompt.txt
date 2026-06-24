@@ -1,0 +1,52 @@
+=== system ===
+You extract legal propositions as strict JSON only.
+
+=== user ===
+Extract legal propositions from the source text. Return JSON only with this exact shape:
+{
+  "propositions": [
+    {
+      "proposition_text": "string",
+      "display_label": "string",
+      "subject": "string",
+      "rule": "string",
+      "object": "string",
+      "conditions": ["string"],
+      "exceptions": ["string"],
+      "temporal_condition": "string or empty",
+      "provision_type": "core | definition | exception | transitional | cross_reference",
+      "source_locator": "string",
+      "evidence_text": "string",
+      "completeness_status": "complete | context_dependent | fragmentary",
+      "confidence": "high | medium | low",
+      "reason": "string"
+    }
+  ]
+}
+
+Frontier extraction rules (critical for audits):
+- Extract at most 8 legally distinct propositions for this response (hard cap — omit lower-salience rows if needed).
+Structured lists:
+- Where the Source uses numbered paragraphs, lettered subparagraphs ((a), (b), …), or roman sub-items ((i), (ii), …), treat each substantive obligation as its own proposition when it is legally distinct from neighbouring rows.
+- Do not merge unrelated list items; do not stop after an early subset when later items in the same list remain legally distinct and within the cap below.
+No focus scopes:
+- Within the cap below, prefer the most legally salient obligations for the Topic and Cluster; stay within the cap rather than enumerating every peripheral line.
+- Returning propositions=[] is unusual for substantive regulatory text that was selected for extraction. Use propositions=[] only when the Source chunk contains no legally distinct obligation, definition, exception, or transitional rule you can support with schema fields — and set reason on any retained row explaining omissions.
+- proposition_text MAY be rewritten as a concise, readable legal proposition (normalized wording OK).
+- evidence_text MUST be copied verbatim from the Source text chunk — character-for-character as it appears there (subset / exact span selection). It must be the shortest contiguous span from the Source that suffices to justify the proposition. Do NOT paraphrase, summarise, or re-order words inside evidence_text.
+- source_locator MUST preserve traceability to the obligation's position (e.g. article/paragraph identifiers, list marks such as '(d)(ii)' or '(b)') consistent with the Source layout.
+- If no contiguous verbatim span can be selected (ambiguous layout, garbled OCR, contradictory instructions), set evidence_text to an empty string and use reason to explain briefly why verbatim evidence could not be provided.
+
+
+Semantics:
+- proposition_text: normalised legal proposition (readable).
+- evidence_text: exact quote from Source (verbatim span), or "" when impossible with rationale in reason.
+Topic: slurry prompt-lab
+Cluster: The Nitrate Pollution Prevention Regulations 2015
+Jurisdiction: UK
+Citation: 
+
+Fragment locator (traceability): regulation:6
+
+Source text:
+61An owner or occupier of a relevant holding who is sent a notice under regulation 5(3)(b) or 5(3A)(b) may appeal to the First-tier Tribunal against the proposals or designation referred to in the notice.2For the purposes of rule 22(2)(g) of the Tribunal Procedure (First-tier Tribunal) (General Regulatory Chamber) Rules 2009 (notice of appeal: grounds), the only grounds of an appeal under this regulation are that the relevant holding (or any part of it)—adoes not drain into water which the Secretary of State proposes to identify, or to continue to identify, as polluted or which has been similarly identified in Wales or Scotland, ...aain a case within regulation 5(3A), does not drain into water which the Secretary of State has identified as polluted or which has been similarly identified in Wales or Scotland, orbdrains into water which the Secretary of State should not identify, or should not continue to identify, as polluted.3If the First-tier Tribunal upholds an appeal under paragraph (2)(a), the Secretary of State, when acting under regulation 4(5), must treat the relevant holding (or the part of it in respect of which the appeal was upheld) as not draining into the water concerned.4If the First-tier Tribunal upholds an appeal under paragraph (2)(b), the Secretary of State, when acting under regulation 4(5), must—atreat the water concerned as water which should not be identified, or should not continue to be identified, as polluted, andbtreat any holding (or part of any holding) which drains into that water accordingly (regardless of whether the owner or occupier of the relevant holding appealed under this regulation).

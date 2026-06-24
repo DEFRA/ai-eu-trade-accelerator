@@ -5,6 +5,18 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import {
+  DEFAULT_EXPLORER_CLASSIFICATION_FILTERS,
+  LEGAL_EFFECT_FILTER_OPTIONS,
+  PROPOSITION_TIER_FILTER_OPTIONS,
+  classificationFiltersActive,
+  isScopeRuleProposition,
+  matchesExplorerClassificationFilters,
+  partitionGroupsByScopeSecondary,
+  propositionInformativeLabel,
+  PropositionClassificationMeta,
+  type ExplorerClassificationFilters,
+} from "@/components/proposition-classification-ui";
+import {
   FragmentSnippetView,
   SOURCE_JURISDICTION_CHIP_TOOLTIP,
   articleClusterKeyFromRow,
@@ -50,7 +62,8 @@ import {
   suppressedParentListSummaryCountByArticleCluster,
   type PropositionGroupSummary,
   type UnknownRecord,
-  verbatimEvidenceUiFromNotes,
+  humanReviewNotesForDisplay,
+  verbatimEvidenceUiFromProposition,
   wordingFingerprintForPropositionGroupCompare,
 } from "@/components/proposition-explorer-helpers";
 import {
@@ -83,6 +96,19 @@ export type { JurisdictionViewMode } from "@/components/proposition-explorer-jvi
 
 const DISPLAY_MODE_STORAGE_KEY = "judit.propositionDisplayMode";
 const EXPLORER_NAV_MODE_KEY = "judit.explorerNavMode";
+const CLASSIFICATION_FILTERS_STORAGE_KEY = "judit.explorerClassificationFilters";
+
+function parseStoredClassificationFilters(raw: string | null): ExplorerClassificationFilters {
+  if (!raw) {
+    return { ...DEFAULT_EXPLORER_CLASSIFICATION_FILTERS };
+  }
+  try {
+    const parsed = JSON.parse(raw) as Partial<ExplorerClassificationFilters>;
+    return { ...DEFAULT_EXPLORER_CLASSIFICATION_FILTERS, ...parsed };
+  } catch {
+    return { ...DEFAULT_EXPLORER_CLASSIFICATION_FILTERS };
+  }
+}
 
 export type ExplorerNavMode = "source_document" | "by_scope" | "compare_versions";
 
@@ -234,6 +260,17 @@ function PropositionExplorerInner(): JSX.Element {
   const [filterSourceId, setFilterSourceId] = useState<string>("");
   const [filterInstrumentFamily, setFilterInstrumentFamily] = useState<string>("");
 
+  const [classificationFilters, setClassificationFilters] = useState<ExplorerClassificationFilters>(
+    () => {
+      if (typeof window === "undefined") {
+        return { ...DEFAULT_EXPLORER_CLASSIFICATION_FILTERS };
+      }
+      return parseStoredClassificationFilters(
+        window.sessionStorage.getItem(CLASSIFICATION_FILTERS_STORAGE_KEY)
+      );
+    }
+  );
+
   const [jurisdictionView, setJurisdictionView] = useState<JurisdictionViewMode>("all");
   const [divergenceAssessments, setDivergenceAssessments] = useState<UnknownRecord[]>([]);
   const [divergenceAssessmentsLoading, setDivergenceAssessmentsLoading] = useState(false);
@@ -273,6 +310,19 @@ function PropositionExplorerInner(): JSX.Element {
   useEffect(() => {
     setFilterScopeSlug(searchParams.get("scope")?.trim() ?? "");
   }, [searchParams]);
+
+  useEffect(() => {
+    try {
+      if (typeof window !== "undefined") {
+        window.sessionStorage.setItem(
+          CLASSIFICATION_FILTERS_STORAGE_KEY,
+          JSON.stringify(classificationFilters)
+        );
+      }
+    } catch {
+      /* ignore */
+    }
+  }, [classificationFilters]);
 
   useEffect(() => {
     const j = parseJurisdictionViewMode(searchParams.get("jview"));
@@ -1087,19 +1137,38 @@ function PropositionExplorerInner(): JSX.Element {
     traceByPropId,
   ]);
 
+  const rowsAfterClassificationFilters = useMemo(() => {
+    return rowsAfterCoreFilters.filter((row) => {
+      const oa = asRecord(row.original_artifact) ?? {};
+      return matchesExplorerClassificationFilters(oa, classificationFilters);
+    });
+  }, [rowsAfterCoreFilters, classificationFilters]);
+
+  const propositionArtifactById = useMemo(() => {
+    const m = new Map<string, UnknownRecord>();
+    for (const row of effectivePropositions) {
+      const oa = asRecord(row.original_artifact) ?? {};
+      const id = String(oa.id ?? "").trim();
+      if (id) {
+        m.set(id, oa);
+      }
+    }
+    return m;
+  }, [effectivePropositions]);
+
   const rowsAfterJurisdictionView = useMemo(() => {
     if (jurisdictionView === "all" || jurisdictionView === "grouped") {
-      return rowsAfterCoreFilters;
+      return rowsAfterClassificationFilters;
     }
     if (jurisdictionView === "eu") {
-      return rowsAfterCoreFilters.filter((row) => {
+      return rowsAfterClassificationFilters.filter((row) => {
         const oa = asRecord(row.original_artifact) ?? {};
         const sid = String(oa.source_record_id ?? "").trim();
         return jurisdictionForSource(sources, sid).toUpperCase() === "EU";
       });
     }
     if (jurisdictionView === "uk") {
-      return rowsAfterCoreFilters.filter((row) => {
+      return rowsAfterClassificationFilters.filter((row) => {
         const oa = asRecord(row.original_artifact) ?? {};
         const sid = String(oa.source_record_id ?? "").trim();
         return jurisdictionForSource(sources, sid).toUpperCase() === "UK";
@@ -1128,17 +1197,17 @@ function PropositionExplorerInner(): JSX.Element {
       if (ids.size === 0) {
         return [];
       }
-      return rowsAfterCoreFilters.filter((row) => {
+      return rowsAfterClassificationFilters.filter((row) => {
         const oa = asRecord(row.original_artifact) ?? {};
         return ids.has(String(oa.id ?? "").trim());
       });
     }
-    return rowsAfterCoreFilters;
+    return rowsAfterClassificationFilters;
   }, [
     divergenceAssessments,
     divergenceAssessmentsLoading,
     jurisdictionView,
-    rowsAfterCoreFilters,
+    rowsAfterClassificationFilters,
     runs,
     selectedRunId,
     sources,
@@ -1191,6 +1260,18 @@ function PropositionExplorerInner(): JSX.Element {
     );
   }, [parentListSummarySuppressionInactive, rowsMatchingFilters]);
 
+  const filteredGroupSummaries = useMemo(() => {
+    const visibleIds = new Set(
+      filteredRows.map((row) => String(asRecord(row.original_artifact)?.id ?? "").trim()).filter(Boolean)
+    );
+    return groupSummaries.filter((sum) => sum.row_ids.some((id) => visibleIds.has(id)));
+  }, [groupSummaries, filteredRows]);
+
+  const classificationFiltersActiveFlag = useMemo(
+    () => classificationFiltersActive(classificationFilters),
+    [classificationFilters]
+  );
+
   const filtersActive = useMemo(
     () =>
       Boolean(
@@ -1198,9 +1279,17 @@ function PropositionExplorerInner(): JSX.Element {
           filterConfidence.trim() ||
           filterReview.trim() ||
           filterSourceId.trim() ||
-          filterInstrumentFamily.trim()
+          filterInstrumentFamily.trim() ||
+          classificationFiltersActiveFlag
       ),
-    [filterScopeSlug, filterConfidence, filterReview, filterSourceId, filterInstrumentFamily]
+    [
+      filterScopeSlug,
+      filterConfidence,
+      filterReview,
+      filterSourceId,
+      filterInstrumentFamily,
+      classificationFiltersActiveFlag,
+    ]
   );
 
   const scopeFilterTrimmed = filterScopeSlug.trim();
@@ -1315,8 +1404,15 @@ function PropositionExplorerInner(): JSX.Element {
   ]);
 
   const serverGroupedSections = useMemo(
-    () => buildSectionsFromPropositionSummaries(groupSummaries, explorerNavMode, sources),
-    [groupSummaries, explorerNavMode, sources]
+    () => buildSectionsFromPropositionSummaries(filteredGroupSummaries, explorerNavMode, sources),
+    [filteredGroupSummaries, explorerNavMode, sources]
+  );
+
+  const updateClassificationFilter = useCallback(
+    <K extends keyof ExplorerClassificationFilters>(key: K, value: ExplorerClassificationFilters[K]) => {
+      setClassificationFilters((prev) => ({ ...prev, [key]: value }));
+    },
+    []
   );
 
   const loadMorePropositionGroups = useCallback(async () => {
@@ -1995,7 +2091,120 @@ function PropositionExplorerInner(): JSX.Element {
 
           <div className="space-y-4 border-t border-border/60 pt-6">
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.06em] text-muted-foreground">
-              B. Review filters
+              B. Proposition classification
+            </h3>
+            <p className="max-w-prose text-[11px] leading-snug text-muted-foreground">
+              Default view emphasises substantive, procedural, definitional, and scope rules. Citation
+              and commencement are hidden unless you enable instrument metadata. Scope/application
+              rules can appear in a collapsed section per article.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <label className="flex cursor-pointer items-center gap-2 text-xs">
+                <input
+                  type="checkbox"
+                  checked={classificationFilters.showInstrumentMetadata}
+                  onChange={(e) =>
+                    updateClassificationFilter("showInstrumentMetadata", e.target.checked)
+                  }
+                  className="rounded border-border accent-primary"
+                />
+                Show instrument metadata
+              </label>
+              <label className="flex cursor-pointer items-center gap-2 text-xs">
+                <input
+                  type="checkbox"
+                  checked={classificationFilters.complianceRelevantOnly}
+                  onChange={(e) =>
+                    updateClassificationFilter("complianceRelevantOnly", e.target.checked)
+                  }
+                  className="rounded border-border accent-primary"
+                />
+                Compliance-relevant only
+              </label>
+              <label className="flex cursor-pointer items-center gap-2 text-xs">
+                <input
+                  type="checkbox"
+                  checked={classificationFilters.comparisonAnchorsOnly}
+                  onChange={(e) =>
+                    updateClassificationFilter("comparisonAnchorsOnly", e.target.checked)
+                  }
+                  className="rounded border-border accent-primary"
+                />
+                Comparison anchors only
+              </label>
+              <label className="flex cursor-pointer items-center gap-2 text-xs text-muted-foreground">
+                <input
+                  type="checkbox"
+                  checked={classificationFilters.collapseScopeRules}
+                  onChange={(e) =>
+                    updateClassificationFilter("collapseScopeRules", e.target.checked)
+                  }
+                  className="rounded border-border accent-primary"
+                />
+                Collapse scope/application section
+              </label>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <label className="flex flex-col gap-1 text-xs">
+                <span className="uppercase tracking-wide text-muted-foreground">Proposition tier</span>
+                <select
+                  value={classificationFilters.filterPropositionTier}
+                  onChange={(e) =>
+                    updateClassificationFilter("filterPropositionTier", e.target.value)
+                  }
+                  className="w-full rounded border border-border/80 px-2 py-1 outline-none focus:border-primary"
+                >
+                  {PROPOSITION_TIER_FILTER_OPTIONS.map((o) => (
+                    <option key={o.value || "any"} value={o.value}>
+                      {o.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="flex flex-col gap-1 text-xs">
+                <span className="uppercase tracking-wide text-muted-foreground">Legal effect type</span>
+                <select
+                  value={classificationFilters.filterLegalEffectType}
+                  onChange={(e) =>
+                    updateClassificationFilter("filterLegalEffectType", e.target.value)
+                  }
+                  className="w-full rounded border border-border/80 px-2 py-1 outline-none focus:border-primary"
+                >
+                  {LEGAL_EFFECT_FILTER_OPTIONS.map((o) => (
+                    <option key={o.value || "any"} value={o.value}>
+                      {o.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="flex flex-col gap-1 text-xs">
+                <span className="uppercase tracking-wide text-muted-foreground">
+                  Territorial application
+                </span>
+                <input
+                  value={classificationFilters.filterTerritorialApplication}
+                  onChange={(e) =>
+                    updateClassificationFilter("filterTerritorialApplication", e.target.value)
+                  }
+                  placeholder="e.g. England"
+                  className="w-full rounded border border-border/80 px-2 py-1 outline-none focus:border-primary"
+                />
+              </label>
+              <label className="flex flex-col gap-1 text-xs">
+                <span className="uppercase tracking-wide text-muted-foreground">Extent</span>
+                <input
+                  value={classificationFilters.filterExtent}
+                  onChange={(e) => updateClassificationFilter("filterExtent", e.target.value)}
+                  placeholder="e.g. Wales"
+                  className="w-full rounded border border-border/80 px-2 py-1 outline-none focus:border-primary"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="space-y-4 border-t border-border/60 pt-6">
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.06em] text-muted-foreground">
+              C. Review filters
             </h3>
             <div className="grid gap-4 sm:grid-cols-2 sm:max-w-2xl">
               <label className="flex flex-col gap-1 text-xs">
@@ -2048,7 +2257,7 @@ function PropositionExplorerInner(): JSX.Element {
 
           <div className="space-y-4 border-t border-border/60 pt-6">
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.06em] text-muted-foreground">
-              C. Display
+              D. Display
             </h3>
             {propositionDisplayMode === "raw" && !showDuplicatesFlat ? (
               <p className="max-w-prose rounded-md border border-amber-700/30 bg-amber-950/10 px-3 py-2 text-[11px] leading-snug text-amber-950 dark:text-amber-100">
@@ -2266,6 +2475,8 @@ function PropositionExplorerInner(): JSX.Element {
                   traceByPropId={traceByPropId}
                   initialArticleSectionsOpen={INITIAL_ARTICLE_SECTIONS_OPEN}
                   filtersActive={filtersActive}
+                  classificationFilters={classificationFilters}
+                  propositionArtifactById={propositionArtifactById}
                 />
                   {groupSummaries.length < groupsTotalGroups ? (
                     <div className="flex justify-center py-4">
@@ -2371,15 +2582,29 @@ function PropositionExplorerInner(): JSX.Element {
                           ) : null}
                         </summary>
                         <div className="space-y-4 border-t border-border/50 px-2 pb-3 pt-3">
-                          {rows.map((row) => {
+                          {(() => {
+                            const rowGroups = rows.map((row) => ({ rows: [row] }));
+                            const { primary: primaryRowGroups, scopeSecondary: scopeSecondaryRowGroups } =
+                              partitionGroupsByScopeSecondary(
+                                rowGroups,
+                                classificationFilters.collapseScopeRules
+                              );
+                            const primaryFlatRows = primaryRowGroups.flatMap((g) => g.rows);
+                            const scopeSecondaryFlatRows = scopeSecondaryRowGroups.flatMap(
+                              (g) => g.rows
+                            );
+
+                            const renderFlatRow = (row: UnknownRecord) => {
                             const oa = asRecord(row.original_artifact) ?? {};
                             const pid = String(oa.id ?? "").trim();
                             const txt =
                               typeof oa.proposition_text === "string" ? oa.proposition_text : "";
-                            const displayFlat = propositionDisplayLabel(oa);
+                            const displayFlat = propositionInformativeLabel(oa);
                             const crossRefFlat = relatedCrossReferenceDisplayLine(oa);
                             const rawStoredFlat =
-                              typeof oa.label === "string" && oa.label.trim().length > 0
+                              propositionDisplayMode === "raw" &&
+                              typeof oa.label === "string" &&
+                              oa.label.trim().length > 0
                                 ? oa.label.trim()
                                 : null;
 
@@ -2422,7 +2647,8 @@ function PropositionExplorerInner(): JSX.Element {
                             const fullPropText = normalizePropositionText(txt);
                             const rawTextForUi = txt;
 
-                            const evidUiFlat = verbatimEvidenceUiFromNotes(oa.notes);
+                            const evidUiFlat = verbatimEvidenceUiFromProposition(oa);
+                            const reviewNotesFlat = humanReviewNotesForDisplay(oa);
 
                             const fragmentSlot = fid ? (
                               <button
@@ -2454,18 +2680,26 @@ function PropositionExplorerInner(): JSX.Element {
                             );
 
                             const evidenceFlat = (
-                              <PropositionEvidenceDetails
-                                rawText={fullPropText || rawTextForUi}
-                                verbatimEvidenceKnown={evidUiFlat.known}
-                                verbatimEvidenceQuote={evidUiFlat.quoteText}
-                                evidenceMismatchWarning={
-                                  evidUiFlat.showTraceabilityWarning
-                                    ? "Evidence quote could not be matched exactly to source text."
-                                    : null
-                                }
-                                fragmentSlot={fragmentSlot}
-                                traceButton={traceButtonEl}
-                              />
+                              <>
+                                {reviewNotesFlat ? (
+                                  <p className="mb-2 text-[12px] leading-relaxed text-muted-foreground">
+                                    <span className="font-medium text-foreground">Review note: </span>
+                                    {reviewNotesFlat}
+                                  </p>
+                                ) : null}
+                                <PropositionEvidenceDetails
+                                  rawText={fullPropText || rawTextForUi}
+                                  verbatimEvidenceKnown={evidUiFlat.known}
+                                  verbatimEvidenceQuote={evidUiFlat.quoteText}
+                                  evidenceMismatchWarning={
+                                    evidUiFlat.showTraceabilityWarning
+                                      ? "Evidence quote could not be matched exactly to source text."
+                                      : null
+                                  }
+                                  fragmentSlot={fragmentSlot}
+                                  traceButton={traceButtonEl}
+                                />
+                              </>
                             );
 
                             const completenessArtifactIdFlat =
@@ -2517,6 +2751,13 @@ function PropositionExplorerInner(): JSX.Element {
                                       <CardTitle className="text-base font-medium leading-snug">
                                         {displayFlat}
                                       </CardTitle>
+                                      <div className="rounded-md border border-border/50 bg-muted/[0.12] px-2.5 py-2">
+                                        <PropositionClassificationMeta
+                                          oa={oa}
+                                          compact
+                                          showExtractionDebug={propositionDisplayMode === "raw"}
+                                        />
+                                      </div>
                                       {flatSourceLines.length > 0 ? (
                                         <div className="space-y-0.5 text-[11px] leading-snug text-foreground/88">
                                           {flatSourceLines.map((line, li) => (
@@ -2661,7 +2902,24 @@ function PropositionExplorerInner(): JSX.Element {
                                 </CardContent>
                               </Card>
                             );
-                          })}
+                            };
+
+                            return (
+                              <>
+                                {primaryFlatRows.map(renderFlatRow)}
+                                {scopeSecondaryFlatRows.length > 0 ? (
+                                  <details className="rounded-lg border border-dashed border-border/60 bg-muted/[0.08] px-2 py-2 open:bg-muted/[0.14]">
+                                    <summary className="cursor-pointer list-none px-1 py-1.5 text-[12px] font-medium text-muted-foreground marker:content-none [&::-webkit-details-marker]:hidden">
+                                      Scope &amp; application ({scopeSecondaryFlatRows.length})
+                                    </summary>
+                                    <div className="mt-2 space-y-4 border-t border-border/40 pt-3">
+                                      {scopeSecondaryFlatRows.map(renderFlatRow)}
+                                    </div>
+                                  </details>
+                                ) : null}
+                              </>
+                            );
+                          })()}
                         </div>
                       </details>
                     );

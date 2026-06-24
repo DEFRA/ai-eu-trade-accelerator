@@ -1,0 +1,626 @@
+[
+  {
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_fragment_id": "frag-lex-120b4f9c395b3f94-013",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 30 column 30 (char 2470)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 30 column 30 (char 2470)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+        "source_fragment_id": "frag-lex-120b4f9c395b3f94-013",
+        "fragment_locator": "regulation:12",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1763,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"The occupier of a holding must ensure that the total amount of nitrogen spread on a crop or group of crops does not exceed the figure specified in the table in any twelve-month period, adjusted as specified in the notes and multiplied by the total area in hectares of the crop or group sown on the holding.\",\n      \"display_label\": \"Nitrogen application limit per crop\",\n      \"subject\": \"occupier of a holding\",\n      \"rule\": \"must ensure that the total amount of nitrogen spread on a crop or group of crops does not exceed\",\n      \"object\": \"the figure specified in the table in paragraph (4) in any twelve-month period, adjusted as specified in the notes and multiplied by the total area in hectares of the crop or group sown on the holding\",\n      \"conditions\": [],\n      \"exceptions\": [],\n      \"temporal_condition\": \"in any twelve-month period\",\n      \"provision_type\": \"core\",\n      \"source_locator\": \"regulation 12(1)\",\n      \"evidence_text\": \"The occupier of a holding must ensure that the total amount of nitrogen spread on a crop or group of crops specified in the table in paragraph (4) does not exceed the figure specified in the second column in any twelve-month period, adjusted as specified in the notes and multiplied by the total area in hectares of the crop or group sown on the holding.\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Core obligation establishing nitrogen application limits for crops; references table in paragraph (4) and adjustment notes.\"\n    },\n    {\n      \"proposition_text\": \"The total amount of nitrogen means the total of the amount of nitrogen from manufactured nitrogen fertiliser and the amount of nitrogen available for crop uptake from organic manure in the growing season in which it is spread (calculated in accordance with regulation 14).\",\n      \"display_label\": \"Definition of total amount of nitrogen\",\n      \"subject\": \"total amount of nitrogen\",\n      \"rule\": \"means\",\n      \"object\": \"",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "3251509a1d2d7722",
+        "parse_error_message": "Expecting ',' delimiter: line 30 column 30 (char 2470)",
+        "parse_error_line": 30,
+        "parse_error_column": 30
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_fragment_id": "frag-lex-120b4f9c395b3f94-039",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 18 column 181 (char 1075)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 18 column 181 (char 1075)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+        "source_fragment_id": "frag-lex-120b4f9c395b3f94-039",
+        "fragment_locator": "regulation:36",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1665,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"The occupier of a holding may apply to the Agency for a derogation from the livestock manure nitrogen limit where 80% or more of the agricultural area of the holding is sown with grass.\",\n      \"display_label\": \"Derogation application eligibility: 80% grass threshold\",\n      \"subject\": \"occupier of a holding\",\n      \"rule\": \"may apply to the Agency for a derogation\",\n      \"object\": \"derogation from the limit on the total amount of nitrogen in livestock manure that can be applied to land each year\",\n      \"conditions\": [\n        \"80% or more of the agricultural area of the holding is sown with grass\"\n      ],\n      \"exceptions\": [\n        \"agricultural area does not include land covered by a greenhouse\"\n      ],\n      \"temporal_condition\": \"\",\n      \"provision_type\": \"core\",\n      \"source_locator\": \"regulation 36(1), (2), (3)\",\n      \"evidence_text\": \"The occupier of a holding may apply to the Agency for a derogation in a case where 80% or more of the agricultural area of the holding is sown with grass.2\"Derogation\" means a derogation granted under this Part from the limit on the total amount of nitrogen in livestock manure that can be applied to land each year in accordance with paragraph 2(b) of Annex III to Council Directive 91/676/EEC.\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Clear eligibility threshold for derogation applications with defined scope and exclusions.\"\n    },\n    {\n      \"proposition_text\": \"A derogation granted under this regulation ceases to have effect unless the occupier sends to the Agency a written declaration that the derogation conditions in Schedule 3 will be met, within 28 calendar days of the derogation being granted.\",\n      \"display_label\": \"Derogation effectiveness: written declaration requirement\",\n      \"subject\": \"derogation granted under this regulation\",\n      \"rule\": \"ceases to have effect unless\",\n      \"object\": \"the occupier sends to the Agency a written declaratio",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "8594c4cc92035304",
+        "parse_error_message": "Expecting ',' delimiter: line 18 column 181 (char 1075)",
+        "parse_error_line": 18,
+        "parse_error_column": 181
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_fragment_id": "frag-lex-120b4f9c395b3f94-073",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: row 0: evidence_text not traceable to source",
+      "chunk 1/1: row 1: evidence_text not traceable to source",
+      "chunk 1/1: model produced 2 candidate row(s) but validation removed all"
+    ],
+    "validation_issue_records": [
+      {
+        "kind": "evidence_traceability",
+        "row_index": 0,
+        "candidate_evidence_text": "The following regulations do not apply in relation to a new holding until the beginning of the second calendar year after the year in which the Secretary of State revises or adds to the designation of nitrate vulnerable zones under regulation 4(5) so as to include the new holding\u2014\na\nregulation 7 (application of livestock manure);\nb\nregulation 8 (spreading organic manure);\nc\nregulation 10 (planning the spreading of nitrogen fertiliser);\nd\nregulation 11 (additional information to be recorded);\ne\nregulation 12 (total nitrogen spread on a holding);\nf\nregulation 13 (grass grown for dehydration or chlorophyll production);\ng\nregulation 15 (risk map);\nh\nregulation 16 (restrictions on spreading nitrogen fertiliser);\ni\nregulation 17 (spreading organic manure near surface water, boreholes, springs or wells);\nj\nregulation 19 (incorporating organic manure into the ground);\nk\nregulation 23 (storage of organic manure);\nl\nregulation 25A (record of size of holding);\nm\nregulation 25B (record of storage capacity);\nn\nregulation 26 (annual records relating to storage);\no\nregulation 27 (record of nitrogen produced by animals);\np\nregulation 28 (livestock manure brought on to or sent off the holding);\nq\nregulation 29 (sampling and analysis);\nr\nregulation 30 (records of crops sown);\ns\nregulation 31 (records of spreading nitrogen fertiliser);\nt\nregulation 32 (subsequent records);\nu\nregulation 34 (keeping records up to date).",
+        "source_locator_hint": "Schedule 4, paragraph 1",
+        "normalization_matching_strategy": "whitespace_quote_fold_lc_list_marker_substring_match",
+        "reason_code": "no_verbatim_normalized_span",
+        "failure_reason": "row 0: evidence_text not traceable to source",
+        "diagnostics": {
+          "attempted": [
+            "whitespace_quote_fold_lc_substring_match",
+            "whitespace_quote_fold_lc_list_marker_substring_match"
+          ],
+          "haystack_lens": [
+            2004,
+            2004
+          ],
+          "needle_lens": [
+            1422,
+            1422
+          ],
+          "needle_tail": "ion 34 (keeping records up to date).",
+          "failure": "no_normalized_substring_match_paraphrase_or_unrecoverable_markup"
+        }
+      },
+      {
+        "kind": "evidence_traceability",
+        "row_index": 1,
+        "candidate_evidence_text": "The following regulations do not apply in relation to a new holding until 31st July in the third calendar year after the year in which the Secretary of State revises or adds to the designation of nitrate vulnerable zones under regulation 4(5) so as to include the new holding\u2014\na\nregulation 18 (restrictions on spreading slurry);\nb\nregulation 20 (closed periods for organic manure);\nc\nregulation 21 (exemption for organic holdings);\nd\nregulation 22 (closed period for manufactured nitrogen fertiliser);\ne\nregulation 24 (separation of slurry);\nf\nregulation 25 (storage capacity).",
+        "source_locator_hint": "Schedule 4, paragraph 2",
+        "normalization_matching_strategy": "whitespace_quote_fold_lc_list_marker_substring_match",
+        "reason_code": "no_verbatim_normalized_span",
+        "failure_reason": "row 1: evidence_text not traceable to source",
+        "diagnostics": {
+          "attempted": [
+            "whitespace_quote_fold_lc_substring_match",
+            "whitespace_quote_fold_lc_list_marker_substring_match"
+          ],
+          "haystack_lens": [
+            2004,
+            2004
+          ],
+          "needle_lens": [
+            577,
+            577
+          ],
+          "needle_tail": " f regulation 25 (storage capacity).",
+          "failure": "no_normalized_substring_match_paraphrase_or_unrecoverable_markup"
+        }
+      }
+    ],
+    "failure_reason": "chunk 1/1: row 0: evidence_text not traceable to source",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_title": "The Nitrate Pollution Prevention Regulations 2015",
+        "source_fragment_id": "frag-lex-120b4f9c395b3f94-073",
+        "fragment_locator": "schedule:4",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1671,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "finish_reason": "stop",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"Regulations 7, 8, 10, 11, 12, 13, 15, 16, 17, 19, 23, 25A, 25B, 26, 27, 28, 29, 30, 31, 32, and 34 do not apply to a new holding until the beginning of the second calendar year after the year in which the Secretary of State revises or adds to the designation of nitrate vulnerable zones under regulation 4(5) so as to include the new holding.\",\n      \"display_label\": \"Transitional exemption for new holdings: general nitrogen management regulations\",\n      \"subject\": \"new holding\",\n      \"rule\": \"are exempt from regulations 7, 8, 10, 11, 12, 13, 15, 16, 17, 19, 23, 25A, 25B, 26, 27, 28, 29, 30, 31, 32, and 34\",\n      \"object\": \"until the beginning of the second calendar year after the year of designation revision\",\n      \"conditions\": [\n        \"the Secretary of State revises or adds to the designation of nitrate vulnerable zones under regulation 4(5) so as to include the new holding\"\n      ],\n      \"exceptions\": [],\n      \"temporal_condition\": \"until the beginning of the second calendar year after the year in which the Secretary of State revises or adds to the designation\",\n      \"provision_type\": \"transitional\",\n      \"source_locator\": \"Schedule 4, paragraph 1\",\n      \"evidence_text\": \"The following regulations do not apply in relation to a new holding until the beginning of the second calendar year after the year in which the Secretary of State revises or adds to the designation of nitrate vulnerable zones under regulation 4(5) so as to include the new holding\u2014\\na\\nregulation 7 (application of livestock manure);\\nb\\nregulation 8 (spreading organic manure);\\nc\\nregulation 10 (planning the spreading of nitrogen fertiliser);\\nd\\nregulation 11 (additional information to be recorded);\\ne\\nregulation 12 (total nitrogen spread on a holding);\\nf\\nregulation 13 (grass grown for dehydration or chlorophyll production);\\ng\\nregulation 15 (risk map);\\nh\\nregulation 16 (restrictions on spreading nitrogen fertiliser);\\ni\\nregulation 17 (spreading organic manure near",
+        "raw_model_output_truncated": false,
+        "failure_type": "post_filter_removed_all",
+        "failure_reason": "model produced 2 candidate row(s) but validation removed all",
+        "model_error": "model produced 2 candidate row(s) but validation removed all",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "c88b3b3ff26477c4",
+        "candidate_row_count": 2,
+        "accepted_row_count": 0,
+        "llm_call_succeeded": false
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-003",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 14 column 26 (char 1261)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 14 column 26 (char 1261)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-805b03f284dcf364",
+        "source_title": "The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021",
+        "source_fragment_id": "frag-lex-805b03f284dcf364-003",
+        "fragment_locator": "regulation:3",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 2990,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"Slurry means liquid or semi-liquid matter composed of excreta produced by livestock (other than poultry) while in a yard or building (including that held in wood chip corrals), or a mixture wholly or mainly consisting of livestock excreta, livestock bedding, rainwater and washings from a building or yard used by livestock, of a consistency that allows it to be pumped or discharged by gravity at any stage in the handling process.\",\n      \"display_label\": \"Definition of slurry\",\n      \"subject\": \"slurry\",\n      \"rule\": \"means\",\n      \"object\": \"liquid or semi-liquid matter composed of excreta produced by livestock (other than poultry) while in a yard or building (including that held in wood chip corrals), or a mixture wholly or mainly consisting of livestock excreta, livestock bedding, rainwater and washings from a building or yard used by livestock, of a consistency that allows it to be pumped or discharged by gravity at any stage in the handling process\",\n      \"conditions\": [],\n      \"exceptions\": [\"poultry excreta excluded\"],\n      \"temporal_condition\": \"\",\n      \"provision_type\": \"definition\",\n      \"source_locator\": \"regulation 3(1), definition of 'slurry'\",\n      \"evidence_text\": \"\"slurry\" (\"slyri\") means liquid or semi-liquid matter composed of\u2014excreta produced by livestock (other than poultry) while in a yard or building (including that held in wood chip corrals), ora mixture wholly or mainly consisting of livestock excreta, livestock bedding, rainwater and washings from a building or yard used by livestock,of a consistency that allows it to be pumped or discharged by gravity at any stage in the handling process;\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Core definition of slurry directly relevant to the topic cluster; verbatim evidence extracted from regulation 3(1).\"\n    },\n    {\n      \"proposition_text\": \"Organic manure means any nitrogen fertiliser or phosphate fertiliser derived from animal, pl",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "c0eede9c667329a3",
+        "parse_error_message": "Expecting ',' delimiter: line 14 column 26 (char 1261)",
+        "parse_error_line": 14,
+        "parse_error_column": 26
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-008",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 16 column 227 (char 1201)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 16 column 227 (char 1201)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-805b03f284dcf364",
+        "source_title": "The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021",
+        "source_fragment_id": "frag-lex-805b03f284dcf364-008",
+        "fragment_locator": "regulation:6",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1545,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"An occupier of a holding who intends to spread nitrogen fertiliser must calculate the soil nitrogen supply, calculate the optimum amount of nitrogen to be spread taking into account the soil nitrogen supply, and produce a spreading plan for that growing season.\",\n      \"display_label\": \"Duty to calculate nitrogen supply and produce spreading plan\",\n      \"subject\": \"occupier of a holding who intends to spread nitrogen fertiliser\",\n      \"rule\": \"must calculate the soil nitrogen supply, calculate the optimum amount of nitrogen to be spread, and produce a plan for spreading nitrogen fertiliser\",\n      \"object\": \"nitrogen fertiliser spreading plan for the growing season\",\n      \"conditions\": [\n        \"occupier intends to spread nitrogen fertiliser\"\n      ],\n      \"exceptions\": [],\n      \"temporal_condition\": \"for that growing season\",\n      \"provision_type\": \"core\",\n      \"source_locator\": \"regulation 6(1)\",\n      \"evidence_text\": \"An occupier of a holding who intends to spread nitrogen fertiliser must\u2014 a calculate the amount of nitrogen in the soil that is likely to be available for uptake by the crop during the growing season (\"the soil nitrogen supply\"), b calculate the optimum amount of nitrogen that should be spread on the crop, taking into account the amount of nitrogen available from the soil nitrogen supply, and c produce a plan for the spreading of nitrogen fertiliser for that growing season.\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Core obligation establishing the three-step duty for nitrogen fertiliser spreading planning.\"\n    },\n    {\n      \"proposition_text\": \"For any crop other than permanent grassland, the occupier must comply with the calculation and planning requirements before spreading any nitrogen fertiliser for the first time for the purpose of fertilising a crop planted or intended to be planted.\",\n      \"display_label\": \"Timing requirement for non-permanent grassland crops\",\n      \"su",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "688bb162b3a9cbee",
+        "parse_error_message": "Expecting ',' delimiter: line 16 column 227 (char 1201)",
+        "parse_error_line": 16,
+        "parse_error_column": 227
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-013",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 16 column 130 (char 818)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 16 column 130 (char 818)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-805b03f284dcf364",
+        "source_title": "The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021",
+        "source_fragment_id": "frag-lex-805b03f284dcf364-013",
+        "fragment_locator": "regulation:11",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1410,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"An occupier of a holding who spreads organic manure on that holding must maintain a risk map of the holding in accordance with regulation 11.\",\n      \"display_label\": \"Duty to maintain risk map for organic manure spreading\",\n      \"subject\": \"occupier of a holding who spreads organic manure\",\n      \"rule\": \"must maintain\",\n      \"object\": \"a map of the holding (a risk map) in accordance with this regulation\",\n      \"conditions\": [\n        \"occupier spreads organic manure on that holding\"\n      ],\n      \"exceptions\": [],\n      \"temporal_condition\": \"\",\n      \"provision_type\": \"core\",\n      \"source_locator\": \"regulation 11(1)\",\n      \"evidence_text\": \"An occupier of a holding who spreads organic manure on that holding must maintain a map of the holding (\"a risk map\") in accordance with this regulation.\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Core obligation establishing the duty to maintain a risk map for organic manure spreading operations.\"\n    },\n    {\n      \"proposition_text\": \"If circumstances change, the occupier must update the risk map within three months of the change.\",\n      \"display_label\": \"Duty to update risk map within three months of change\",\n      \"subject\": \"the occupier\",\n      \"rule\": \"must update\",\n      \"object\": \"the risk map within three months of the change\",\n      \"conditions\": [\n        \"circumstances change\"\n      ],\n      \"exceptions\": [],\n      \"temporal_condition\": \"within three months of the change\",\n      \"provision_type\": \"core\",\n      \"source_locator\": \"regulation 11(2)\",\n      \"evidence_text\": \"If circumstances change the occupier must update the risk map within three months of the change.\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Temporal obligation requiring timely updates to the risk map when circumstances change.\"\n    },\n    {\n      \"proposition_text\": \"The risk map must show each field with its area in hectares, all surf",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "f20f185dda8b4148",
+        "parse_error_message": "Expecting ',' delimiter: line 16 column 130 (char 818)",
+        "parse_error_line": 16,
+        "parse_error_column": 130
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-020",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 14 column 185 (char 1075)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 14 column 185 (char 1075)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-805b03f284dcf364",
+        "source_title": "The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021",
+        "source_fragment_id": "frag-lex-805b03f284dcf364-020",
+        "fragment_locator": "regulation:18",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1125,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"No person may spread organic manure with high readily available nitrogen on sandy or shallow grassland soil during the closed period from 1 September to 31 December (inclusive), subject to regulations 19 and 20.\",\n      \"display_label\": \"Prohibition on spreading high readily available nitrogen manure on sandy/shallow grassland (closed period)\",\n      \"subject\": \"any person\",\n      \"rule\": \"must not spread\",\n      \"object\": \"organic manure with high readily available nitrogen on sandy or shallow grassland soil during 1 September to 31 December (inclusive)\",\n      \"conditions\": [],\n      \"exceptions\": [\"subject to regulations 19 and 20\"],\n      \"temporal_condition\": \"1 September to 31 December (inclusive)\",\n      \"provision_type\": \"core\",\n      \"source_locator\": \"regulation 18, table row 1 (Sandy or shallow soil, Grassland)\",\n      \"evidence_text\": \"Subject to regulations 19 and 20, no person may spread organic manure with high readily available nitrogen on land between the following dates, all inclusive (\"the closed period\")\u2014 The closed period Soil TypeGrasslandTillage land Sandy or shallow soil1 September to 31 December\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Distinct closed period for sandy/shallow grassland; verbatim evidence spans regulation text and table cell.\"\n    },\n    {\n      \"proposition_text\": \"No person may spread organic manure with high readily available nitrogen on sandy or shallow tillage land during the closed period from 1 August to 31 December (inclusive), subject to regulations 19 and 20.\",\n      \"display_label\": \"Prohibition on spreading high readily available nitrogen manure on sandy/shallow tillage land (closed period)\",\n      \"subject\": \"any person\",\n      \"rule\": \"must not spread\",\n      \"object\": \"organic manure with high readily available nitrogen on sandy or shallow tillage land during 1 August to 31 December (inclusive)\",\n      \"conditions\": [],\n      \"exceptions\": [\"subject ",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "6b8713a37c353db5",
+        "parse_error_message": "Expecting ',' delimiter: line 14 column 185 (char 1075)",
+        "parse_error_line": 14,
+        "parse_error_column": 185
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-032",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 17 column 216 (char 1312)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 17 column 216 (char 1312)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-805b03f284dcf364",
+        "source_title": "The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021",
+        "source_fragment_id": "frag-lex-805b03f284dcf364-032",
+        "fragment_locator": "regulation:30",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1492,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"NRW may serve a notice (regulation 30 notice) on a person who has custody or control of silage or slurry or is responsible for a silo or slurry storage system, requiring the person to carry out works, or take precautions or other steps, specified in the notice.\",\n      \"display_label\": \"Power to serve regulation 30 notice\",\n      \"subject\": \"NRW\",\n      \"rule\": \"may serve a notice requiring the person to carry out works, or take precautions or other steps\",\n      \"object\": \"person who has custody or control of silage or slurry or is responsible for a silo or slurry storage system\",\n      \"conditions\": [\n        \"in circumstances in which these Regulations apply\",\n        \"works, precautions or other steps must be appropriate, in the opinion of NRW, having regard to the requirements of these Regulations, for reducing to a minimum any significant risk of pollution of controlled waters\"\n      ],\n      \"exceptions\": [],\n      \"temporal_condition\": \"\",\n      \"provision_type\": \"core\",\n      \"source_locator\": \"regulation 30(1)-(2)\",\n      \"evidence_text\": \"NRW may serve, on a person who has custody or control of silage or slurry or is responsible for a silo or slurry storage system, in circumstances in which these Regulations apply, a notice (\"regulation 30 notice\") requiring the person to carry out works, or take precautions or other steps, specified in the notice.2The works, precautions or other steps must be, in the opinion of NRW, appropriate, having regard to the requirements of these Regulations, for reducing to a minimum any significant risk of pollution of controlled waters.\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Core enforcement power clearly stated with conditions for exercise.\"\n    },\n    {\n      \"proposition_text\": \"The regulation 30 notice must specify or describe the works, precautions or other steps that the person is required to carry out or take, state the period within which any such requirem",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "e79afb9ea4199842",
+        "parse_error_message": "Expecting ',' delimiter: line 17 column 216 (char 1312)",
+        "parse_error_line": 17,
+        "parse_error_column": 216
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-080",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Extra data: line 4 column 1 (char 25)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Extra data: line 4 column 1 (char 25)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-805b03f284dcf364",
+        "source_title": "The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021",
+        "source_fragment_id": "frag-lex-805b03f284dcf364-080",
+        "fragment_locator": "schedule:2",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1159,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": []\n}\n```\n\n**Reason:** Schedule 2 is a definitional table listing botanical and common names of fruit species referenced by Regulation 5. It contains no legal obligations, prohibitions, conditions, exceptions, or transitional rules relevant to slurry, manure, or agricultural effluent (the Topic and Cluster). The schedule serves solely as a taxonomic reference for fruit species and does not establish any substantive legal proposition within the scope of the extraction task.",
+        "raw_model_output_truncated": false,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "a2fa398c30459b27",
+        "parse_error_message": "Extra data: line 4 column 1 (char 25)",
+        "parse_error_line": 4,
+        "parse_error_column": 1
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-e71fbbe3342ac0be",
+    "source_fragment_id": "frag-lex-e71fbbe3342ac0be-007",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 16 column 258 (char 1187)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 16 column 258 (char 1187)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-e71fbbe3342ac0be",
+        "source_title": "The Water Resources (Control of Pollution) (Silage, Slurry and Agricultural Fuel Oil) (England) Regulations 2010",
+        "source_fragment_id": "frag-lex-e71fbbe3342ac0be-007",
+        "fragment_locator": "regulation:7",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1512,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"The Agency may serve a regulation 7 notice on a person who has custody or control of silage, slurry or fuel oil or is responsible for the silo, slurry storage system or fuel oil storage tank, requiring the person to carry out works, or take precautions or other steps, specified in the notice.\",\n      \"display_label\": \"Power to serve regulation 7 notice\",\n      \"subject\": \"The Agency\",\n      \"rule\": \"may serve a notice requiring\",\n      \"object\": \"a person who has custody or control of silage, slurry or fuel oil or is responsible for the silo, slurry storage system or fuel oil storage tank to carry out works, or take precautions or other steps\",\n      \"conditions\": [\n        \"in circumstances in which these Regulations apply\"\n      ],\n      \"exceptions\": [],\n      \"temporal_condition\": \"\",\n      \"provision_type\": \"core\",\n      \"source_locator\": \"regulation 7(1)\",\n      \"evidence_text\": \"The Agency may serve, on a person who has custody or control of silage, slurry or fuel oil or is responsible for the silo, slurry storage system or fuel oil storage tank, in circumstances in which these Regulations apply, a notice (\"regulation 7 notice\") requiring the person to carry out works, or take precautions or other steps, specified in the notice.\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Complete power provision establishing the Agency's authority to serve enforcement notices on persons responsible for silage, slurry or fuel oil storage.\"\n    },\n    {\n      \"proposition_text\": \"The works, precautions or other steps required by a regulation 7 notice must be, in the opinion of the Agency, appropriate for reducing to a minimum any significant risk of pollution of controlled waters, having regard to the requirements of these Regulations.\",\n      \"display_label\": \"Standard for regulation 7 notice requirements\",\n      \"subject\": \"The works, precautions or other steps\",\n      \"rule\": \"must be appropriate for\",\n      \"object",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "5826fd87d0e3cda5",
+        "parse_error_message": "Expecting ',' delimiter: line 16 column 258 (char 1187)",
+        "parse_error_line": 16,
+        "parse_error_column": 258
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-2459c955ee13be52",
+    "source_fragment_id": "frag-lex-2459c955ee13be52-002",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 16 column 26 (char 1169)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 16 column 26 (char 1169)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-2459c955ee13be52",
+        "source_title": "The Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018",
+        "source_fragment_id": "frag-lex-2459c955ee13be52-002",
+        "fragment_locator": "regulation:2",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 2580,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"Slurry is defined as liquid or semi-liquid matter with a consistency enabling it to be pumped or discharged by gravity, composed of excreta produced by livestock while in a yard or building (including that held in wood chip corrals), or a mixture of livestock excreta, livestock bedding, rainwater and washings from a yard or building used by livestock.\",\n      \"display_label\": \"Definition of slurry\",\n      \"subject\": \"slurry\",\n      \"rule\": \"means\",\n      \"object\": \"liquid or semi-liquid matter with a consistency enabling it to be pumped or to be discharged by gravity, which is composed of excreta produced by livestock while in a yard or building (including that held in wood chip corrals), or a mixture of livestock excreta, livestock bedding, rainwater and washings from a yard or building used by livestock\",\n      \"conditions\": [\n        \"consistency enabling it to be pumped or to be discharged by gravity\"\n      ],\n      \"exceptions\": [],\n      \"temporal_condition\": \"\",\n      \"provision_type\": \"definition\",\n      \"source_locator\": \"regulation 2(1), definition of 'slurry'\",\n      \"evidence_text\": \"\"slurry\" means liquid or semi-liquid matter with a consistency enabling it to be pumped or to be discharged by gravity, which is composed of\u2014 excreta produced by livestock while in a yard or building (including that held in wood chip corrals), or a mixture of livestock excreta, livestock bedding, rainwater and washings from a yard or building used by livestock.\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Complete statutory definition of slurry directly relevant to the topic cluster slurry_manure_agricultural_effluent.\"\n    },\n    {\n      \"proposition_text\": \"Livestock manure is defined as excreta from livestock or a mixture of litter and excreta from livestock, including in processed form.\",\n      \"display_label\": \"Definition of livestock manure\",\n      \"subject\": \"livestock manure\",\n      \"rule\": \"means\",\n      \"obj",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "ba0cb23cbd132c24",
+        "parse_error_message": "Expecting ',' delimiter: line 16 column 26 (char 1169)",
+        "parse_error_line": 16,
+        "parse_error_column": 26
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-2459c955ee13be52",
+    "source_fragment_id": "frag-lex-2459c955ee13be52-012",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 16 column 136 (char 944)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 16 column 136 (char 944)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-2459c955ee13be52",
+        "source_title": "The Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018",
+        "source_fragment_id": "frag-lex-2459c955ee13be52-012",
+        "fragment_locator": "regulation:12",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1475,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"In proceedings for an offence under regulation 11(1), it is a defence to show that the person took all reasonable steps and exercised all due diligence to avoid committing the offence.\",\n      \"display_label\": \"Due diligence defence for regulation 11(1) offences\",\n      \"subject\": \"person charged with an offence under regulation 11(1)\",\n      \"rule\": \"may rely on a defence by showing\",\n      \"object\": \"that the person took all reasonable steps and exercised all due diligence to avoid committing the offence\",\n      \"conditions\": [\n        \"proceedings are brought for an offence under regulation 11(1)\"\n      ],\n      \"exceptions\": [],\n      \"temporal_condition\": \"\",\n      \"provision_type\": \"exception\",\n      \"source_locator\": \"regulation 12(1)\",\n      \"evidence_text\": \"In any proceedings against any person for an offence under regulation 11(1), it is a defence for that person (\"P\") to show that P took all reasonable steps and exercised all due diligence to avoid committing the offence.\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Complete statutory defence provision with clear subject, conditions, and standard.\"\n    },\n    {\n      \"proposition_text\": \"A person may not rely on a third party allegation defence unless the person has served a notice in accordance with paragraph (3) or obtained leave of the court.\",\n      \"display_label\": \"Procedural requirements for third party allegation defence\",\n      \"subject\": \"person relying on a defence under paragraph (1) involving a third party allegation\",\n      \"rule\": \"may not rely on the defence unless\",\n      \"object\": \"the person has served a notice in accordance with paragraph (3) or obtained leave of the court\",\n      \"conditions\": [\n        \"the defence involves a third party allegation\"\n      ],\n      \"exceptions\": [],\n      \"temporal_condition\": \"\",\n      \"provision_type\": \"core\",\n      \"source_locator\": \"regulation 12(2)\",\n      \"evidence_text\": \"P may not rely",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "b56807b3dc4148f5",
+        "parse_error_message": "Expecting ',' delimiter: line 16 column 136 (char 944)",
+        "parse_error_line": 16,
+        "parse_error_column": 136
+      }
+    ]
+  },
+  {
+    "source_record_id": "lex-2459c955ee13be52",
+    "source_fragment_id": "frag-lex-2459c955ee13be52-016",
+    "extraction_mode": "frontier",
+    "fallback_policy": "fail_closed",
+    "validation_errors": [
+      "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 66 column 99 (char 3321)"
+    ],
+    "validation_issue_records": [],
+    "failure_reason": "chunk 1/1: model call or JSON parse failed: Expecting ',' delimiter: line 66 column 99 (char 3321)",
+    "model_alias": "frontier_extract",
+    "extraction_llm_call_traces": [
+      {
+        "source_record_id": "lex-2459c955ee13be52",
+        "source_title": "The Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018",
+        "source_fragment_id": "frag-lex-2459c955ee13be52-016",
+        "fragment_locator": "regulation:16",
+        "model_alias": "frontier_extract",
+        "configured_context_limit": 200000,
+        "extraction_mode": "frontier",
+        "estimated_input_tokens": 1457,
+        "skipped_llm": false,
+        "extraction_llm_chunk_index": 1,
+        "extraction_llm_chunk_total": 1,
+        "extraction_chunk_split_strategy": "single",
+        "llm_invoked": true,
+        "attempt_index": 0,
+        "llm_call_attempted": true,
+        "llm_call_succeeded": false,
+        "failure_type": "non_json_response",
+        "failure_reason": "model returned non-JSON or unparseable JSON",
+        "model_error": "model returned non-JSON or unparseable JSON",
+        "raw_model_output_excerpt": "```json\n{\n  \"propositions\": [\n    {\n      \"proposition_text\": \"The Secretary of State must from time to time carry out a review of the regulatory provision contained in these Regulations and publish a report setting out conclusions of the review.\",\n      \"display_label\": \"Duty to review regulatory provision and publish report\",\n      \"subject\": \"Secretary of State\",\n      \"rule\": \"must carry out a review and publish a report\",\n      \"object\": \"the regulatory provision contained in these Regulations\",\n      \"conditions\": [\n        \"from time to time\"\n      ],\n      \"exceptions\": [],\n      \"temporal_condition\": \"from time to time\",\n      \"provision_type\": \"core\",\n      \"source_locator\": \"regulation 16(1)\",\n      \"evidence_text\": \"The Secretary of State must from time to time\u2014 a carry out a review of the regulatory provision contained in these Regulations, and b publish a report setting out conclusions of the review.\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Clear mandatory duty imposed on Secretary of State to review and report on regulatory provision.\"\n    },\n    {\n      \"proposition_text\": \"The first report under regulation 16 must be published before 2nd April 2021.\",\n      \"display_label\": \"Deadline for first review report\",\n      \"subject\": \"Secretary of State\",\n      \"rule\": \"must publish\",\n      \"object\": \"the first report\",\n      \"conditions\": [],\n      \"exceptions\": [],\n      \"temporal_condition\": \"before 2nd April 2021\",\n      \"provision_type\": \"core\",\n      \"source_locator\": \"regulation 16(2)\",\n      \"evidence_text\": \"The first report must be published before 2nd April 2021.\",\n      \"completeness_status\": \"complete\",\n      \"confidence\": \"high\",\n      \"reason\": \"Specific temporal deadline for first report publication.\"\n    },\n    {\n      \"proposition_text\": \"Subsequent reports under regulation 16 must be published at intervals not exceeding 5 years.\",\n      \"display_label\": \"Frequency of subsequent review reports\",\n      \"subject\": \"Secretary of State\",\n      ",
+        "raw_model_output_truncated": true,
+        "finish_reason": "stop",
+        "prompt_version": "v2",
+        "prompt_template_id": "extraction_v2:v2",
+        "prompt_hash": "00c418f1aede772d",
+        "parse_error_message": "Expecting ',' delimiter: line 66 column 99 (char 3321)",
+        "parse_error_line": 66,
+        "parse_error_column": 99
+      }
+    ]
+  }
+]

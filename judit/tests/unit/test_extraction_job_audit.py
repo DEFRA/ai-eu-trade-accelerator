@@ -6,6 +6,15 @@ import pytest
 from judit_pipeline.runner import _normalize_locator_for_match, build_bundle_from_case
 
 
+@pytest.fixture(autouse=True)
+def _noop_llm_preflight_in_unit_tests(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Unit tests use fakes or no LiteLLM proxy; preflight is covered in test_llm_extraction_config."""
+    monkeypatch.setattr(
+        "judit_pipeline.runner.preflight_llm_extraction",
+        lambda _client, _mode: None,
+    )
+
+
 class _FakeLlmClient:
     def __init__(self) -> None:
         class _Settings:
@@ -13,6 +22,7 @@ class _FakeLlmClient:
             local_extract_model = "local_extract"
             max_extract_input_tokens = 150_000
             extract_model_context_limit = 200_000
+            skip_llm_preflight = True
 
         self.settings = _Settings()
         self.calls = 0
@@ -117,6 +127,7 @@ def test_proposition_extraction_jobs_audit_and_selection(
         case_data=_case_data(),
         use_llm=True,
         extraction_mode="frontier",
+        extraction_fallback="fallback",
         divergence_reasoning="none",
         derived_cache_dir=str(tmp_path / "derived-cache-audit"),
     )

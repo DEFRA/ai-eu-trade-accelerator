@@ -809,6 +809,20 @@ def get_run_quality_summary(run_id: str | None = None) -> dict[str, Any]:
     )
 
 
+@app.get("/ops/effective-law-statements")
+def get_effective_law_statements(run_id: str | None = None) -> dict[str, Any]:
+    return _with_operations_error_handling(
+        lambda: _operations_store().read_effective_law_statements(run_id=run_id)
+    )
+
+
+@app.get("/ops/beatrice-law-candidates")
+def get_beatrice_law_candidates(run_id: str | None = None) -> dict[str, Any]:
+    return _with_operations_error_handling(
+        lambda: _operations_store().read_beatrice_law_candidates(run_id=run_id)
+    )
+
+
 @app.get("/ops/propositions/{proposition_key}/history")
 def inspect_proposition_history(
     proposition_key: str,
@@ -1127,6 +1141,8 @@ def ops_run_jobs_repair_extraction(payload: OpsRepairExtractionRequest) -> dict[
             extraction_fallback=payload.extraction_fallback,
             only="repairable",
             in_place=False,
+            retry_failed_extraction_cache=None,
+            ignore_failed_extraction_cache=False,
             retry_failed_llm=payload.retry_failed_llm,
             source_cache_dir=settings.source_cache_dir,
             derived_cache_dir=settings.derived_cache_dir,

@@ -1,0 +1,103 @@
+{
+  "topic": {
+    "name": "slurry manure agricultural effluent",
+    "description": "Ada Judit intake for category slurry_manure_agricultural_effluent.",
+    "subject_tags": [
+      "ada",
+      "judit-intake",
+      "slurry_manure_agricultural_effluent"
+    ]
+  },
+  "cluster": {
+    "name": "slurry_manure_agricultural_effluent",
+    "description": "Cluster scoped to Ada category slurry_manure_agricultural_effluent."
+  },
+  "sources": [
+    {
+      "id": "lex-120b4f9c395b3f94",
+      "authority": "legislation_gov_uk",
+      "authority_source_id": "uksi/2015/668",
+      "title": "The Nitrate Pollution Prevention Regulations 2015",
+      "jurisdiction": "UK",
+      "citation": "UKSI 2015/668",
+      "kind": "uksi",
+      "provenance": "ada.judit_intake",
+      "review_status": "accepted",
+      "metadata": {
+        "ada_source_bundle": {
+          "source_id": "lex-120b4f9c395b3f94",
+          "bundle_role": "principal",
+          "bundle_id": "0690aa25-bced-475e-a637-81c45a24b9d8",
+          "category_id": "slurry_manure_agricultural_effluent",
+          "relationship_to_category": "directly_regulates",
+          "review_status": "accepted",
+          "source_type": "uksi",
+          "canonical_uri": "http://www.legislation.gov.uk/id/uksi/2015/668",
+          "source_register_id": "ada-register-slurry_manure_agricultural_effluent",
+          "ai_triage": {
+            "relevance": "high",
+            "review_priority": "likely_accept",
+            "relationship_to_category": "directly_regulates",
+            "confidence_after_ai": "high",
+            "recommended_action": "accept_candidate",
+            "rationale": "The Nitrate Pollution Prevention Regulations 2015 - current principal instrument for England. Title and extraordinarily extensive matched terms (the full category description plus slurry, manure, farmyard manure, pig slurry, poultry manure, liquid manure, organic manure, muck spreading, manure spreading, slurry spreading) demonstrate this is a core regulatory instrument directly regulating slurry/manure storage, spreading, application rates, closed periods, buffer zones, and nitrate pollution prevention. This is the successor to the 2008 regulations and appears to be the current principal NVZ/nitrate action programme instrument for England.",
+            "supporting_signals": [
+              "Title explicitly references 'Nitrate Pollution Prevention Regulations'",
+              "Extraordinarily extensive matched terms covering entire category description and all core synonyms",
+              "UKSI 2015 suggests current principal instrument for England",
+              "No revocation marker - appears to be in force",
+              "Direct successor to 2008 revoked regulations",
+              "Covers slurry, manure types, spreading methods, and nitrate controls comprehensively"
+            ],
+            "false_positive_risks": [],
+            "evidence_limitations": [
+              "No explicit jurisdiction in title but UKSI context suggests England"
+            ],
+            "assessment_confidence": "high"
+          }
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "jurisdiction_a": "EU",
+    "jurisdiction_b": "UK"
+  },
+  "ada_intake_ref": {
+    "bundle_id": "0690aa25-bced-475e-a637-81c45a24b9d8",
+    "category_id": "slurry_manure_agricultural_effluent",
+    "intake_kind": "judit_intake",
+    "source_register_id": "ada-register-slurry_manure_agricultural_effluent",
+    "selection": {
+      "principal_only": true,
+      "include_amendments": false,
+      "include_revocations": false,
+      "max_sources": 1
+    }
+  },
+  "extraction": {
+    "mode": "frontier",
+    "fallback_policy": "fail_closed"
+  },
+  "judit_run": {
+    "use_llm": true,
+    "extraction_mode_requested": "frontier",
+    "extraction_mode_effective": "frontier",
+    "extraction_fallback": "fail_closed",
+    "extraction_execution_mode": null,
+    "divergence_reasoning": null,
+    "principal_only": true,
+    "include_amendments": false,
+    "include_revocations": false,
+    "max_sources": 1,
+    "proposition_count": 231,
+    "completed_at": "2026-06-04T12:23:33.132454Z",
+    "source_sections": {
+      "principal_only": true,
+      "include_amendments": false,
+      "include_revocations": false,
+      "max_sources": 1
+    },
+    "run_bundle_file": "run_bundle.json"
+  }
+}

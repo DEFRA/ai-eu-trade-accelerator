@@ -36,8 +36,8 @@ Generated outputs are committed alongside their sources. Run `just docs-refresh`
 
 ## Where to go next
 
-- Architecture: [Pipeline overview](architecture/pipeline-overview.md) - [System overview](architecture/system-overview.md)
+- Architecture: [Pipeline overview](architecture/pipeline-overview.md) - [Proposition classification](architecture/proposition-classification.md) - [System overview](architecture/system-overview.md)
 - Reference: [Artifacts](reference/artifacts.md) - [Ops API](reference/api-ops.md) - [CLI](reference/cli.md)
-- Operator guides: [Source registry](dev/source-registry.md) - [Extraction repair](dev/extraction-repair.md) - [Review governance](dev/review-governance.md) - [Equine staged runs](dev/equine-passport-staged-runs.md)
+- Operator guides: [Source registry](dev/source-registry.md) - [Extraction repair](dev/extraction-repair.md) - [Review governance](dev/review-governance.md) - [Review Workbench calibration](review-workbench-calibration.md) - [Equine staged runs](dev/equine-passport-staged-runs.md)
 - Visuals: [Diagrams](assets/diagrams/README.md) - [Infographics](assets/infographics/README.md) - [Decks](assets/decks/README.md) - [Generated assets inventory](assets/generated-assets.md)
 - Roadmap: [Canonical roadmap](canonical/roadmap.md) - [v1](roadmap/v1.md)

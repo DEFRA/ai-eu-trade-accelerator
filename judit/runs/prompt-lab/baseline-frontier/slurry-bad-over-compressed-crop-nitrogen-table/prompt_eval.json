@@ -1,0 +1,204 @@
+{
+  "case_id": "slurry-bad-over-compressed-crop-nitrogen-table",
+  "label": "BAD — crop nitrogen table (regulation 12, long label risk)",
+  "fixture_path": "",
+  "run_dir": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-bad-over-compressed-crop-nitrogen-table",
+  "passed": true,
+  "eval_status": "pass",
+  "generated_at": "2026-06-04T12:01:18.526978Z",
+  "actual_count": 8,
+  "expected_count": 1,
+  "matched_expected_count": 1,
+  "warnings": [
+    "7 extra actual propositions (allowed by minimum mode)"
+  ],
+  "summary": {
+    "pass": true,
+    "eval_status": "pass",
+    "evaluation_mode": "minimum",
+    "allow_extra_actual": true,
+    "matched_expected": "1/1",
+    "extra_actual_count": 7,
+    "suggested_focus": []
+  },
+  "checks": {
+    "load": {
+      "passed": true,
+      "source_file": "propositions.normalised.json",
+      "warnings": [
+        "7 extra actual propositions (allowed by minimum mode)"
+      ]
+    },
+    "evaluation_mode": {
+      "passed": true,
+      "mode": "minimum",
+      "strict_proposition_count": false,
+      "allow_extra_actual": true,
+      "max_extra_actual": null
+    },
+    "proposition_count": {
+      "passed": true,
+      "status": "ok",
+      "strict": false,
+      "mode": "minimum",
+      "detail": "actual=8, expected=1, mode=minimum"
+    },
+    "extra_actual": {
+      "passed": true,
+      "status": "extras_allowed",
+      "extra_count": 7,
+      "allow_extra_actual": true,
+      "mode": "minimum",
+      "detail": "7 extra actual propositions (allowed by minimum mode)"
+    },
+    "no_actual_propositions": {
+      "passed": true,
+      "reason": null
+    },
+    "expected_row_matches": {
+      "passed": true,
+      "matched": 1,
+      "expected": 1
+    },
+    "legal_effect_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "obligation"
+      ],
+      "actual": [
+        "cross_reference",
+        "definition",
+        "obligation",
+        "permission"
+      ]
+    },
+    "tier_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "substantive_rule"
+      ],
+      "actual": [
+        "definitional_rule",
+        "relationship_reference",
+        "substantive_rule"
+      ]
+    },
+    "boilerplate_classification": {
+      "passed": true,
+      "findings": []
+    },
+    "over_compression": {
+      "passed": true,
+      "findings": [],
+      "warn_only": true
+    },
+    "checkable_count": {
+      "passed": true,
+      "checkable_count": 1,
+      "unexpected_boilerplate_checkable": []
+    }
+  },
+  "expected_matches": [
+    {
+      "expected_index": 0,
+      "expected": {
+        "legal_effect_type": "obligation",
+        "proposition_tier": "substantive_rule",
+        "proposition_text": "The occupier must ensure that nitrogen spread on a listed crop does not exceed the permitted amount in the table for that crop in any twelve-month period.",
+        "legal_subject": "the occupier of a holding",
+        "action": "must ensure that the total amount of nitrogen spread does not exceed the table limit",
+        "affected_subjects": [
+          "the occupier of a holding"
+        ],
+        "conditions": [
+          "per crop or group in the table",
+          "adjusted per notes",
+          "multiplied by hectares sown"
+        ],
+        "exceptions": [],
+        "authority": null,
+        "required_documents": [],
+        "territorial_application": [
+          "England"
+        ],
+        "extent": [],
+        "evidence_quote": "must ensure that the total amount of nitrogen spread on a crop or group of crops specified in the table"
+      },
+      "matched_actual_index": 0,
+      "matched_actual_id": "prop-lex-120b4f9c395b3f94-001",
+      "legal_effect_ok": true,
+      "tier_ok": true,
+      "evidence_ok": true,
+      "subject_ok": true,
+      "action_ok": true,
+      "conditions_ok": true,
+      "matched": true,
+      "match_score": 1.05,
+      "match_kind": "exact",
+      "contained_evidence_ok": false,
+      "classification_mismatch": false,
+      "suggested_failure_reason": null
+    }
+  ],
+  "extra_actual": [
+    {
+      "actual_index": 1,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-002",
+      "legal_effect_type": "definition",
+      "proposition_tier": "definitional_rule",
+      "proposition_text": "The total amount of nitrogen means the total of the amount of nitrogen from manufactured nitrogen fertiliser and the amount of nitrogen available for crop uptake from organic manure in the growing season in which it is spread (calculated in",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 2,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-003",
+      "legal_effect_type": "cross_reference",
+      "proposition_tier": "relationship_reference",
+      "proposition_text": "Regulation 12 is subject to regulation 13 and applies irrespective of the figure given in the fertilisation plan.",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 3,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-004",
+      "legal_effect_type": "permission",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "An additional 80kg per hectare of nitrogen is permitted to all crops grown in fields if the current or previous crop has had straw or paper sludge applied to it.",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 4,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-005",
+      "legal_effect_type": "permission",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "An additional 20kg per hectare of nitrogen is permitted on fields with shallow soil (other than shallow soils over sandstone).",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 5,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-006",
+      "legal_effect_type": "permission",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "An additional 20kg per hectare of nitrogen is permitted for every tonne that the expected yield exceeds the standard yield specified in the third column.",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 6,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-007",
+      "legal_effect_type": "permission",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "An additional 40kg per hectare of nitrogen is permitted to milling wheat varieties.",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 7,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-008",
+      "legal_effect_type": "permission",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "An additional 40kg per hectare of nitrogen is permitted to grass that is cut at least three times a year.",
+      "is_compliance_relevant": false
+    }
+  ],
+  "missing_effects": []
+}

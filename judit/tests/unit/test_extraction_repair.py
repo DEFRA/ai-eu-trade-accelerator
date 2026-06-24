@@ -22,6 +22,7 @@ from judit_pipeline.extract import (
     attach_judit_extraction_meta,
     extract_propositions_from_source,
     parse_judit_extraction_meta,
+    resolve_extraction_meta_for_proposition,
 )
 from judit_pipeline.extraction_repair import (
     classify_repairable_failure_type,
@@ -178,7 +179,10 @@ def test_proposition_notes_meta_fallback_flag_parsed() -> None:
             "validation_errors": ["insufficient credits"],
         },
     )
-    meta = parse_judit_extraction_meta(str(row.get("notes") or ""))
+    meta = resolve_extraction_meta_for_proposition(
+        notes=str(row.get("notes") or ""),
+        extraction_debug_meta=row.get("extraction_debug_meta"),
+    )
     assert meta is not None
     assert meta.get("fallback_used") is True
 
@@ -354,6 +358,8 @@ def test_repair_only_calls_extract_for_repairable_source(
             extraction_fallback="mark_needs_review",
             only="repairable",
             in_place=False,
+            retry_failed_extraction_cache=None,
+            ignore_failed_extraction_cache=False,
             retry_failed_llm=True,
             source_cache_dir=str(tmp_path / "src-cache"),
             derived_cache_dir=str(tmp_path / "derived-cache"),
@@ -410,6 +416,8 @@ def test_repair_in_place_leaves_original_export_intact(tmp_path: Path) -> None:
             extraction_fallback="mark_needs_review",
             only="repairable",
             in_place=True,
+            retry_failed_extraction_cache=None,
+            ignore_failed_extraction_cache=False,
             retry_failed_llm=True,
             source_cache_dir=str(tmp_path / "s2"),
             derived_cache_dir=str(tmp_path / "d2"),

@@ -59,6 +59,20 @@ def classify_repairable_failure_type(message: str) -> str | None:
         return "model_availability"
     if "json parse" in blob or "jsondecode" in blob or "model call or json parse failed" in blob:
         return "json_parse_or_llm_failure"
+    if "schema validation" in blob or "validation failed" in blob:
+        return "schema_validation_error"
+    if "model returned no propositions" in blob or "returned no propositions" in blob:
+        return "empty_model_response"
+    if "provider returned no content" in blob:
+        return "transport_empty_response"
+    if "propositions=[]" in blob or "with propositions=[]" in blob:
+        return "parsed_empty_proposition_list"
+    if "non-json" in blob or "unparseable json" in blob:
+        return "non_json_response"
+    if "no extractable atoms" in blob:
+        return "schema_valid_but_empty"
+    if "validation removed all" in blob:
+        return "post_filter_removed_all"
     if (
         "model call failed" in blob
         or "llm call failure" in blob
@@ -185,15 +199,18 @@ def list_repairable_extraction_chunks(bundle: dict[str, Any]) -> list[Repairable
             )
         )
 
-    # LLM diagnostic rows
+    # LLM diagnostic rows (live failures and cached failed chunks)
     for row in llm_rows:
         blob = _trace_repair_blob(row)
-        if classify_repairable_failure_type(blob) is None:
-            if not (
-                row.get("skipped_llm")
-                and str(row.get("skip_reason") or "").lower() == "context_window_risk"
-            ):
-                continue
+        ftype = classify_repairable_failure_type(blob)
+        is_ctx_risk = (
+            row.get("skipped_llm")
+            and str(row.get("skip_reason") or "").lower() == "context_window_risk"
+        )
+        is_failed_chunk_cache = str(row.get("skip_reason") or "") == "failed_chunk_cached"
+        live_failed = bool(row.get("model_error")) or row.get("llm_call_succeeded") is False
+        if ftype is None and not is_ctx_risk and not is_failed_chunk_cache and not live_failed:
+            continue
         sid = str(row.get("source_record_id") or "").strip()
         if not sid:
             continue
@@ -206,7 +223,9 @@ def list_repairable_extraction_chunks(bundle: dict[str, Any]) -> list[Repairable
         est = row.get("estimated_input_tokens")
         est_i = int(est) if isinstance(est, int) and est > 0 else None
         loc = str(row.get("fragment_locator") or "").strip() or None
-        ftype = classify_repairable_failure_type(blob) or "context_window"
+        resolved_ftype = ftype or ("context_window" if is_ctx_risk else "failed_chunk_cached" if is_failed_chunk_cache else "empty_model_response" if live_failed else None)
+        if resolved_ftype is None:
+            continue
         upsert(
             RepairableExtractionChunk(
                 source_record_id=sid,
@@ -220,7 +239,50 @@ def list_repairable_extraction_chunks(bundle: dict[str, Any]) -> list[Repairable
                 estimated_input_tokens=est_i,
                 fallback_used=None,
                 failure_reason=blob or "extraction_llm_call_trace",
-                failure_type=ftype,
+                failure_type=resolved_ftype,
+            )
+        )
+
+    # Failed extraction jobs (local/frontier) with repairable or retry-worthy errors
+    for job in bundle.get("proposition_extraction_jobs") or []:
+        if not isinstance(job, dict) or not job.get("selected_for_extraction"):
+            continue
+        if int(job.get("proposition_count") or 0) > 0:
+            continue
+        err_parts: list[str] = []
+        for key in ("errors", "warnings", "parse_error_message"):
+            raw = job.get(key)
+            if isinstance(raw, list):
+                err_parts.extend(str(x) for x in raw if str(x).strip())
+            elif raw is not None and str(raw).strip():
+                err_parts.append(str(raw))
+        err_blob = " ".join(err_parts)
+        jtype = classify_repairable_failure_type(err_blob)
+        if jtype is None and not job.get("repairable"):
+            if not (job.get("llm_invoked") and int(job.get("proposition_count") or 0) == 0):
+                continue
+            jtype = "empty_model_response"
+        sid = str(job.get("source_record_id") or "").strip()
+        if not sid:
+            continue
+        frag_raw = job.get("source_fragment_id")
+        frag = str(frag_raw).strip() if frag_raw else None
+        est = job.get("estimated_input_tokens")
+        est_i = int(est) if isinstance(est, int) and est > 0 else None
+        upsert(
+            RepairableExtractionChunk(
+                source_record_id=sid,
+                source_snapshot_id=None,
+                source_fragment_id=frag,
+                fragment_locator=str(job.get("fragment_locator") or "").strip() or None,
+                extraction_llm_chunk_index=None,
+                extraction_llm_chunk_total=None,
+                extraction_mode=str(job.get("extraction_mode") or "") or None,
+                model_alias=str(job.get("model_alias") or "") or None,
+                estimated_input_tokens=est_i,
+                fallback_used=bool(job.get("fallback_used")),
+                failure_reason=err_blob or "extraction_job_failed",
+                failure_type=jtype,
             )
         )
 
@@ -342,63 +404,9 @@ def repair_job_keys_from_chunks(chunks: Iterable[RepairableExtractionChunk]) -> 
 
 def summarize_extraction_inspection(bundle: dict[str, Any]) -> dict[str, Any]:
     """Aggregate stats for CLI / API inspect output."""
-    traces: list[dict[str, Any]] = list(bundle.get("proposition_extraction_traces") or [])
-    repairable = list_repairable_extraction_chunks(bundle)
+    from .extraction_inspection import summarize_extraction_inspection as _summarize
 
-    frontier_llm_medium_high = sum(
-        1
-        for row in traces
-        if isinstance(row, dict)
-        and str(row.get("extraction_mode")) == "frontier"
-        and str(row.get("extraction_method")) == "llm"
-        and str(row.get("confidence") or "").lower() != "low"
-    )
-    frontier_fallback_traces = sum(
-        1
-        for row in traces
-        if isinstance(row, dict)
-        and str(row.get("extraction_mode")) == "frontier"
-        and (row.get("extraction_method") == "fallback" or row.get("fallback_used"))
-    )
-    low_conf = sum(
-        1 for row in traces if isinstance(row, dict) and str(row.get("confidence") or "").lower() == "low"
-    )
-
-    token_vals = [
-        int(c.estimated_input_tokens)
-        for c in repairable
-        if isinstance(c.estimated_input_tokens, int) and int(c.estimated_input_tokens) > 0
-    ]
-    est_retry = sum(token_vals)
-    estimated_retry_tokens: int | None = est_retry if token_vals else None
-
-    by_type: dict[str, int] = {}
-    for c in repairable:
-        k = str(c.failure_type or "unknown")
-        by_type[k] = by_type.get(k, 0) + 1
-
-    sources = {c.source_record_id for c in repairable}
-    frags = {f"{c.source_record_id}:{c.source_fragment_id or 'full'}" for c in repairable}
-    affected_props = sorted({pid for c in repairable for pid in c.affected_proposition_ids})
-    failure_reasons = sorted(by_type.keys())
-
-    return {
-        "total_proposition_traces": len(traces),
-        "successful_frontier_traces": frontier_llm_medium_high,
-        "fallback_traces": frontier_fallback_traces,
-        "low_confidence_traces": low_conf,
-        "repairable_chunks": len(repairable),
-        # When chunk-level estimates are unavailable, omit count (avoid conflating with zero cost).
-        "estimated_retry_token_count": est_retry if token_vals else None,
-        "estimated_retry_tokens": estimated_retry_tokens,
-        "affected_source_record_ids": sorted(sources),
-        "affected_source_fragments": sorted(frags),
-        "failure_reasons_by_type": by_type,
-        "failure_reasons": failure_reasons,
-        "affected_proposition_ids": affected_props,
-        "repairable_chunks_detail": [c.to_dict() for c in repairable],
-        "has_repairable_extraction_failures": bool(repairable),
-    }
+    return _summarize(bundle)
 
 
 def repairable_extraction_metrics_from_bundle(bundle: dict[str, Any]) -> dict[str, Any]:
@@ -505,7 +513,9 @@ def run_cli_repair_pipeline(
     extraction_fallback: str,
     only: Literal["repairable", "all"],
     in_place: bool,
-    retry_failed_llm: bool,
+    retry_failed_extraction_cache: bool | None,
+    ignore_failed_extraction_cache: bool,
+    retry_failed_llm: bool | None,
     source_cache_dir: str | None,
     derived_cache_dir: str | None,
     use_llm: bool,
@@ -534,6 +544,8 @@ def run_cli_repair_pipeline(
         extraction_fallback=extraction_fallback,
         only=only,
         in_place=in_place,
+        retry_failed_extraction_cache=retry_failed_extraction_cache,
+        ignore_failed_extraction_cache=ignore_failed_extraction_cache,
         retry_failed_llm=retry_failed_llm,
         source_cache_dir=source_cache_dir,
         derived_cache_dir=derived_cache_dir,

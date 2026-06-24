@@ -1,0 +1,245 @@
+{
+  "topic": {
+    "name": "slurry manure agricultural effluent",
+    "description": "Ada Judit intake for category slurry_manure_agricultural_effluent.",
+    "subject_tags": [
+      "ada",
+      "judit-intake",
+      "slurry_manure_agricultural_effluent"
+    ]
+  },
+  "cluster": {
+    "name": "slurry_manure_agricultural_effluent",
+    "description": "Cluster scoped to Ada category slurry_manure_agricultural_effluent."
+  },
+  "sources": [
+    {
+      "id": "lex-120b4f9c395b3f94",
+      "authority": "legislation_gov_uk",
+      "authority_source_id": "uksi/2015/668",
+      "title": "The Nitrate Pollution Prevention Regulations 2015",
+      "jurisdiction": "UK",
+      "citation": "UKSI 2015/668",
+      "kind": "uksi",
+      "provenance": "ada.judit_intake",
+      "review_status": "accepted",
+      "metadata": {
+        "ada_source_bundle": {
+          "source_id": "lex-120b4f9c395b3f94",
+          "bundle_role": "principal",
+          "bundle_id": "6dac82d0-6ab6-45d9-95f5-4a79e135c699",
+          "category_id": "slurry_manure_agricultural_effluent",
+          "relationship_to_category": "directly_regulates",
+          "review_status": "accepted",
+          "source_type": "uksi",
+          "canonical_uri": "http://www.legislation.gov.uk/id/uksi/2015/668",
+          "source_register_id": "ada-register-slurry_manure_agricultural_effluent",
+          "ai_triage": {
+            "relevance": "high",
+            "review_priority": "likely_accept",
+            "relationship_to_category": "directly_regulates",
+            "confidence_after_ai": "high",
+            "recommended_action": "accept_candidate",
+            "rationale": "The Nitrate Pollution Prevention Regulations 2015 - current principal instrument for England. Title and extraordinarily extensive matched terms (the full category description plus slurry, manure, farmyard manure, pig slurry, poultry manure, liquid manure, organic manure, muck spreading, manure spreading, slurry spreading) demonstrate this is a core regulatory instrument directly regulating slurry/manure storage, spreading, application rates, closed periods, buffer zones, and nitrate pollution prevention. This is the successor to the 2008 regulations and appears to be the current principal NVZ/nitrate action programme instrument for England.",
+            "supporting_signals": [
+              "Title explicitly references 'Nitrate Pollution Prevention Regulations'",
+              "Extraordinarily extensive matched terms covering entire category description and all core synonyms",
+              "UKSI 2015 suggests current principal instrument for England",
+              "No revocation marker - appears to be in force",
+              "Direct successor to 2008 revoked regulations",
+              "Covers slurry, manure types, spreading methods, and nitrate controls comprehensively"
+            ],
+            "false_positive_risks": [],
+            "evidence_limitations": [
+              "No explicit jurisdiction in title but UKSI context suggests England"
+            ],
+            "assessment_confidence": "high"
+          }
+        }
+      }
+    },
+    {
+      "id": "lex-805b03f284dcf364",
+      "authority": "legislation_gov_uk",
+      "authority_source_id": "wsi/2021/77",
+      "title": "The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021",
+      "jurisdiction": "UK",
+      "citation": "WSI 2021/77",
+      "kind": "unknown",
+      "provenance": "ada.judit_intake",
+      "review_status": "accepted",
+      "metadata": {
+        "ada_source_bundle": {
+          "source_id": "lex-805b03f284dcf364",
+          "bundle_role": "principal",
+          "bundle_id": "6dac82d0-6ab6-45d9-95f5-4a79e135c699",
+          "category_id": "slurry_manure_agricultural_effluent",
+          "relationship_to_category": "directly_regulates",
+          "review_status": "accepted",
+          "source_type": "unknown",
+          "canonical_uri": "http://www.legislation.gov.uk/id/wsi/2021/77",
+          "source_register_id": "ada-register-slurry_manure_agricultural_effluent",
+          "ai_triage": {
+            "relevance": "high",
+            "review_priority": "likely_accept",
+            "relationship_to_category": "directly_regulates",
+            "confidence_after_ai": "high",
+            "recommended_action": "accept_candidate",
+            "rationale": "The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021. Title directly references control of agricultural pollution in Wales. Matched terms are extremely comprehensive and include slurry, manure, livestock manure, farmyard manure, pig slurry, poultry manure, liquid manure, silage effluent, livestock waste, organic manure, slurry storage, slurry stores, slurry tanks, slurry lagoons, muck spreading, manure spreading, slurry spreading, closed periods, NVZ, and water pollution from agricultural sources. This is a principal regulation for Wales that directly regulates slurry, manure, and agricultural pollution. Falls squarely within the triage guidance 'likely_accept' criterion for UK/Wales instruments directly regulating agricultural pollution, slurry storage, manure spreading, and NVZs.",
+            "supporting_signals": [
+              "Title directly references control of agricultural pollution",
+              "Extremely comprehensive matched terms covering all core category concepts",
+              "Wales jurisdiction",
+              "Principal 2021 regulations"
+            ],
+            "false_positive_risks": [],
+            "evidence_limitations": [],
+            "assessment_confidence": "high"
+          }
+        }
+      }
+    },
+    {
+      "id": "lex-e71fbbe3342ac0be",
+      "authority": "legislation_gov_uk",
+      "authority_source_id": "uksi/2010/639",
+      "title": "The Water Resources (Control of Pollution) (Silage, Slurry and Agricultural Fuel Oil) (England) Regulations 2010",
+      "jurisdiction": "UK",
+      "citation": "UKSI 2010/639",
+      "kind": "uksi",
+      "provenance": "ada.judit_intake",
+      "review_status": "accepted",
+      "metadata": {
+        "ada_source_bundle": {
+          "source_id": "lex-e71fbbe3342ac0be",
+          "bundle_role": "principal",
+          "bundle_id": "6dac82d0-6ab6-45d9-95f5-4a79e135c699",
+          "category_id": "slurry_manure_agricultural_effluent",
+          "relationship_to_category": "directly_regulates",
+          "review_status": "accepted",
+          "source_type": "uksi",
+          "canonical_uri": "http://www.legislation.gov.uk/id/uksi/2010/639",
+          "source_register_id": "ada-register-slurry_manure_agricultural_effluent",
+          "ai_triage": {
+            "relevance": "high",
+            "review_priority": "likely_accept",
+            "relationship_to_category": "directly_regulates",
+            "confidence_after_ai": "high",
+            "recommended_action": "accept_candidate",
+            "rationale": "This is the Water Resources (Control of Pollution) (Silage, Slurry and Agricultural Fuel Oil) (England) Regulations 2010, a core SSAFO instrument that directly regulates slurry storage, silage effluent, and agricultural fuel oil in England. The title, matched terms, and deterministic confidence all strongly align with the category. This is precisely the type of instrument identified in triage guidance as 'likely_accept'.",
+            "supporting_signals": [
+              "Title explicitly references silage, slurry, and agricultural fuel oil",
+              "Directly regulates water pollution control from agricultural sources",
+              "High deterministic confidence",
+              "England-specific SSAFO regulations"
+            ],
+            "false_positive_risks": [],
+            "evidence_limitations": [],
+            "assessment_confidence": "high"
+          }
+        }
+      }
+    },
+    {
+      "id": "lex-2459c955ee13be52",
+      "authority": "legislation_gov_uk",
+      "authority_source_id": "uksi/2018/151",
+      "title": "The Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018",
+      "jurisdiction": "UK",
+      "citation": "UKSI 2018/151",
+      "kind": "uksi",
+      "provenance": "ada.judit_intake",
+      "review_status": "accepted",
+      "metadata": {
+        "ada_source_bundle": {
+          "source_id": "lex-2459c955ee13be52",
+          "bundle_role": "principal",
+          "bundle_id": "6dac82d0-6ab6-45d9-95f5-4a79e135c699",
+          "category_id": "slurry_manure_agricultural_effluent",
+          "relationship_to_category": "directly_regulates",
+          "review_status": "accepted",
+          "source_type": "uksi",
+          "canonical_uri": "http://www.legislation.gov.uk/id/uksi/2018/151",
+          "source_register_id": "ada-register-slurry_manure_agricultural_effluent",
+          "ai_triage": {
+            "relevance": "high",
+            "review_priority": "likely_accept",
+            "relationship_to_category": "directly_regulates",
+            "confidence_after_ai": "high",
+            "recommended_action": "accept_candidate",
+            "rationale": "The Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018. Title directly references agricultural diffuse pollution, a core category term. Matched terms are comprehensive and include organic manure, organic fertiliser, agricultural runoff, and agricultural diffuse pollution. This is a principal regulation for England that directly regulates agricultural diffuse pollution including from slurry, manure, and agricultural effluent. Falls squarely within the triage guidance 'likely_accept' criterion for UK/England instruments directly regulating agricultural diffuse pollution.",
+            "supporting_signals": [
+              "Title directly references agricultural diffuse pollution",
+              "Comprehensive matched terms including organic manure, agricultural runoff, agricultural diffuse pollution",
+              "England jurisdiction",
+              "Principal 2018 regulations"
+            ],
+            "false_positive_risks": [],
+            "evidence_limitations": [],
+            "assessment_confidence": "high"
+          }
+        }
+      }
+    },
+    {
+      "id": "lex-96613ffe71589e1e",
+      "authority": "legislation_gov_uk",
+      "authority_source_id": "ssi/2003/531",
+      "title": "The Control of Pollution (Silage, Slurry and Agricultural Fuel Oil) (Scotland) Regulations 2003",
+      "jurisdiction": "UK",
+      "citation": "SSI 2003/531",
+      "kind": "unknown",
+      "provenance": "ada.judit_intake",
+      "review_status": "accepted",
+      "metadata": {
+        "ada_source_bundle": {
+          "source_id": "lex-96613ffe71589e1e",
+          "bundle_role": "principal",
+          "bundle_id": "6dac82d0-6ab6-45d9-95f5-4a79e135c699",
+          "category_id": "slurry_manure_agricultural_effluent",
+          "relationship_to_category": "directly_regulates",
+          "review_status": "accepted",
+          "source_type": "unknown",
+          "canonical_uri": "http://www.legislation.gov.uk/id/ssi/2003/531",
+          "source_register_id": "ada-register-slurry_manure_agricultural_effluent",
+          "ai_triage": {
+            "relevance": "high",
+            "review_priority": "likely_accept",
+            "relationship_to_category": "directly_regulates",
+            "confidence_after_ai": "high",
+            "recommended_action": "accept_candidate",
+            "rationale": "The Control of Pollution (Silage, Slurry and Agricultural Fuel Oil) (Scotland) Regulations 2003 is a principal SSAFO instrument for Scotland. The title explicitly references silage, slurry and agricultural fuel oil, and the extensive matched terms include farm effluent, slurry storage infrastructure (stores, tanks, lagoons), and SSAFO. This directly regulates slurry and agricultural effluent management and is likely a successor to the 2001 Scotland SSAFO Regulations.",
+            "supporting_signals": [
+              "Title explicitly references 'Silage, Slurry and Agricultural Fuel Oil'",
+              "Extensive matched terms covering slurry storage, tanks, lagoons, farm effluent",
+              "Scotland jurisdiction matches category scope",
+              "SSAFO is listed in category synonyms",
+              "Likely successor to 2001 SSAFO Scotland Regulations"
+            ],
+            "false_positive_risks": [],
+            "evidence_limitations": [
+              "Only title and matched terms available; no content inspection"
+            ],
+            "assessment_confidence": null
+          }
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "jurisdiction_a": "EU",
+    "jurisdiction_b": "UK"
+  },
+  "ada_intake_ref": {
+    "bundle_id": "6dac82d0-6ab6-45d9-95f5-4a79e135c699",
+    "category_id": "slurry_manure_agricultural_effluent",
+    "intake_kind": "judit_intake",
+    "source_register_id": "ada-register-slurry_manure_agricultural_effluent",
+    "selection": {
+      "principal_only": true,
+      "include_amendments": false,
+      "include_revocations": false,
+      "max_sources": null
+    }
+  }
+}

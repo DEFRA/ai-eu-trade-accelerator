@@ -20,6 +20,7 @@ Stages build on each other: intake and proposition work establish comparable uni
 | ----- | ------------ | ----------- |
 | Source intake | Fetch, parse, and register sources | No model |
 | Proposition extraction | Extract candidate legal propositions | Local model (controlled, cached) |
+| Proposition normalisation | Classify tier/effect, territory, labels, relationship keys (deterministic) | No model |
 | Proposition inventory and pairing | Group and align propositions | No model |
 | Proposition completeness | Assess whether propositions are self-contained | Deterministic rules |
 | Source categorisation | Assign roles and relationships between sources | Deterministic rules |
@@ -29,7 +30,8 @@ Stages build on each other: intake and proposition work establish comparable uni
 ## Design principles
 
 - **Deterministic-first pipeline** with **controlled model usage**, per [ADR-0019: Model usage strategy](../decisions/adr-0019-model-usage-strategy.md)
-- Source intake, proposition inventory and pairing, proposition completeness, source categorisation, and narrative output are deterministic or template-based
+- Source intake, **proposition normalisation**, proposition inventory and pairing, proposition completeness, source categorisation, and narrative output are deterministic or template-based
+- See [Proposition classification](proposition-classification.md) for tiers, legal effects, territory fields, and relationship keys
 - Proposition extraction may use a local model; divergence reasoning may optionally use a frontier model; both are traceable
 - All outputs are source-backed
 - Human review is first-class

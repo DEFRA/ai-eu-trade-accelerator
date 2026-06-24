@@ -10,8 +10,32 @@ from typing import Any, Literal
 
 from judit_domain import Cluster, Proposition, ReviewStatus, SourceRecord, Topic
 from judit_llm import JuditLLMClient
+from judit_llm.client import TextCompletionResult
 
 from .derived_cache import DerivedArtifactCache, build_proposition_extraction_chunk_cache_key
+from .extraction_empty_failure import (
+    EXTRACTION_SCHEMA_VIOLATION,
+    POST_FILTER_REMOVED_ALL,
+    build_empty_extraction_retry_prompt_suffix,
+    build_llm_failure_trace_fields,
+    classify_empty_extraction_outcome,
+    is_empty_extraction_retry_eligible,
+    parse_model_propositions_container,
+)
+from .extraction_output_mode import (
+    ExtractionOutputMode,
+    ExtractionOutputModeRejectedError,
+    ExtractionOutputModeUnsupportedError,
+    V2_EXTRACTION_JSON_SCHEMA,
+    build_litellm_json_schema_wrapper,
+    build_response_format_for_mode,
+    ensure_output_mode_supported,
+    fallback_output_mode,
+    is_output_mode_rejection_error,
+    output_mode_trace_fields,
+    resolve_extraction_output_mode,
+    validate_parsed_extraction_schema,
+)
 from .intake import content_hash, slugify
 
 
@@ -33,9 +57,26 @@ STRUCTURED_LIST_RULE_ID = "extract.heuristic.structured_list_items"
 
 EXTRACTION_SCHEMA_VERSION_V2 = "v2"
 EXTRACTION_PROMPT_VERSION_V2 = "v2"
-JUDIT_EXTRACTION_META_PREFIX = "judit_extraction_meta:"
+from judit_domain.proposition_notes import (
+    JUDIT_EXTRACTION_META_PREFIX,
+    JUDIT_EXTRACTION_REUSE_PREFIX,
+    assign_proposition_extraction_debug,
+    assign_proposition_extraction_reuse,
+    attach_judit_extraction_meta,
+    attach_judit_extraction_reuse,
+    parse_judit_extraction_meta,
+    parse_judit_extraction_reuse,
+    resolve_extraction_meta_for_proposition,
+    slim_proposition_extraction_meta,
+    split_proposition_notes,
+)
 
-JUDIT_EXTRACTION_REUSE_PREFIX = "judit_extraction_reuse:"
+_TRACE_ONLY_PIPELINE_META_KEYS = frozenset(
+    {
+        "extraction_llm_call_traces",
+        "pipeline_evidence_issue_records",
+    }
+)
 
 _PROVISION_TYPES_V2 = frozenset(
     {"core", "definition", "exception", "transitional", "cross_reference"}
@@ -45,6 +86,60 @@ _COMPLETENESS_V2 = frozenset({"complete", "context_dependent", "fragmentary"})
 _MIN_PRIMARY_SIBLINGS_FOR_LIST_MODE = 2
 
 _V2_SYSTEM_PROMPT = "You extract legal propositions as strict JSON only."
+
+# Unique marker embedded in local-mode prompts (tests assert presence).
+LOCAL_FEWSHOT_PROMPT_MARKER = "[LOCAL_FEWSHOT_V1]"
+
+
+def local_few_shot_prompt_used(extraction_mode: Literal["frontier", "local"] | str) -> bool:
+    """True when v2 extraction prompts include the local few-shot worked example."""
+    return extraction_mode == "local"
+
+
+def _local_few_shot_block() -> str:
+    """Compact worked example for local LLMs (citation / commencement / application)."""
+    valid_json = (
+        '{"propositions":[{"proposition_text":"These Regulations may be cited as the Example '
+        'Regulations 2026.","display_label":"Citation","subject":"These Regulations","rule":"may be '
+        'cited as","object":"the Example Regulations 2026","conditions":[],"exceptions":[],'
+        '"temporal_condition":"","provision_type":"core","source_locator":"regulation:1",'
+        '"evidence_text":"These Regulations may be cited as the Example Regulations 2026.",'
+        '"completeness_status":"complete","confidence":"high","reason":"The fragment states the '
+        'short title/citation of the instrument."},{"proposition_text":"These Regulations come '
+        'into force on 1 May 2026.","display_label":"Commencement","subject":"These Regulations",'
+        '"rule":"come into force on","object":"1 May 2026","conditions":[],"exceptions":[],'
+        '"temporal_condition":"1 May 2026","provision_type":"transitional","source_locator":'
+        '"regulation:1","evidence_text":"These Regulations come into force on 1 May 2026.",'
+        '"completeness_status":"complete","confidence":"high","reason":"The fragment states the '
+        'commencement date."},{"proposition_text":"These Regulations apply in relation to England '
+        'only.","display_label":"Territorial application","subject":"These Regulations","rule":'
+        '"apply in relation to","object":"England only","conditions":[],"exceptions":[],'
+        '"temporal_condition":"","provision_type":"core","source_locator":"regulation:1",'
+        '"evidence_text":"These Regulations apply in relation to England only.",'
+        '"completeness_status":"complete","confidence":"high","reason":"The fragment states the '
+        'territorial application of the instrument."}]}'
+    )
+    return f"""
+{LOCAL_FEWSHOT_PROMPT_MARKER}
+Worked example (local mode — match this JSON shape on the real fragment below):
+
+INVALID outputs (never return these): {{}} | {{"propositions":null}} | prose outside JSON
+
+Guidance:
+- For ordinary statutory provisions, returning no propositions is unusual.
+- If the text states citation, commencement, territorial extent, application, duty, prohibition, power, definition, exception, or cross-reference, extract at least one proposition.
+- Only return "propositions":[] when the fragment is genuinely non-substantive; include top-level "empty_rationale".
+
+SOURCE TEXT:
+1 These Regulations may be cited as the Example Regulations 2026.
+2 These Regulations come into force on 1 May 2026.
+3 These Regulations apply in relation to England only.
+
+VALID JSON:
+{valid_json}
+
+Now extract from the following real fragment.
+""".strip()
 
 
 def estimate_llm_input_tokens(*, prompt: str, system_prompt: str | None = None) -> int:
@@ -1278,56 +1373,6 @@ def _heuristic_extraction(
     return merged[:limit]
 
 
-def parse_judit_extraction_meta(notes: str | None) -> dict[str, Any] | None:
-    if not notes:
-        return None
-    first = notes.split("\n", 1)[0].strip()
-    if not first.startswith(JUDIT_EXTRACTION_META_PREFIX):
-        return None
-    raw = first[len(JUDIT_EXTRACTION_META_PREFIX) :].strip()
-    try:
-        data = json.loads(raw)
-    except json.JSONDecodeError:
-        return None
-    if not isinstance(data, dict) or not data:
-        return None
-    return data
-
-
-def attach_judit_extraction_meta(base_notes: str, meta: dict[str, Any]) -> str:
-    line = f"{JUDIT_EXTRACTION_META_PREFIX}{json.dumps(meta, sort_keys=True)}"
-    rest = (base_notes or "").strip()
-    if rest:
-        return f"{line}\n{rest}"
-    return line
-
-
-def attach_judit_extraction_reuse(base_notes: str, reuse: dict[str, Any]) -> str:
-    """Append structured extraction reuse audit (keeps first-line extraction meta intact)."""
-    line = f"{JUDIT_EXTRACTION_REUSE_PREFIX}{json.dumps(reuse, sort_keys=True)}"
-    rest = (base_notes or "").strip()
-    if rest:
-        return f"{rest}\n{line}"
-    return line
-
-
-def parse_judit_extraction_reuse(notes: str | None) -> dict[str, Any] | None:
-    if not notes:
-        return None
-    for raw_ln in notes.split("\n"):
-        ln = raw_ln.strip()
-        if not ln.startswith(JUDIT_EXTRACTION_REUSE_PREFIX):
-            continue
-        raw_json = ln[len(JUDIT_EXTRACTION_REUSE_PREFIX) :].strip()
-        try:
-            data = json.loads(raw_json)
-        except json.JSONDecodeError:
-            return None
-        if isinstance(data, dict) and data:
-            return data
-    return None
-
-
 _UNICODE_QUOTES: dict[int, str] = {
     0x201C: '"',
     0x201D: '"',
@@ -1402,6 +1447,97 @@ def _normalize_evidence_for_match(s: str, *, strip_line_list_markers: bool) -> s
     return t.lower()
 
 
+_TABLE_DASH_RE = re.compile(r"[\u2013\u2014—–\-]+")
+_NUMERIC_TOKEN_RE = re.compile(r"^\d+(?:\.\d+)?$")
+_NUMERIC_FINDALL_RE = re.compile(r"\d+(?:\.\d+)?")
+
+
+def _insert_letter_digit_boundaries(s: str) -> str:
+    out = re.sub(r"([a-zA-Z])(\d)", r"\1 \2", s)
+    return re.sub(r"(\d)([a-zA-Z])", r"\1 \2", out)
+
+
+def _normalize_table_match_text(s: str) -> str:
+    t = _strip_soft_hyphens(s)
+    t = _fold_unicode_quotes(t)
+    t = _TABLE_DASH_RE.sub(" ", t)
+    t = t.replace("(", " ").replace(")", " ")
+    t = re.sub(r"[^\w.\s]+", " ", t.lower())
+    t = _insert_letter_digit_boundaries(t)
+    return " ".join(t.split())
+
+
+def _table_match_tokens(s: str) -> list[str]:
+    return [tok for tok in _normalize_table_match_text(s).split() if tok]
+
+
+def _is_numeric_table_token(token: str) -> bool:
+    return bool(_NUMERIC_TOKEN_RE.match(token))
+
+
+def _tokens_subsequence(needle: list[str], haystack: list[str]) -> bool:
+    if not needle:
+        return False
+    hi = 0
+    for tok in needle:
+        while hi < len(haystack) and haystack[hi] != tok:
+            hi += 1
+        if hi >= len(haystack):
+            return False
+        hi += 1
+    return True
+
+
+def _split_table_row_evidence_tokens(tokens: list[str]) -> tuple[list[str], list[str]]:
+    numeric_indices = [idx for idx, tok in enumerate(tokens) if _is_numeric_table_token(tok)]
+    if len(numeric_indices) < 2:
+        return tokens, []
+    column_indices = numeric_indices[-3:] if len(numeric_indices) >= 3 else numeric_indices[-2:]
+    split_at = column_indices[0]
+    return tokens[:split_at], tokens[split_at:]
+
+
+def _table_numeric_columns_match(column_tokens: list[str], source_text: str) -> bool:
+    columns = [tok for tok in column_tokens if _is_numeric_table_token(tok)]
+    if len(columns) < 2:
+        return False
+    src_tokens = _table_match_tokens(source_text)
+    src_numeric = [tok for tok in src_tokens if _is_numeric_table_token(tok)]
+    if _tokens_subsequence(columns, src_numeric):
+        return True
+    concat = "".join(re.sub(r"\.", "", tok) for tok in columns)
+    digit_hay = re.sub(r"[^\d]", "", source_text)
+    return bool(concat and concat in digit_hay)
+
+
+def evidence_locates_table_numeric_token_match(
+    evidence: str, source_text: str
+) -> tuple[bool, str, dict[str, Any]]:
+    """Match flattened schedule/table rows via label token subsequence plus numeric columns."""
+    diagnostics: dict[str, Any] = {"attempted": ["table_numeric_token_match"]}
+    cand_raw = evidence.strip()
+    if not cand_raw:
+        return False, "empty_candidate", diagnostics
+    tokens = _table_match_tokens(cand_raw)
+    label_tokens, column_tokens = _split_table_row_evidence_tokens(tokens)
+    column_nums = [tok for tok in column_tokens if _is_numeric_table_token(tok)]
+    if len(column_nums) < 2 or len(label_tokens) < 2:
+        diagnostics["failure"] = "not_table_like_evidence"
+        return False, "table_numeric_token_match", diagnostics
+    src_tokens = _table_match_tokens(source_text)
+    if not _tokens_subsequence(label_tokens, src_tokens):
+        diagnostics["failure"] = "table_label_tokens_not_in_source"
+        diagnostics["label_token_count"] = len(label_tokens)
+        return False, "table_numeric_token_match", diagnostics
+    if not _table_numeric_columns_match(column_tokens, source_text):
+        diagnostics["failure"] = "table_numeric_columns_not_in_source"
+        diagnostics["column_tokens"] = column_nums
+        return False, "table_numeric_token_match", diagnostics
+    diagnostics["success"] = "table_numeric_token_match"
+    diagnostics["column_tokens"] = column_nums
+    return True, "table_numeric_token_match", diagnostics
+
+
 def evidence_locates_verbatim_after_normalisation(
     evidence: str, source_text: str
 ) -> tuple[bool, str, dict[str, Any]]:
@@ -1428,6 +1564,15 @@ def evidence_locates_verbatim_after_normalisation(
             diagnostics["success"] = label
             return True, label, diagnostics
         diagnostics.setdefault("needle_tail", ev_n[-36:])
+    table_ok, table_strategy, table_diag = evidence_locates_table_numeric_token_match(
+        cand_raw, hay_raw
+    )
+    diagnostics["attempted"].extend(table_diag.get("attempted") or [])
+    if table_ok:
+        diagnostics["success"] = table_strategy
+        diagnostics["table_match"] = table_diag
+        return True, table_strategy, diagnostics
+    diagnostics["table_match"] = table_diag
     diagnostics["failure"] = "no_normalized_substring_match_paraphrase_or_unrecoverable_markup"
     return False, variants[-1][1], diagnostics
 
@@ -1518,6 +1663,12 @@ def _validate_v2_items(
                 )
                 continue
             item["_validated_evidence_match_strategy"] = strategy
+            if strategy == "table_numeric_token_match":
+                item.setdefault("_trace_warnings", []).append(
+                    "evidence_matched_via_table_numeric_token_strategy"
+                )
+                if str(item.get("completeness_status") or "").strip() == "complete":
+                    item["completeness_status"] = "context_dependent"
         nk = (_normalize_proposition_comparison(ptxt), loc_raw.lower())
         if nk in seen_keys:
             msg = f"row {idx}: duplicate proposition_text for same locator"
@@ -1637,6 +1788,7 @@ Focus scopes (case-config priority labels — interpret substantively, not keywo
         scoped_prior = """
 No focus scopes:
 - Within the cap below, prefer the most legally salient obligations for the Topic and Cluster; stay within the cap rather than enumerating every peripheral line.
+- Returning propositions=[] is unusual for substantive regulatory text that was selected for extraction. Use propositions=[] only when the Source chunk contains no legally distinct obligation, definition, exception, or transitional rule you can support with schema fields — and set reason on any retained row explaining omissions.
 """
 
     frontier_rules = ""
@@ -1660,6 +1812,9 @@ Local extraction rules:
 {list_rules.strip()}
 {scoped_prior.strip()}
 - source_locator SHOULD identify where the obligation sits when identifiable from the Source.
+- Returning propositions=[] is unusual for ordinary statutory provisions. If the text states citation, commencement, territorial extent, application, duty, prohibition, power, definition, exception, or cross-reference, extract at least one proposition.
+- Only return an empty propositions array when the fragment is genuinely non-substantive; add top-level "empty_rationale" (string) explaining why.
+- Invalid outputs: {{}}, {{"propositions":null}}, and any prose outside JSON. Valid output MUST have top-level "propositions" as an array.
 """
 
     rules_line = ""
@@ -1681,11 +1836,15 @@ Semantics:
     if fragment_locator_hint and str(fragment_locator_hint).strip():
         locator_note = f"\nFragment locator (traceability): {str(fragment_locator_hint).strip()}\n"
 
+    few_shot_block = ""
+    if extraction_mode == "local":
+        few_shot_block = _local_few_shot_block() + "\n\n"
+
     return f"""
 Extract legal propositions from the source text. Return JSON only with this exact shape:
 {schema}
 
-{rules_line}{schema_terms}Topic: {topic.name}
+{rules_line}{few_shot_block}{schema_terms}Topic: {topic.name}
 Cluster: {cluster.name}
 Jurisdiction: {source.jurisdiction}
 Citation: {source.citation}
@@ -1696,11 +1855,8 @@ Source text:
 
 
 def _parse_model_propositions_container(parsed: Any) -> list[dict[str, Any]]:
-    if isinstance(parsed, dict) and isinstance(parsed.get("propositions"), list):
-        return [x for x in parsed["propositions"] if isinstance(x, dict)]
-    if isinstance(parsed, list):
-        return [x for x in parsed if isinstance(x, dict)]
-    return []
+    rows, _raw = parse_model_propositions_container(parsed)
+    return rows
 
 
 _SENSITIVE_OUTPUT_PATTERNS: tuple[re.Pattern[str], ...] = (
@@ -1724,6 +1880,106 @@ def _safe_model_output_excerpt(raw: str, *, cap: int = 4000) -> tuple[str, bool]
     return redacted[:cap], truncated
 
 
+def _resolve_try_extract_output_mode(
+    *,
+    extraction_mode: Literal["frontier", "local"],
+    model_alias: str,
+    llm_client: JuditLLMClient,
+    extraction_output_mode: ExtractionOutputMode | str | None,
+    json_output_mode: Literal["json_object", "json_schema"] | None,
+    allow_output_mode_fallback: bool,
+) -> ExtractionOutputMode:
+    if extraction_output_mode is not None:
+        requested: ExtractionOutputMode | str | None = extraction_output_mode
+    elif json_output_mode is not None:
+        requested = json_output_mode
+    else:
+        requested = None
+    resolved = resolve_extraction_output_mode(
+        extraction_mode=extraction_mode,
+        model_alias=model_alias,
+        requested=requested,
+        settings=getattr(llm_client, "settings", None),
+    )
+    return ensure_output_mode_supported(
+        extraction_output_mode=resolved,
+        extraction_mode=extraction_mode,
+        model_alias=model_alias,
+        settings=getattr(llm_client, "settings", None),
+        allow_fallback=allow_output_mode_fallback,
+    )
+
+
+def _client_uses_complete_text_result(llm_client: object) -> bool:
+    if isinstance(llm_client, JuditLLMClient):
+        return True
+    if type(llm_client).__name__ == "MagicMock":
+        ctr = llm_client.complete_text_result
+        return ctr.side_effect is not None or getattr(ctr, "_mock_wraps", None) is not None
+    return callable(getattr(llm_client, "complete_text_result", None))
+
+
+def _complete_extraction_llm(
+    *,
+    llm_client: JuditLLMClient,
+    prompt: str,
+    model_alias: str,
+    output_mode: ExtractionOutputMode,
+    allow_output_mode_fallback: bool,
+) -> TextCompletionResult:
+    """Call the LLM with the resolved extraction output mode; optionally fall back on rejection."""
+    modes_to_try: list[ExtractionOutputMode] = [output_mode]
+    fb = fallback_output_mode(output_mode)
+    if allow_output_mode_fallback and fb is not None and fb not in modes_to_try:
+        modes_to_try.append(fb)
+
+    last_error: Exception | None = None
+    for attempt_mode in modes_to_try:
+        enforce_json = attempt_mode == "json_object"
+        schema_wrapper = (
+            build_litellm_json_schema_wrapper() if attempt_mode == "json_schema" else None
+        )
+        try:
+            if _client_uses_complete_text_result(llm_client):
+                return llm_client.complete_text_result(
+                    prompt=prompt,
+                    model=model_alias,
+                    system_prompt=_V2_SYSTEM_PROMPT,
+                    temperature=0.0,
+                    enforce_json_object=enforce_json,
+                    json_schema=schema_wrapper,
+                )
+            legacy_raw = llm_client.complete_text(
+                prompt=prompt,
+                model=model_alias,
+                system_prompt=_V2_SYSTEM_PROMPT,
+                temperature=0.0,
+                enforce_json_object=enforce_json,
+            )
+            return TextCompletionResult(
+                content=legacy_raw or "",
+                finish_reason=None,
+                response_format=build_response_format_for_mode(attempt_mode),
+            )
+        except Exception as exc:
+            last_error = exc
+            if (
+                attempt_mode == "json_schema"
+                and allow_output_mode_fallback
+                and fb == "json_object"
+                and is_output_mode_rejection_error(str(exc))
+            ):
+                continue
+            if attempt_mode == "json_schema" and not allow_output_mode_fallback:
+                if is_output_mode_rejection_error(str(exc)):
+                    raise ExtractionOutputModeRejectedError(
+                        f"provider rejected json_schema structured output for model {model_alias!r}: {exc}"
+                    ) from exc
+            raise
+    assert last_error is not None
+    raise last_error
+
+
 def _try_extract_model_v2_json(
     *,
     source: SourceRecord,
@@ -1736,6 +1992,13 @@ def _try_extract_model_v2_json(
     focus_scopes: Sequence[str] | None = None,
     prompt_source_text: str | None = None,
     fragment_locator_hint: str | None = None,
+    prompt_version: str = EXTRACTION_PROMPT_VERSION_V2,
+    estimated_input_tokens: int | None = None,
+    prompt_retry_suffix: str | None = None,
+    extraction_output_mode: ExtractionOutputMode | str | None = None,
+    json_output_mode: Literal["json_object", "json_schema"] | None = None,
+    allow_output_mode_fallback: bool = False,
+    workbench_raw_outputs: list[str] | None = None,
 ) -> tuple[list[dict[str, Any]] | None, str | None, dict[str, Any] | None]:
     body = source.authoritative_text if prompt_source_text is None else prompt_source_text
     prompt = _v2_model_prompt(
@@ -1748,38 +2011,342 @@ def _try_extract_model_v2_json(
         prompt_source_text=body,
         fragment_locator_hint=fragment_locator_hint,
     )
+    if prompt_retry_suffix:
+        prompt = f"{prompt}\n\n{prompt_retry_suffix}"
     raw: str | None = None
+    finish_reason: str | None = None
+    effective_mode = _resolve_try_extract_output_mode(
+        extraction_mode=extraction_mode,
+        model_alias=model_alias,
+        llm_client=llm_client,
+        extraction_output_mode=extraction_output_mode,
+        json_output_mode=json_output_mode,
+        allow_output_mode_fallback=allow_output_mode_fallback,
+    )
+    mode_trace = output_mode_trace_fields(extraction_output_mode=effective_mode)
     try:
-        raw = llm_client.complete_text(
+        completion = _complete_extraction_llm(
+            llm_client=llm_client,
             prompt=prompt,
-            model=model_alias,
-            system_prompt=_V2_SYSTEM_PROMPT,
-            temperature=0.0,
-            enforce_json_object=True,
+            model_alias=model_alias,
+            output_mode=effective_mode,
+            allow_output_mode_fallback=allow_output_mode_fallback,
         )
-        parsed = _parse_json(raw)
+        if completion.response_format is not None:
+            mode_trace["response_format"] = completion.response_format
+            mode_trace["response_format_type"] = str(
+                completion.response_format.get("type") or mode_trace["response_format_type"]
+            )
+        if allow_output_mode_fallback and effective_mode == "json_schema":
+            sent_type = str((completion.response_format or {}).get("type") or "")
+            if sent_type == "json_object":
+                effective_mode = "json_object"
+                mode_trace["extraction_output_mode"] = "json_object"
+                mode_trace["response_format_type"] = "json_object"
+                mode_trace.pop("schema_hash", None)
+        raw = completion.content
+        finish_reason = completion.finish_reason
+        if workbench_raw_outputs is not None and isinstance(raw, str):
+            workbench_raw_outputs.append(raw)
+        if not (raw or "").strip():
+            failure_type, failure_reason = classify_empty_extraction_outcome(raw=raw)
+            diag = build_llm_failure_trace_fields(
+                raw=raw,
+                failure_type=failure_type,
+                failure_reason=failure_reason,
+                model_alias=model_alias,
+                prompt_version=prompt_version,
+                prompt_text=prompt,
+                fragment_locator=fragment_locator_hint,
+                estimated_input_tokens=estimated_input_tokens,
+                finish_reason=finish_reason,
+                candidate_row_count=0,
+                accepted_row_count=0,
+            )
+            diag.update(mode_trace)
+            return None, failure_reason, diag
+        parse_result = _parse_json_result(raw)
+        parsed = parse_result.parsed
+        schema_ok, schema_err = validate_parsed_extraction_schema(
+            parsed, extraction_output_mode=effective_mode
+        )
+        if not schema_ok:
+            failure_reason = schema_err or "extraction response violates JSON schema"
+            diag = build_llm_failure_trace_fields(
+                raw=raw,
+                failure_type=EXTRACTION_SCHEMA_VIOLATION,
+                failure_reason=failure_reason,
+                model_alias=model_alias,
+                prompt_version=prompt_version,
+                prompt_text=prompt,
+                fragment_locator=fragment_locator_hint,
+                estimated_input_tokens=estimated_input_tokens,
+                finish_reason=finish_reason,
+                candidate_row_count=0,
+                accepted_row_count=0,
+            )
+            diag.update(mode_trace)
+            return None, failure_reason, diag
+    except (ExtractionOutputModeUnsupportedError, ExtractionOutputModeRejectedError) as exc:
+        diag = build_llm_failure_trace_fields(
+            raw=None,
+            failure_type=EXTRACTION_SCHEMA_VIOLATION,
+            failure_reason=str(exc),
+            model_alias=model_alias,
+            prompt_version=prompt_version,
+            prompt_text=prompt,
+            fragment_locator=fragment_locator_hint,
+            estimated_input_tokens=estimated_input_tokens,
+            finish_reason=None,
+            candidate_row_count=0,
+            accepted_row_count=0,
+        )
+        diag.update(mode_trace)
+        return None, str(exc), diag
     except json.JSONDecodeError as exc:
-        excerpt = ""
-        truncated = False
-        if isinstance(raw, str) and raw:
-            excerpt, truncated = _safe_model_output_excerpt(raw, cap=4000)
-        return (
-            None,
-            f"model call or JSON parse failed: {exc}",
-            {
-                "raw_model_output_excerpt": excerpt,
-                "raw_model_output_truncated": truncated,
-                "parse_error_message": str(exc),
-                "parse_error_line": int(exc.lineno) if isinstance(exc.lineno, int) else None,
-                "parse_error_column": int(exc.colno) if isinstance(exc.colno, int) else None,
-            },
+        failure_type, failure_reason = classify_empty_extraction_outcome(
+            raw=raw, json_parse_failed=True
         )
+        diag = build_llm_failure_trace_fields(
+            raw=raw,
+            failure_type=failure_type,
+            failure_reason=failure_reason,
+            model_alias=model_alias,
+            prompt_version=prompt_version,
+            prompt_text=prompt,
+            fragment_locator=fragment_locator_hint,
+            estimated_input_tokens=estimated_input_tokens,
+            finish_reason=finish_reason,
+            parse_error_message=str(exc),
+            parse_error_line=int(exc.lineno) if isinstance(exc.lineno, int) else None,
+            parse_error_column=int(exc.colno) if isinstance(exc.colno, int) else None,
+        )
+        diag.update(mode_trace)
+        return None, f"model call or JSON parse failed: {exc}", diag
     except Exception as exc:
-        return None, f"model call or JSON parse failed: {exc}", None
+        diag = build_llm_failure_trace_fields(
+            raw=raw,
+            failure_type=EXTRACTION_SCHEMA_VIOLATION,
+            failure_reason=f"model call or JSON parse failed: {exc}",
+            model_alias=model_alias,
+            prompt_version=prompt_version,
+            prompt_text=prompt,
+            fragment_locator=fragment_locator_hint,
+            estimated_input_tokens=estimated_input_tokens,
+            finish_reason=finish_reason,
+            candidate_row_count=0,
+            accepted_row_count=0,
+        )
+        diag.update(mode_trace)
+        return None, f"model call or JSON parse failed: {exc}", diag
     rows = _parse_model_propositions_container(parsed)
     if not rows:
-        return None, "model returned no propositions", None
-    return rows, None, None
+        failure_type, failure_reason = classify_empty_extraction_outcome(
+            raw=raw, parsed=parsed, raw_rows=rows
+        )
+        diag = build_llm_failure_trace_fields(
+            raw=raw,
+            failure_type=failure_type,
+            failure_reason=failure_reason,
+            model_alias=model_alias,
+            prompt_version=prompt_version,
+            prompt_text=prompt,
+            fragment_locator=fragment_locator_hint,
+            estimated_input_tokens=estimated_input_tokens,
+            finish_reason=finish_reason,
+            candidate_row_count=0,
+            accepted_row_count=0,
+        )
+        diag.update(mode_trace)
+        return None, failure_reason, diag
+    success_diag: dict[str, Any] = {
+        "finish_reason": finish_reason,
+        **mode_trace,
+    }
+    if parse_result is not None and getattr(parse_result, "json_repair_applied", False):
+        success_diag["json_repair_applied"] = True
+        success_diag["json_repair_method"] = parse_result.json_repair_method
+    if completion.model:
+        success_diag["response_model"] = completion.model
+    if isinstance(raw, str) and raw:
+        excerpt, truncated = _safe_model_output_excerpt(raw, cap=2048)
+        success_diag["raw_model_output_excerpt"] = excerpt
+        success_diag["raw_model_output_truncated"] = truncated
+    return rows, None, success_diag
+
+
+@dataclass
+class _ChunkLlmAttemptOutcome:
+    validated_rows: list[dict[str, Any]]
+    model_err: str | None
+    failure_type: str | None
+    raw_model_output: str | None
+    repairable_halt: bool = False
+    issue_records: list[dict[str, Any]] = field(default_factory=list)
+    valerrs: list[str] = field(default_factory=list)
+
+
+def _run_chunk_llm_extraction_attempt(
+    *,
+    trace: dict[str, Any],
+    attempt_index: int,
+    previous_failure_type: str | None,
+    source: SourceRecord,
+    topic: Topic,
+    cluster: Cluster,
+    llm_client: JuditLLMClient,
+    model_alias: str,
+    llm_prompt_mode: Literal["frontier", "local"],
+    limit: int,
+    focus_scopes: Sequence[str] | None,
+    chunk_text: str,
+    fragment_locator: str,
+    prompt_version: str,
+    chunk_est: int,
+    chunk_label: str,
+    prompt_retry_suffix: str | None = None,
+    extraction_output_mode: ExtractionOutputMode | str | None = None,
+    json_output_mode: Literal["json_object", "json_schema"] | None = None,
+    allow_output_mode_fallback: bool = False,
+    model_error_policy: Literal[
+        "continue_with_fallback", "stop_repairable", "continue_repairable"
+    ],
+    on_before_llm_call: Callable[[dict[str, Any]], None] | None,
+    workbench_raw_outputs: list[str] | None = None,
+) -> _ChunkLlmAttemptOutcome:
+    trace["attempt_index"] = attempt_index
+    if previous_failure_type:
+        trace["previous_failure_type"] = previous_failure_type
+    trace["llm_call_attempted"] = True
+    if on_before_llm_call is not None:
+        on_before_llm_call(dict(trace))
+
+    try_result = _try_extract_model_v2_json(
+        source=source,
+        topic=topic,
+        cluster=cluster,
+        llm_client=llm_client,
+        model_alias=model_alias,
+        extraction_mode=llm_prompt_mode,
+        max_propositions=limit,
+        focus_scopes=focus_scopes,
+        prompt_source_text=chunk_text,
+        fragment_locator_hint=fragment_locator,
+        prompt_version=prompt_version,
+        estimated_input_tokens=chunk_est,
+        prompt_retry_suffix=prompt_retry_suffix,
+        extraction_output_mode=extraction_output_mode,
+        json_output_mode=json_output_mode,
+        allow_output_mode_fallback=allow_output_mode_fallback,
+        workbench_raw_outputs=workbench_raw_outputs,
+    )
+    parse_diag: dict[str, Any] | None = None
+    if isinstance(try_result, tuple) and len(try_result) == 3:
+        raw_rows, model_err, parse_diag = try_result
+    else:
+        raw_rows, model_err = try_result  # backward-compatible for monkeypatched tests
+
+    if parse_diag:
+        for key in (
+            "extraction_output_mode",
+            "response_format_type",
+            "schema_hash",
+            "response_format",
+            "json_output_mode",
+        ):
+            if key in parse_diag:
+                trace[key] = parse_diag[key]
+    if "extraction_output_mode" not in trace:
+        trace["extraction_output_mode"] = extraction_output_mode or json_output_mode or "json_object"
+    trace["llm_invoked"] = True
+    raw_model_output: str | None = None
+    if workbench_raw_outputs:
+        raw_model_output = workbench_raw_outputs[-1]
+    elif isinstance(parse_diag, dict):
+        excerpt = parse_diag.get("raw_model_output_excerpt")
+        if isinstance(excerpt, str) and excerpt.strip():
+            raw_model_output = excerpt
+
+    if model_err:
+        valerrs = [f"{chunk_label}: {model_err}"]
+        trace["llm_call_succeeded"] = False
+        failure_type: str | None = None
+        if parse_diag:
+            trace.update(parse_diag)
+            failure_type = str(parse_diag.get("failure_type") or "") or None
+        else:
+            trace["model_error"] = model_err
+        raw_model_output = str(trace.get("raw_model_output_excerpt") or "") or None
+        repairable_halt = (
+            model_error_policy == "stop_repairable" and _looks_like_infra_llm_failure(model_err)
+        )
+        return _ChunkLlmAttemptOutcome(
+            validated_rows=[],
+            model_err=model_err,
+            failure_type=failure_type,
+            raw_model_output=raw_model_output,
+            repairable_halt=repairable_halt,
+            valerrs=valerrs,
+        )
+
+    assert raw_rows is not None
+    if parse_diag:
+        trace.update(
+            {k: v for k, v in parse_diag.items() if k not in trace or trace[k] is None}
+        )
+    v_rows, verrs, row_issues = _validate_v2_items(raw_rows, chunk_text, limit=limit)
+    valerrs = [f"{chunk_label}: {x}" for x in verrs]
+    if raw_rows and not v_rows:
+        pf_type = POST_FILTER_REMOVED_ALL
+        pf_reason = f"model produced {len(raw_rows)} candidate row(s) but validation removed all"
+        valerrs.append(f"{chunk_label}: {pf_reason}")
+        trace.update(
+            build_llm_failure_trace_fields(
+                raw=raw_model_output,
+                failure_type=pf_type,
+                failure_reason=pf_reason,
+                model_alias=str(model_alias or ""),
+                prompt_version=prompt_version,
+                prompt_text=_v2_model_prompt(
+                    source,
+                    topic,
+                    cluster,
+                    extraction_mode=llm_prompt_mode,
+                    max_propositions=limit,
+                    focus_scopes=focus_scopes,
+                    prompt_source_text=chunk_text,
+                    fragment_locator_hint=fragment_locator,
+                ),
+                fragment_locator=fragment_locator,
+                estimated_input_tokens=chunk_est,
+                finish_reason=(
+                    str(parse_diag.get("finish_reason"))
+                    if isinstance(parse_diag, dict) and parse_diag.get("finish_reason")
+                    else None
+                ),
+                candidate_row_count=len(raw_rows),
+                accepted_row_count=0,
+            )
+        )
+        trace["llm_call_succeeded"] = False
+        return _ChunkLlmAttemptOutcome(
+            validated_rows=[],
+            model_err=pf_reason,
+            failure_type=pf_type,
+            raw_model_output=raw_model_output,
+            issue_records=row_issues,
+            valerrs=valerrs,
+        )
+
+    trace["llm_call_succeeded"] = bool(v_rows)
+    return _ChunkLlmAttemptOutcome(
+        validated_rows=v_rows,
+        model_err=None,
+        failure_type=None,
+        raw_model_output=raw_model_output,
+        issue_records=row_issues,
+        valerrs=valerrs,
+    )
 
 
 def _stamp_props_meta(
@@ -1796,6 +2363,9 @@ def _stamp_props_meta(
     pipeline_signals: dict[str, Any] | None = None,
 ) -> None:
     pipe = dict(pipeline_signals or {})
+    trace_only = {
+        k: pipe.pop(k) for k in list(pipe.keys()) if k in _TRACE_ONLY_PIPELINE_META_KEYS
+    }
     for i, p in enumerate(props):
         ex = dict(extra_per_prop[i]) if extra_per_prop and i < len(extra_per_prop) else {}
         meta = {
@@ -1809,7 +2379,8 @@ def _stamp_props_meta(
             **pipe,
             **ex,
         }
-        p.notes = attach_judit_extraction_meta(p.notes, meta)
+        assign_proposition_extraction_debug(p, meta)
+    del trace_only  # chunk-level traces live on ExtractSourceResult.extraction_llm_call_traces
 
 
 def _build_propositions_from_v2_rows(
@@ -1844,7 +2415,10 @@ def _build_propositions_from_v2_rows(
             else _extract_article_reference(ptxt)
         )
         label = str(item.get("display_label") or "").strip()
-        notes_tail = str(item.get("reason") or "").strip()
+        reason_tail = str(item.get("reason") or "").strip()
+        extraction_dbg: dict[str, Any] = {}
+        if label:
+            extraction_dbg["display_label"] = label
         prop = Proposition(
             id=f"prop-{_proposition_id_stem(source)}-{index:03d}",
             topic_id=topic.id,
@@ -1857,14 +2431,16 @@ def _build_propositions_from_v2_rows(
             article_reference=art,
             proposition_text=ptxt,
             label=label,
-            short_name=label[:200] if label else "",
+            short_name="",
             legal_subject=subject,
             action=rule,
             conditions=conditions,
             authority=_guess_authority(ptxt),
             required_documents=_guess_required_documents(ptxt),
             affected_subjects=affected,
-            notes=notes_tail,
+            notes="",
+            review_notes=reason_tail or None,
+            extraction_debug_meta=extraction_dbg or None,
         )
         out.append(prop)
     return out
@@ -1887,10 +2463,20 @@ def extract_propositions_from_source(
     ] = "continue_with_fallback",
     derived_chunk_cache: DerivedArtifactCache | None = None,
     retry_failed_llm: bool = False,
+    retry_empty_extraction: bool = True,
+    retry_empty_extraction_transport: bool = False,
     chunk_cache_pipeline_version: str = "0.1.0",
     chunk_cache_strategy_version: str = "v1",
+    extraction_output_mode: ExtractionOutputMode | str | None = None,
+    json_output_mode: Literal["json_object", "json_schema"] | None = None,
+    allow_output_mode_fallback: bool = False,
+    workbench_capture: dict[str, Any] | None = None,
 ) -> ExtractSourceResult:
     scope_signals: dict[str, Any] = {}
+    workbench_raw_outputs: list[str] | None = None
+    if workbench_capture is not None:
+        workbench_raw_outputs = []
+        workbench_capture["raw_model_outputs"] = workbench_raw_outputs
     if focus_scopes:
         cleaned_fs = [str(s).strip() for s in focus_scopes if str(s).strip()]
         if cleaned_fs:
@@ -1931,26 +2517,69 @@ def extract_propositions_from_source(
             **base_kwargs,
         )
 
-    if llm_client is None or not source.authoritative_text.strip():
-        err = "LLM extraction requested but client missing or empty source text"
+    settings = llm_client.settings if llm_client is not None else None
+    model_alias_early = (
+        settings.frontier_extract_model
+        if extraction_mode == "frontier" and settings is not None
+        else (settings.local_extract_model if settings is not None else None)
+    )
+    configured_ctx_limit = (
+        int(getattr(settings, "extract_model_context_limit", 200_000)) if settings is not None else None
+    )
+
+    def _early_skip_trace(skip_reason: str) -> dict[str, Any]:
+        fid = None
+        if isinstance(source.metadata, dict):
+            raw_f = source.metadata.get("extraction_fragment_id")
+            if raw_f is not None:
+                fid = str(raw_f)
+        return {
+            "source_record_id": source.id,
+            "source_title": source.title,
+            "source_fragment_id": fid,
+            "fragment_locator": source.authoritative_locator,
+            "model_alias": model_alias_early,
+            "configured_context_limit": configured_ctx_limit,
+            "extraction_mode": extraction_mode,
+            "skipped_llm": True,
+            "skip_reason": skip_reason,
+            "llm_call_attempted": False,
+            "llm_invoked": False,
+            "llm_call_succeeded": False,
+            "extraction_llm_chunk_index": 0,
+            "extraction_llm_chunk_total": 0,
+            "extraction_chunk_split_strategy": "none",
+        }
+
+    preflight_err: str | None = None
+    preflight_skip: str | None = None
+    if llm_client is None:
+        preflight_err = "LLM extraction requested but LiteLLM client is not configured"
+        preflight_skip = "llm_client_missing"
+    elif not source.authoritative_text.strip():
+        preflight_err = "LLM extraction requested but source text is empty"
+        preflight_skip = "empty_source_text"
+
+    if preflight_err is not None and preflight_skip is not None:
+        early_traces = [_early_skip_trace(preflight_skip)]
         if extraction_fallback == "fail_closed":
             return ExtractSourceResult(
                 propositions=[],
-                model_alias=None,
+                model_alias=model_alias_early,
                 fallback_used=False,
-                validation_errors=[err],
+                validation_errors=[preflight_err],
                 schema_version=EXTRACTION_SCHEMA_VERSION_V2,
                 failed_closed=True,
-                failure_reason=err,
+                failure_reason=preflight_err,
                 validation_issue_records=[],
-                extraction_llm_call_traces=[],
+                extraction_llm_call_traces=early_traces,
                 **base_kwargs,
             )
         if extraction_fallback == "mark_needs_review":
             props = _heuristic_extraction(source=source, topic=topic, cluster=cluster, limit=limit)
             for p in props:
                 p.review_status = ReviewStatus.NEEDS_REVIEW
-            val_err = [err]
+            val_err = [preflight_err]
             _stamp_props_meta(
                 props,
                 model_alias=None,
@@ -1967,7 +2596,7 @@ def extract_propositions_from_source(
                 validation_errors=val_err,
                 schema_version="none",
                 validation_issue_records=[],
-                extraction_llm_call_traces=[],
+                extraction_llm_call_traces=early_traces,
                 **base_kwargs,
             )
         props = _heuristic_extraction(source=source, topic=topic, cluster=cluster, limit=limit)
@@ -1975,7 +2604,7 @@ def extract_propositions_from_source(
             props,
             model_alias=None,
             fallback_used=True,
-            validation_errors=[err],
+            validation_errors=[preflight_err],
             schema_version="none",
             pipeline_signals=_merge_signals(None),
             **base_kwargs,
@@ -1984,13 +2613,14 @@ def extract_propositions_from_source(
             propositions=props,
             model_alias=None,
             fallback_used=True,
-            validation_errors=[err],
+            validation_errors=[preflight_err],
             schema_version="none",
             validation_issue_records=[],
-            extraction_llm_call_traces=[],
+            extraction_llm_call_traces=early_traces,
             **base_kwargs,
         )
 
+    assert llm_client is not None
     settings = llm_client.settings
     max_input_tokens = int(getattr(settings, "max_extract_input_tokens", 150_000))
     configured_ctx_limit = int(getattr(settings, "extract_model_context_limit", 200_000))
@@ -2144,7 +2774,8 @@ def extract_propositions_from_source(
                 continue
 
             chunk_text, chunk_est = fitted
-            trace_pre = _trace_row(
+            chunk_label = f"chunk {ci}/{n_chunks}"
+            trace_base = dict(
                 estimated_input_tokens=chunk_est,
                 skipped_llm=False,
                 extraction_llm_chunk_index=ci,
@@ -2153,7 +2784,6 @@ def extract_propositions_from_source(
                 extraction_chunk_split_strategy=planned.split_strategy,
                 llm_invoked=False,
             )
-            extraction_llm_call_traces.append(trace_pre)
 
             chunk_fp = content_hash(chunk_text)[:48]
             cache_key_str: str | None = None
@@ -2180,73 +2810,136 @@ def extract_propositions_from_source(
                     if cst == "llm_success":
                         vr = cached_hit.payload.get("validated_rows")
                         if isinstance(vr, list) and vr:
+                            trace_pre = _trace_row(**trace_base, attempt_index=0)
                             trace_pre["llm_cache_hit"] = True
                             trace_pre["llm_invoked"] = False
+                            trace_pre["llm_call_attempted"] = False
+                            trace_pre["llm_call_succeeded"] = True
+                            extraction_llm_call_traces.append(trace_pre)
                             aggregated_validated.extend(
                                 [dict(r) for r in vr if isinstance(r, dict)]
                             )
                             continue
                     if cst == "failure" and not retry_failed_llm:
+                        trace_pre = _trace_row(**trace_base, attempt_index=0)
                         trace_pre["llm_cache_hit"] = "failed_chunk_cached"
                         trace_pre["llm_invoked"] = False
+                        trace_pre["llm_call_attempted"] = False
+                        trace_pre["llm_call_succeeded"] = False
+                        trace_pre["skipped_llm"] = True
+                        trace_pre["skip_reason"] = "failed_chunk_cached"
+                        extraction_llm_call_traces.append(trace_pre)
+                        valerrs.append(f"{chunk_label}: skipped failed chunk cache entry")
                         continue
 
-            if on_before_llm_call is not None:
-                on_before_llm_call(dict(trace_pre))
-
-            try_result = _try_extract_model_v2_json(
+            trace_first = _trace_row(**trace_base)
+            extraction_llm_call_traces.append(trace_first)
+            first_outcome = _run_chunk_llm_extraction_attempt(
+                trace=trace_first,
+                attempt_index=0,
+                previous_failure_type=None,
                 source=source,
                 topic=topic,
                 cluster=cluster,
                 llm_client=llm_client,
-                model_alias=model_alias,
-                extraction_mode=llm_prompt_mode,
-                max_propositions=limit,
+                model_alias=str(model_alias),
+                llm_prompt_mode=llm_prompt_mode,
+                limit=limit,
                 focus_scopes=focus_scopes,
-                prompt_source_text=chunk_text,
-                fragment_locator_hint=planned.locator,
+                chunk_text=chunk_text,
+                fragment_locator=planned.locator,
+                prompt_version=prompt_version,
+                chunk_est=chunk_est,
+                chunk_label=chunk_label,
+                extraction_output_mode=extraction_output_mode,
+                json_output_mode=json_output_mode,
+                allow_output_mode_fallback=allow_output_mode_fallback,
+                model_error_policy=model_error_policy,
+                on_before_llm_call=on_before_llm_call,
+                workbench_raw_outputs=workbench_raw_outputs,
             )
-            parse_diag: dict[str, Any] | None = None
-            if isinstance(try_result, tuple) and len(try_result) == 3:
-                raw_rows, model_err, parse_diag = try_result
-            else:
-                raw_rows, model_err = try_result  # backward-compatible for monkeypatched tests
-            trace_pre["llm_invoked"] = True
-            if model_err:
-                valerrs.append(f"chunk {ci}/{n_chunks}: {model_err}")
-                trace_pre["model_error"] = model_err
-                if parse_diag:
-                    trace_pre.update(parse_diag)
+            valerrs.extend(first_outcome.valerrs)
+            issue_records.extend(first_outcome.issue_records)
+
+            final_outcome = first_outcome
+            if (
+                retry_empty_extraction
+                and not first_outcome.validated_rows
+                and is_empty_extraction_retry_eligible(
+                    first_outcome.failure_type,
+                    extraction_mode=extraction_mode,
+                    retry_transport_empty=retry_empty_extraction_transport,
+                )
+            ):
+                retry_suffix = build_empty_extraction_retry_prompt_suffix(
+                    first_outcome.raw_model_output or trace_first.get("raw_model_output_excerpt")
+                )
+                trace_retry = _trace_row(**trace_base)
+                extraction_llm_call_traces.append(trace_retry)
+                retry_outcome = _run_chunk_llm_extraction_attempt(
+                    trace=trace_retry,
+                    attempt_index=1,
+                    previous_failure_type=first_outcome.failure_type,
+                    source=source,
+                    topic=topic,
+                    cluster=cluster,
+                    llm_client=llm_client,
+                    model_alias=str(model_alias),
+                    llm_prompt_mode=llm_prompt_mode,
+                    limit=limit,
+                    focus_scopes=focus_scopes,
+                    chunk_text=chunk_text,
+                    fragment_locator=planned.locator,
+                    prompt_version=prompt_version,
+                    chunk_est=chunk_est,
+                    chunk_label=chunk_label,
+                    prompt_retry_suffix=retry_suffix,
+                    extraction_output_mode=extraction_output_mode,
+                    json_output_mode=json_output_mode,
+                    allow_output_mode_fallback=allow_output_mode_fallback,
+                    model_error_policy=model_error_policy,
+                    on_before_llm_call=on_before_llm_call,
+                    workbench_raw_outputs=workbench_raw_outputs,
+                )
+                valerrs.extend(retry_outcome.valerrs)
+                issue_records.extend(retry_outcome.issue_records)
+                final_outcome = retry_outcome
+
+            if final_outcome.repairable_halt:
+                repairable_halt = True
+                repairable_halt_reason = final_outcome.model_err
+                break
+
+            if final_outcome.validated_rows:
+                aggregated_validated.extend(final_outcome.validated_rows)
                 if cache_key_str and derived_chunk_cache is not None and model_alias:
                     derived_chunk_cache.put(
                         stage_name="proposition_extraction_chunk",
                         cache_key=cache_key_str,
                         payload={
-                            "chunk_status": "failure",
-                            "error": model_err,
+                            "chunk_status": "llm_success",
+                            "validated_rows": final_outcome.validated_rows,
                         },
                     )
-                if model_error_policy == "stop_repairable" and _looks_like_infra_llm_failure(model_err):
-                    repairable_halt = True
-                    repairable_halt_reason = model_err
-                    break
-                continue
-            assert raw_rows is not None
-            v_rows, verrs, row_issues = _validate_v2_items(raw_rows, chunk_text, limit=limit)
-            valerrs.extend([f"chunk {ci}/{n_chunks}: {x}" for x in verrs])
-            issue_records.extend(row_issues)
-            aggregated_validated.extend(v_rows)
-            if cache_key_str and derived_chunk_cache is not None and model_alias and v_rows:
+            elif cache_key_str and derived_chunk_cache is not None and model_alias:
                 derived_chunk_cache.put(
                     stage_name="proposition_extraction_chunk",
                     cache_key=cache_key_str,
                     payload={
-                        "chunk_status": "llm_success",
-                        "validated_rows": v_rows,
+                        "chunk_status": "failure",
+                        "error": final_outcome.model_err or "extraction failed",
                     },
                 )
+                if model_error_policy == "stop_repairable" and final_outcome.model_err:
+                    if _looks_like_infra_llm_failure(final_outcome.model_err):
+                        repairable_halt = True
+                        repairable_halt_reason = final_outcome.model_err
+                        break
+                continue
 
     merged_validated = _merge_dedupe_validated_v2_rows(aggregated_validated, limit=limit)
+    if workbench_capture is not None:
+        workbench_capture["validated_rows"] = list(merged_validated)
 
     blocked_reason = preflight_blocked
     if blocked_reason:
@@ -2395,6 +3088,9 @@ def extract_propositions_from_source(
         tw: list[str] = []
         if not ev_raw:
             tw.append("evidence_quote_empty_explained_in_reason")
+        for w in r.get("_trace_warnings") or []:
+            if isinstance(w, str) and w.strip():
+                tw.append(w.strip())
         ex: dict[str, Any] = {
             "provision_type": r.get("provision_type"),
             "completeness_status": r.get("completeness_status"),
@@ -2557,10 +3253,11 @@ def _extract_reference_from_locator(locator: str | None) -> str | None:
     return f"{match.group(1)} {match.group(2)}"
 
 
+def _parse_json_result(raw: str):
+    from .extraction_json_repair import parse_extraction_json
+
+    return parse_extraction_json(raw)
+
+
 def _parse_json(raw: str) -> dict[str, Any]:
-    text = raw.strip()
-    if text.startswith("```"):
-        lines = text.splitlines()
-        if len(lines) >= 3:
-            text = "\n".join(lines[1:-1]).strip()
-    return json.loads(text)
+    return _parse_json_result(raw).parsed

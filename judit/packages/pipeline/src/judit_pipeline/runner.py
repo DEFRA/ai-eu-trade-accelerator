@@ -31,6 +31,13 @@ from judit_domain import (
     SourceRecord,
     SourceSnapshot,
     SourceTargetLink,
+    assign_proposition_extraction_reuse,
+    classification_patch_for_proposition,
+    full_trace_extraction_meta,
+    notes_begin_with_extraction_meta,
+    slim_proposition_extraction_meta,
+    resolve_extraction_meta_for_proposition,
+    split_proposition_notes,
 )
 from judit_llm import JuditLLMClient
 
@@ -47,15 +54,40 @@ from .extract import (
     EXTRACTION_SCHEMA_VERSION_V2,
     STRUCTURED_LIST_RULE_ID,
     _is_placeholder_locator,
-    attach_judit_extraction_reuse,
     extract_propositions_from_source,
     parse_judit_extraction_meta,
     parse_structured_extraction_notes,
+)
+from .extraction_llm_metrics import (
+    build_extraction_llm_skip_trace,
+    merge_extraction_observability_metrics,
+    validate_llm_extraction_job_plan,
+)
+from .extraction_output_mode import resolve_extraction_output_mode
+from .extraction_progress import (
+    build_extraction_run_plan,
+    merge_timing_metrics_into_observability,
+    persist_extraction_timing_profile,
+)
+from .extraction_provider_failure import (
+    ProviderFailureAbortPolicy,
+    ProviderFailureAbortTracker,
+    attach_extraction_abort_to_bundle,
+    job_had_provider_failure,
+    resolve_provider_failure_abort_policy,
 )
 from .extraction_repair import classify_repairable_failure_type
 from .file_input import load_case_file
 from .fragment_types import fragment_type_from_locator
 from .intake import content_hash, create_cluster, create_topic, slugify
+from .llm_extraction_config import (
+    preflight_llm_extraction,
+    resolve_extraction_mode_requested,
+)
+from .proposition_classification_pass import apply_post_extraction_classification_pass
+from .proposition_jurisdiction_pass import apply_post_extraction_jurisdiction_pass
+from .proposition_labelling_pass import apply_post_extraction_labelling_pass
+from .proposition_normalisation import PROPOSITION_NORMALISATION_METADATA
 from .proposition_completeness import build_proposition_completeness_assessments
 from .proposition_dataset import (
     build_registry_comparison_config,
@@ -98,14 +130,6 @@ def _canonicalize_legacy_review_status(status: ReviewStatus) -> ReviewStatus:
     return status
 
 
-def _build_cross_reference_key(proposition: Proposition) -> str:
-    return (
-        f"{slugify(proposition.jurisdiction)}:"
-        f"{slugify(proposition.legal_subject)}:"
-        f"{slugify((proposition.action or proposition.proposition_text)[:60])}"
-    )
-
-
 def _proposition_sequence_hint(proposition_id: str) -> str:
     match = re.search(r"(\d+)$", proposition_id)
     return match.group(1) if match else "000"
@@ -114,29 +138,36 @@ def _proposition_sequence_hint(proposition_id: str) -> str:
 _LABEL_SEPARATOR = "\u2014"
 
 
-def _opaque_machine_proposition_id(proposition: Proposition, seq_token: str) -> str:
-    anchor = (
+def _proposition_identity_anchor(proposition: Proposition) -> str:
+    """Stable identity anchor for opaque ids and keys (fragment-first)."""
+    frag_id = str(proposition.source_fragment_id or "").strip()
+    if frag_id:
+        return frag_id
+    locator = (
         str(proposition.fragment_locator or "").strip()
         or str(proposition.article_reference or "").strip()
-        or str(proposition.source_fragment_id or "").strip()
     )
+    return locator or "fragment-unknown"
+
+
+def _opaque_machine_proposition_id(proposition: Proposition, seq_token: str) -> str:
+    anchor = _proposition_identity_anchor(proposition)
     basis = f"{proposition.source_record_id}\0{anchor}\0{seq_token}"
     return f"prop:{content_hash(basis)[:16]}"
 
 
 def _fragment_segment_for_proposition_key(proposition: Proposition) -> str:
+    frag_id = str(proposition.source_fragment_id or "").strip()
+    if frag_id:
+        return slugify(frag_id)
     raw = (
         proposition.fragment_locator
         or proposition.article_reference
-        or proposition.source_fragment_id
         or ""
     )
     raw_str = str(raw).strip()
     if raw_str and not _is_placeholder_locator(raw_str):
         return slugify(raw_str)
-    frag_id = str(proposition.source_fragment_id or "").strip()
-    if frag_id:
-        return slugify(frag_id)
     return slugify(proposition.source_record_id)
 
 
@@ -186,23 +217,35 @@ def _locator_display_segment(proposition: Proposition) -> str:
 
 
 def _derive_short_name(proposition: Proposition) -> str:
-    ls = proposition.legal_subject.strip()
-    act = proposition.action.strip()
-    if ls or act:
-        return " ".join(part for part in (ls, act) if part).strip()
-    text = proposition.proposition_text.strip()
-    return text[:200] if text else "Proposition"
+    from judit_domain.proposition_labelling import derive_proposition_labels
+
+    return derive_proposition_labels(proposition).short_name
 
 
 def _derive_label(proposition: Proposition, short_name: str) -> str:
+    from judit_domain.enums import LegalEffectType
+    from judit_domain.proposition_labelling import derive_proposition_labels
+
+    bundle = derive_proposition_labels(proposition)
+    metadata_effects = {
+        LegalEffectType.CITATION,
+        LegalEffectType.COMMENCEMENT,
+        LegalEffectType.EXTENT,
+        LegalEffectType.APPLICATION_SCOPE,
+        LegalEffectType.DEFINITION,
+    }
+    if proposition.legal_effect_type in metadata_effects:
+        return bundle.label
     loc = _locator_display_segment(proposition).strip()
-    name = short_name.strip()
+    name = (short_name or bundle.short_name).strip()
     return f"{loc} {_LABEL_SEPARATOR} {name}".strip()
 
 
 def _derive_slug(label: str, short_name: str) -> str:
+    from judit_domain.proposition_labelling import slugify_label
+
     raw = label if label.strip() else short_name
-    slug_value = slugify(raw)
+    slug_value = slugify_label(raw)
     return slug_value[:96] if len(slug_value) > 96 else slug_value
 
 
@@ -221,29 +264,32 @@ def _build_proposition_version_id(proposition: Proposition, run_id: str) -> str:
     return f"pver:{proposition_key}:{slugify(snapshot_anchor)}:{slugify(run_id)}"
 
 
-def _categorize_proposition(proposition: Proposition) -> tuple[list[str], list[str]]:
-    categories: set[str] = {"obligation"}
-    tags: set[str] = set()
+def _legacy_llm_categories(proposition: Proposition) -> list[str]:
+    """Preserve extraction categories unchanged; never infer obligation from text here."""
+    return sorted({str(c).strip() for c in (proposition.categories or []) if str(c).strip()})
 
+
+def _enrich_proposition_tags(proposition: Proposition) -> list[str]:
+    """Heuristic enrichment tags for inventory/search — not the canonical type system."""
+    tags: set[str] = set(proposition.tags or [])
     text = proposition.proposition_text.lower()
     if proposition.authority:
-        categories.add("institutional")
+        tags.add("institutional")
         tags.add(slugify(proposition.authority))
     if proposition.required_documents:
-        categories.add("documentary")
+        tags.add("documentary")
     if proposition.conditions:
-        categories.add("conditional")
+        tags.add("conditional")
     if "inspect" in text or "inspection" in text:
-        categories.add("oversight")
+        tags.add("oversight")
     if "record" in text or "register" in text:
-        categories.add("record_keeping")
+        tags.add("record_keeping")
     if "submit" in text or "return" in text:
-        categories.add("reporting")
-
+        tags.add("reporting")
     tags.update(slugify(item) for item in proposition.affected_subjects if item)
     tags.add(slugify(proposition.legal_subject))
     tags.add(slugify(proposition.jurisdiction))
-    return sorted(categories), sorted(tag for tag in tags if tag)
+    return sorted(tag for tag in tags if tag)
 
 
 def _build_proposition_records(
@@ -254,7 +300,8 @@ def _build_proposition_records(
     source_fragment_by_id: dict[str, Any],
 ) -> list[Proposition]:
     proposition_records: list[Proposition] = []
-    cross_reference_index: dict[str, list[str]] = {}
+    source_scoped_index: dict[str, list[str]] = {}
+    semantic_comparison_index: dict[str, list[str]] = {}
 
     for proposition in propositions:
         resolved_source_snapshot_id = proposition.source_snapshot_id
@@ -267,28 +314,37 @@ def _build_proposition_records(
             if source is not None and source.current_snapshot_id:
                 resolved_source_snapshot_id = str(source.current_snapshot_id)
 
-        categories, tags = _categorize_proposition(proposition)
-        cross_reference_key = _build_cross_reference_key(proposition)
+        legacy_categories = _legacy_llm_categories(proposition)
+        tags = _enrich_proposition_tags(proposition)
         seq_token = _proposition_sequence_hint(proposition.id)
-        proposition_key = proposition.proposition_key or _build_source_derived_proposition_key(
-            proposition,
-            seq_token,
-        )
+        if str(proposition.source_fragment_id or "").strip():
+            proposition_key = _build_source_derived_proposition_key(proposition, seq_token)
+        else:
+            proposition_key = proposition.proposition_key or _build_source_derived_proposition_key(
+                proposition,
+                seq_token,
+            )
         opaque_id = _opaque_machine_proposition_id(proposition, seq_token)
+        from judit_domain.proposition_labelling import (
+            derive_proposition_labels,
+            should_preserve_existing_label,
+        )
+
+        bundle = derive_proposition_labels(proposition)
         short_name = (
             proposition.short_name.strip()
-            if proposition.short_name.strip()
-            else _derive_short_name(proposition)
+            if should_preserve_existing_label(proposition.short_name)
+            else bundle.short_name
         )
         label = (
             proposition.label.strip()
-            if proposition.label.strip()
+            if should_preserve_existing_label(proposition.label)
             else _derive_label(proposition, short_name)
         )
         slug = (
             proposition.slug.strip()
-            if proposition.slug.strip()
-            else _derive_slug(label, short_name)
+            if proposition.slug.strip() and should_preserve_existing_label(proposition.label)
+            else bundle.slug or _derive_slug(label, short_name)
         )
         proposition_payload = {
             **proposition.model_dump(mode="json"),
@@ -300,16 +356,79 @@ def _build_proposition_records(
             "slug": slug,
             "observed_in_run_id": run_id,
         }
+        raw_notes = str(proposition_payload.get("notes") or "")
+        parsed_notes = split_proposition_notes(raw_notes)
+        if parsed_notes.extraction_meta and not parsed_notes.meta_parse_failed:
+            merged_meta = parsed_notes.extraction_meta
+            existing_dbg = proposition_payload.get("extraction_debug_meta")
+            if isinstance(existing_dbg, dict) and existing_dbg:
+                merged_meta = {**merged_meta, **existing_dbg}
+            proposition_payload["extraction_debug_meta"] = slim_proposition_extraction_meta(
+                merged_meta
+            ) or None
+        if parsed_notes.review_notes and not proposition_payload.get("review_notes"):
+            proposition_payload["review_notes"] = parsed_notes.review_notes
+        if parsed_notes.meta_parse_failed:
+            proposition_payload["notes"] = raw_notes
+        elif parsed_notes.review_notes:
+            proposition_payload["notes"] = parsed_notes.review_notes
+        elif not notes_begin_with_extraction_meta(raw_notes):
+            proposition_payload["notes"] = raw_notes.strip()
+        else:
+            proposition_payload["notes"] = ""
+
         proposition_payload["proposition_version_id"] = _build_proposition_version_id(
             Proposition.model_validate(proposition_payload),
             run_id=run_id,
         )
+        affected_for_class = list(proposition_payload.get("affected_subjects") or [])
+        obj_text = affected_for_class[0] if affected_for_class else ""
+        classification = classification_patch_for_proposition(
+            proposition_text=str(proposition_payload.get("proposition_text") or ""),
+            legal_subject=str(proposition_payload.get("legal_subject") or ""),
+            action=str(proposition_payload.get("action") or ""),
+            conditions=list(proposition_payload.get("conditions") or []),
+            affected_subjects=affected_for_class,
+            extraction_meta=resolve_extraction_meta_for_proposition(
+                notes=raw_notes,
+                extraction_debug_meta=proposition_payload.get("extraction_debug_meta"),
+            ),
+            label=str(proposition_payload.get("label") or ""),
+            short_name=str(proposition_payload.get("short_name") or ""),
+            object_text=obj_text,
+            fragment_locator=str(proposition_payload.get("fragment_locator") or ""),
+            source_locator=str(proposition_payload.get("fragment_locator") or ""),
+            categories=legacy_categories,
+            provision_type=str(
+                (
+                    resolve_extraction_meta_for_proposition(
+                        notes=raw_notes,
+                        extraction_debug_meta=proposition_payload.get("extraction_debug_meta"),
+                    )
+                    or {}
+                ).get("provision_type")
+                or ""
+            ),
+        )
+        classification_fields = {
+            k: v
+            for k, v in classification.items()
+            if k
+            not in {
+                "affected_subjects",
+            }
+        }
         proposition_record = Proposition.model_validate(
             {
                 **proposition_payload,
-                "categories": categories,
+                **classification_fields,
+                "affected_subjects": classification.get(
+                    "affected_subjects",
+                    affected_for_class,
+                ),
+                "categories": legacy_categories,
                 "tags": tags,
-                "cross_reference_key": cross_reference_key,
+                "extraction_trace_id": _opaque_proposition_extraction_trace_id(opaque_id),
                 "review_status": (
                     proposition.review_status
                     if proposition.review_status == ReviewStatus.NEEDS_REVIEW
@@ -317,32 +436,77 @@ def _build_proposition_records(
                 ),
             }
         )
+        from judit_domain.proposition_relationship_keys import (
+            apply_relationship_keys,
+            should_auto_link_propositions,
+        )
+
+        apply_relationship_keys(proposition_record)
+        if proposition_record.source_scoped_key:
+            source_scoped_index.setdefault(proposition_record.source_scoped_key, []).append(
+                proposition_record.id
+            )
+        if proposition_record.semantic_comparison_key:
+            semantic_comparison_index.setdefault(
+                proposition_record.semantic_comparison_key,
+                [],
+            ).append(proposition_record.id)
         proposition_records.append(proposition_record)
-        cross_reference_index.setdefault(cross_reference_key, []).append(proposition_record.id)
 
     proposition_by_id = {item.id: item for item in proposition_records}
-    for key, proposition_ids in cross_reference_index.items():
+    for _key, proposition_ids in source_scoped_index.items():
         if len(proposition_ids) <= 1:
             continue
         for proposition_id in proposition_ids:
             proposition_record = proposition_by_id[proposition_id]
-            proposition_record.cross_reference_targets = [
-                item for item in proposition_ids if item != proposition_id
+            linked = [
+                other_id
+                for other_id in proposition_ids
+                if other_id != proposition_id
+                and should_auto_link_propositions(
+                    proposition_record,
+                    proposition_by_id[other_id],
+                )
             ]
-            proposition_record.cross_reference_key = key
+            if linked:
+                proposition_record.cross_reference_targets = linked
 
     return proposition_records
+
+
+def _narrative_classification_summary(propositions: list[Proposition]) -> str:
+    from collections import Counter
+
+    tier_counts = Counter(p.proposition_tier.value for p in propositions)
+    effect_counts = Counter(p.legal_effect_type.value for p in propositions)
+    top_tiers = ", ".join(
+        f"{name} ({count})" for name, count in tier_counts.most_common(6)
+    )
+    top_effects = ", ".join(
+        f"{name} ({count})" for name, count in effect_counts.most_common(8)
+    )
+    return f"Proposition tiers: {top_tiers}; legal effects: {top_effects}"
 
 
 def _build_proposition_inventory(propositions: list[Proposition]) -> dict[str, Any]:
     by_jurisdiction: dict[str, list[str]] = {}
     by_category: dict[str, list[str]] = {}
+    by_legal_effect_type: dict[str, list[str]] = {}
+    by_proposition_tier: dict[str, list[str]] = {}
     by_tag: dict[str, list[str]] = {}
     cross_reference_index: dict[str, list[str]] = {}
+    source_scoped_index: dict[str, list[str]] = {}
+    semantic_comparison_index: dict[str, list[str]] = {}
     lineage_index: dict[str, list[str]] = {}
 
     for proposition in propositions:
         by_jurisdiction.setdefault(proposition.jurisdiction, []).append(proposition.id)
+        by_legal_effect_type.setdefault(proposition.legal_effect_type.value, []).append(
+            proposition.id
+        )
+        by_proposition_tier.setdefault(proposition.proposition_tier.value, []).append(
+            proposition.id
+        )
         for category in proposition.categories:
             by_category.setdefault(category, []).append(proposition.id)
         for tag in proposition.tags:
@@ -351,6 +515,15 @@ def _build_proposition_inventory(propositions: list[Proposition]) -> dict[str, A
             cross_reference_index.setdefault(proposition.cross_reference_key, []).append(
                 proposition.id
             )
+        if proposition.source_scoped_key:
+            source_scoped_index.setdefault(proposition.source_scoped_key, []).append(
+                proposition.id
+            )
+        if proposition.semantic_comparison_key:
+            semantic_comparison_index.setdefault(
+                proposition.semantic_comparison_key,
+                [],
+            ).append(proposition.id)
         if proposition.proposition_key:
             lineage_index.setdefault(proposition.proposition_key, []).append(
                 proposition.proposition_version_id or proposition.id
@@ -361,8 +534,12 @@ def _build_proposition_inventory(propositions: list[Proposition]) -> dict[str, A
         "proposition_ids": [item.id for item in propositions],
         "by_jurisdiction": by_jurisdiction,
         "categories": by_category,
+        "by_legal_effect_type": by_legal_effect_type,
+        "by_proposition_tier": by_proposition_tier,
         "tags": by_tag,
         "cross_reference_index": cross_reference_index,
+        "source_scoped_index": source_scoped_index,
+        "semantic_comparison_index": semantic_comparison_index,
         "lineage_index": lineage_index,
     }
 
@@ -383,6 +560,8 @@ def _build_proposition_review_decisions(propositions: list[Proposition]) -> list
                     "source_record_id": proposition.source_record_id,
                     "source_fragment_id": proposition.source_fragment_id,
                     "cross_reference_key": proposition.cross_reference_key,
+                    "source_scoped_key": proposition.source_scoped_key,
+                    "semantic_comparison_key": proposition.semantic_comparison_key,
                 },
             )
         )
@@ -526,7 +705,10 @@ def _build_proposition_extraction_traces(
     traces: list[PropositionExtractionTrace] = []
     for proposition in propositions:
         structured_meta = parse_structured_extraction_notes(proposition.notes)
-        meta = parse_judit_extraction_meta(proposition.notes)
+        meta = resolve_extraction_meta_for_proposition(
+            notes=proposition.notes,
+            extraction_debug_meta=proposition.extraction_debug_meta,
+        )
         if meta:
             em = str(meta.get("extraction_mode") or "")
             fb_used = bool(meta.get("fallback_used"))
@@ -654,6 +836,7 @@ def _build_proposition_extraction_traces(
             if sig_loc:
                 signals["structured_evidence_locator"] = sig_loc
         if meta:
+            signals["judit_extraction_meta"] = full_trace_extraction_meta(meta)
             signals["extraction_mode"] = meta.get("extraction_mode")
             signals["fallback_used"] = meta.get("fallback_used")
             signals["fallback_policy"] = meta.get("fallback_policy")
@@ -1017,7 +1200,6 @@ def _clone_propositions_for_shared_content_hash(
             "reused_for_source_record_id": source.id,
             "reused_for_jurisdiction": source.jurisdiction,
         }
-        notes = attach_judit_extraction_reuse(item.notes or "", reuse_payload)
         p = item.model_copy(
             deep=True,
             update={
@@ -1025,9 +1207,9 @@ def _clone_propositions_for_shared_content_hash(
                 "jurisdiction": source.jurisdiction,
                 "authority": source.title or item.authority,
                 "citation": source.citation or item.citation,
-                "notes": notes,
             },
         )
+        assign_proposition_extraction_reuse(p, reuse_payload)
         if fragment is not None:
             p.source_fragment_id = fragment.id
             p.fragment_locator = fragment.locator
@@ -1278,7 +1460,7 @@ def _resolve_extraction_and_divergence(
         if isinstance(cx.get("fallback_policy"), str) and cx["fallback_policy"].strip():
             ef = cx["fallback_policy"].strip()
         else:
-            ef = "fallback"
+            ef = "fail_closed" if use_llm else "fallback"
     elif ef == "fallback" and isinstance(cx.get("fallback_policy"), str) and cx["fallback_policy"].strip():
         ef = cx["fallback_policy"].strip()
 
@@ -1570,6 +1752,157 @@ def _select_fragment_for_extraction(
     )
 
 
+def _count_jobs_selected_for_extraction(
+    extraction_jobs: list[tuple[SourceRecord, SourceFragment | None]],
+    *,
+    ext_mode: str,
+    extraction_selection_cfg: dict[str, Any],
+    fragment_selection_mode: str,
+) -> int:
+    selected = 0
+    for source, frag in extraction_jobs:
+        sel, *_rest = _select_fragment_for_extraction(
+            ext_mode=ext_mode,
+            source=source,
+            fragment=frag,
+            required_locators=set(extraction_selection_cfg["required_locators"]),
+            include_annexes=bool(extraction_selection_cfg["include_annexes"]),
+            focus_terms=list(extraction_selection_cfg["focus_terms"]),
+            min_fragment_chars=int(extraction_selection_cfg["min_fragment_chars"]),
+            fragment_selection_mode=fragment_selection_mode,
+        )
+        if sel:
+            selected += 1
+    return selected
+
+
+def _estimate_selected_extraction_input_tokens(
+    extraction_jobs: list[tuple[SourceRecord, SourceFragment | None]],
+    *,
+    ext_mode: str,
+    extraction_selection_cfg: dict[str, Any],
+    fragment_selection_mode: str,
+) -> int:
+    """Rough token budget for dry-run progress estimates (chars / 4)."""
+    total = 0
+    for source, frag in extraction_jobs:
+        sel, *_rest = _select_fragment_for_extraction(
+            ext_mode=ext_mode,
+            source=source,
+            fragment=frag,
+            required_locators=set(extraction_selection_cfg["required_locators"]),
+            include_annexes=bool(extraction_selection_cfg["include_annexes"]),
+            focus_terms=list(extraction_selection_cfg["focus_terms"]),
+            min_fragment_chars=int(extraction_selection_cfg["min_fragment_chars"]),
+            fragment_selection_mode=fragment_selection_mode,
+        )
+        if not sel:
+            continue
+        if frag is not None:
+            text = frag.fragment_text or ""
+        else:
+            text = source.authoritative_text or ""
+        total += max(1, len(str(text)) // 4)
+    return total
+
+
+def _finish_extraction_job_progress(
+    pr: Any,
+    *,
+    overall_index: int,
+    source: SourceRecord,
+    fragment_locator: str | None,
+    traces: list[dict[str, Any]] | None = None,
+    propositions_added: int = 0,
+    duration_seconds: float | None = None,
+) -> None:
+    fn = getattr(pr, "extraction_job_finished", None)
+    if not callable(fn):
+        return
+    fn(
+        overall_index=overall_index,
+        source_id=str(source.id),
+        source_title=str(source.title or source.id),
+        fragment_locator=str(fragment_locator or ""),
+        traces=traces,
+        propositions_added=propositions_added,
+        duration_seconds=duration_seconds,
+    )
+
+
+def _enforce_fail_closed_llm_extraction(
+    *,
+    extraction_mode: str,
+    extraction_fallback: str,
+    proposition_extraction_jobs: list[dict[str, Any]],
+    accumulated_propositions: list[Proposition],
+    extraction_llm_diagnostic_traces: list[dict[str, Any]],
+    derived_cache_dir: str | None = None,
+    retry_failed_extraction_cache: bool = False,
+) -> None:
+    """Raise when fail_closed LLM mode selected fragments but produced no propositions."""
+    if extraction_mode not in {"local", "frontier"} or extraction_fallback != "fail_closed":
+        return
+    if accumulated_propositions:
+        return
+    observability = merge_extraction_observability_metrics(
+        jobs=proposition_extraction_jobs,
+        llm_traces=extraction_llm_diagnostic_traces,
+    )
+    selected_jobs = [
+        row for row in proposition_extraction_jobs if bool(row.get("selected_for_extraction"))
+    ]
+    if not selected_jobs:
+        if not proposition_extraction_jobs:
+            return
+        raise RuntimeError(
+            f"fail_closed {extraction_mode} extraction produced 0 propositions: "
+            f"no fragments were selected for LLM extraction ({observability['extraction_jobs_created']} job(s), "
+            f"skipped_llm={observability.get('llm_extraction_skipped_count', 0)}). "
+            "Review focus_terms, required_fragment_locators, and fragment_selection_mode."
+        )
+    attempted = int(observability.get("attempted_llm_calls") or 0)
+    if attempted == 0 and observability.get("extraction_jobs_selected", 0) > 0:
+        from .llm_extraction_config import format_failed_chunk_cache_operator_hint
+
+        skip_hist = observability.get("skip_reasons_by_type") or {}
+        skip_summary = ", ".join(
+            f"{k}={v}" for k, v in list(skip_hist.items())[:8]
+        ) or "none"
+        cache_hint = format_failed_chunk_cache_operator_hint(
+            derived_cache_dir=derived_cache_dir,
+            skip_reasons_by_type=skip_hist if isinstance(skip_hist, dict) else None,
+        )
+        extra = f" {cache_hint}" if cache_hint else ""
+        if cache_hint and not retry_failed_extraction_cache:
+            extra += (
+                " (retry is default for fail_closed; pass --ignore-failed-extraction-cache "
+                "only if you intend to reuse cached failures.)"
+            )
+        raise RuntimeError(
+            f"fail_closed {extraction_mode} extraction produced 0 propositions: "
+            f"{observability['extraction_jobs_selected']} fragment job(s) selected but "
+            f"attempted_llm_calls=0 (skipped_llm={observability.get('llm_extraction_skipped_count', 0)}, "
+            f"executed_jobs={observability.get('extraction_jobs_executed', 0)}). "
+            f"Skip reasons: {skip_summary}.{extra} "
+            "Check proposition_extraction_jobs and extraction_llm_call_traces."
+        )
+    skip_summary = ", ".join(
+        f"{k}={v}"
+        for k, v in list((observability.get("skip_reasons_by_type") or {}).items())[:8]
+    ) or "none"
+    raise RuntimeError(
+        f"fail_closed {extraction_mode} extraction produced 0 propositions from "
+        f"{len(selected_jobs)} selected fragment job(s). "
+        f"attempted_llm_calls={attempted}, "
+        f"successful_llm_calls={observability.get('successful_llm_calls', 0)}, "
+        f"failed_llm_calls={observability.get('failed_llm_calls', 0)}, "
+        f"skipped_llm={observability.get('llm_extraction_skipped_count', 0)}. "
+        f"Skip reasons: {skip_summary}. "
+        "Check verbose logs, proposition_extraction_jobs, and extraction_llm_call_traces."
+    )
+
+
 def build_bundle_from_case(
     case_data: dict[str, Any],
     use_llm: bool = False,
@@ -1583,7 +1916,15 @@ def build_bundle_from_case(
     intake_bundle: dict[str, Any] | None = None,
     extraction_repair_targets: set[tuple[str, str | None]] | None = None,
     extraction_repair_kept_propositions: list[Proposition] | None = None,
-    retry_failed_llm: bool = False,
+    retry_failed_extraction_cache: bool | None = None,
+    ignore_failed_extraction_cache: bool = False,
+    retry_failed_llm: bool | None = None,
+    progress_every: int = 10,
+    extraction_output_mode: str | None = None,
+    allow_output_mode_fallback: bool = False,
+    abort_on_provider_failure: bool | None = None,
+    provider_failure_threshold: int | None = None,
+    max_failed_extraction_jobs: int | None = None,
 ) -> dict[str, Any]:
     pr = progress if progress is not None else null_pipeline_progress()
     topic_cfg = case_data["topic"]
@@ -1767,6 +2108,11 @@ def build_bundle_from_case(
         )
     )
 
+    ext_mode_requested = resolve_extraction_mode_requested(
+        use_llm=use_llm,
+        extraction_mode=extraction_mode,
+        case_data=case_data,
+    )
     ext_mode, ext_exec_mode, ext_fallback, div_reasoning = _resolve_extraction_and_divergence(
         use_llm=use_llm,
         extraction_mode=extraction_mode,
@@ -1775,12 +2121,44 @@ def build_bundle_from_case(
         divergence_reasoning=divergence_reasoning,
         case_data=case_data,
     )
+    from .llm_extraction_config import resolve_retry_failed_extraction_cache
+
+    retry_failed_llm = resolve_retry_failed_extraction_cache(
+        extraction_mode=ext_mode,
+        extraction_fallback=ext_fallback,
+        retry_failed_extraction_cache=retry_failed_extraction_cache,
+        ignore_failed_extraction_cache=ignore_failed_extraction_cache,
+        retry_failed_llm=retry_failed_llm,
+    )
     model_error_policy = _resolve_model_error_policy(case_data)
+    provider_failure_abort_policy = resolve_provider_failure_abort_policy(
+        abort_on_provider_failure=abort_on_provider_failure,
+        provider_failure_threshold=provider_failure_threshold,
+        max_failed_extraction_jobs=max_failed_extraction_jobs,
+        case_data=case_data,
+    )
+    provider_abort_tracker: ProviderFailureAbortTracker | None = None
     focus_scopes, extraction_prop_limit = _resolve_case_extraction_limits(case_data)
     extraction_selection_cfg = _resolve_extraction_selection_config(case_data)
     fragment_selection_mode = str(extraction_selection_cfg.get("fragment_selection_mode") or "all_matching")
     needs_llm_client = ext_mode in ("local", "frontier") or div_reasoning == "frontier"
     llm_client = JuditLLMClient() if needs_llm_client else None
+    if (
+        ext_mode in ("local", "frontier")
+        and llm_client is not None
+        and not getattr(llm_client.settings, "skip_llm_preflight", False)
+    ):
+        preflight_llm_extraction(llm_client, ext_mode)  # type: ignore[arg-type]
+
+    extraction_cache_model_alias_early = _extraction_cache_model_alias(ext_mode, llm_client)
+    effective_extraction_output_mode: str | None = None
+    if ext_mode in ("local", "frontier") and extraction_cache_model_alias_early:
+        effective_extraction_output_mode = resolve_extraction_output_mode(
+            extraction_mode=ext_mode,
+            model_alias=extraction_cache_model_alias_early,
+            requested=extraction_output_mode,
+            settings=llm_client.settings if llm_client is not None else None,
+        )
 
     extraction_started_at = perf_counter()
     extraction_timestamp = _utc_now_iso()
@@ -1800,6 +2178,8 @@ def build_bundle_from_case(
         "fragment_selection_mode": fragment_selection_mode,
         "use_llm": use_llm,
         "extraction_mode": ext_mode,
+        "extraction_mode_requested": ext_mode_requested,
+        "extraction_mode_effective": ext_mode,
         "extraction_execution_mode": ext_exec_mode,
         "extraction_fallback": ext_fallback,
         "divergence_reasoning": div_reasoning,
@@ -1813,6 +2193,10 @@ def build_bundle_from_case(
         "model_error_policy": model_error_policy,
         "repair_resume": extraction_repair_targets is not None,
         "retry_failed_llm_chunks": retry_failed_llm,
+        "retry_failed_extraction_cache": retry_failed_llm,
+        "extraction_output_mode_requested": extraction_output_mode,
+        "extraction_output_mode_effective": effective_extraction_output_mode,
+        "allow_output_mode_fallback": allow_output_mode_fallback,
     }
     required_locators_cfg: set[str] = set(extraction_selection_cfg.get("required_locators", set()))
     available_fragment_locators = {
@@ -1845,7 +2229,31 @@ def build_bundle_from_case(
         strategy_version=extraction_strategy_version,
         parameters=extraction_parameters,
     )
+    extraction_jobs_created = len(extraction_jobs)
+    source_fragments_total = len(source_fragments)
+    has_authoritative_text = any(
+        bool(str(source.authoritative_text or "").strip()) for source in sources
+    )
+    extraction_jobs_selected_preview = _count_jobs_selected_for_extraction(
+        extraction_jobs,
+        ext_mode=ext_mode,
+        extraction_selection_cfg=extraction_selection_cfg,
+        fragment_selection_mode=fragment_selection_mode,
+    )
+    validate_llm_extraction_job_plan(
+        extraction_mode=ext_mode,
+        extraction_fallback=ext_fallback,
+        extraction_jobs_created=extraction_jobs_created,
+        extraction_jobs_selected=extraction_jobs_selected_preview,
+        source_fragments_total=source_fragments_total,
+        sources_count=len(sources),
+        focus_terms=list(extraction_selection_cfg.get("focus_terms", [])),
+        required_locators=required_locators_cfg,
+        fragment_selection_mode=fragment_selection_mode,
+        has_authoritative_text=has_authoritative_text,
+    )
     skip_extraction = bool(case_data.get("skip_proposition_extraction")) and replay_from_export
+    extraction_timing_metrics: dict[str, Any] = {}
     if skip_extraction and extraction_repair_targets is not None:
         raise ValueError(
             "skip_proposition_extraction cannot be combined with extraction repair targets."
@@ -1877,6 +2285,16 @@ def build_bundle_from_case(
             agg_flag = cached_extraction.payload.get("frontier_aggregate_eligible")
             if agg_flag is not True:
                 allow_aggregate_hit = False
+        if allow_aggregate_hit and cached_extraction is not None and ext_mode in ("local", "frontier"):
+            cached_props_raw = cached_extraction.payload.get("propositions")
+            cached_prop_count = (
+                len(cached_props_raw) if isinstance(cached_props_raw, list) else 0
+            )
+            if cached_prop_count == 0:
+                allow_aggregate_hit = False
+                extraction_warnings.append(
+                    "Ignoring empty proposition_extraction derived cache; re-running LLM extraction."
+                )
         if allow_aggregate_hit:
             pr.stage("Proposition extraction", detail="cache hit — reusing derived artifacts")
             accumulated_raw_props = [
@@ -1923,6 +2341,19 @@ def build_bundle_from_case(
                     fragment_selection_mode=fragment_selection_mode,
                 )
                 job_key = (str(source.id), str(frag.id) if frag is not None else None)
+                if not selected_for_extraction and ext_mode in ("frontier", "local"):
+                    extraction_llm_diagnostic_traces.append(
+                        build_extraction_llm_skip_trace(
+                            source_record_id=str(source.id),
+                            source_title=source.title,
+                            source_fragment_id=str(frag.id) if frag is not None else None,
+                            fragment_locator=fragment_locator or None,
+                            extraction_mode=ext_mode,
+                            model_alias=extraction_cache_model_alias,
+                            skip_reason=str(skip_reason or selection_reason or "not_selected"),
+                            configured_context_limit=configured_context_limit,
+                        )
+                    )
                 proposition_extraction_jobs.append(
                     {
                         "id": f"pexjob-{run_id}-{jidx:04d}",
@@ -1940,7 +2371,7 @@ def build_bundle_from_case(
                         "model_alias": extraction_cache_model_alias,
                         "estimated_input_tokens": None,
                         "configured_context_limit": configured_context_limit,
-                        "llm_invoked": bool(selected_for_extraction and ext_mode in {"frontier", "local"}),
+                        "llm_invoked": False,
                         "fallback_used": False,
                         "fallback_strategy": None,
                         "context_window_risk": False,
@@ -1961,18 +2392,51 @@ def build_bundle_from_case(
                         "parse_error_column": None,
                     }
                 )
+            _enforce_fail_closed_llm_extraction(
+                extraction_mode=ext_mode,
+                extraction_fallback=ext_fallback,
+                proposition_extraction_jobs=proposition_extraction_jobs,
+                accumulated_propositions=accumulated_raw_props,
+                extraction_llm_diagnostic_traces=extraction_llm_diagnostic_traces,
+                derived_cache_dir=str(derived_cache_dir_path),
+                retry_failed_extraction_cache=retry_failed_llm,
+            )
         else:
             n_jobs = len(extraction_jobs)
-            pr.stage("Proposition extraction", detail=f"{n_jobs} extraction job(s)")
+            if ext_mode in ("local", "frontier"):
+                est_tokens = _estimate_selected_extraction_input_tokens(
+                    extraction_jobs,
+                    ext_mode=ext_mode,
+                    extraction_selection_cfg=extraction_selection_cfg,
+                    fragment_selection_mode=fragment_selection_mode,
+                )
+                run_plan = build_extraction_run_plan(
+                    extraction_jobs,
+                    selected_jobs=extraction_jobs_selected_preview,
+                    estimated_input_tokens=est_tokens,
+                    extraction_mode=ext_mode,
+                    progress_every=max(1, progress_every),
+                )
+                begin_fn = getattr(pr, "begin_extraction_run", None)
+                if callable(begin_fn):
+                    begin_fn(
+                        run_plan,
+                        derived_cache_dir=str(derived_cache_dir_path),
+                    )
+            else:
+                pr.stage("Proposition extraction", detail=f"{n_jobs} extraction job(s)")
             content_hash_first_hits: dict[str, tuple[str, str | None, list[Proposition]]] = {}
             halt_remaining_due_to_policy = False
             halt_policy_reason: str | None = None
+            if ext_mode in ("local", "frontier") and provider_failure_abort_policy.enabled:
+                provider_abort_tracker = ProviderFailureAbortTracker(
+                    policy=provider_failure_abort_policy
+                )
             for jidx, (source, frag) in enumerate(extraction_jobs, start=1):
                 label = _source_progress_label(source)
                 if frag is not None:
                     label = f"{label} · {frag.locator}"
                 pr.extraction_source(jidx, n_jobs, ext_mode, label)
-                pr.verbose(f"Extract id={source.id} title={source.title!r} mode={ext_mode}")
                 job_key = (str(source.id), str(frag.id) if frag is not None else None)
                 if extraction_repair_targets is not None and job_key not in extraction_repair_targets:
                     continue
@@ -1993,6 +2457,25 @@ def build_bundle_from_case(
                     min_fragment_chars=int(extraction_selection_cfg["min_fragment_chars"]),
                     fragment_selection_mode=fragment_selection_mode,
                 )
+                started_fn = getattr(pr, "extraction_job_started", None)
+                if callable(started_fn):
+                    started_fn(
+                        overall_index=jidx,
+                        source_id=str(source.id),
+                        source_title=str(source.title or source.id),
+                        fragment_locator=str(fragment_locator or ""),
+                    )
+                job_loop_started_at = perf_counter()
+                if selected_for_extraction:
+                    pr.verbose(
+                        f"Extract id={source.id} title={source.title!r} mode={ext_mode} "
+                        f"locator={fragment_locator!r} reason={selection_reason}"
+                    )
+                else:
+                    pr.verbose(
+                        f"Extract skip id={source.id} title={source.title!r} mode={ext_mode} "
+                        f"locator={fragment_locator!r} skip_reason={skip_reason!r}"
+                    )
 
                 job_row: dict[str, Any] = {
                     "id": f"pexjob-{run_id}-{jidx:04d}",
@@ -2032,14 +2515,46 @@ def build_bundle_from_case(
                 }
                 if halt_remaining_due_to_policy:
                     job_row["selected_for_extraction"] = False
-                    job_row["selection_reason"] = "skipped_model_error_policy_stop_repairable"
-                    job_row["skip_reason"] = "model_error_policy_stop_repairable"
+                    if halt_policy_reason and str(halt_policy_reason).startswith("provider_failure_abort:"):
+                        job_row["selection_reason"] = "skipped_provider_failure_abort"
+                        job_row["skip_reason"] = "provider_failure_abort"
+                    else:
+                        job_row["selection_reason"] = "skipped_model_error_policy_stop_repairable"
+                        job_row["skip_reason"] = "model_error_policy_stop_repairable"
                     if halt_policy_reason:
-                        job_row["warnings"] = [f"upstream_repairable_halt: {halt_policy_reason}"]
+                        job_row["warnings"] = [f"upstream_halt: {halt_policy_reason}"]
                     proposition_extraction_jobs.append(job_row)
+                    _finish_extraction_job_progress(
+                        pr,
+                        overall_index=jidx,
+                        source=source,
+                        fragment_locator=fragment_locator,
+                        duration_seconds=perf_counter() - job_loop_started_at,
+                    )
                     continue
                 if not selected_for_extraction:
+                    skip_trace: dict[str, Any] | None = None
+                    if ext_mode in ("frontier", "local"):
+                        skip_trace = build_extraction_llm_skip_trace(
+                            source_record_id=str(source.id),
+                            source_title=source.title,
+                            source_fragment_id=str(frag.id) if frag is not None else None,
+                            fragment_locator=fragment_locator or None,
+                            extraction_mode=ext_mode,
+                            model_alias=extraction_cache_model_alias,
+                            skip_reason=str(skip_reason or selection_reason or "not_selected"),
+                            configured_context_limit=configured_context_limit,
+                        )
+                        extraction_llm_diagnostic_traces.append(skip_trace)
                     proposition_extraction_jobs.append(job_row)
+                    _finish_extraction_job_progress(
+                        pr,
+                        overall_index=jidx,
+                        source=source,
+                        fragment_locator=fragment_locator,
+                        traces=[skip_trace] if skip_trace else None,
+                        duration_seconds=perf_counter() - job_loop_started_at,
+                    )
                     continue
                 job_started_at = perf_counter()
                 job_row["started_at"] = _utc_now_iso()
@@ -2086,6 +2601,14 @@ def build_bundle_from_case(
                     job_row["finished_at"] = _utc_now_iso()
                     job_row["duration_ms"] = int(max(0.0, (perf_counter() - job_started_at) * 1000))
                     proposition_extraction_jobs.append(job_row)
+                    _finish_extraction_job_progress(
+                        pr,
+                        overall_index=jidx,
+                        source=source,
+                        fragment_locator=fragment_locator,
+                        propositions_added=len(cloned),
+                        duration_seconds=perf_counter() - job_loop_started_at,
+                    )
                     continue
                 if ext_mode in ("frontier", "local"):
                     call_kind: Literal["frontier", "local"] = (
@@ -2138,6 +2661,8 @@ def build_bundle_from_case(
                     retry_failed_llm=retry_failed_llm,
                     chunk_cache_pipeline_version=pipeline_version,
                     chunk_cache_strategy_version=extraction_strategy_version,
+                    extraction_output_mode=extraction_output_mode,
+                    allow_output_mode_fallback=allow_output_mode_fallback,
                 )
                 extraction_llm_diagnostic_traces.extend(outcome.extraction_llm_call_traces)
                 pr.extraction_source_complete(outcome)
@@ -2192,7 +2717,12 @@ def build_bundle_from_case(
                         fb_reason = "; ".join(str(x) for x in outcome.validation_errors[:3])
                     if not fb_reason:
                         fb_reason = "model path unavailable or produced no valid rows"
-                    pr.fallback_notice(label, fb_reason)
+                    pr.fallback_notice(
+                        label,
+                        fb_reason,
+                        extraction_mode=ext_mode,
+                        fallback_policy=ext_fallback,
+                    )
                 job_row["fallback_used"] = bool(outcome.fallback_used)
                 job_row["fallback_strategy"] = (
                     str(outcome.fallback_strategy) if getattr(outcome, "fallback_strategy", None) else None
@@ -2283,6 +2813,15 @@ def build_bundle_from_case(
                 job_row["finished_at"] = _utc_now_iso()
                 job_row["duration_ms"] = int(max(0.0, (perf_counter() - job_started_at) * 1000))
                 proposition_extraction_jobs.append(job_row)
+                _finish_extraction_job_progress(
+                    pr,
+                    overall_index=jidx,
+                    source=source,
+                    fragment_locator=fragment_locator,
+                    traces=trace_rows,
+                    propositions_added=len(extracted),
+                    duration_seconds=perf_counter() - job_loop_started_at,
+                )
                 if outcome.repairable_extraction_halt:
                     if model_error_policy == "stop_repairable":
                         halt_remaining_due_to_policy = True
@@ -2291,6 +2830,39 @@ def build_bundle_from_case(
                         extraction_warnings.append(
                             f"Repairable extraction event ignored by model_error_policy={model_error_policy}"
                         )
+                if provider_abort_tracker is not None and selected_for_extraction:
+                    provider_cat, provider_msg = job_had_provider_failure(
+                        job_row=job_row,
+                        outcome=outcome,
+                        trace_rows=trace_rows,
+                    )
+                    if provider_cat and provider_msg:
+                        if provider_abort_tracker.record_provider_failure(
+                            category=provider_cat,
+                            message=provider_msg,
+                            source_record_id=str(source.id),
+                            source_fragment_id=str(frag.id) if frag is not None else None,
+                            extraction_job_id=str(job_row["id"]),
+                        ):
+                            halt_remaining_due_to_policy = True
+                            halt_policy_reason = f"provider_failure_abort:{provider_cat}"
+                            extraction_warnings.append(
+                                f"Extraction aborted after provider failure ({provider_cat}): "
+                                f"{provider_msg[:240]}"
+                            )
+                            pr.verbose(f"provider failure abort: {provider_cat} — {provider_msg[:200]}")
+                    elif int(job_row.get("proposition_count") or 0) > 0:
+                        provider_abort_tracker.record_selected_job_success()
+                    else:
+                        provider_abort_tracker.record_selected_job_without_provider_failure()
+            finish_fn = getattr(pr, "finish_extraction_run", None)
+            if callable(finish_fn) and ext_mode in ("local", "frontier"):
+                extraction_timing_metrics = finish_fn() or {}
+                if extraction_timing_metrics:
+                    persist_extraction_timing_profile(
+                        str(derived_cache_dir_path),
+                        extraction_timing_metrics,
+                    )
             persisted_extraction = derived_cache.put(
                 stage_name="proposition_extraction",
                 cache_key=extraction_cache_key,
@@ -2319,6 +2891,18 @@ def build_bundle_from_case(
                 cache_storage_uri=persisted_extraction.storage_uri,
                 cached_at=persisted_extraction.cached_at.isoformat().replace("+00:00", "Z"),
             )
+            _enforce_fail_closed_llm_extraction(
+                extraction_mode=ext_mode,
+                extraction_fallback=ext_fallback,
+                proposition_extraction_jobs=proposition_extraction_jobs,
+                accumulated_propositions=accumulated_raw_props,
+                extraction_llm_diagnostic_traces=extraction_llm_diagnostic_traces,
+                derived_cache_dir=str(derived_cache_dir_path),
+                retry_failed_extraction_cache=retry_failed_llm,
+            )
+    apply_post_extraction_classification_pass(accumulated_raw_props)
+    apply_post_extraction_jurisdiction_pass(accumulated_raw_props, source_by_id=source_by_id)
+    apply_post_extraction_labelling_pass(accumulated_raw_props)
     if extraction_repair_kept_propositions is None:
         propositions = _build_proposition_records(
             propositions=accumulated_raw_props,
@@ -2357,6 +2941,19 @@ def build_bundle_from_case(
         for row in proposition_extraction_jobs
         if str(row.get("skip_reason") or "") == "skipped_not_required_in_required_only_mode"
     )
+    extraction_observability_metrics = merge_extraction_observability_metrics(
+        jobs=proposition_extraction_jobs,
+        llm_traces=extraction_llm_diagnostic_traces,
+    )
+    if extraction_timing_metrics:
+        extraction_observability_metrics = merge_timing_metrics_into_observability(
+            extraction_observability_metrics,
+            extraction_timing_metrics,
+        )
+    extraction_observability_metrics["source_fragments_total"] = source_fragments_total
+    extraction_observability_metrics["extraction_jobs_selected_preview"] = (
+        extraction_jobs_selected_preview
+    )
     stage_traces.append(
         _build_stage_trace(
             stage_name="proposition extraction",
@@ -2367,6 +2964,8 @@ def build_bundle_from_case(
                 "source_count": len(sources),
                 "use_llm": use_llm,
                 "extraction_mode": ext_mode,
+                "extraction_mode_requested": ext_mode_requested,
+                "extraction_mode_effective": ext_mode,
                 "extraction_execution_mode": ext_exec_mode,
                 "extraction_fallback": ext_fallback,
                 "divergence_reasoning": div_reasoning,
@@ -2404,6 +3003,7 @@ def build_bundle_from_case(
                 "selected_by_focus_term": selected_by_focus_term,
                 "selected_by_annex_included": selected_by_annex_included,
                 "skipped_not_required_count": skipped_not_required_count,
+                **extraction_observability_metrics,
             },
             strategy_used=(
                 "skipped_preloaded_propositions"
@@ -2413,7 +3013,7 @@ def build_bundle_from_case(
             model_alias_used=extraction_cache_model_alias,
             started_at=extraction_started_at,
             warnings=extraction_warnings,
-            metrics=proposition_extraction_metrics,
+            metrics={**proposition_extraction_metrics, **extraction_observability_metrics},
         )
     )
     pr.stage("Proposition inventory", detail=f"{len(propositions)} proposition(s)")
@@ -2431,6 +3031,8 @@ def build_bundle_from_case(
             outputs={
                 "proposition_ids": [item.id for item in propositions],
                 "category_count": len(proposition_inventory["categories"]),
+                "legal_effect_type_count": len(proposition_inventory["by_legal_effect_type"]),
+                "proposition_tier_count": len(proposition_inventory["by_proposition_tier"]),
                 "tag_count": len(proposition_inventory["tags"]),
                 "review_decision_ids": [item.id for item in proposition_review_decisions],
             },
@@ -2821,8 +3423,7 @@ def build_bundle_from_case(
                 f"Topic: {topic.name}",
                 f"Cluster: {cluster.name}",
                 f"Propositions extracted: {len(propositions)}",
-                "Proposition categories: "
-                + ", ".join(sorted(proposition_inventory["categories"].keys())[:8]),
+                _narrative_classification_summary(propositions),
                 (
                     f"Comparison candidates assessed: {len(divergence_assessments)}"
                     if divergence_enabled
@@ -3226,8 +3827,15 @@ def build_bundle_from_case(
         "analysis_scope": str(case_data.get("analysis_scope") or "selected_sources"),
         "strategy_versions": dict(strategy_versions),
         "pipeline_version": pipeline_version,
+        "proposition_normalisation": dict(PROPOSITION_NORMALISATION_METADATA),
     }
     bundle["missing_required_fragment_locators"] = sorted(required_locator_misses)
+    if provider_abort_tracker is not None and provider_abort_tracker.abort_metadata is not None:
+        attach_extraction_abort_to_bundle(bundle, provider_abort_tracker.abort_metadata)
+        extraction_warnings.append(
+            "Extraction run aborted: export is incomplete and not benchmarkable "
+            f"({provider_abort_tracker.abort_metadata.get('failure_reason')})."
+        )
     return bundle
 
 
@@ -3241,7 +3849,9 @@ def repair_extraction_from_export_dir(
     extraction_fallback: str,
     only: Literal["repairable", "all"],
     in_place: bool,
-    retry_failed_llm: bool,
+    retry_failed_extraction_cache: bool | None,
+    ignore_failed_extraction_cache: bool,
+    retry_failed_llm: bool | None,
     source_cache_dir: str | None,
     derived_cache_dir: str | None,
     use_llm: bool,
@@ -3315,6 +3925,8 @@ def repair_extraction_from_export_dir(
         intake_bundle=base_bundle,
         extraction_repair_targets=targets,
         extraction_repair_kept_propositions=kept_for_repair,
+        retry_failed_extraction_cache=retry_failed_extraction_cache,
+        ignore_failed_extraction_cache=ignore_failed_extraction_cache,
         retry_failed_llm=retry_failed_llm,
         progress=pr,
     )
@@ -3341,11 +3953,20 @@ def run_case_file(
     use_llm: bool = False,
     extraction_mode: str | None = None,
     extraction_execution_mode: str | None = None,
-    extraction_fallback: str = "fallback",
+    extraction_fallback: str | None = None,
     divergence_reasoning: str | None = None,
     source_cache_dir: str | None = None,
     derived_cache_dir: str | None = None,
+    retry_failed_extraction_cache: bool | None = None,
+    ignore_failed_extraction_cache: bool = False,
+    retry_failed_llm: bool | None = None,
     progress: Any | None = None,
+    progress_every: int = 10,
+    extraction_output_mode: str | None = None,
+    allow_output_mode_fallback: bool = False,
+    abort_on_provider_failure: bool | None = None,
+    provider_failure_threshold: int | None = None,
+    max_failed_extraction_jobs: int | None = None,
 ) -> dict[str, Any]:
     pr = progress if progress is not None else null_pipeline_progress()
     pr.stage("Loading case", detail=Path(case_path).name)
@@ -3359,8 +3980,59 @@ def run_case_file(
         divergence_reasoning=divergence_reasoning,
         source_cache_dir=source_cache_dir,
         derived_cache_dir=derived_cache_dir,
+        retry_failed_extraction_cache=retry_failed_extraction_cache,
+        ignore_failed_extraction_cache=ignore_failed_extraction_cache,
+        retry_failed_llm=retry_failed_llm,
         progress=pr,
+        progress_every=progress_every,
+        extraction_output_mode=extraction_output_mode,
+        allow_output_mode_fallback=allow_output_mode_fallback,
+        abort_on_provider_failure=abort_on_provider_failure,
+        provider_failure_threshold=provider_failure_threshold,
+        max_failed_extraction_jobs=max_failed_extraction_jobs,
     )
+
+
+def export_run_file(
+    run_path: str,
+    output_dir: str,
+    *,
+    progress: Any | None = None,
+    allow_incomplete_export: bool = False,
+) -> dict[str, Any]:
+    """Export a persisted run bundle without re-running extraction."""
+    from .extraction_provider_failure import is_export_blocked_for_incomplete_extraction
+    from .run_persistence import load_persisted_run_bundle
+
+    pr = progress if progress is not None else null_pipeline_progress()
+    bundle = load_persisted_run_bundle(run_path)
+    blocked, assessment = is_export_blocked_for_incomplete_extraction(bundle)
+    if blocked and not allow_incomplete_export:
+        reason = assessment.get("failure_reason") or "incomplete_extraction"
+        failed = assessment.get("failed_extraction_jobs")
+        attempted = assessment.get("attempted_extraction_jobs")
+        zero_sources = assessment.get("sources_with_zero_propositions") or []
+        raise ValueError(
+            "Refusing to export: extraction run is incomplete and not benchmarkable "
+            f"(failure_reason={reason!r}, failed_jobs={failed}, attempted_jobs={attempted}, "
+            f"sources_with_zero_propositions={zero_sources}). "
+            "Re-run extraction after fixing provider credentials/billing, or pass "
+            "--allow-incomplete-export to export anyway."
+        )
+    if blocked and allow_incomplete_export:
+        bundle = dict(bundle)
+        bundle["export_incomplete"] = True
+        bundle["export_not_benchmarkable"] = True
+        bundle.setdefault("benchmark_verdict", assessment.get("benchmark_verdict"))
+    pr.stage("Export bundle", detail=str(output_dir))
+    export_bundle(bundle=bundle, output_dir=output_dir, run_path=run_path)
+    rq = bundle.get("run_quality_summary")
+    if isinstance(rq, dict):
+        pr.stage(
+            "Lint / quality summary",
+            detail=f"status={rq.get('status')}, warnings={rq.get('warning_count', 0)}",
+        )
+    return bundle
 
 
 def export_case_file(
@@ -3369,13 +4041,56 @@ def export_case_file(
     use_llm: bool = False,
     extraction_mode: str | None = None,
     extraction_execution_mode: str | None = None,
-    extraction_fallback: str = "fallback",
+    extraction_fallback: str | None = None,
     divergence_reasoning: str | None = None,
     source_cache_dir: str | None = None,
     derived_cache_dir: str | None = None,
+    retry_failed_extraction_cache: bool | None = None,
+    ignore_failed_extraction_cache: bool = False,
+    retry_failed_llm: bool | None = None,
     progress: Any | None = None,
+    progress_every: int = 10,
+    *,
+    rerun: bool = False,
+    abort_on_provider_failure: bool | None = None,
+    provider_failure_threshold: int | None = None,
+    max_failed_extraction_jobs: int | None = None,
+    allow_incomplete_export: bool = False,
 ) -> dict[str, Any]:
+    from .extraction_provider_failure import is_export_blocked_for_incomplete_extraction
+    from .file_input import load_case_file
+    from .run_persistence import (
+        has_persisted_run_bundle,
+        load_persisted_run_config,
+        validate_rerun_extraction_allowed,
+    )
+
     pr = progress if progress is not None else null_pipeline_progress()
+    if has_persisted_run_bundle(case_path) and not rerun:
+        return export_run_file(
+            run_path=case_path,
+            output_dir=output_dir,
+            progress=pr,
+            allow_incomplete_export=allow_incomplete_export,
+        )
+
+    case_data = load_case_file(case_path)
+    persisted_config = load_persisted_run_config(case_data)
+    if persisted_config is not None and not rerun and not has_persisted_run_bundle(case_path):
+        raise ValueError(
+            "Case metadata records a prior run but run_bundle.json is missing. "
+            "Re-run with `run-case`/`run-bundle`, or pass --rerun with explicit --extraction-mode."
+        )
+
+    if rerun and persisted_config is not None:
+        validate_rerun_extraction_allowed(
+            persisted=persisted_config,
+            rerun=True,
+            use_llm=use_llm,
+            extraction_mode=extraction_mode,
+            case_data=case_data,
+        )
+
     bundle = run_case_file(
         case_path=case_path,
         use_llm=use_llm,
@@ -3385,10 +4100,28 @@ def export_case_file(
         divergence_reasoning=divergence_reasoning,
         source_cache_dir=source_cache_dir,
         derived_cache_dir=derived_cache_dir,
+        retry_failed_extraction_cache=retry_failed_extraction_cache,
+        ignore_failed_extraction_cache=ignore_failed_extraction_cache,
+        retry_failed_llm=retry_failed_llm,
         progress=pr,
+        progress_every=progress_every,
+        abort_on_provider_failure=abort_on_provider_failure,
+        provider_failure_threshold=provider_failure_threshold,
+        max_failed_extraction_jobs=max_failed_extraction_jobs,
     )
+    blocked, _assessment = is_export_blocked_for_incomplete_extraction(bundle)
+    if blocked and not allow_incomplete_export:
+        raise ValueError(
+            "Refusing to export after extraction: run is incomplete and not benchmarkable. "
+            "Pass allow_incomplete_export=True or fix provider billing/credentials and re-run."
+        )
     pr.stage("Export bundle", detail=str(output_dir))
-    export_bundle(bundle=bundle, output_dir=output_dir)
+    export_bundle(
+        bundle=bundle,
+        output_dir=output_dir,
+        case_data=case_data,
+        run_path=case_path,
+    )
     rq = bundle.get("run_quality_summary")
     if isinstance(rq, dict):
         pr.stage(

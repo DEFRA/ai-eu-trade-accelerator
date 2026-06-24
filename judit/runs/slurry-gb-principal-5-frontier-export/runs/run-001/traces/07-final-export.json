@@ -1,0 +1,19 @@
+{
+  "stage_name": "final export",
+  "run_id": "run-001",
+  "timestamp": "2026-06-03T13:33:38.893970Z",
+  "inputs": {
+    "output_dir": "runs/slurry-gb-principal-5-frontier-export",
+    "root_manifest": "manifest.json",
+    "run_manifest": "runs/run-001/manifest.json"
+  },
+  "outputs": {
+    "run_dir": "runs/run-001",
+    "artifact_dir": "runs/run-001/artifacts"
+  },
+  "strategy_used": "static_bundle_file_export",
+  "model_alias_used": null,
+  "duration_ms": 105,
+  "warnings": [],
+  "errors": []
+}

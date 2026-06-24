@@ -1,0 +1,869 @@
+{
+  "stage_name": "source intake",
+  "run_id": "run-001",
+  "timestamp": "2026-06-04T12:05:41.035668Z",
+  "started_at": "2026-06-04T12:05:41.035668Z",
+  "finished_at": "2026-06-04T12:05:41.797312Z",
+  "status": "ok",
+  "inputs": {
+    "source_count": 1,
+    "source_ids": [
+      "lex-120b4f9c395b3f94"
+    ],
+    "cache_paths": {
+      "source_cache_dir": "/var/folders/zg/y_4dnc8n1c72_fnd9knx6fvr0000gn/T/judit/source-snapshots",
+      "derived_cache_dir": "runs/slurry-smoke-npp-2015-current/.derived-cache"
+    },
+    "cache_path_resolution": {
+      "source_cache_dir": "default_temp",
+      "derived_cache_dir": "cli_flag"
+    }
+  },
+  "outputs": {
+    "source_record_ids": [
+      "lex-120b4f9c395b3f94"
+    ],
+    "source_snapshot_ids": [
+      "snap-lex-120b4f9c395b3f94-v1"
+    ],
+    "source_fragment_ids": [
+      "frag-lex-120b4f9c395b3f94-001",
+      "frag-lex-120b4f9c395b3f94-002",
+      "frag-lex-120b4f9c395b3f94-003",
+      "frag-lex-120b4f9c395b3f94-004",
+      "frag-lex-120b4f9c395b3f94-005",
+      "frag-lex-120b4f9c395b3f94-006",
+      "frag-lex-120b4f9c395b3f94-007",
+      "frag-lex-120b4f9c395b3f94-008",
+      "frag-lex-120b4f9c395b3f94-009",
+      "frag-lex-120b4f9c395b3f94-010",
+      "frag-lex-120b4f9c395b3f94-011",
+      "frag-lex-120b4f9c395b3f94-012",
+      "frag-lex-120b4f9c395b3f94-013",
+      "frag-lex-120b4f9c395b3f94-014",
+      "frag-lex-120b4f9c395b3f94-015",
+      "frag-lex-120b4f9c395b3f94-016",
+      "frag-lex-120b4f9c395b3f94-017",
+      "frag-lex-120b4f9c395b3f94-018",
+      "frag-lex-120b4f9c395b3f94-019",
+      "frag-lex-120b4f9c395b3f94-020",
+      "frag-lex-120b4f9c395b3f94-021",
+      "frag-lex-120b4f9c395b3f94-022",
+      "frag-lex-120b4f9c395b3f94-023",
+      "frag-lex-120b4f9c395b3f94-024",
+      "frag-lex-120b4f9c395b3f94-025",
+      "frag-lex-120b4f9c395b3f94-026",
+      "frag-lex-120b4f9c395b3f94-027",
+      "frag-lex-120b4f9c395b3f94-028",
+      "frag-lex-120b4f9c395b3f94-029",
+      "frag-lex-120b4f9c395b3f94-030",
+      "frag-lex-120b4f9c395b3f94-031",
+      "frag-lex-120b4f9c395b3f94-032",
+      "frag-lex-120b4f9c395b3f94-033",
+      "frag-lex-120b4f9c395b3f94-034",
+      "frag-lex-120b4f9c395b3f94-035",
+      "frag-lex-120b4f9c395b3f94-036",
+      "frag-lex-120b4f9c395b3f94-037",
+      "frag-lex-120b4f9c395b3f94-038",
+      "frag-lex-120b4f9c395b3f94-039",
+      "frag-lex-120b4f9c395b3f94-040",
+      "frag-lex-120b4f9c395b3f94-041",
+      "frag-lex-120b4f9c395b3f94-042",
+      "frag-lex-120b4f9c395b3f94-043",
+      "frag-lex-120b4f9c395b3f94-044",
+      "frag-lex-120b4f9c395b3f94-045",
+      "frag-lex-120b4f9c395b3f94-046",
+      "frag-lex-120b4f9c395b3f94-047",
+      "frag-lex-120b4f9c395b3f94-048",
+      "frag-lex-120b4f9c395b3f94-049",
+      "frag-lex-120b4f9c395b3f94-050",
+      "frag-lex-120b4f9c395b3f94-051",
+      "frag-lex-120b4f9c395b3f94-052",
+      "frag-lex-120b4f9c395b3f94-053",
+      "frag-lex-120b4f9c395b3f94-054",
+      "frag-lex-120b4f9c395b3f94-055",
+      "frag-lex-120b4f9c395b3f94-056",
+      "frag-lex-120b4f9c395b3f94-057",
+      "frag-lex-120b4f9c395b3f94-058",
+      "frag-lex-120b4f9c395b3f94-059",
+      "frag-lex-120b4f9c395b3f94-060",
+      "frag-lex-120b4f9c395b3f94-061",
+      "frag-lex-120b4f9c395b3f94-062",
+      "frag-lex-120b4f9c395b3f94-063",
+      "frag-lex-120b4f9c395b3f94-064",
+      "frag-lex-120b4f9c395b3f94-065",
+      "frag-lex-120b4f9c395b3f94-066",
+      "frag-lex-120b4f9c395b3f94-067",
+      "frag-lex-120b4f9c395b3f94-068",
+      "frag-lex-120b4f9c395b3f94-069",
+      "frag-lex-120b4f9c395b3f94-070",
+      "frag-lex-120b4f9c395b3f94-071",
+      "frag-lex-120b4f9c395b3f94-072",
+      "frag-lex-120b4f9c395b3f94-073",
+      "frag-lex-120b4f9c395b3f94-074",
+      "frag-lex-120b4f9c395b3f94-075"
+    ],
+    "source_parse_trace_ids": [
+      "parse-trace-snap-lex-120b4f9c395b3f94-v1"
+    ],
+    "source_fetch_metadata_ids": [
+      "fetch-lex-120b4f9c395b3f94"
+    ],
+    "source_fetch_attempt_ids": [
+      "fetch-attempt-lex-120b4f9c395b3f94-001"
+    ],
+    "source_inventory_id": "artifact-run-001-source-inventory",
+    "source_target_link_ids": [
+      "target-link-lex-120b4f9c395b3f94"
+    ],
+    "source_categorisation_rationale_count": 1,
+    "review_decision_ids": [
+      "review-frag-lex-120b4f9c395b3f94-001",
+      "review-frag-lex-120b4f9c395b3f94-002",
+      "review-frag-lex-120b4f9c395b3f94-003",
+      "review-frag-lex-120b4f9c395b3f94-004",
+      "review-frag-lex-120b4f9c395b3f94-005",
+      "review-frag-lex-120b4f9c395b3f94-006",
+      "review-frag-lex-120b4f9c395b3f94-007",
+      "review-frag-lex-120b4f9c395b3f94-008",
+      "review-frag-lex-120b4f9c395b3f94-009",
+      "review-frag-lex-120b4f9c395b3f94-010",
+      "review-frag-lex-120b4f9c395b3f94-011",
+      "review-frag-lex-120b4f9c395b3f94-012",
+      "review-frag-lex-120b4f9c395b3f94-013",
+      "review-frag-lex-120b4f9c395b3f94-014",
+      "review-frag-lex-120b4f9c395b3f94-015",
+      "review-frag-lex-120b4f9c395b3f94-016",
+      "review-frag-lex-120b4f9c395b3f94-017",
+      "review-frag-lex-120b4f9c395b3f94-018",
+      "review-frag-lex-120b4f9c395b3f94-019",
+      "review-frag-lex-120b4f9c395b3f94-020",
+      "review-frag-lex-120b4f9c395b3f94-021",
+      "review-frag-lex-120b4f9c395b3f94-022",
+      "review-frag-lex-120b4f9c395b3f94-023",
+      "review-frag-lex-120b4f9c395b3f94-024",
+      "review-frag-lex-120b4f9c395b3f94-025",
+      "review-frag-lex-120b4f9c395b3f94-026",
+      "review-frag-lex-120b4f9c395b3f94-027",
+      "review-frag-lex-120b4f9c395b3f94-028",
+      "review-frag-lex-120b4f9c395b3f94-029",
+      "review-frag-lex-120b4f9c395b3f94-030",
+      "review-frag-lex-120b4f9c395b3f94-031",
+      "review-frag-lex-120b4f9c395b3f94-032",
+      "review-frag-lex-120b4f9c395b3f94-033",
+      "review-frag-lex-120b4f9c395b3f94-034",
+      "review-frag-lex-120b4f9c395b3f94-035",
+      "review-frag-lex-120b4f9c395b3f94-036",
+      "review-frag-lex-120b4f9c395b3f94-037",
+      "review-frag-lex-120b4f9c395b3f94-038",
+      "review-frag-lex-120b4f9c395b3f94-039",
+      "review-frag-lex-120b4f9c395b3f94-040",
+      "review-frag-lex-120b4f9c395b3f94-041",
+      "review-frag-lex-120b4f9c395b3f94-042",
+      "review-frag-lex-120b4f9c395b3f94-043",
+      "review-frag-lex-120b4f9c395b3f94-044",
+      "review-frag-lex-120b4f9c395b3f94-045",
+      "review-frag-lex-120b4f9c395b3f94-046",
+      "review-frag-lex-120b4f9c395b3f94-047",
+      "review-frag-lex-120b4f9c395b3f94-048",
+      "review-frag-lex-120b4f9c395b3f94-049",
+      "review-frag-lex-120b4f9c395b3f94-050",
+      "review-frag-lex-120b4f9c395b3f94-051",
+      "review-frag-lex-120b4f9c395b3f94-052",
+      "review-frag-lex-120b4f9c395b3f94-053",
+      "review-frag-lex-120b4f9c395b3f94-054",
+      "review-frag-lex-120b4f9c395b3f94-055",
+      "review-frag-lex-120b4f9c395b3f94-056",
+      "review-frag-lex-120b4f9c395b3f94-057",
+      "review-frag-lex-120b4f9c395b3f94-058",
+      "review-frag-lex-120b4f9c395b3f94-059",
+      "review-frag-lex-120b4f9c395b3f94-060",
+      "review-frag-lex-120b4f9c395b3f94-061",
+      "review-frag-lex-120b4f9c395b3f94-062",
+      "review-frag-lex-120b4f9c395b3f94-063",
+      "review-frag-lex-120b4f9c395b3f94-064",
+      "review-frag-lex-120b4f9c395b3f94-065",
+      "review-frag-lex-120b4f9c395b3f94-066",
+      "review-frag-lex-120b4f9c395b3f94-067",
+      "review-frag-lex-120b4f9c395b3f94-068",
+      "review-frag-lex-120b4f9c395b3f94-069",
+      "review-frag-lex-120b4f9c395b3f94-070",
+      "review-frag-lex-120b4f9c395b3f94-071",
+      "review-frag-lex-120b4f9c395b3f94-072",
+      "review-frag-lex-120b4f9c395b3f94-073",
+      "review-frag-lex-120b4f9c395b3f94-074",
+      "review-frag-lex-120b4f9c395b3f94-075"
+    ],
+    "review_transitions": [
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-001",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-002",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-003",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-004",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-005",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-006",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-007",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-008",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-009",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-010",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-011",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-012",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-013",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-014",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-015",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-016",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-017",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-018",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-019",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-020",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-021",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-022",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-023",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-024",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-025",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-026",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-027",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-028",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-029",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-030",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-031",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-032",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-033",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-034",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-035",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-036",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-037",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-038",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-039",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-040",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-041",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-042",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-043",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-044",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-045",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-046",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-047",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-048",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-049",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-050",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-051",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-052",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-053",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-054",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-055",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-056",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-057",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-058",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-059",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-060",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-061",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-062",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-063",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-064",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-065",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-066",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-067",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-068",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-069",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-070",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-071",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-072",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-073",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-074",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      },
+      {
+        "target_type": "source_fragment",
+        "target_id": "frag-lex-120b4f9c395b3f94-075",
+        "previous_status": null,
+        "new_status": "accepted",
+        "reviewer": "system:intake"
+      }
+    ],
+    "fetch_cache_traces": [
+      {
+        "authority": "legislation_gov_uk",
+        "authority_source_id": "uksi/2015/668",
+        "version_id": "v1",
+        "adapter": "LegislationGovUkAuthorityAdapter",
+        "requested_content_hash": null,
+        "cache_dir": "/var/folders/zg/y_4dnc8n1c72_fnd9knx6fvr0000gn/T/judit/source-snapshots",
+        "decision": "fetched_then_cached",
+        "fetch_status": "fetched_then_cached",
+        "cache_key": "63057473e365516deac0669c6122f2e0640b113988fadfc3de9960bcf9ee6221",
+        "content_hash": "bedd2b532b7ffa68f7aa15d1f2d6a3b39744f35ee6b644eee3f70ea91adb72b0",
+        "raw_artifact_uri": "file:///private/var/folders/zg/y_4dnc8n1c72_fnd9knx6fvr0000gn/T/judit/source-snapshots/63057473e365516deac0669c6122f2e0640b113988fadfc3de9960bcf9ee6221.json",
+        "adapter_trace": {
+          "source_kind": "authority_fetch",
+          "source_url": "https://www.legislation.gov.uk/uksi/2015/668/data.xml",
+          "http_status": 200,
+          "response_bytes": 380343,
+          "parser": "legislation_gov_uk_data_xml_v1"
+        },
+        "attempt_count": 1,
+        "source_record_id": "lex-120b4f9c395b3f94",
+        "source_snapshot_id": "snap-lex-120b4f9c395b3f94-v1",
+        "source_fragment_id": "frag-lex-120b4f9c395b3f94-001",
+        "source_fragment_ids": [
+          "frag-lex-120b4f9c395b3f94-001",
+          "frag-lex-120b4f9c395b3f94-002",
+          "frag-lex-120b4f9c395b3f94-003",
+          "frag-lex-120b4f9c395b3f94-004",
+          "frag-lex-120b4f9c395b3f94-005",
+          "frag-lex-120b4f9c395b3f94-006",
+          "frag-lex-120b4f9c395b3f94-007",
+          "frag-lex-120b4f9c395b3f94-008",
+          "frag-lex-120b4f9c395b3f94-009",
+          "frag-lex-120b4f9c395b3f94-010",
+          "frag-lex-120b4f9c395b3f94-011",
+          "frag-lex-120b4f9c395b3f94-012",
+          "frag-lex-120b4f9c395b3f94-013",
+          "frag-lex-120b4f9c395b3f94-014",
+          "frag-lex-120b4f9c395b3f94-015",
+          "frag-lex-120b4f9c395b3f94-016",
+          "frag-lex-120b4f9c395b3f94-017",
+          "frag-lex-120b4f9c395b3f94-018",
+          "frag-lex-120b4f9c395b3f94-019",
+          "frag-lex-120b4f9c395b3f94-020",
+          "frag-lex-120b4f9c395b3f94-021",
+          "frag-lex-120b4f9c395b3f94-022",
+          "frag-lex-120b4f9c395b3f94-023",
+          "frag-lex-120b4f9c395b3f94-024",
+          "frag-lex-120b4f9c395b3f94-025",
+          "frag-lex-120b4f9c395b3f94-026",
+          "frag-lex-120b4f9c395b3f94-027",
+          "frag-lex-120b4f9c395b3f94-028",
+          "frag-lex-120b4f9c395b3f94-029",
+          "frag-lex-120b4f9c395b3f94-030",
+          "frag-lex-120b4f9c395b3f94-031",
+          "frag-lex-120b4f9c395b3f94-032",
+          "frag-lex-120b4f9c395b3f94-033",
+          "frag-lex-120b4f9c395b3f94-034",
+          "frag-lex-120b4f9c395b3f94-035",
+          "frag-lex-120b4f9c395b3f94-036",
+          "frag-lex-120b4f9c395b3f94-037",
+          "frag-lex-120b4f9c395b3f94-038",
+          "frag-lex-120b4f9c395b3f94-039",
+          "frag-lex-120b4f9c395b3f94-040",
+          "frag-lex-120b4f9c395b3f94-041",
+          "frag-lex-120b4f9c395b3f94-042",
+          "frag-lex-120b4f9c395b3f94-043",
+          "frag-lex-120b4f9c395b3f94-044",
+          "frag-lex-120b4f9c395b3f94-045",
+          "frag-lex-120b4f9c395b3f94-046",
+          "frag-lex-120b4f9c395b3f94-047",
+          "frag-lex-120b4f9c395b3f94-048",
+          "frag-lex-120b4f9c395b3f94-049",
+          "frag-lex-120b4f9c395b3f94-050",
+          "frag-lex-120b4f9c395b3f94-051",
+          "frag-lex-120b4f9c395b3f94-052",
+          "frag-lex-120b4f9c395b3f94-053",
+          "frag-lex-120b4f9c395b3f94-054",
+          "frag-lex-120b4f9c395b3f94-055",
+          "frag-lex-120b4f9c395b3f94-056",
+          "frag-lex-120b4f9c395b3f94-057",
+          "frag-lex-120b4f9c395b3f94-058",
+          "frag-lex-120b4f9c395b3f94-059",
+          "frag-lex-120b4f9c395b3f94-060",
+          "frag-lex-120b4f9c395b3f94-061",
+          "frag-lex-120b4f9c395b3f94-062",
+          "frag-lex-120b4f9c395b3f94-063",
+          "frag-lex-120b4f9c395b3f94-064",
+          "frag-lex-120b4f9c395b3f94-065",
+          "frag-lex-120b4f9c395b3f94-066",
+          "frag-lex-120b4f9c395b3f94-067",
+          "frag-lex-120b4f9c395b3f94-068",
+          "frag-lex-120b4f9c395b3f94-069",
+          "frag-lex-120b4f9c395b3f94-070",
+          "frag-lex-120b4f9c395b3f94-071",
+          "frag-lex-120b4f9c395b3f94-072",
+          "frag-lex-120b4f9c395b3f94-073",
+          "frag-lex-120b4f9c395b3f94-074",
+          "frag-lex-120b4f9c395b3f94-075"
+        ],
+        "provenance": "ada.judit_intake",
+        "retrieved_at": "2026-06-04T12:05:41.790870Z"
+      }
+    ]
+  },
+  "strategy_used": "authority_adapter_fetch_with_snapshot_cache",
+  "model_alias_used": null,
+  "duration_ms": 761,
+  "input_artifact_ids": [],
+  "output_artifact_ids": [
+    "artifact-run-001-source-records",
+    "artifact-run-001-source-snapshots",
+    "artifact-run-001-source-fragments",
+    "artifact-run-001-source-parse-traces",
+    "artifact-run-001-source-fetch-metadata",
+    "artifact-run-001-source-fetch-attempts",
+    "artifact-run-001-source-inventory",
+    "artifact-run-001-source-target-links",
+    "artifact-run-001-source-categorisation-rationales"
+  ],
+  "metrics": {
+    "source_count": 1,
+    "source_snapshot_count": 1,
+    "source_fragment_count": 75,
+    "source_target_link_count": 1,
+    "source_categorisation_rationale_count": 1,
+    "cache_hit_count": 0,
+    "live_fetch_count": 1,
+    "success_count": 1,
+    "retryable_error_count": 0,
+    "fatal_error_count": 0,
+    "skipped_count": 0,
+    "unique_content_hash_count": 1,
+    "snapshot_count": 1,
+    "parsed_snapshot_count": 1,
+    "fragment_count": 75,
+    "parser_success_count": 1,
+    "parser_partial_success_count": 0,
+    "parser_failed_count": 0,
+    "parser_skipped_count": 0,
+    "unique_fragment_hash_count": 75
+  },
+  "warnings": [],
+  "errors": []
+}

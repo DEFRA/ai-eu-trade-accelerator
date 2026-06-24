@@ -201,7 +201,8 @@ def _proposition_label_haystack(p: Proposition) -> str:
     parts = [
         p.label,
         p.short_name,
-        " ".join(p.categories),
+        p.proposition_tier.value,
+        p.legal_effect_type.value,
         " ".join(p.tags),
     ]
     return _normalize_haystack(" ".join(parts))

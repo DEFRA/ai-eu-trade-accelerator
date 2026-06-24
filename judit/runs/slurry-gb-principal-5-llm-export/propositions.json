@@ -1,0 +1,1468 @@
+[
+  {
+    "id": "prop:9a84e5adb74f96ec",
+    "proposition_key": "lex-120b4f9c395b3f94:regulation-30-1:p001",
+    "proposition_version_id": "pver:lex-120b4f9c395b3f94:regulation-30-1:p001:snap-lex-120b4f9c395b3f94-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_snapshot_id": "snap-lex-120b4f9c395b3f94-v1",
+    "source_fragment_id": "frag-lex-120b4f9c395b3f94-033",
+    "fragment_locator": "regulation:30(1)",
+    "jurisdiction": "UK",
+    "article_reference": "regulation 30",
+    "proposition_text": "The occupier of a holding must record the crop sown and the date of sowing within one week of sowing a crop on which the occupier spreads or intends to spread nitrogen fertiliser.",
+    "label": "Regulation 30(1)",
+    "short_name": "Regulation 30(1)",
+    "slug": "regulation-30-1",
+    "legal_subject": "occupier of a holding",
+    "action": "must record the crop sown and the date of sowing",
+    "conditions": [
+      "within one week of sowing a crop on which the occupier spreads or intends to spread nitrogen fertiliser",
+      "exception: a crop growing in a greenhouse",
+      "temporal: within one week of sowing"
+    ],
+    "authority": null,
+    "required_documents": [
+      "record"
+    ],
+    "affected_subjects": [
+      "the crop sown and the date of sowing"
+    ],
+    "categories": [
+      "conditional",
+      "documentary",
+      "obligation",
+      "record_keeping"
+    ],
+    "tags": [
+      "occupier-of-a-holding",
+      "the-crop-sown-and-the-date-of-sowing",
+      "uk"
+    ],
+    "cross_reference_key": "uk:occupier-of-a-holding:must-record-the-crop-sown-and-the-date-of-sowing",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 667, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"The occupier of a holding must, within one week of sowing a crop on which the occupier spreads or intends to spread nitrogen fertiliser, record the crop sown and the date of sowing.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 667, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"regulation:30\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-120b4f9c395b3f94-033\", \"source_record_id\": \"lex-120b4f9c395b3f94\", \"source_title\": \"The Nitrate Pollution Prevention Regulations 2015\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe obligation is clearly stated and the exception is explicitly mentioned."
+  },
+  {
+    "id": "prop:8c9bdb350fdf1bc7",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p001",
+    "proposition_version_id": "pver:lex-120b4f9c395b3f94:schedule-2-paragraph-2:p001:snap-lex-120b4f9c395b3f94-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_snapshot_id": "snap-lex-120b4f9c395b3f94-v1",
+    "source_fragment_id": "frag-lex-120b4f9c395b3f94-052",
+    "fragment_locator": "schedule:2:paragraph:2",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 2",
+    "proposition_text": "In the case of solid manures, the samples must be taken from a manure heap.",
+    "label": "Sample Collection Location for Solid Manures",
+    "short_name": "Sample Collection Location for Solid Manures",
+    "slug": "sample-collection-location-for-solid-manures",
+    "legal_subject": "sample collection",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "solid manures"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "sample-collection",
+      "solid-manures",
+      "uk"
+    ],
+    "cross_reference_key": "uk:sample-collection:requirement",
+    "cross_reference_targets": [
+      "prop:7330463e891bbb41",
+      "prop:46f553c082a9270c",
+      "prop:1d12ca439cc02a18",
+      "prop:492b7d7877437b14",
+      "prop:f3a8e13d3b944c11"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 815, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"In the case of solid manures, the samples must be taken from a manure heap.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 815, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:2:paragraph:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-120b4f9c395b3f94-052\", \"source_record_id\": \"lex-120b4f9c395b3f94\", \"source_title\": \"The Nitrate Pollution Prevention Regulations 2015\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe text explicitly states the requirement without ambiguity."
+  },
+  {
+    "id": "prop:7330463e891bbb41",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p002",
+    "proposition_version_id": "pver:lex-120b4f9c395b3f94:schedule-2-paragraph-2:p002:snap-lex-120b4f9c395b3f94-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_snapshot_id": "snap-lex-120b4f9c395b3f94-v1",
+    "source_fragment_id": "frag-lex-120b4f9c395b3f94-052",
+    "fragment_locator": "schedule:2:paragraph:2",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 2",
+    "proposition_text": "At least ten samples of 1kg each must be taken, each from a different location in a heap.",
+    "label": "Number of Samples for Solid Manures",
+    "short_name": "Number of Samples for Solid Manures",
+    "slug": "number-of-samples-for-solid-manures",
+    "legal_subject": "sample collection",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "solid manures"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "sample-collection",
+      "solid-manures",
+      "uk"
+    ],
+    "cross_reference_key": "uk:sample-collection:requirement",
+    "cross_reference_targets": [
+      "prop:8c9bdb350fdf1bc7",
+      "prop:46f553c082a9270c",
+      "prop:1d12ca439cc02a18",
+      "prop:492b7d7877437b14",
+      "prop:f3a8e13d3b944c11"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 815, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"At least ten samples of 1kg each must be taken, each from a different location in a heap.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 815, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:2:paragraph:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-120b4f9c395b3f94-052\", \"source_record_id\": \"lex-120b4f9c395b3f94\", \"source_title\": \"The Nitrate Pollution Prevention Regulations 2015\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe text explicitly states the requirement without ambiguity."
+  },
+  {
+    "id": "prop:46f553c082a9270c",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p003",
+    "proposition_version_id": "pver:lex-120b4f9c395b3f94:schedule-2-paragraph-2:p003:snap-lex-120b4f9c395b3f94-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_snapshot_id": "snap-lex-120b4f9c395b3f94-v1",
+    "source_fragment_id": "frag-lex-120b4f9c395b3f94-052",
+    "fragment_locator": "schedule:2:paragraph:2",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 2",
+    "proposition_text": "Each sample must be taken at least 0.5 metres from the surface of the heap.",
+    "label": "Sample Depth Requirement for Solid Manures",
+    "short_name": "Sample Depth Requirement for Solid Manures",
+    "slug": "sample-depth-requirement-for-solid-manures",
+    "legal_subject": "sample collection",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "solid manures"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "sample-collection",
+      "solid-manures",
+      "uk"
+    ],
+    "cross_reference_key": "uk:sample-collection:requirement",
+    "cross_reference_targets": [
+      "prop:8c9bdb350fdf1bc7",
+      "prop:7330463e891bbb41",
+      "prop:1d12ca439cc02a18",
+      "prop:492b7d7877437b14",
+      "prop:f3a8e13d3b944c11"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 815, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"Each sample must be taken at least 0.5 metres from the surface of the heap.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 815, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:2:paragraph:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-120b4f9c395b3f94-052\", \"source_record_id\": \"lex-120b4f9c395b3f94\", \"source_title\": \"The Nitrate Pollution Prevention Regulations 2015\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe text explicitly states the requirement without ambiguity."
+  },
+  {
+    "id": "prop:4ebc206f66f4fa1b",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p004",
+    "proposition_version_id": "pver:lex-120b4f9c395b3f94:schedule-2-paragraph-2:p004:snap-lex-120b4f9c395b3f94-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_snapshot_id": "snap-lex-120b4f9c395b3f94-v1",
+    "source_fragment_id": "frag-lex-120b4f9c395b3f94-052",
+    "fragment_locator": "schedule:2:paragraph:2",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 2",
+    "proposition_text": "A representative sample of at least 2kg must then be sent for analysis.",
+    "label": "Sample Preparation and Submission for Analysis",
+    "short_name": "Sample Preparation and Submission for Analysis",
+    "slug": "sample-preparation-and-submission-for-analysis",
+    "legal_subject": "sample preparation",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "solid manures"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "sample-preparation",
+      "solid-manures",
+      "uk"
+    ],
+    "cross_reference_key": "uk:sample-preparation:requirement",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 815, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"A representative sample of at least 2kg must then be sent for analysis.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 815, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:2:paragraph:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-120b4f9c395b3f94-052\", \"source_record_id\": \"lex-120b4f9c395b3f94\", \"source_title\": \"The Nitrate Pollution Prevention Regulations 2015\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe text explicitly states the requirement without ambiguity."
+  },
+  {
+    "id": "prop:158e699357b754ae",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-3-paragraph-11:p001",
+    "proposition_version_id": "pver:lex-120b4f9c395b3f94:schedule-3-paragraph-11:p001:snap-lex-120b4f9c395b3f94-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_snapshot_id": "snap-lex-120b4f9c395b3f94-v1",
+    "source_fragment_id": "frag-lex-120b4f9c395b3f94-064",
+    "fragment_locator": "schedule:3:paragraph:11",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 3",
+    "proposition_text": "Crop rotation on the holding must not include leguminous or other plants fixing atmospheric nitrogen except for\u2014agrass with less than 50% clover, orbany other leguminous plant that is under-sown with grass.",
+    "label": "Schedule 3, paragraph 11",
+    "short_name": "Schedule 3, paragraph 11",
+    "slug": "schedule-3-paragraph-11",
+    "legal_subject": "Crop rotation on the holding",
+    "action": "must not include leguminous or other plants fixing atmospheric nitrogen",
+    "conditions": [
+      "except for\u2014agrass with less than 50% clover",
+      "orbany other leguminous plant that is under-sown with grass",
+      "exception: agrass with less than 50% clover",
+      "exception: orbany other leguminous plant that is under-sown with grass"
+    ],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "leguminous or other plants fixing atmospheric nitrogen"
+    ],
+    "categories": [
+      "conditional",
+      "obligation"
+    ],
+    "tags": [
+      "crop-rotation-on-the-holding",
+      "leguminous-or-other-plants-fixing-atmospheric-nitrogen",
+      "uk"
+    ],
+    "cross_reference_key": "uk:crop-rotation-on-the-holding:must-not-include-leguminous-or-other-plants-fixing-atmospher",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 655, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"11Crop rotation on the holding must not include leguminous or other plants fixing atmospheric nitrogen except for\\u2014agrass with less than 50% clover, orbany other leguminous plant that is under-sown with grass.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 655, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:3:paragraph:11\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-120b4f9c395b3f94-064\", \"source_record_id\": \"lex-120b4f9c395b3f94\", \"source_title\": \"The Nitrate Pollution Prevention Regulations 2015\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe text is clear and unambiguous, specifying the prohibition and exceptions directly."
+  },
+  {
+    "id": "prop:d2f993d73e3fb955",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-3-paragraph-17-b-i:p001",
+    "proposition_version_id": "pver:lex-120b4f9c395b3f94:schedule-3-paragraph-17-b-i:p001:snap-lex-120b4f9c395b3f94-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_snapshot_id": "snap-lex-120b4f9c395b3f94-v1",
+    "source_fragment_id": "frag-lex-120b4f9c395b3f94-070",
+    "fragment_locator": "schedule:3:paragraph:17:b(i)",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 3",
+    "proposition_text": "The occupier must record within one week of spreading manufactured phosphate fertiliser the date of spreading.",
+    "label": "b(i)",
+    "short_name": "b(i)",
+    "slug": "b-i",
+    "legal_subject": "occupier",
+    "action": "must record",
+    "conditions": [
+      "within one week of spreading manufactured phosphate fertiliser",
+      "temporal: within one week of spreading manufactured phosphate fertiliser"
+    ],
+    "authority": null,
+    "required_documents": [
+      "record"
+    ],
+    "affected_subjects": [
+      "date of spreading"
+    ],
+    "categories": [
+      "conditional",
+      "documentary",
+      "obligation",
+      "record_keeping"
+    ],
+    "tags": [
+      "date-of-spreading",
+      "occupier",
+      "uk"
+    ],
+    "cross_reference_key": "uk:occupier:must-record",
+    "cross_reference_targets": [
+      "prop:27778bd51187ad25",
+      "prop:9698552230fa3c10",
+      "prop:f5f7f0d4309eab92"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 686, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"within one week of spreading manufactured phosphate fertiliser\\u2014ithe date of spreading\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 686, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:3:paragraph:17\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-120b4f9c395b3f94-070\", \"source_record_id\": \"lex-120b4f9c395b3f94\", \"source_title\": \"The Nitrate Pollution Prevention Regulations 2015\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nexplicitly stated in the source text"
+  },
+  {
+    "id": "prop:525a890de9335a59",
+    "proposition_key": "lex-805b03f284dcf364:regulation-19:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:regulation-19:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-021",
+    "fragment_locator": "regulation:19",
+    "jurisdiction": "UK",
+    "article_reference": "regulation 19",
+    "proposition_text": "Spreading organic manure with high readily available nitrogen on tillage land with sandy or shallow soil is permitted between 1 August and 15 September inclusive provided that the crop is sown on or before 15 September.",
+    "label": "Permit for spreading high nitrogen organic manure on sandy/shallow tillage land",
+    "short_name": "Permit for spreading high nitrogen organic manure on sandy/shallow tillage land",
+    "slug": "permit-for-spreading-high-nitrogen-organic-manure-on-sandy-shallow-tillage-land",
+    "legal_subject": "spreading organic manure with high readily available nitrogen",
+    "action": "permitted",
+    "conditions": [
+      "between 1 August and 15 September inclusive",
+      "crop is sown on or before 15 September",
+      "temporal: between 1 August and 15 September inclusive"
+    ],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "on tillage land with sandy or shallow soil"
+    ],
+    "categories": [
+      "conditional",
+      "obligation"
+    ],
+    "tags": [
+      "on-tillage-land-with-sandy-or-shallow-soil",
+      "spreading-organic-manure-with-high-readily-available-nitrogen",
+      "uk"
+    ],
+    "cross_reference_key": "uk:spreading-organic-manure-with-high-readily-available-nitrogen:permitted",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 655, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"Spreading organic manure with high readily available nitrogen on tillage land with sandy or shallow soil is permitted between 1 August and 15 September inclusive provided that the crop is sown on or before 15 September.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 655, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"regulation:19\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-021\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition is explicitly stated in the source text with clear conditions and temporal constraints."
+  },
+  {
+    "id": "prop:61b363a883f4b779",
+    "proposition_key": "lex-805b03f284dcf364:regulation-21-b:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:regulation-21-b:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-023",
+    "fragment_locator": "regulation:21(b)",
+    "jurisdiction": "UK",
+    "article_reference": "regulation 21",
+    "proposition_text": "From the end of the closed period until the end of February, there must be at least three weeks between each spreading.",
+    "label": "b",
+    "short_name": "b",
+    "slug": "b",
+    "legal_subject": "spreading",
+    "action": "minimum interval between spreadings",
+    "conditions": [
+      "From the end of the closed period until the end of February",
+      "temporal: From the end of the closed period until the end of February"
+    ],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "three weeks"
+    ],
+    "categories": [
+      "conditional",
+      "obligation"
+    ],
+    "tags": [
+      "spreading",
+      "three-weeks",
+      "uk"
+    ],
+    "cross_reference_key": "uk:spreading:minimum-interval-between-spreadings",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 690, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"b there must be at least three weeks between each spreading.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 690, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"regulation:21\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-023\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition is explicitly stated in the source text."
+  },
+  {
+    "id": "prop:eabdd3814099e393",
+    "proposition_key": "lex-805b03f284dcf364:regulation-35-1:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:regulation-35-1:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-037",
+    "fragment_locator": "regulation:35(1)",
+    "jurisdiction": "UK",
+    "article_reference": "regulation 35",
+    "proposition_text": "Before 30 April each year, the occupier of a holding with livestock must record the number and category of animals in a building or on a hardstanding during the storage period referred to in regulation 29.",
+    "label": "regulation:35(1)",
+    "short_name": "regulation:35(1)",
+    "slug": "regulation-35-1",
+    "legal_subject": "occupier of a holding with livestock",
+    "action": "must record",
+    "conditions": [
+      "Before 30 April each year",
+      "temporal: for the previous storage period referred to in regulation 29"
+    ],
+    "authority": null,
+    "required_documents": [
+      "record"
+    ],
+    "affected_subjects": [
+      "number and category of animals in a building or on a hardstanding during the storage period"
+    ],
+    "categories": [
+      "conditional",
+      "documentary",
+      "obligation",
+      "record_keeping"
+    ],
+    "tags": [
+      "number-and-category-of-animals-in-a-building-or-on-a-hardstanding-during-the-storage-period",
+      "occupier-of-a-holding-with-livestock",
+      "uk"
+    ],
+    "cross_reference_key": "uk:occupier-of-a-holding-with-livestock:must-record",
+    "cross_reference_targets": [
+      "prop:4e4134271b0028fb"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 690, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"Before 30 April each year the occupier of a holding with livestock must record, for the previous storage period referred to in regulation 29 the number and category of animals in a building or on a hardstanding during the storage period.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 690, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"regulation:35\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-037\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe obligation is clearly stated with specific conditions and references."
+  },
+  {
+    "id": "prop:4e4134271b0028fb",
+    "proposition_key": "lex-805b03f284dcf364:regulation-35-2:p002",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:regulation-35-2:p002:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-037",
+    "fragment_locator": "regulation:35(2)",
+    "jurisdiction": "UK",
+    "article_reference": "regulation 35",
+    "proposition_text": "Before 30 April each year, the occupier of a holding with livestock must record the sites used for field heaps and the dates of use.",
+    "label": "regulation:35(2)",
+    "short_name": "regulation:35(2)",
+    "slug": "regulation-35-2",
+    "legal_subject": "occupier of a holding with livestock",
+    "action": "must record",
+    "conditions": [
+      "Before 30 April each year"
+    ],
+    "authority": null,
+    "required_documents": [
+      "record"
+    ],
+    "affected_subjects": [
+      "sites used for field heaps and the dates of use"
+    ],
+    "categories": [
+      "conditional",
+      "documentary",
+      "obligation",
+      "record_keeping"
+    ],
+    "tags": [
+      "occupier-of-a-holding-with-livestock",
+      "sites-used-for-field-heaps-and-the-dates-of-use",
+      "uk"
+    ],
+    "cross_reference_key": "uk:occupier-of-a-holding-with-livestock:must-record",
+    "cross_reference_targets": [
+      "prop:eabdd3814099e393"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 690, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"The occupier must also record the sites used for field heaps and the dates of use.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 690, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"regulation:35\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-037\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe obligation is clearly stated with specific conditions."
+  },
+  {
+    "id": "prop:27778bd51187ad25",
+    "proposition_key": "lex-805b03f284dcf364:regulation-41-1:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:regulation-41-1:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-043",
+    "fragment_locator": "regulation:41(1)",
+    "jurisdiction": "UK",
+    "article_reference": "regulation 41",
+    "proposition_text": "An occupier who has used nitrogen fertiliser must record the yield achieved by an arable crop within one week of ascertaining it.",
+    "label": "regulation:41(1)",
+    "short_name": "regulation:41(1)",
+    "slug": "regulation-41-1",
+    "legal_subject": "occupier",
+    "action": "must record",
+    "conditions": [
+      "has used nitrogen fertiliser",
+      "temporal: within one week of ascertaining it"
+    ],
+    "authority": null,
+    "required_documents": [
+      "record"
+    ],
+    "affected_subjects": [
+      "yield achieved by an arable crop"
+    ],
+    "categories": [
+      "conditional",
+      "documentary",
+      "obligation",
+      "record_keeping"
+    ],
+    "tags": [
+      "occupier",
+      "uk",
+      "yield-achieved-by-an-arable-crop"
+    ],
+    "cross_reference_key": "uk:occupier:must-record",
+    "cross_reference_targets": [
+      "prop:d2f993d73e3fb955",
+      "prop:9698552230fa3c10",
+      "prop:f5f7f0d4309eab92"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 664, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"An occupier who has used nitrogen fertiliser must record the yield achieved by an arable crop within one week of ascertaining it.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 664, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"regulation:41\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-043\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition is explicitly stated in the source text with clear subject, rule, object, conditions, and temporal condition."
+  },
+  {
+    "id": "prop:9698552230fa3c10",
+    "proposition_key": "lex-805b03f284dcf364:regulation-41-2:p002",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:regulation-41-2:p002:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-043",
+    "fragment_locator": "regulation:41(2)",
+    "jurisdiction": "UK",
+    "article_reference": "regulation 41",
+    "proposition_text": "Before 30 April each year an occupier must record how any grassland was managed in the previous calendar year.",
+    "label": "regulation:41(2)",
+    "short_name": "regulation:41(2)",
+    "slug": "regulation-41-2",
+    "legal_subject": "occupier",
+    "action": "must record",
+    "conditions": [
+      "temporal: Before 30 April each year"
+    ],
+    "authority": null,
+    "required_documents": [
+      "record"
+    ],
+    "affected_subjects": [
+      "how any grassland was managed in the previous calendar year"
+    ],
+    "categories": [
+      "conditional",
+      "documentary",
+      "obligation",
+      "record_keeping"
+    ],
+    "tags": [
+      "how-any-grassland-was-managed-in-the-previous-calendar-year",
+      "occupier",
+      "uk"
+    ],
+    "cross_reference_key": "uk:occupier:must-record",
+    "cross_reference_targets": [
+      "prop:d2f993d73e3fb955",
+      "prop:27778bd51187ad25",
+      "prop:f5f7f0d4309eab92"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 664, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"Before 30 April each year an occupier must record how any grassland was managed in the previous calendar year.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 664, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"regulation:41\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-043\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition is explicitly stated in the source text with clear subject, rule, object, and temporal condition."
+  },
+  {
+    "id": "prop:d653900adc37b3b9",
+    "proposition_key": "lex-805b03f284dcf364:schedule-1a-paragraph-1:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-1a-paragraph-1:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-054",
+    "fragment_locator": "schedule:1a:paragraph:1",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 1a",
+    "proposition_text": "Enhanced nutrient management requirements apply to the occupier of a qualifying grassland holding if they intend to apply a total amount of nitrogen in grazing livestock manure exceeding 170 kg multiplied by the area of the holding in hectares during the relevant period.",
+    "label": "Enhanced Nutrient Management Requirements for Exceeding Nitrogen Threshold",
+    "short_name": "Enhanced Nutrient Management Requirements for Exceeding Nitrogen Threshold",
+    "slug": "enhanced-nutrient-management-requirements-for-exceeding-nitrogen-threshold",
+    "legal_subject": "occupier of a qualifying grassland holding",
+    "action": "enhanced nutrient management requirements apply",
+    "conditions": [
+      "intending to apply a total amount of nitrogen in grazing livestock manure exceeding 170 kg multiplied by the area of the holding in hectares during the relevant period",
+      "temporal: during the relevant period"
+    ],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "the occupier"
+    ],
+    "categories": [
+      "conditional",
+      "obligation"
+    ],
+    "tags": [
+      "occupier-of-a-qualifying-grassland-holding",
+      "the-occupier",
+      "uk"
+    ],
+    "cross_reference_key": "uk:occupier-of-a-qualifying-grassland-holding:enhanced-nutrient-management-requirements-apply",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 701, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"The following enhanced nutrient management requirements apply to the occupier of a qualifying grassland holding intending during the relevant period to apply to the holding, whether directly by an animal or by spreading, a total amount of nitrogen in grazing livestock manure which exceeds 170 kg multiplied by the area of the holding in hectares.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 701, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:1a:paragraph:1\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-054\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition captures the full condition and rule as stated in the source text without omission or addition."
+  },
+  {
+    "id": "prop:e68f750a59ab2834",
+    "proposition_key": "lex-805b03f284dcf364:schedule-1a-paragraph-15:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-1a-paragraph-15:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-068",
+    "fragment_locator": "schedule:1a:paragraph:15",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 1a",
+    "proposition_text": "Crop rotation on the holding during the relevant period must not include leguminous or other plants fixing atmospheric nitrogen except for grass with less than 50% clover, or any other leguminous plants that are under-sown with grass.",
+    "label": "Schedule 1A paragraph 15",
+    "short_name": "Schedule 1A paragraph 15",
+    "slug": "schedule-1a-paragraph-15",
+    "legal_subject": "Crop rotation on the holding during the relevant period",
+    "action": "must not include leguminous or other plants fixing atmospheric nitrogen",
+    "conditions": [
+      "except for grass with less than 50% clover",
+      "any other leguminous plants that are under-sown with grass",
+      "exception: grass with less than 50% clover",
+      "exception: any other leguminous plants that are under-sown with grass",
+      "temporal: during the relevant period"
+    ],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "leguminous or other plants fixing atmospheric nitrogen"
+    ],
+    "categories": [
+      "conditional",
+      "obligation"
+    ],
+    "tags": [
+      "crop-rotation-on-the-holding-during-the-relevant-period",
+      "leguminous-or-other-plants-fixing-atmospheric-nitrogen",
+      "uk"
+    ],
+    "cross_reference_key": "uk:crop-rotation-on-the-holding-during-the-relevant-period:must-not-include-leguminous-or-other-plants-fixing-atmospher",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 664, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"15Crop rotation on the holding during the relevant period must not include leguminous or other plants fixing atmospheric nitrogen except for grass with less than 50% clover, or any other leguminous plants that are under-sown with grass.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 664, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:1a:paragraph:15\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-068\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition is explicitly stated in the source text with clear conditions and exceptions."
+  },
+  {
+    "id": "prop:d2ad679ff479335f",
+    "proposition_key": "lex-805b03f284dcf364:schedule-1a-paragraph-19:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-1a-paragraph-19:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-072",
+    "fragment_locator": "schedule:1a:paragraph:19",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 1a",
+    "proposition_text": "If the occupier intends to spread phosphate fertiliser during the relevant period, the occupier must within one week of sowing a crop record the crop sown and the date of sowing.",
+    "label": "Regulation 19",
+    "short_name": "Regulation 19",
+    "slug": "regulation-19",
+    "legal_subject": "occupier",
+    "action": "must record crop sown and date of sowing",
+    "conditions": [
+      "if the occupier intends to spread phosphate fertiliser during the relevant period",
+      "temporal: within one week of sowing a crop"
+    ],
+    "authority": null,
+    "required_documents": [
+      "record"
+    ],
+    "affected_subjects": [
+      "crop sown and date of sowing"
+    ],
+    "categories": [
+      "conditional",
+      "documentary",
+      "obligation",
+      "record_keeping"
+    ],
+    "tags": [
+      "crop-sown-and-date-of-sowing",
+      "occupier",
+      "uk"
+    ],
+    "cross_reference_key": "uk:occupier:must-record-crop-sown-and-date-of-sowing",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 670, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"19In addition to the requirements of regulation 39 (records of crops sown), if the occupier intends to spread phosphate fertiliser during the relevant period, the occupier must within one week of sowing a crop record\\u2014athe crop sown, andbthe date of sowing.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 670, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:1a:paragraph:19\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-072\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe obligation is clearly stated with conditions, temporal aspects, and objects."
+  },
+  {
+    "id": "prop:f5f7f0d4309eab92",
+    "proposition_key": "lex-805b03f284dcf364:schedule-1a-paragraph-21:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-1a-paragraph-21:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-074",
+    "fragment_locator": "schedule:1a:paragraph:21",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 1a",
+    "proposition_text": "The occupier must record within one week of ploughing grass on the holding the date of that ploughing during the relevant period.",
+    "label": "Schedule 1A paragraph 21",
+    "short_name": "Schedule 1A paragraph 21",
+    "slug": "schedule-1a-paragraph-21",
+    "legal_subject": "occupier",
+    "action": "must record",
+    "conditions": [
+      "during the relevant period",
+      "within one week of ploughing grass",
+      "temporal: during the relevant period"
+    ],
+    "authority": null,
+    "required_documents": [
+      "record"
+    ],
+    "affected_subjects": [
+      "date of ploughing grass on the holding"
+    ],
+    "categories": [
+      "conditional",
+      "documentary",
+      "obligation",
+      "record_keeping"
+    ],
+    "tags": [
+      "date-of-ploughing-grass-on-the-holding",
+      "occupier",
+      "uk"
+    ],
+    "cross_reference_key": "uk:occupier:must-record",
+    "cross_reference_targets": [
+      "prop:d2f993d73e3fb955",
+      "prop:27778bd51187ad25",
+      "prop:9698552230fa3c10"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 653, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"In addition to the requirements of regulation 41 (subsequent records), the occupier must, during the relevant period, record within one week of ploughing grass on the holding the date of that ploughing.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 653, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:1a:paragraph:21\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-074\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition is explicitly stated in the source text with clear subject, rule, object, conditions, and temporal condition."
+  },
+  {
+    "id": "prop:bd52b4a79928edba",
+    "proposition_key": "lex-805b03f284dcf364:schedule-1a-paragraph-26:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-1a-paragraph-26:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-079",
+    "fragment_locator": "schedule:1a:paragraph:26",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 1a",
+    "proposition_text": "The occupier must ensure that during the relevant period no person spreads organic manure within 15 metres of surface water unless using precision spreading equipment, in which case no person may spread organic manure within 10 metres of surface water.",
+    "label": "Schedule 1A paragraph 26",
+    "short_name": "Schedule 1A paragraph 26",
+    "slug": "schedule-1a-paragraph-26",
+    "legal_subject": "occupier",
+    "action": "must ensure",
+    "conditions": [
+      "unless using precision spreading equipment",
+      "exception: if using precision spreading equipment, then no person may spread within 10 metres",
+      "temporal: during the relevant period"
+    ],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "no person spreads organic manure within 15 metres of surface water"
+    ],
+    "categories": [
+      "conditional",
+      "obligation"
+    ],
+    "tags": [
+      "no-person-spreads-organic-manure-within-15-metres-of-surface-water",
+      "occupier",
+      "uk"
+    ],
+    "cross_reference_key": "uk:occupier:must-ensure",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 670, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"The occupier must ensure that during the relevant period no person spreads organic manure within 15 metres of surface water unless using precision spreading equipment, in which case no person may spread organic manure within 10 metres of surface water.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 670, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:1a:paragraph:26\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-079\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition is explicitly stated in the source text with clear conditions and exceptions."
+  },
+  {
+    "id": "prop:1d12ca439cc02a18",
+    "proposition_key": "lex-805b03f284dcf364:schedule-3-paragraph-2:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-3-paragraph-2:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-083",
+    "fragment_locator": "schedule:3:paragraph:2",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 3",
+    "proposition_text": "In relation to solid manures, the samples must be taken from a manure heap.",
+    "label": "Sample Collection Location",
+    "short_name": "Sample Collection Location",
+    "slug": "sample-collection-location",
+    "legal_subject": "sample collection",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "solid manures"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "sample-collection",
+      "solid-manures",
+      "uk"
+    ],
+    "cross_reference_key": "uk:sample-collection:requirement",
+    "cross_reference_targets": [
+      "prop:8c9bdb350fdf1bc7",
+      "prop:7330463e891bbb41",
+      "prop:46f553c082a9270c",
+      "prop:492b7d7877437b14",
+      "prop:f3a8e13d3b944c11"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 819, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"In relation to solid manures, the samples must be taken from a manure heap.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 819, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:3:paragraph:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-083\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe text explicitly states the requirement for sample collection location for solid manures."
+  },
+  {
+    "id": "prop:492b7d7877437b14",
+    "proposition_key": "lex-805b03f284dcf364:schedule-3-paragraph-2:p002",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-3-paragraph-2:p002:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-083",
+    "fragment_locator": "schedule:3:paragraph:2",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 3",
+    "proposition_text": "At least ten samples of 1 kg each must be taken, each from a different location in a heap.",
+    "label": "Number of Samples Required",
+    "short_name": "Number of Samples Required",
+    "slug": "number-of-samples-required",
+    "legal_subject": "sample collection",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "solid manures"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "sample-collection",
+      "solid-manures",
+      "uk"
+    ],
+    "cross_reference_key": "uk:sample-collection:requirement",
+    "cross_reference_targets": [
+      "prop:8c9bdb350fdf1bc7",
+      "prop:7330463e891bbb41",
+      "prop:46f553c082a9270c",
+      "prop:1d12ca439cc02a18",
+      "prop:f3a8e13d3b944c11"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 819, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"At least ten samples of 1 kg each must be taken, each from a different location in a heap.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 819, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:3:paragraph:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-083\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe text explicitly states the number of samples required for solid manures."
+  },
+  {
+    "id": "prop:f3a8e13d3b944c11",
+    "proposition_key": "lex-805b03f284dcf364:schedule-3-paragraph-2:p003",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-3-paragraph-2:p003:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-083",
+    "fragment_locator": "schedule:3:paragraph:2",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 3",
+    "proposition_text": "Each sub-sample must be taken at least 0.5 metres from the surface of the heap.",
+    "label": "Sample Depth Requirement",
+    "short_name": "Sample Depth Requirement",
+    "slug": "sample-depth-requirement",
+    "legal_subject": "sample collection",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "solid manures"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "sample-collection",
+      "solid-manures",
+      "uk"
+    ],
+    "cross_reference_key": "uk:sample-collection:requirement",
+    "cross_reference_targets": [
+      "prop:8c9bdb350fdf1bc7",
+      "prop:7330463e891bbb41",
+      "prop:46f553c082a9270c",
+      "prop:1d12ca439cc02a18",
+      "prop:492b7d7877437b14"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 819, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"Each sub-sample must be taken at least 0.5 metres from the surface of the heap.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 819, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:3:paragraph:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-083\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe text explicitly states the depth requirement for sub-samples in solid manures."
+  },
+  {
+    "id": "prop:b4bea7a8d882017b",
+    "proposition_key": "lex-805b03f284dcf364:schedule-3-paragraph-2:p004",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-3-paragraph-2:p004:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-083",
+    "fragment_locator": "schedule:3:paragraph:2",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 3",
+    "proposition_text": "The sub-samples must be placed on a clean, dry tray or sheet.",
+    "label": "Sample Handling Requirement",
+    "short_name": "Sample Handling Requirement",
+    "slug": "sample-handling-requirement",
+    "legal_subject": "sample handling",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "sub-samples"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "sample-handling",
+      "sub-samples",
+      "uk"
+    ],
+    "cross_reference_key": "uk:sample-handling:requirement",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 819, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"The sub-samples must be placed on a clean, dry tray or sheet.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 819, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:3:paragraph:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-083\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe text explicitly states the handling requirement for sub-samples."
+  },
+  {
+    "id": "prop:8ab1a744f78383af",
+    "proposition_key": "lex-805b03f284dcf364:schedule-5-2-a:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-5-2-a:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-085",
+    "fragment_locator": "schedule:5:2(a)",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 5",
+    "proposition_text": "The base of the silo must extend beyond any walls of the silo.",
+    "label": "Silo Base Extension",
+    "short_name": "Silo Base Extension",
+    "slug": "silo-base-extension",
+    "legal_subject": "silo base",
+    "action": "must extend beyond walls",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "walls of the silo"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "silo-base",
+      "uk",
+      "walls-of-the-silo"
+    ],
+    "cross_reference_key": "uk:silo-base:must-extend-beyond-walls",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 1547, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"The base of the silo must\\u2014aextend beyond any walls of the silo\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 1547, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:5\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-085\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nDirectly stated in the source text"
+  },
+  {
+    "id": "prop:ee39fa295eaf7eda",
+    "proposition_key": "lex-805b03f284dcf364:schedule-5-2-b:p002",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-5-2-b:p002:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-085",
+    "fragment_locator": "schedule:5:2(b)",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 5",
+    "proposition_text": "The base of the silo must be provided at its perimeter with channels designed and constructed to collect silage effluent escaping from the silo.",
+    "label": "Silo Perimeter Channels",
+    "short_name": "Silo Perimeter Channels",
+    "slug": "silo-perimeter-channels",
+    "legal_subject": "silo base",
+    "action": "must have perimeter channels",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "channels"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "channels",
+      "silo-base",
+      "uk"
+    ],
+    "cross_reference_key": "uk:silo-base:must-have-perimeter-channels",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 1547, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"be provided at its perimeter with channels designed and constructed so as to collect any silage effluent that escapes from the silo\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 1547, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:5\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-085\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nDirectly stated in the source text"
+  },
+  {
+    "id": "prop:3717953c3a49a6ef",
+    "proposition_key": "lex-805b03f284dcf364:schedule-5-2-c:p003",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-5-2-c:p003:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-085",
+    "fragment_locator": "schedule:5:2(c)",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 5",
+    "proposition_text": "The effluent tank must have adequate drainage provision from channels to an effluent tank through a channel or pipe.",
+    "label": "Effluent Tank Drainage",
+    "short_name": "Effluent Tank Drainage",
+    "slug": "effluent-tank-drainage",
+    "legal_subject": "effluent tank",
+    "action": "must have adequate drainage",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "drainage from channels"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "drainage-from-channels",
+      "effluent-tank",
+      "uk"
+    ],
+    "cross_reference_key": "uk:effluent-tank:must-have-adequate-drainage",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 1547, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"have adequate provision for the drainage of that effluent from those channels to an effluent tank through a channel or pipe\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 1547, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:5\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-085\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nDirectly stated in the source text"
+  },
+  {
+    "id": "prop:f748f41a6cf9938b",
+    "proposition_key": "lex-805b03f284dcf364:schedule-5-3-a:p004",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-5-3-a:p004:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-085",
+    "fragment_locator": "schedule:5:3(a)",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 5",
+    "proposition_text": "The capacity of the effluent tank must not be less than 20 litres per cubic metre of silo capacity for silos with capacity less than 1,500 cubic metres.",
+    "label": "Effluent Tank Capacity (Small Silos)",
+    "short_name": "Effluent Tank Capacity (Small Silos)",
+    "slug": "effluent-tank-capacity-small-silos",
+    "legal_subject": "effluent tank",
+    "action": "capacity must not be less than 20 litres per cubic metre",
+    "conditions": [
+      "silo capacity less than 1,500 cubic metres"
+    ],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "silo capacity"
+    ],
+    "categories": [
+      "conditional",
+      "obligation"
+    ],
+    "tags": [
+      "effluent-tank",
+      "silo-capacity",
+      "uk"
+    ],
+    "cross_reference_key": "uk:effluent-tank:capacity-must-not-be-less-than-20-litres-per-cubic-metre",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 1547, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"ain the case of a silo with a capacity of less than 1,500 cubic metres, 20 litres for each cubic metre of silo capacity\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 1547, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:5\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-085\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nDirectly stated in the source text"
+  },
+  {
+    "id": "prop:35bdddef3db5f6e7",
+    "proposition_key": "lex-805b03f284dcf364:schedule-6-paragraph-8:p001",
+    "proposition_version_id": "pver:lex-805b03f284dcf364:schedule-6-paragraph-8:p001:snap-lex-805b03f284dcf364-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_snapshot_id": "snap-lex-805b03f284dcf364-v1",
+    "source_fragment_id": "frag-lex-805b03f284dcf364-103",
+    "fragment_locator": "schedule:6:paragraph:8",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 6",
+    "proposition_text": "The slurry storage tank and any effluent tank, channels, pipes and reception pit must be designed and constructed so that with proper maintenance they are likely to continue to satisfy the requirements of paragraphs 2 to 4 for at least 20 years.",
+    "label": "Schedule 6 Paragraph 8",
+    "short_name": "Schedule 6 Paragraph 8",
+    "slug": "schedule-6-paragraph-8",
+    "legal_subject": "slurry storage tank and effluent tank, channels, pipes and reception pit",
+    "action": "must be designed and constructed",
+    "conditions": [
+      "with proper maintenance",
+      "temporal: for at least 20 years"
+    ],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "so that with proper maintenance they are likely to continue to satisfy the requirements of paragraphs 2 to 4 for at least 20 years"
+    ],
+    "categories": [
+      "conditional",
+      "obligation"
+    ],
+    "tags": [
+      "slurry-storage-tank-and-effluent-tank-channels-pipes-and-reception-pit",
+      "so-that-with-proper-maintenance-they-are-likely-to-continue-to-satisfy-the-requirements-of-paragraphs-2-to-4-for-at-least-20-years",
+      "uk"
+    ],
+    "cross_reference_key": "uk:slurry-storage-tank-and-effluent-tank-channels-pipes-and-reception-pit:must-be-designed-and-constructed",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 666, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"The slurry storage tank and any effluent tank, channels, pipes and reception pit must be designed and constructed so that with proper maintenance they are likely to continue to satisfy the requirements of paragraphs 2 to 4 for at least 20 years.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 666, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:6:paragraph:8\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-805b03f284dcf364-103\", \"source_record_id\": \"lex-805b03f284dcf364\", \"source_title\": \"The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition is explicitly stated in the source text without ambiguity."
+  },
+  {
+    "id": "prop:35de31be17713de8",
+    "proposition_key": "lex-e71fbbe3342ac0be:regulation-4-1:p001",
+    "proposition_version_id": "pver:lex-e71fbbe3342ac0be:regulation-4-1:p001:snap-lex-e71fbbe3342ac0be-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-e71fbbe3342ac0be",
+    "source_snapshot_id": "snap-lex-e71fbbe3342ac0be-v1",
+    "source_fragment_id": "frag-lex-e71fbbe3342ac0be-004",
+    "fragment_locator": "regulation:4(1)",
+    "jurisdiction": "UK",
+    "article_reference": "regulation 4",
+    "proposition_text": "A person having custody or control of slurry must store it only in a slurry storage system that satisfies the requirements of Schedule 2.",
+    "label": "Storage requirement for slurry",
+    "short_name": "Storage requirement for slurry",
+    "slug": "storage-requirement-for-slurry",
+    "legal_subject": "person having custody or control of slurry",
+    "action": "must store",
+    "conditions": [
+      "Subject to paragraph (2)",
+      "exception: slurry while it is stored temporarily in a tanker that is used for transporting slurry on roads or about a farm"
+    ],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "slurry storage system that satisfies the requirements of Schedule 2"
+    ],
+    "categories": [
+      "conditional",
+      "obligation"
+    ],
+    "tags": [
+      "person-having-custody-or-control-of-slurry",
+      "slurry-storage-system-that-satisfies-the-requirements-of-schedule-2",
+      "uk"
+    ],
+    "cross_reference_key": "uk:person-having-custody-or-control-of-slurry:must-store",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 685, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"Subject to paragraph (2), a person having custody or control of slurry must store it only in a slurry storage system that satisfies the requirements of Schedule 2.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 685, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"regulation:4\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-e71fbbe3342ac0be-004\", \"source_record_id\": \"lex-e71fbbe3342ac0be\", \"source_title\": \"The Water Resources (Control of Pollution) (Silage, Slurry and Agricultural Fuel Oil) (England) Regulations 2010\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition is explicitly stated in the source text with clear subject, rule, object, conditions, and exceptions."
+  },
+  {
+    "id": "prop:e498f41801bcf68f",
+    "proposition_key": "lex-e71fbbe3342ac0be:schedule-2-paragraph-7:p001",
+    "proposition_version_id": "pver:lex-e71fbbe3342ac0be:schedule-2-paragraph-7:p001:snap-lex-e71fbbe3342ac0be-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-e71fbbe3342ac0be",
+    "source_snapshot_id": "snap-lex-e71fbbe3342ac0be-v1",
+    "source_fragment_id": "frag-lex-e71fbbe3342ac0be-029",
+    "fragment_locator": "schedule:2:paragraph:7",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 2",
+    "proposition_text": "No part of the slurry storage tank or any effluent tank, channels or reception pit may be situated within 10 metres of any inland freshwaters or coastal waters into which slurry could enter if it were to escape unless precautions are taken that the Agency agrees in writing are adequate to avoid any significant risk of pollution of controlled waters.",
+    "label": "Schedule 2, Paragraph 7",
+    "short_name": "Schedule 2, Paragraph 7",
+    "slug": "schedule-2-paragraph-7",
+    "legal_subject": "slurry storage tank, effluent tank, channels, reception pit",
+    "action": "may not be situated within 10 metres of inland freshwaters or coastal waters",
+    "conditions": [
+      "precautions are taken that the Agency agrees in writing are adequate to avoid any significant risk of pollution of controlled waters"
+    ],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "inland freshwaters or coastal waters into which slurry could enter if it were to escape"
+    ],
+    "categories": [
+      "conditional",
+      "obligation"
+    ],
+    "tags": [
+      "inland-freshwaters-or-coastal-waters-into-which-slurry-could-enter-if-it-were-to-escape",
+      "slurry-storage-tank-effluent-tank-channels-reception-pit",
+      "uk"
+    ],
+    "cross_reference_key": "uk:slurry-storage-tank-effluent-tank-channels-reception-pit:may-not-be-situated-within-10-metres-of-inland-freshwaters-o",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 703, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"No part of the slurry storage tank or any effluent tank, channels or reception pit may be situated within 10 metres of any inland freshwaters or coastal waters into which slurry could enter if it were to escape unless precautions are taken that the Agency agrees in writing are adequate to avoid any significant risk of pollution of controlled waters.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 703, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:2:paragraph:7\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-e71fbbe3342ac0be-029\", \"source_record_id\": \"lex-e71fbbe3342ac0be\", \"source_title\": \"The Water Resources (Control of Pollution) (Silage, Slurry and Agricultural Fuel Oil) (England) Regulations 2010\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition is explicitly stated in the source text with clear conditions and no ambiguity."
+  },
+  {
+    "id": "prop:2dada8c0f842e336",
+    "proposition_key": "lex-96613ffe71589e1e:schedule-2-2:p001",
+    "proposition_version_id": "pver:lex-96613ffe71589e1e:schedule-2-2:p001:snap-lex-96613ffe71589e1e-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-96613ffe71589e1e",
+    "source_snapshot_id": "snap-lex-96613ffe71589e1e-v1",
+    "source_fragment_id": "frag-lex-96613ffe71589e1e-023",
+    "fragment_locator": "schedule:2:2",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 2",
+    "proposition_text": "The base of the slurry storage tank, the base and walls of any effluent tank, channels and reception pit and the walls of any pipes shall be impermeable.",
+    "label": "Impermeability of Tank and Pipe Components",
+    "short_name": "Impermeability of Tank and Pipe Components",
+    "slug": "impermeability-of-tank-and-pipe-components",
+    "legal_subject": "slurry storage system components",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "impermeability"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "impermeability",
+      "slurry-storage-system-components",
+      "uk"
+    ],
+    "cross_reference_key": "uk:slurry-storage-system-components:requirement",
+    "cross_reference_targets": [
+      "prop:641088352d081b6b",
+      "prop:ac2a1ab4e4baf870"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 2066, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"The base of the slurry storage tank, the base and walls of any effluent tank, channels and reception pit and the walls of any pipes shall be impermeable.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 2066, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-96613ffe71589e1e-023\", \"source_record_id\": \"lex-96613ffe71589e1e\", \"source_title\": \"The Control of Pollution (Silage, Slurry and Agricultural Fuel Oil) (Scotland) Regulations 2003\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nDirectly stated requirement with no conditions or exceptions."
+  },
+  {
+    "id": "prop:641088352d081b6b",
+    "proposition_key": "lex-96613ffe71589e1e:schedule-2-4:p002",
+    "proposition_version_id": "pver:lex-96613ffe71589e1e:schedule-2-4:p002:snap-lex-96613ffe71589e1e-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-96613ffe71589e1e",
+    "source_snapshot_id": "snap-lex-96613ffe71589e1e-v1",
+    "source_fragment_id": "frag-lex-96613ffe71589e1e-023",
+    "fragment_locator": "schedule:2:4",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 2",
+    "proposition_text": "The base and walls of the slurry storage tank and any reception pit shall be capable of withstanding characteristic loads calculated on the assumptions and in the manner indicated by paragraph 5 of that Code of Practice.",
+    "label": "Structural Load Capacity of Tank and Reception Pit",
+    "short_name": "Structural Load Capacity of Tank and Reception Pit",
+    "slug": "structural-load-capacity-of-tank-and-reception-pit",
+    "legal_subject": "slurry storage system components",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "load capacity"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "load-capacity",
+      "slurry-storage-system-components",
+      "uk"
+    ],
+    "cross_reference_key": "uk:slurry-storage-system-components:requirement",
+    "cross_reference_targets": [
+      "prop:2dada8c0f842e336",
+      "prop:ac2a1ab4e4baf870"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 2066, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"The base and walls of the slurry storage tank and any reception pit shall be capable of withstanding characteristic loads calculated on the assumptions and in the manner indicated by paragraph 5 of that Code of Practice.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 2066, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-96613ffe71589e1e-023\", \"source_record_id\": \"lex-96613ffe71589e1e\", \"source_title\": \"The Control of Pollution (Silage, Slurry and Agricultural Fuel Oil) (Scotland) Regulations 2003\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nDirectly stated requirement with no conditions or exceptions."
+  },
+  {
+    "id": "prop:ac2a1ab4e4baf870",
+    "proposition_key": "lex-96613ffe71589e1e:schedule-2-7:p003",
+    "proposition_version_id": "pver:lex-96613ffe71589e1e:schedule-2-7:p003:snap-lex-96613ffe71589e1e-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-96613ffe71589e1e",
+    "source_snapshot_id": "snap-lex-96613ffe71589e1e-v1",
+    "source_fragment_id": "frag-lex-96613ffe71589e1e-023",
+    "fragment_locator": "schedule:2:7",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 2",
+    "proposition_text": "No part of the slurry storage tank or any effluent tank, channels, pipes or reception pit shall be situated within 10 metres of any inland or coastal waters which slurry could enter if it were to escape.",
+    "label": "Distance from Water Bodies",
+    "short_name": "Distance from Water Bodies",
+    "slug": "distance-from-water-bodies",
+    "legal_subject": "slurry storage system components",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "location restriction"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "location-restriction",
+      "slurry-storage-system-components",
+      "uk"
+    ],
+    "cross_reference_key": "uk:slurry-storage-system-components:requirement",
+    "cross_reference_targets": [
+      "prop:2dada8c0f842e336",
+      "prop:641088352d081b6b"
+    ],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 2066, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"No part of the slurry storage tank or any effluent tank, channels, pipes or reception pit shall be situated within 10 metres of any inland or coastal waters which slurry could enter if it were to escape.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 2066, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-96613ffe71589e1e-023\", \"source_record_id\": \"lex-96613ffe71589e1e\", \"source_title\": \"The Control of Pollution (Silage, Slurry and Agricultural Fuel Oil) (Scotland) Regulations 2003\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nDirectly stated requirement with no conditions or exceptions."
+  },
+  {
+    "id": "prop:aef8ade55bca94fa",
+    "proposition_key": "lex-96613ffe71589e1e:schedule-2-11:p004",
+    "proposition_version_id": "pver:lex-96613ffe71589e1e:schedule-2-11:p004:snap-lex-96613ffe71589e1e-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-96613ffe71589e1e",
+    "source_snapshot_id": "snap-lex-96613ffe71589e1e-v1",
+    "source_fragment_id": "frag-lex-96613ffe71589e1e-023",
+    "fragment_locator": "schedule:2:11",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 2",
+    "proposition_text": "In the case of a slurry storage tank with walls which are made of earth, the tank shall not be filled to a level which allows less than 750 millimetres of freeboard, and in all other cases the tank shall not be filled to a level which allows less than 300 millimetres of freeboard.",
+    "label": "Freeboard Requirements for Tanks",
+    "short_name": "Freeboard Requirements for Tanks",
+    "slug": "freeboard-requirements-for-tanks",
+    "legal_subject": "slurry storage tank",
+    "action": "requirement",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "freeboard level"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "freeboard-level",
+      "slurry-storage-tank",
+      "uk"
+    ],
+    "cross_reference_key": "uk:slurry-storage-tank:requirement",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 2066, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"In the case of a slurry storage tank with walls which are made of earth, the tank shall not be filled to a level which allows less than 750 millimetres of freeboard, and in all other cases the tank shall not be filled to a level which allows less than 300 millimetres of freeboard.\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 2066, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:2\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-96613ffe71589e1e-023\", \"source_record_id\": \"lex-96613ffe71589e1e\", \"source_title\": \"The Control of Pollution (Silage, Slurry and Agricultural Fuel Oil) (Scotland) Regulations 2003\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nDirectly stated requirement with no conditions or exceptions."
+  },
+  {
+    "id": "prop:f75a1e417b5305ce",
+    "proposition_key": "lex-96613ffe71589e1e:schedule-3-paragraph-5:p001",
+    "proposition_version_id": "pver:lex-96613ffe71589e1e:schedule-3-paragraph-5:p001:snap-lex-96613ffe71589e1e-v1:run-001",
+    "observed_in_run_id": "run-001",
+    "topic_id": "topic-slurry-manure-agricultural-effluent",
+    "cluster_id": "cluster-topic-slurry-manure-agricultural-effluent-slurry-manure-agricultural-effluent",
+    "source_record_id": "lex-96613ffe71589e1e",
+    "source_snapshot_id": "snap-lex-96613ffe71589e1e-v1",
+    "source_fragment_id": "frag-lex-96613ffe71589e1e-040",
+    "fragment_locator": "schedule:3:paragraph:5",
+    "jurisdiction": "UK",
+    "article_reference": "schedule 3",
+    "proposition_text": "Any tap or valve permanently fixed to the tank through which fuel oil can be discharged to the open shall also be within the bund.",
+    "label": "5",
+    "short_name": "5",
+    "slug": "5",
+    "legal_subject": "tap or valve",
+    "action": "shall be within the bund",
+    "conditions": [],
+    "authority": null,
+    "required_documents": [],
+    "affected_subjects": [
+      "tank"
+    ],
+    "categories": [
+      "obligation"
+    ],
+    "tags": [
+      "tank",
+      "tap-or-valve",
+      "uk"
+    ],
+    "cross_reference_key": "uk:tap-or-valve:shall-be-within-the-bund",
+    "cross_reference_targets": [],
+    "review_status": "proposed",
+    "notes": "judit_extraction_meta:{\"completeness_status\": \"complete\", \"estimated_input_tokens_max\": 669, \"evidence_match_strategy\": \"whitespace_quote_fold_lc_substring_match\", \"evidence_quote\": \"Any tap or valve permanently fixed to the tank through which fuel oil can be discharged to the open shall also be within the bund\", \"extraction_llm_call_traces\": [{\"configured_context_limit\": 200000, \"estimated_input_tokens\": 669, \"extraction_chunk_split_strategy\": \"single\", \"extraction_llm_chunk_index\": 1, \"extraction_llm_chunk_total\": 1, \"extraction_mode\": \"local\", \"fragment_locator\": \"schedule:3:paragraph:5\", \"llm_cache_hit\": true, \"llm_call_attempted\": false, \"llm_call_succeeded\": true, \"llm_invoked\": false, \"model_alias\": \"local_extract\", \"skipped_llm\": false, \"source_fragment_id\": \"frag-lex-96613ffe71589e1e-040\", \"source_record_id\": \"lex-96613ffe71589e1e\", \"source_title\": \"The Control of Pollution (Silage, Slurry and Agricultural Fuel Oil) (Scotland) Regulations 2003\"}], \"extraction_mode\": \"local\", \"fallback_policy\": \"fail_closed\", \"fallback_used\": false, \"model_alias\": \"local_extract\", \"model_confidence\": \"high\", \"prompt_version\": \"v2\", \"provision_type\": \"core\", \"schema_version\": \"v2\", \"trace_warnings\": [], \"validation_errors\": []}\nThe proposition is explicitly stated in the source text without ambiguity."
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "stage_name": "final export",
+  "run_id": "run-001",
+  "timestamp": "2026-06-04T14:27:53.876590Z",
+  "inputs": {
+    "output_dir": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/slurry-gb-principal-5-current-export-fixed",
+    "root_manifest": "manifest.json",
+    "run_manifest": "runs/run-001/manifest.json"
+  },
+  "outputs": {
+    "run_dir": "runs/run-001",
+    "artifact_dir": "runs/run-001/artifacts"
+  },
+  "strategy_used": "static_bundle_file_export",
+  "model_alias_used": null,
+  "duration_ms": 78,
+  "warnings": [],
+  "errors": []
+}

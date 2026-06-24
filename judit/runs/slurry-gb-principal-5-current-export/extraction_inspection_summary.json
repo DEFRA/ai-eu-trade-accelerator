@@ -1,0 +1,76 @@
+{
+  "proposition_count": 729,
+  "total_proposition_traces": 729,
+  "successful_frontier_traces": 729,
+  "fallback_traces": 0,
+  "low_confidence_traces": 0,
+  "extraction_jobs_created": 279,
+  "extraction_jobs_selected": 279,
+  "extraction_jobs_executed": 279,
+  "extraction_jobs_skipped": 0,
+  "extraction_jobs_total": 279,
+  "extraction_jobs_successful": 277,
+  "extraction_jobs_failed": 2,
+  "extraction_jobs_cached": 0,
+  "live_llm_calls_attempted": 279,
+  "live_llm_calls_successful": 277,
+  "live_llm_calls_failed": 2,
+  "cached_llm_results_successful": 0,
+  "cached_llm_results_failed": 0,
+  "cached_successful_llm_results": 0,
+  "cached_failed_llm_results": 0,
+  "llm_results_reused_from_cache": 0,
+  "attempted_llm_calls": 279,
+  "successful_llm_calls": 277,
+  "failed_llm_calls": 2,
+  "failed_jobs_with_no_proposition": 2,
+  "failed_chunks_with_no_proposition": 2,
+  "extraction_failures_total": 2,
+  "failure_reasons_by_type": {
+    "non_json_response": 2
+  },
+  "failure_reasons_by_source": {
+    "lex-120b4f9c395b3f94": 1,
+    "lex-805b03f284dcf364": 1
+  },
+  "failure_reasons_by_locator": {
+    "regulation:2": 1,
+    "schedule:2": 1
+  },
+  "top_failed_sources": [
+    {
+      "key": "lex-120b4f9c395b3f94",
+      "count": 1
+    },
+    {
+      "key": "lex-805b03f284dcf364",
+      "count": 1
+    }
+  ],
+  "top_failed_locators": [
+    {
+      "key": "regulation:2",
+      "count": 1
+    },
+    {
+      "key": "schedule:2",
+      "count": 1
+    }
+  ],
+  "repairable_chunks": 2,
+  "estimated_retry_token_count": 8786,
+  "estimated_retry_tokens": 8786,
+  "affected_source_record_ids": [
+    "lex-120b4f9c395b3f94",
+    "lex-805b03f284dcf364"
+  ],
+  "affected_source_fragments": [
+    "lex-120b4f9c395b3f94:frag-lex-120b4f9c395b3f94-002",
+    "lex-805b03f284dcf364:frag-lex-805b03f284dcf364-080"
+  ],
+  "failure_reasons": [
+    "non_json_response"
+  ],
+  "affected_proposition_ids": [],
+  "has_repairable_extraction_failures": true
+}

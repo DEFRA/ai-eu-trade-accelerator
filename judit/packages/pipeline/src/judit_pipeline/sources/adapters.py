@@ -6,6 +6,8 @@ from typing import Any, Protocol
 from urllib.request import Request, urlopen
 from xml.etree import ElementTree
 
+from .clml_text import serialize_clml_text
+
 
 @dataclass(frozen=True)
 class SourceFetchRequest:
@@ -230,7 +232,7 @@ def _extract_text_chunks(root: ElementTree.Element) -> list[tuple[str, str]]:
         )
 
         if node_name in text_nodes and not has_non_operative_ancestor:
-            value = _normalize_whitespace("".join(node.itertext()))
+            value = _normalize_whitespace(serialize_clml_text(node))
             if value and not _looks_like_noise_text(value):
                 locator = current_locator or _infer_locator_from_text(value) or "document:full"
                 chunks.append((locator, value))
@@ -252,6 +254,10 @@ _RE_SCHEDULE_PARAGRAPH_ID = re.compile(
 )
 _RE_SCHEDULE_NUMERIC_PARAGRAPH_ID = re.compile(
     r"^schedule-([a-z0-9]+)-([a-z0-9]+)$",
+    re.IGNORECASE,
+)
+_RE_PROVISION_PARAGRAPH_ID = re.compile(
+    r"^(regulation|article|rule)-([a-z0-9]+)-(\d+[a-z]?)$",
     re.IGNORECASE,
 )
 _RE_TARGET_CITATION = re.compile(
@@ -315,7 +321,7 @@ def _build_legislation_structural_fragments(
         if not node_id:
             continue
 
-        node_text = _normalize_whitespace("".join(node.itertext()))
+        node_text = _normalize_whitespace(serialize_clml_text(node))
         if not node_text or _looks_like_noise_text(node_text):
             continue
 
@@ -330,21 +336,30 @@ def _build_legislation_structural_fragments(
             locator = f"{unit_kind}:{unit_number}"
             source_path = f"{unit_kind}/{unit_number}"
         else:
-            match_para = _RE_SCHEDULE_PARAGRAPH_ID.match(node_id)
-            if match_para:
-                schedule_number = match_para.group(1).lower()
-                para_number = match_para.group(2).lower()
-                locator = f"schedule:{schedule_number}:paragraph:{para_number}"
-                parent_locator = f"schedule:{schedule_number}"
-                source_path = f"schedule/{schedule_number}/paragraph/{para_number}"
+            match_provision_para = _RE_PROVISION_PARAGRAPH_ID.match(node_id)
+            if match_provision_para:
+                unit_kind = match_provision_para.group(1).lower()
+                unit_number = match_provision_para.group(2).lower()
+                para_number = match_provision_para.group(3).lower()
+                locator = f"{unit_kind}:{unit_number}:paragraph:{para_number}"
+                parent_locator = f"{unit_kind}:{unit_number}"
+                source_path = f"{unit_kind}/{unit_number}/paragraph/{para_number}"
             else:
-                match_numeric_para = _RE_SCHEDULE_NUMERIC_PARAGRAPH_ID.match(node_id)
-                if match_numeric_para:
-                    schedule_number = match_numeric_para.group(1).lower()
-                    para_number = match_numeric_para.group(2).lower()
+                match_para = _RE_SCHEDULE_PARAGRAPH_ID.match(node_id)
+                if match_para:
+                    schedule_number = match_para.group(1).lower()
+                    para_number = match_para.group(2).lower()
                     locator = f"schedule:{schedule_number}:paragraph:{para_number}"
                     parent_locator = f"schedule:{schedule_number}"
                     source_path = f"schedule/{schedule_number}/paragraph/{para_number}"
+                else:
+                    match_numeric_para = _RE_SCHEDULE_NUMERIC_PARAGRAPH_ID.match(node_id)
+                    if match_numeric_para:
+                        schedule_number = match_numeric_para.group(1).lower()
+                        para_number = match_numeric_para.group(2).lower()
+                        locator = f"schedule:{schedule_number}:paragraph:{para_number}"
+                        parent_locator = f"schedule:{schedule_number}"
+                        source_path = f"schedule/{schedule_number}/paragraph/{para_number}"
         if not locator:
             continue
         if locator in known_locators:

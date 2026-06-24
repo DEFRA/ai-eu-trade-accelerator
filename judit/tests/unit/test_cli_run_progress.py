@@ -7,7 +7,12 @@ import pytest
 from typer.testing import CliRunner
 
 from judit_pipeline.cli import app
-from judit_pipeline.cli_progress import NullPipelineProgress, null_pipeline_progress, pipeline_progress
+from judit_pipeline.cli_progress import (
+    NullPipelineProgress,
+    null_pipeline_progress,
+    pipeline_progress,
+    print_completion_summary_table,
+)
 from judit_pipeline.cli_run_summary import (
     build_cli_completion_summary,
     extraction_mode_from_bundle,
@@ -80,6 +85,58 @@ def test_pipeline_progress_quiet_yields_null() -> None:
     c = Console(record=True, width=120)
     with pipeline_progress(c, quiet=True, verbose=False) as pr:
         assert pr is null_pipeline_progress()
+
+
+def test_print_completion_summary_hides_derived_cache_dir_by_default() -> None:
+    from rich.console import Console
+
+    c = Console(record=True, width=120)
+    print_completion_summary_table(
+        c,
+        {
+            "sources": 1,
+            "propositions": 2,
+            "extraction_mode": "local",
+            "extraction_mode_requested": "local",
+            "extraction_mode_effective": "local",
+            "fallback_count": 0,
+            "low_confidence_count": 0,
+            "validation_warning_count": 0,
+            "output_directory": "dist/static-report",
+            "derived_cache_dir": "/var/folders/xx/T/judit/derived-artifacts",
+            "run_quality_status": "pass",
+        },
+    )
+    out = c.export_text()
+    assert "Derived cache directory" not in out
+    assert "/var/folders" not in out
+
+
+def test_print_completion_summary_shows_derived_cache_dir_when_verbose() -> None:
+    from rich.console import Console
+
+    cache = "/tmp/judit-derived"
+    c = Console(record=True, width=120)
+    print_completion_summary_table(
+        c,
+        {
+            "sources": 1,
+            "propositions": 2,
+            "extraction_mode": "local",
+            "extraction_mode_requested": "local",
+            "extraction_mode_effective": "local",
+            "fallback_count": 0,
+            "low_confidence_count": 0,
+            "validation_warning_count": 0,
+            "output_directory": "",
+            "derived_cache_dir": cache,
+            "run_quality_status": "pass",
+        },
+        verbose=True,
+    )
+    out = c.export_text()
+    assert "Derived cache directory" in out
+    assert cache in out
 
 
 def test_pipeline_progress_rich_supports_extraction_completion_hook() -> None:

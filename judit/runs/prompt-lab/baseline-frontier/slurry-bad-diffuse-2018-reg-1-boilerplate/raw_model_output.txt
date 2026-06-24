@@ -1,0 +1,70 @@
+```json
+{
+  "propositions": [
+    {
+      "proposition_text": "These Regulations may be cited as the Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018.",
+      "display_label": "Citation",
+      "subject": "These Regulations",
+      "rule": "may be cited as",
+      "object": "the Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018",
+      "conditions": [],
+      "exceptions": [],
+      "temporal_condition": "",
+      "provision_type": "definition",
+      "source_locator": "regulation 1(a)",
+      "evidence_text": "may be cited as the Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Standard citation clause establishing the short title of the instrument."
+    },
+    {
+      "proposition_text": "These Regulations come into force on 2nd April 2018.",
+      "display_label": "Commencement date",
+      "subject": "These Regulations",
+      "rule": "come into force on",
+      "object": "2nd April 2018",
+      "conditions": [],
+      "exceptions": [],
+      "temporal_condition": "2nd April 2018",
+      "provision_type": "transitional",
+      "source_locator": "regulation 1(b)",
+      "evidence_text": "come into force on 2nd April 2018",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Commencement provision establishing when the Regulations take legal effect."
+    },
+    {
+      "proposition_text": "These Regulations extend to England and Wales.",
+      "display_label": "Territorial extent",
+      "subject": "These Regulations",
+      "rule": "extend to",
+      "object": "England and Wales",
+      "conditions": [],
+      "exceptions": [],
+      "temporal_condition": "",
+      "provision_type": "core",
+      "source_locator": "regulation 1(c)",
+      "evidence_text": "extend to England and Wales",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Territorial extent clause defining the geographic scope of the legislation."
+    },
+    {
+      "proposition_text": "These Regulations apply to agricultural land in England.",
+      "display_label": "Application to agricultural land",
+      "subject": "These Regulations",
+      "rule": "apply to",
+      "object": "agricultural land in England",
+      "conditions": [],
+      "exceptions": [],
+      "temporal_condition": "",
+      "provision_type": "core",
+      "source_locator": "regulation 1(d)",
+      "evidence_text": "apply to agricultural land in England",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Application clause limiting the substantive scope to agricultural land within England, despite broader territorial extent."
+    }
+  ]
+}
+```

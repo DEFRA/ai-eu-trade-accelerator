@@ -1,0 +1,25 @@
+[
+  {
+    "id": "fetch-attempt-lex-120b4f9c395b3f94-001",
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "attempt_number": 1,
+    "started_at": "2026-06-04T12:05:41.037093Z",
+    "finished_at": "2026-06-04T12:05:41.793785Z",
+    "status": "success",
+    "url": null,
+    "authority": "legislation_gov_uk",
+    "http_status": 200,
+    "error_type": null,
+    "error_message": null,
+    "response_content_type": null,
+    "response_content_length": 380343,
+    "content_hash": "bedd2b532b7ffa68f7aa15d1f2d6a3b39744f35ee6b644eee3f70ea91adb72b0",
+    "cache_key": "63057473e365516deac0669c6122f2e0640b113988fadfc3de9960bcf9ee6221",
+    "raw_artifact_uri": "file:///private/var/folders/zg/y_4dnc8n1c72_fnd9knx6fvr0000gn/T/judit/source-snapshots/63057473e365516deac0669c6122f2e0640b113988fadfc3de9960bcf9ee6221.json",
+    "method": "live_fetch",
+    "metadata": {
+      "version_id": "v1",
+      "parser": "legislation_gov_uk_data_xml_v1"
+    }
+  }
+]

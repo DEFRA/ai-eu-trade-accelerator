@@ -1,0 +1,132 @@
+```json
+{
+  "propositions": [
+    {
+      "proposition_text": "A person must not spread organic manure within 10 metres of surface water, except where permitted by specific exemptions for livestock manure or precision spreading equipment.",
+      "display_label": "Prohibition on spreading organic manure within 10 metres of surface water",
+      "subject": "A person",
+      "rule": "must not spread",
+      "object": "organic manure within 10 metres of surface water",
+      "conditions": [],
+      "exceptions": [
+        "permitted by paragraph (2) for livestock manure on specified land",
+        "permitted by paragraph (4) for slurry, sewage sludge or anaerobic digestate using precision equipment"
+      ],
+      "temporal_condition": "",
+      "provision_type": "core",
+      "source_locator": "regulation 17(1)",
+      "evidence_text": "A person must not spread organic manure within 10 metres of surface water, except in so far as doing so is permitted by paragraph (2) or (4).",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Core prohibition with clear exceptions cross-referenced to subsequent paragraphs."
+    },
+    {
+      "proposition_text": "Livestock manure (other than slurry or poultry manure) may be spread within 10 metres of surface water on land managed for breeding wader birds or species-rich semi-natural grassland that is notified as SSSI or subject to agri-environmental commitment, during 1st June to 31st October, provided it is not spread directly on surface water and does not exceed 12.5 tonnes per hectare annually.",
+      "display_label": "Exception for livestock manure on designated conservation land",
+      "subject": "Livestock manure (other than slurry or poultry manure)",
+      "rule": "may be spread",
+      "object": "within 10 metres of surface water",
+      "conditions": [
+        "spread on land managed for breeding wader birds or as a species-rich semi-natural grassland",
+        "land is notified as SSSI under Wildlife and Countryside Act 1981 or subject to agri-environmental commitment under Council Regulation (EC) 1698/2005 or Regulation (EU) 1305/2013",
+        "spread in the period that begins with 1st June and ends with the following 31st October",
+        "not spread directly on to surface water",
+        "total annual amount does not exceed 12.5 tonnes per hectare"
+      ],
+      "exceptions": [],
+      "temporal_condition": "1st June to 31st October",
+      "provision_type": "exception",
+      "source_locator": "regulation 17(2), (3)",
+      "evidence_text": "Livestock manure (other than slurry or poultry manure) may be spread if— a it is spread on land managed for breeding wader birds or as a species-rich semi-natural grassland and the land comes within paragraph (3), b it is spread in the period that begins with 1st June and ends with the following 31st October, c it is not spread directly on to surface water, and d the total annual amount does not exceed 12.5 tonnes per hectare. 3 Land comes within this paragraph if it is— a notified as a site of special scientific interest under the Wildlife and Countryside Act 1981, or b subject to an agri-environmental commitment entered into under Council Regulation (EC) 1698/2005 or Regulation (EU) 1305/2013.",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Exception with multiple cumulative conditions clearly specified across paragraphs (2) and (3)."
+    },
+    {
+      "proposition_text": "Organic manure in the form of slurry, sewage sludge or anaerobic digestate may be spread within 10 metres but not within 6 metres of surface water if the spreading equipment is a trailing hose band spreader, trailing shoe band spreader, injector (no deeper than 10cm), or dribble bar applicator.",
+      "display_label": "Exception for slurry, sewage sludge and anaerobic digestate using precision equipment",
+      "subject": "Organic manure in the form of slurry, sewage sludge or anaerobic digestate",
+      "rule": "may be spread",
+      "object": "within 10 metres but not within 6 metres of surface water",
+      "conditions": [
+        "spreading equipment is a trailing hose band spreader or a trailing shoe band spreader",
+        "spreading equipment is an injector which injects the organic manure no deeper than 10cm below the surface of the soil",
+        "spreading equipment is a dribble bar applicator"
+      ],
+      "exceptions": [],
+      "temporal_condition": "",
+      "provision_type": "exception",
+      "source_locator": "regulation 17(4)",
+      "evidence_text": "Organic manure in the form of slurry, sewage sludge or anaerobic digestate (or any combination of those) may be spread, except within 6 metres of surface water, if the spreading equipment used is— a a trailing hose band spreader or a trailing shoe band spreader, b an injector which injects the organic manure no deeper than 10cm below the surface of the soil, or c a dribble bar applicator.",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Exception with alternative equipment conditions (disjunctive list) and clear spatial limit."
+    },
+    {
+      "proposition_text": "Anaerobic digestate means the product of anaerobic digestion other than from sewage or material in a landfill.",
+      "display_label": "Definition of anaerobic digestate",
+      "subject": "anaerobic digestate",
+      "rule": "means",
+      "object": "the product of anaerobic digestion other than from sewage or material in a landfill",
+      "conditions": [],
+      "exceptions": [],
+      "temporal_condition": "",
+      "provision_type": "definition",
+      "source_locator": "regulation 17(5)",
+      "evidence_text": ""anaerobic digestate" means the product of anaerobic digestion other than from sewage or material in a landfill;",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Statutory definition for term used in paragraph (4)."
+    },
+    {
+      "proposition_text": "Sewage sludge means sludge within the meaning of the Sludge (Use in Agriculture) Regulations 1989 the use of which complies with regulation 3 of those Regulations.",
+      "display_label": "Definition of sewage sludge",
+      "subject": "sewage sludge",
+      "rule": "means",
+      "object": "sludge within the meaning of the Sludge (Use in Agriculture) Regulations 1989 the use of which complies with regulation 3 of those Regulations",
+      "conditions": [],
+      "exceptions": [],
+      "temporal_condition": "",
+      "provision_type": "definition",
+      "source_locator": "regulation 17(5)",
+      "evidence_text": ""sewage sludge" means sludge within the meaning of the Sludge (Use in Agriculture) Regulations 1989 the use of which complies with regulation 3 of those Regulations.",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Statutory definition incorporating external regulatory reference."
+    },
+    {
+      "proposition_text": "A person must not spread organic manure within 50 metres of a borehole, spring or well.",
+      "display_label": "Prohibition on spreading organic manure within 50 metres of water sources",
+      "subject": "A person",
+      "rule": "must not spread",
+      "object": "organic manure within 50 metres of a borehole, spring or well",
+      "conditions": [],
+      "exceptions": [],
+      "temporal_condition": "",
+      "provision_type": "core",
+      "source_locator": "regulation 17(6)",
+      "source_locator": "regulation 17(6)",
+      "evidence_text": "A person must not spread organic manure within 50 metres of a borehole, spring or well.",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Standalone prohibition protecting groundwater sources."
+    },
+    {
+      "proposition_text": "The restrictions on spreading organic manure near surface water and water sources do not apply to land which is covered by a greenhouse.",
+      "display_label": "Exemption for land covered by greenhouse",
+      "subject": "The restrictions in regulation 17",
+      "rule": "do not apply to",
+      "object": "land which is covered by a greenhouse",
+      "conditions": [],
+      "exceptions": [],
+      "temporal_condition": "",
+      "provision_type": "exception",
+      "source_locator": "regulation 17(7)",
+      "evidence_text": "This regulation does not apply to land which is covered by a greenhouse.",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Blanket exemption for greenhouse-covered land from all regulation 17 requirements."
+    }
+  ]
+}
+```

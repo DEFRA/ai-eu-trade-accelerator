@@ -34,6 +34,10 @@ def test_export_static_bundle_keeps_flat_files_and_writes_run_artifacts(tmp_path
     assert (tmp_path / "scope_inventory.json").exists()
     assert (tmp_path / "scope_review_candidates.json").exists()
     assert (tmp_path / "narrative.md").exists()
+    assert (tmp_path / "MODEL.md").exists()
+    assert (tmp_path / "proposition-relationships.json").exists()
+    assert (tmp_path / "effective_law_statements.json").exists()
+    assert (tmp_path / "beatrice_law_candidates.json").exists()
 
     run_id = bundle["run"]["id"]
     run_dir = tmp_path / "runs" / run_id
@@ -167,3 +171,10 @@ def test_export_static_bundle_keeps_flat_files_and_writes_run_artifacts(tmp_path
         assert isinstance(storage_uri, str)
         assert storage_uri.startswith(f"runs/{run_id}/artifacts/")
         assert (tmp_path / storage_uri).exists()
+
+    eval_dir = run_dir / "evaluation"
+    assert (eval_dir / "evaluation_report.json").exists()
+    assert (eval_dir / "evaluation_summary.md").exists()
+    eval_report = json.loads((eval_dir / "evaluation_report.json").read_text(encoding="utf-8"))
+    assert eval_report["schema_version"] == "judit-eval-v0.1"
+    assert eval_report["run_id"] == run_id

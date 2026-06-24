@@ -1,0 +1,52 @@
+[project]
+name = "ada-source-discovery"
+version = "0.1.0"
+description = "Ada — UK legal source discovery workbench"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28",
+    "pydantic>=2.10",
+    "pydantic-ai>=0.2",
+    "python-dotenv>=1.0",
+    "rich>=13.9",
+    "streamlit>=1.41",
+    "typer>=0.15",
+]
+
+[project.scripts]
+ada = "ada.cli:main"
+ada-viewer = "ada.viewer:cli_main"
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.29",
+    "pytest>=8.3",
+    "ruff>=0.9",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ada"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.basedpyright]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+include = ["src", "tests"]
+exclude = ["**/__pycache__"]
+reportMissingTypeStubs = false

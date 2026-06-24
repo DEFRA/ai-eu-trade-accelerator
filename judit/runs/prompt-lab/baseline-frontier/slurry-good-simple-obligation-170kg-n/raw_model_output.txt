@@ -1,0 +1,99 @@
+```json
+{
+  "propositions": [
+    {
+      "proposition_text": "The occupier of a holding must ensure that the total amount of nitrogen in livestock manure applied to the holding in any calendar year does not exceed 170 kg multiplied by the area of the holding in hectares.",
+      "display_label": "Annual nitrogen limit from livestock manure",
+      "subject": "occupier of a holding",
+      "rule": "must ensure that total nitrogen in livestock manure applied does not exceed",
+      "object": "170 kg per hectare of the holding per calendar year",
+      "conditions": [
+        "nitrogen applied whether directly by an animal or by spreading"
+      ],
+      "exceptions": [],
+      "temporal_condition": "in any calendar year",
+      "provision_type": "core",
+      "source_locator": "regulation 7(1)",
+      "evidence_text": "The occupier of a holding must ensure that, in any calendar year, the total amount of nitrogen in livestock manure applied to the holding, whether directly by an animal or by spreading, does not exceed 170kg multiplied by the area of the holding in hectares.",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Core substantive obligation establishing the annual nitrogen limit per hectare from livestock manure."
+    },
+    {
+      "proposition_text": "The nitrogen limit in paragraph (1) does not apply where the occupier has been granted a derogation.",
+      "display_label": "Derogation exception to nitrogen limit",
+      "subject": "occupier of a holding",
+      "rule": "is exempt from paragraph (1) nitrogen limit",
+      "object": "the 170 kg per hectare annual limit",
+      "conditions": [
+        "occupier has been granted a derogation"
+      ],
+      "exceptions": [],
+      "temporal_condition": "",
+      "provision_type": "exception",
+      "source_locator": "regulation 7(2)",
+      "evidence_text": "Paragraph (1) does not apply where the occupier has been granted a derogation.",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Exception provision that disapplies the core nitrogen limit when a derogation is granted."
+    },
+    {
+      "proposition_text": "The amount of nitrogen for the purposes of this regulation is to be calculated in accordance with Schedule 1.",
+      "display_label": "Nitrogen calculation methodology",
+      "subject": "amount of nitrogen",
+      "rule": "is to be calculated in accordance with",
+      "object": "Schedule 1",
+      "conditions": [
+        "for the purposes of this regulation"
+      ],
+      "exceptions": [],
+      "temporal_condition": "",
+      "provision_type": "cross_reference",
+      "source_locator": "regulation 7(3)",
+      "evidence_text": "For the purposes of this regulation, the amount of nitrogen is to be calculated in accordance with Schedule 1.",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Cross-reference provision specifying the calculation methodology for nitrogen amounts."
+    },
+    {
+      "proposition_text": "In calculating the area of a holding for nitrogen spreading purposes, no account is to be taken of surface waters, hardstanding, buildings, roads or woodland (unless the woodland is used for grazing).",
+      "display_label": "Exclusion of surface waters, hardstanding, buildings, roads and non-grazing woodland from holding area",
+      "subject": "area of a holding",
+      "rule": "excludes from calculation",
+      "object": "surface waters, hardstanding, buildings, roads or woodland (unless used for grazing)",
+      "conditions": [
+        "for the purpose of ascertaining the amount of nitrogen permitted to be spread"
+      ],
+      "exceptions": [
+        "woodland used for grazing is included"
+      ],
+      "temporal_condition": "",
+      "provision_type": "core",
+      "source_locator": "regulation 7(4)(a)",
+      "evidence_text": "any surface waters, hardstanding, buildings, roads or woodland (unless the woodland is used for grazing)",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Substantive rule defining which land types are excluded from the holding area calculation, with an exception for grazing woodland."
+    },
+    {
+      "proposition_text": "In calculating the area of a holding for nitrogen spreading purposes, no account is to be taken of land which is covered by a greenhouse for the whole of the year concerned.",
+      "display_label": "Exclusion of year-round greenhouse land from holding area",
+      "subject": "area of a holding",
+      "rule": "excludes from calculation",
+      "object": "land covered by a greenhouse for the whole year",
+      "conditions": [
+        "for the purpose of ascertaining the amount of nitrogen permitted to be spread",
+        "greenhouse covers the land for the whole of the year concerned"
+      ],
+      "exceptions": [],
+      "temporal_condition": "for the whole of the year concerned",
+      "provision_type": "core",
+      "source_locator": "regulation 7(4)(b)",
+      "evidence_text": "any land which is covered by a greenhouse for the whole of the year concerned",
+      "completeness_status": "complete",
+      "confidence": "high",
+      "reason": "Distinct substantive rule excluding year-round greenhouse land from the holding area calculation."
+    }
+  ]
+}
+```

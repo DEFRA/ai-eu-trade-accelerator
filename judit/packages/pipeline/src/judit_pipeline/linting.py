@@ -11,7 +11,13 @@ from .effective_views import (
     validate_replacement_merged,
 )
 from .pipeline_reviews import categorisation_artifact_id, resolve_current_pipeline_review_decision
+from .proposition_export_uniqueness import (
+    find_duplicate_proposition_ids,
+    find_duplicate_proposition_keys,
+    find_duplicate_proposition_version_ids,
+)
 
+# Legacy LLM extraction tags only — not proposition_tier / legal_effect_type.
 ALLOWED_PROPOSITION_CATEGORIES = {
     "obligation",
     "institutional",
@@ -136,8 +142,57 @@ def load_exported_bundle(export_dir: str | Path) -> dict[str, Any]:
     root = Path(export_dir)
     if not root.exists():
         raise ValueError(f"Export directory does not exist: {root}")
+    if root.is_file():
+        hint = (
+            "You passed a file path, not an exported bundle directory. "
+            "Run `judit-run-case export` (or your pipeline export step) and pass the output folder "
+            "(e.g. dist/static-report), which contains run.json, propositions.json, and related artifacts. "
+            "A Judit case.json alone is not a valid --export-dir."
+        )
+        if root.name == "case.json" or root.suffix.lower() == ".json":
+            raise ValueError(f"{hint} Received: {root}")
+        raise ValueError(f"Expected a directory, got file: {root}. {hint}")
+    if not root.is_dir():
+        raise ValueError(f"Export path is not a directory: {root}")
+    topic = _read_json(root / "topic.json", None)
+    clusters = _read_json(root / "clusters.json", None)
+    narrative: dict[str, Any] | None = None
+    run_id = ""
+    run_blob = _read_json(root / "run.json", {})
+    if isinstance(run_blob, dict):
+        run_id = str(run_blob.get("id") or "")
+    if run_id:
+        narrative_path = (
+            root / "runs" / run_id / "artifacts" / f"artifact-{run_id}-narrative.json"
+        )
+        if narrative_path.exists():
+            loaded = _read_json(narrative_path, None)
+            if isinstance(loaded, dict):
+                narrative = loaded
+    if narrative is None and (root / "narrative.md").exists():
+        md_lines = (root / "narrative.md").read_text(encoding="utf-8").splitlines()
+        title = md_lines[0].lstrip("# ").strip() if md_lines else "Narrative"
+        sections = [ln[2:].strip() for ln in md_lines if ln.startswith("- ")]
+        summary = ""
+        for ln in md_lines[1:]:
+            if ln.startswith("- "):
+                break
+            if ln.strip():
+                summary = ln.strip()
+                break
+        narrative = {
+            "title": title,
+            "summary": summary or title,
+            "sections": sections,
+        }
+
     payload: dict[str, Any] = {
-        "run": _read_json(root / "run.json", {}),
+        "run": run_blob if isinstance(run_blob, dict) else {},
+        "topic": topic if isinstance(topic, dict) else {},
+        "clusters": clusters if isinstance(clusters, list) else [],
+        "narrative": narrative
+        if isinstance(narrative, dict)
+        else {"title": "Narrative", "summary": "", "sections": []},
         "source_records": _read_json(root / "sources.json", []),
         "source_snapshots": _read_json(root / "source_snapshots.json", []),
         "source_fragments": _read_json(root / "source_fragments.json", []),
@@ -174,6 +229,12 @@ def load_exported_bundle(export_dir: str | Path) -> dict[str, Any]:
     llm_path = root / "extraction_llm_call_traces.json"
     if llm_path.exists():
         payload["extraction_llm_call_traces"] = _read_json(llm_path, [])
+    chunk_path = root / "proposition_extraction_chunk_statuses.json"
+    if chunk_path.exists():
+        payload["proposition_extraction_chunk_statuses"] = _read_json(chunk_path, [])
+    inspection_path = root / "extraction_inspection_summary.json"
+    if inspection_path.exists():
+        payload["extraction_inspection_summary"] = _read_json(inspection_path, {})
     pci_path = root / "pipeline_case_inputs.json"
     if pci_path.exists():
         payload["pipeline_case_inputs"] = _read_json(pci_path, {})
@@ -303,6 +364,22 @@ def lint_bundle(bundle: dict[str, Any]) -> dict[str, Any]:
     scope_review_candidates_bundle = bundle.get("scope_review_candidates")
     if not isinstance(scope_review_candidates_bundle, list):
         scope_review_candidates_bundle = []
+
+    prop_dicts = [p for p in propositions if isinstance(p, dict)]
+    for dup in find_duplicate_proposition_ids(prop_dicts):
+        errors.append(
+            f"duplicate proposition id: {dup['id']} ({dup['count']} rows)"
+        )
+    for dup in find_duplicate_proposition_keys(prop_dicts):
+        errors.append(
+            f"duplicate proposition_key within source {dup['source_record_id']}: "
+            f"{dup['proposition_key']} ({dup['count']} rows)"
+        )
+    for dup in find_duplicate_proposition_version_ids(prop_dicts):
+        errors.append(
+            f"duplicate proposition_version_id: {dup['proposition_version_id']} "
+            f"({dup['count']} rows)"
+        )
 
     for d in pipeline_decisions:
         if str(d.get("decision", "")).strip().lower() != "overridden":

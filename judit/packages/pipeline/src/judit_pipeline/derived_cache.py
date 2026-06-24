@@ -95,6 +95,30 @@ class DerivedArtifactCache:
         return self.cache_dir / stage_name / f"{cache_key}.json"
 
 
+def clear_proposition_extraction_derived_cache(cache_dir: Path) -> list[str]:
+    """Remove proposition_extraction and proposition_extraction_chunk cache trees."""
+    removed: list[str] = []
+    for stage_name in ("proposition_extraction", "proposition_extraction_chunk"):
+        stage_dir = cache_dir / stage_name
+        if not stage_dir.exists():
+            continue
+        for path in sorted(stage_dir.rglob("*"), reverse=True):
+            if path.is_file():
+                path.unlink()
+                removed.append(str(path))
+        if stage_dir.exists():
+            for child in sorted(stage_dir.iterdir(), reverse=True):
+                if child.is_dir():
+                    child.rmdir()
+            try:
+                stage_dir.rmdir()
+            except OSError:
+                pass
+        if not stage_dir.exists():
+            removed.append(str(stage_dir.resolve()) + "/")
+    return removed
+
+
 def build_proposition_extraction_chunk_cache_key(
     *,
     source_snapshot_id: str | None,

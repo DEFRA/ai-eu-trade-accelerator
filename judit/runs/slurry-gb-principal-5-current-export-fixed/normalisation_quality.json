@@ -1,0 +1,305 @@
+{
+  "by_check": {
+    "scope_application_conflict": {
+      "errors": 0,
+      "warnings": 29
+    }
+  },
+  "error_count": 0,
+  "findings": [
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:d9a5c5dacf8e8425",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:24622abea42e4591",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:52ac3da904dfb187",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:9f01838a7132a43a",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:9bd1b14b6bb5d5db",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:6a882cfce1ad0a7a",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:e15cf194e096319b",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:066ff1a0c7726bdd",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:618dbaf3fb6cb2c7",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:1684a94afbe16a82",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:3b94bffa42c2ff41",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:51d594dfe9f0e5b1",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:11f79425dbf3f3aa",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:a33d4a9f809b0e55",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:8229610a0cbd31e4",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:eba3ad981f963e6c",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:d63bb5e5e661590a",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:541b129649a57768",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:c80d22fd31cf207f",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:88419ac49fe4a7f9",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:85f2f607beb4269f",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:e04050776754fff1",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:61f5a822c858bbb4",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:6b0c6df3f45f8e11",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:6e00d5cbcc8c32c3",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:5f42dc230daba578",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:3b0ab9118a553702",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:040545de83474159",
+      "severity": "warning"
+    },
+    {
+      "check_id": "scope_application_conflict",
+      "details": {
+        "legal_effect_type": "application_scope",
+        "territorial_application": []
+      },
+      "message": "application_scope without territorial_application",
+      "proposition_id": "prop:8afc2ec3a3cfba32",
+      "severity": "warning"
+    }
+  ],
+  "generated_at": "2026-06-04T14:27:53.871475Z",
+  "newly_normalised": true,
+  "proposition_count": 729,
+  "warning_count": 29
+}

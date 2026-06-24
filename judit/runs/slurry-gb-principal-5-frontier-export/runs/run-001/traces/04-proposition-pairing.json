@@ -1,0 +1,28 @@
+{
+  "stage_name": "proposition pairing",
+  "run_id": "run-001",
+  "timestamp": "2026-06-02T12:55:34.584275Z",
+  "started_at": "2026-06-02T12:55:34.584275Z",
+  "finished_at": "2026-06-02T12:55:34.584278Z",
+  "status": "ok",
+  "inputs": {
+    "comparison_config": {
+      "jurisdiction_a": "EU",
+      "jurisdiction_b": "UK"
+    }
+  },
+  "outputs": {
+    "pair_count": 0,
+    "pairs": []
+  },
+  "strategy_used": "pairing_skipped_single_jurisdiction",
+  "model_alias_used": null,
+  "duration_ms": 0,
+  "input_artifact_ids": [],
+  "output_artifact_ids": [],
+  "metrics": {},
+  "warnings": [
+    "Divergence pairing skipped: single-jurisdiction analysis mode enabled."
+  ],
+  "errors": []
+}

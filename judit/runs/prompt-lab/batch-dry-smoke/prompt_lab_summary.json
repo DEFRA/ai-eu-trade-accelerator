@@ -1,0 +1,42 @@
+{
+  "output_root": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/batch-dry-smoke",
+  "mode": "dry",
+  "generated_at": "2026-06-04T11:33:43.453482Z",
+  "fixture_count": 1,
+  "verdict": "pass_with_warnings",
+  "verdict_detail": "All runnable fixtures passed; some rows have warnings or were skipped.",
+  "failure_themes": {
+    "fixture_or_eval_policy_warning": [
+      "slurry-bad-diffuse-2018-reg-1-boilerplate"
+    ]
+  },
+  "rows": [
+    {
+      "fixture_file": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/tests/fixtures/extraction_prompt_cases/slurry/slurry-bad-diffuse-2018-reg-1-boilerplate.json",
+      "case_id": "slurry-bad-diffuse-2018-reg-1-boilerplate",
+      "tier": "bad",
+      "label": "BAD — Regulation 1 boilerplate (Diffuse Pollution 2018)",
+      "evaluation_mode": "exhaustive",
+      "status": "skipped",
+      "expected_proposition_count": 4,
+      "actual_proposition_count": 0,
+      "matched_expected": "0/0",
+      "expected_checkable_count": null,
+      "actual_checkable_count": 0,
+      "extra_actual_count": 0,
+      "missing_legal_effects": [],
+      "unexpected_legal_effects": [],
+      "boilerplate_failures": 0,
+      "over_compression_warnings": 0,
+      "evidence_failures": 0,
+      "runtime_extraction_errors": [],
+      "run_directory": null,
+      "warnings": [
+        "dry mode skipped: fixture has no dry.raw_model_output"
+      ],
+      "failure_themes": [
+        "fixture_or_eval_policy_warning"
+      ]
+    }
+  ]
+}

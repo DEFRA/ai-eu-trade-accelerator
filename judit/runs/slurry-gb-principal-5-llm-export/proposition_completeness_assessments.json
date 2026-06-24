@@ -1,0 +1,546 @@
+[
+  {
+    "id": "pca-prop:9a84e5adb74f96ec",
+    "proposition_id": "prop:9a84e5adb74f96ec",
+    "proposition_key": "lex-120b4f9c395b3f94:regulation-30-1:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 179
+    }
+  },
+  {
+    "id": "pca-prop:8c9bdb350fdf1bc7",
+    "proposition_id": "prop:8c9bdb350fdf1bc7",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 75
+    }
+  },
+  {
+    "id": "pca-prop:7330463e891bbb41",
+    "proposition_id": "prop:7330463e891bbb41",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p002",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 89
+    }
+  },
+  {
+    "id": "pca-prop:46f553c082a9270c",
+    "proposition_id": "prop:46f553c082a9270c",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p003",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 75
+    }
+  },
+  {
+    "id": "pca-prop:4ebc206f66f4fa1b",
+    "proposition_id": "prop:4ebc206f66f4fa1b",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-2-paragraph-2:p004",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 71
+    }
+  },
+  {
+    "id": "pca-prop:158e699357b754ae",
+    "proposition_id": "prop:158e699357b754ae",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-3-paragraph-11:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 206
+    }
+  },
+  {
+    "id": "pca-prop:d2f993d73e3fb955",
+    "proposition_id": "prop:d2f993d73e3fb955",
+    "proposition_key": "lex-120b4f9c395b3f94:schedule-3-paragraph-17-b-i:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 110
+    }
+  },
+  {
+    "id": "pca-prop:525a890de9335a59",
+    "proposition_id": "prop:525a890de9335a59",
+    "proposition_key": "lex-805b03f284dcf364:regulation-19:p001",
+    "status": "complete",
+    "confidence": "medium",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 219
+    }
+  },
+  {
+    "id": "pca-prop:61b363a883f4b779",
+    "proposition_id": "prop:61b363a883f4b779",
+    "proposition_key": "lex-805b03f284dcf364:regulation-21-b:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 119
+    }
+  },
+  {
+    "id": "pca-prop:eabdd3814099e393",
+    "proposition_id": "prop:eabdd3814099e393",
+    "proposition_key": "lex-805b03f284dcf364:regulation-35-1:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 205
+    }
+  },
+  {
+    "id": "pca-prop:4e4134271b0028fb",
+    "proposition_id": "prop:4e4134271b0028fb",
+    "proposition_key": "lex-805b03f284dcf364:regulation-35-2:p002",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 132
+    }
+  },
+  {
+    "id": "pca-prop:27778bd51187ad25",
+    "proposition_id": "prop:27778bd51187ad25",
+    "proposition_key": "lex-805b03f284dcf364:regulation-41-1:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 129
+    }
+  },
+  {
+    "id": "pca-prop:9698552230fa3c10",
+    "proposition_id": "prop:9698552230fa3c10",
+    "proposition_key": "lex-805b03f284dcf364:regulation-41-2:p002",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 110
+    }
+  },
+  {
+    "id": "pca-prop:d653900adc37b3b9",
+    "proposition_id": "prop:d653900adc37b3b9",
+    "proposition_key": "lex-805b03f284dcf364:schedule-1a-paragraph-1:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 271
+    }
+  },
+  {
+    "id": "pca-prop:e68f750a59ab2834",
+    "proposition_id": "prop:e68f750a59ab2834",
+    "proposition_key": "lex-805b03f284dcf364:schedule-1a-paragraph-15:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 234
+    }
+  },
+  {
+    "id": "pca-prop:d2ad679ff479335f",
+    "proposition_id": "prop:d2ad679ff479335f",
+    "proposition_key": "lex-805b03f284dcf364:schedule-1a-paragraph-19:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 178
+    }
+  },
+  {
+    "id": "pca-prop:f5f7f0d4309eab92",
+    "proposition_id": "prop:f5f7f0d4309eab92",
+    "proposition_key": "lex-805b03f284dcf364:schedule-1a-paragraph-21:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 129
+    }
+  },
+  {
+    "id": "pca-prop:bd52b4a79928edba",
+    "proposition_id": "prop:bd52b4a79928edba",
+    "proposition_key": "lex-805b03f284dcf364:schedule-1a-paragraph-26:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 252
+    }
+  },
+  {
+    "id": "pca-prop:1d12ca439cc02a18",
+    "proposition_id": "prop:1d12ca439cc02a18",
+    "proposition_key": "lex-805b03f284dcf364:schedule-3-paragraph-2:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 75
+    }
+  },
+  {
+    "id": "pca-prop:492b7d7877437b14",
+    "proposition_id": "prop:492b7d7877437b14",
+    "proposition_key": "lex-805b03f284dcf364:schedule-3-paragraph-2:p002",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 90
+    }
+  },
+  {
+    "id": "pca-prop:f3a8e13d3b944c11",
+    "proposition_id": "prop:f3a8e13d3b944c11",
+    "proposition_key": "lex-805b03f284dcf364:schedule-3-paragraph-2:p003",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 79
+    }
+  },
+  {
+    "id": "pca-prop:b4bea7a8d882017b",
+    "proposition_id": "prop:b4bea7a8d882017b",
+    "proposition_key": "lex-805b03f284dcf364:schedule-3-paragraph-2:p004",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 61
+    }
+  },
+  {
+    "id": "pca-prop:8ab1a744f78383af",
+    "proposition_id": "prop:8ab1a744f78383af",
+    "proposition_key": "lex-805b03f284dcf364:schedule-5-2-a:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 62
+    }
+  },
+  {
+    "id": "pca-prop:ee39fa295eaf7eda",
+    "proposition_id": "prop:ee39fa295eaf7eda",
+    "proposition_key": "lex-805b03f284dcf364:schedule-5-2-b:p002",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 144
+    }
+  },
+  {
+    "id": "pca-prop:3717953c3a49a6ef",
+    "proposition_id": "prop:3717953c3a49a6ef",
+    "proposition_key": "lex-805b03f284dcf364:schedule-5-2-c:p003",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 116
+    }
+  },
+  {
+    "id": "pca-prop:f748f41a6cf9938b",
+    "proposition_id": "prop:f748f41a6cf9938b",
+    "proposition_key": "lex-805b03f284dcf364:schedule-5-3-a:p004",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 152
+    }
+  },
+  {
+    "id": "pca-prop:35bdddef3db5f6e7",
+    "proposition_id": "prop:35bdddef3db5f6e7",
+    "proposition_key": "lex-805b03f284dcf364:schedule-6-paragraph-8:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 245
+    }
+  },
+  {
+    "id": "pca-prop:35de31be17713de8",
+    "proposition_id": "prop:35de31be17713de8",
+    "proposition_key": "lex-e71fbbe3342ac0be:regulation-4-1:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 137
+    }
+  },
+  {
+    "id": "pca-prop:e498f41801bcf68f",
+    "proposition_id": "prop:e498f41801bcf68f",
+    "proposition_key": "lex-e71fbbe3342ac0be:schedule-2-paragraph-7:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 351
+    }
+  },
+  {
+    "id": "pca-prop:2dada8c0f842e336",
+    "proposition_id": "prop:2dada8c0f842e336",
+    "proposition_key": "lex-96613ffe71589e1e:schedule-2-2:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 153
+    }
+  },
+  {
+    "id": "pca-prop:641088352d081b6b",
+    "proposition_id": "prop:641088352d081b6b",
+    "proposition_key": "lex-96613ffe71589e1e:schedule-2-4:p002",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 220
+    }
+  },
+  {
+    "id": "pca-prop:ac2a1ab4e4baf870",
+    "proposition_id": "prop:ac2a1ab4e4baf870",
+    "proposition_key": "lex-96613ffe71589e1e:schedule-2-7:p003",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 203
+    }
+  },
+  {
+    "id": "pca-prop:aef8ade55bca94fa",
+    "proposition_id": "prop:aef8ade55bca94fa",
+    "proposition_key": "lex-96613ffe71589e1e:schedule-2-11:p004",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 281
+    }
+  },
+  {
+    "id": "pca-prop:f75a1e417b5305ce",
+    "proposition_id": "prop:f75a1e417b5305ce",
+    "proposition_key": "lex-96613ffe71589e1e:schedule-3-paragraph-5:p001",
+    "status": "complete",
+    "confidence": "high",
+    "reason": "Readable as a standalone extracted proposition (no deictic opener; operative language present).",
+    "missing_context": [],
+    "suggested_display_statement": null,
+    "context_injections": {},
+    "evidence": [],
+    "method": "deterministic",
+    "signals": {
+      "text_char_length": 130
+    }
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_inventory_row_id": "source-inventory-lex-120b4f9c395b3f94",
+    "source_target_link_id": "target-link-lex-120b4f9c395b3f94",
+    "source_role": "unknown",
+    "relationship_to_analysis": "unknown",
+    "confidence": "low",
+    "method": "fallback",
+    "reason": "No deterministic categorisation rule matched.",
+    "evidence": [],
+    "signals": {
+      "target_linked": true,
+      "authority": "legislation_gov_uk",
+      "citation": "UKSI 2015/668",
+      "source_url": "https://www.legislation.gov.uk/uksi/2015/668/data.xml",
+      "kind": "uksi",
+      "instrument_id": "uksi/2015/668"
+    }
+  }
+]

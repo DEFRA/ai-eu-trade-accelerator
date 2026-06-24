@@ -6,8 +6,11 @@ Source of truth is `uv run --package judit-pipeline python -m judit_pipeline --h
 
 | Command | Purpose | Important options | Guide |
 |---|---|---|---|
-| `run-case` | Run a case JSON through pipeline stages. | `--use-llm`, `--extraction-mode`, `--extraction-execution-mode`, `--extraction-fallback`, `--divergence-reasoning`, `--source-cache-dir`, `--derived-cache-dir` | `README.md` |
-| `export-case` | Run a case and write static export bundle. | `--output-dir`, plus the same extraction/runtime options as `run-case` | `README.md` |
+| `run-case` | Run a case JSON through pipeline stages. | `--use-llm`, `--extraction-mode`, `--extraction-execution-mode`, `--extraction-fallback`, `--retry-failed-extraction-cache`, `--ignore-failed-extraction-cache`, `--divergence-reasoning`, `--source-cache-dir`, `--derived-cache-dir` | `README.md` |
+| `run-bundle` | Materialise case from Ada intake JSON, then run pipeline. | Same extraction flags as `run-case`; with `--use-llm`, default `--extraction-fallback` is `fail_closed` and failed chunk cache entries are retried unless `--ignore-failed-extraction-cache`. LLM preflight + summary metrics. | [`docs/dev/llm-extraction-local-mode.md`](../dev/llm-extraction-local-mode.md) |
+| `export-run` | Export a persisted run (`run_bundle.json`) without re-running extraction. | `--output-dir` (alias `--output`) | `README.md` |
+| `export-case` | Export a persisted run by default; use `--rerun` to regenerate extraction first. | `--output-dir`, `--rerun`, `--extraction-mode` (required with `--rerun` when a prior run exists) | `README.md` |
+| `run-and-export-case` | Always re-run extraction from a case file, then export (explicit `--extraction-mode` when replacing a prior LLM run). | Same extraction flags as `run-case` | `README.md` |
 | `lint-export` | Evaluate exported bundle lint/quality summary. | `--export-dir`, `--no-quality-summary` | [`docs/dev/quality-runs.md`](../dev/quality-runs.md) |
 | `compare-runs` | Compare baseline vs candidate exported runs. | `--baseline-export-dir`, `--candidate-export-dir`, `--write-summary` | (no dedicated guide yet) |
 
@@ -34,7 +37,7 @@ Source of truth is `uv run --package judit-pipeline python -m judit_pipeline --h
 |---|---|---|---|
 | `list-runs` | List exported runs. | `--export-dir` | (no dedicated guide yet) |
 | `inspect-run` | Inspect one run payload. | `--run-id`, `--export-dir` | (no dedicated guide yet) |
-| `inspect-stage-traces` | Inspect stage traces for a run. | `--run-id`, `--export-dir` | (no dedicated guide yet) |
+| `inspect-stage-traces` | Inspect stage traces for a run (compact by default; use `--full` for raw payloads). | `--run-id`, `--export-dir`, `--full` | (no dedicated guide yet) |
 | `list-run-review-decisions` | List review decisions for a run. | `--run-id`, `--export-dir` | (no dedicated guide yet) |
 | `list-sources` | List source records in exported run. | `--run-id`, `--export-dir` | (no dedicated guide yet) |
 | `inspect-source` | Inspect source detail. | `--run-id`, `--export-dir` | (no dedicated guide yet) |
@@ -43,6 +46,10 @@ Source of truth is `uv run --package judit-pipeline python -m judit_pipeline --h
 | `list-propositions` | List propositions in exported run. | `--run-id`, `--export-dir` | (no dedicated guide yet) |
 | `inspect-proposition-history` | Inspect proposition history/lineage. | `--include-runs`, `--export-dir` | [`docs/dev/jurisdiction-analysis-runs.md`](../dev/jurisdiction-analysis-runs.md) |
 | `inspect-extraction-failures` | Inspect extraction failure rows. | `--export-dir` | [`docs/dev/quality-runs.md`](../dev/quality-runs.md) |
+| `inspect-extraction-jobs` | Summarize extraction job outcomes and failure examples. | `--export-dir`, `--show-raw-failure-examples N` | [`docs/dev/quality-runs.md`](../dev/quality-runs.md) |
+| `debug-extract-fragment` | Run one fragment through LLM extraction and print diagnostics. | `CASE_OR_RUN_DIR`, `--source-id`, `--locator`, `--extraction-mode` | [`docs/dev/llm-extraction-local-mode.md`](../dev/llm-extraction-local-mode.md) |
+| `extract-fragment` | Prompt-lab: extract one fragment and write `fragment.txt`, `prompt.txt`, propositions, `review.md`, `MODEL.md`, etc. | `--fixture` or `--case-or-run-dir` + `--source-id` + `--locator`, `--mode`, `--output-dir` | [`docs/dev/llm-extraction-local-mode.md`](../dev/llm-extraction-local-mode.md) |
+| `eval-extract-fragment` | Score a prompt-lab run against fixture `expected_propositions`; writes `prompt_eval.json`, `PROMPT_EVAL.md`. | `--fixture`, `--run-dir` | [`docs/dev/llm-extraction-local-mode.md`](../dev/llm-extraction-local-mode.md) |
 
 ## Review/governance commands
 
@@ -56,7 +63,7 @@ Source of truth is `uv run --package judit-pipeline python -m judit_pipeline --h
 
 | Command | Purpose | Important options | Guide |
 |---|---|---|---|
-| `repair-extraction` | Re-run repairable extraction jobs from exported bundle. | `--export-dir`, `--output-dir`/`--in-place`, `--only`, `--extraction-mode`, `--extraction-fallback`, `--retry-failed-llm` | [`docs/dev/quality-runs.md`](../dev/quality-runs.md) |
+| `repair-extraction` | Re-run repairable extraction jobs from exported bundle. | `--export-dir`, `--output-dir`/`--in-place`, `--only`, `--extraction-mode`, `--extraction-fallback`, `--retry-failed-extraction-cache`, `--ignore-failed-extraction-cache` | [`docs/dev/quality-runs.md`](../dev/quality-runs.md) |
 | `plan-extraction-batch` | Prepare external extraction batch plan. | `--export-dir` | (no dedicated guide yet) |
 | `submit-extraction-batch` | Submit extraction batch job. | `--export-dir` | (no dedicated guide yet) |
 | `poll-extraction-batch` | Poll extraction batch status/results. | `--export-dir`, `--fetch-results` | (no dedicated guide yet) |

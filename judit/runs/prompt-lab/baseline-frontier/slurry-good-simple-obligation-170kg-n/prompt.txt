@@ -1,0 +1,52 @@
+=== system ===
+You extract legal propositions as strict JSON only.
+
+=== user ===
+Extract legal propositions from the source text. Return JSON only with this exact shape:
+{
+  "propositions": [
+    {
+      "proposition_text": "string",
+      "display_label": "string",
+      "subject": "string",
+      "rule": "string",
+      "object": "string",
+      "conditions": ["string"],
+      "exceptions": ["string"],
+      "temporal_condition": "string or empty",
+      "provision_type": "core | definition | exception | transitional | cross_reference",
+      "source_locator": "string",
+      "evidence_text": "string",
+      "completeness_status": "complete | context_dependent | fragmentary",
+      "confidence": "high | medium | low",
+      "reason": "string"
+    }
+  ]
+}
+
+Frontier extraction rules (critical for audits):
+- Extract at most 8 legally distinct propositions for this response (hard cap — omit lower-salience rows if needed).
+Structured lists:
+- Where the Source uses numbered paragraphs, lettered subparagraphs ((a), (b), …), or roman sub-items ((i), (ii), …), treat each substantive obligation as its own proposition when it is legally distinct from neighbouring rows.
+- Do not merge unrelated list items; do not stop after an early subset when later items in the same list remain legally distinct and within the cap below.
+No focus scopes:
+- Within the cap below, prefer the most legally salient obligations for the Topic and Cluster; stay within the cap rather than enumerating every peripheral line.
+- Returning propositions=[] is unusual for substantive regulatory text that was selected for extraction. Use propositions=[] only when the Source chunk contains no legally distinct obligation, definition, exception, or transitional rule you can support with schema fields — and set reason on any retained row explaining omissions.
+- proposition_text MAY be rewritten as a concise, readable legal proposition (normalized wording OK).
+- evidence_text MUST be copied verbatim from the Source text chunk — character-for-character as it appears there (subset / exact span selection). It must be the shortest contiguous span from the Source that suffices to justify the proposition. Do NOT paraphrase, summarise, or re-order words inside evidence_text.
+- source_locator MUST preserve traceability to the obligation's position (e.g. article/paragraph identifiers, list marks such as '(d)(ii)' or '(b)') consistent with the Source layout.
+- If no contiguous verbatim span can be selected (ambiguous layout, garbled OCR, contradictory instructions), set evidence_text to an empty string and use reason to explain briefly why verbatim evidence could not be provided.
+
+
+Semantics:
+- proposition_text: normalised legal proposition (readable).
+- evidence_text: exact quote from Source (verbatim span), or "" when impossible with rationale in reason.
+Topic: slurry prompt-lab
+Cluster: The Nitrate Pollution Prevention Regulations 2015
+Jurisdiction: UK
+Citation: 
+
+Fragment locator (traceability): regulation:7
+
+Source text:
+7 1 The occupier of a holding must ensure that, in any calendar year, the total amount of nitrogen in livestock manure applied to the holding, whether directly by an animal or by spreading, does not exceed 170kg multiplied by the area of the holding in hectares. 2 Paragraph (1) does not apply where the occupier has been granted a derogation. 3 For the purposes of this regulation, the amount of nitrogen is to be calculated in accordance with Schedule 1. 4 In calculating the area of a holding for the purpose of ascertaining the amount of nitrogen permitted to be spread on the holding, no account is to be taken of— a any surface waters, hardstanding, buildings, roads or woodland (unless the woodland is used for grazing), or b any land which is covered by a greenhouse for the whole of the year concerned.

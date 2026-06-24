@@ -1,0 +1,97 @@
+[
+  {
+    "source_record_id": "lex-120b4f9c395b3f94",
+    "source_inventory_row_id": "source-inventory-lex-120b4f9c395b3f94",
+    "source_target_link_id": "target-link-lex-120b4f9c395b3f94",
+    "source_role": "unknown",
+    "relationship_to_analysis": "unknown",
+    "confidence": "low",
+    "method": "fallback",
+    "reason": "No deterministic categorisation rule matched.",
+    "evidence": [],
+    "signals": {
+      "target_linked": true,
+      "authority": "legislation_gov_uk",
+      "citation": "UKSI 2015/668",
+      "source_url": "https://www.legislation.gov.uk/uksi/2015/668/data.xml",
+      "kind": "uksi",
+      "instrument_id": "uksi/2015/668"
+    }
+  },
+  {
+    "source_record_id": "lex-2459c955ee13be52",
+    "source_inventory_row_id": "source-inventory-lex-2459c955ee13be52",
+    "source_target_link_id": "target-link-lex-2459c955ee13be52",
+    "source_role": "unknown",
+    "relationship_to_analysis": "unknown",
+    "confidence": "low",
+    "method": "fallback",
+    "reason": "No deterministic categorisation rule matched.",
+    "evidence": [],
+    "signals": {
+      "target_linked": false,
+      "authority": "legislation_gov_uk",
+      "citation": "UKSI 2018/151",
+      "source_url": "https://www.legislation.gov.uk/uksi/2018/151/data.xml",
+      "kind": "uksi",
+      "instrument_id": "uksi/2018/151"
+    }
+  },
+  {
+    "source_record_id": "lex-805b03f284dcf364",
+    "source_inventory_row_id": "source-inventory-lex-805b03f284dcf364",
+    "source_target_link_id": "target-link-lex-805b03f284dcf364",
+    "source_role": "unknown",
+    "relationship_to_analysis": "unknown",
+    "confidence": "low",
+    "method": "fallback",
+    "reason": "No deterministic categorisation rule matched.",
+    "evidence": [],
+    "signals": {
+      "target_linked": false,
+      "authority": "legislation_gov_uk",
+      "citation": "WSI 2021/77",
+      "source_url": "https://www.legislation.gov.uk/wsi/2021/77/data.xml",
+      "kind": "unknown",
+      "instrument_id": "wsi/2021/77"
+    }
+  },
+  {
+    "source_record_id": "lex-96613ffe71589e1e",
+    "source_inventory_row_id": "source-inventory-lex-96613ffe71589e1e",
+    "source_target_link_id": "target-link-lex-96613ffe71589e1e",
+    "source_role": "unknown",
+    "relationship_to_analysis": "unknown",
+    "confidence": "low",
+    "method": "fallback",
+    "reason": "No deterministic categorisation rule matched.",
+    "evidence": [],
+    "signals": {
+      "target_linked": false,
+      "authority": "legislation_gov_uk",
+      "citation": "SSI 2003/531",
+      "source_url": "https://www.legislation.gov.uk/ssi/2003/531/data.xml",
+      "kind": "unknown",
+      "instrument_id": "ssi/2003/531"
+    }
+  },
+  {
+    "source_record_id": "lex-e71fbbe3342ac0be",
+    "source_inventory_row_id": "source-inventory-lex-e71fbbe3342ac0be",
+    "source_target_link_id": "target-link-lex-e71fbbe3342ac0be",
+    "source_role": "unknown",
+    "relationship_to_analysis": "unknown",
+    "confidence": "low",
+    "method": "fallback",
+    "reason": "No deterministic categorisation rule matched.",
+    "evidence": [],
+    "signals": {
+      "target_linked": false,
+      "authority": "legislation_gov_uk",
+      "citation": "UKSI 2010/639",
+      "source_url": "https://www.legislation.gov.uk/uksi/2010/639/data.xml",
+      "kind": "uksi",
+      "instrument_id": "uksi/2010/639"
+    }
+  }
+]

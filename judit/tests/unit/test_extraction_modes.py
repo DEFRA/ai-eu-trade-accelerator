@@ -12,6 +12,7 @@ from judit_pipeline.extract import (
     evidence_locates_verbatim_after_normalisation,
     extract_propositions_from_source,
     parse_judit_extraction_meta,
+    resolve_extraction_meta_for_proposition,
 )
 
 
@@ -183,7 +184,10 @@ def test_extraction_meta_records_mode_fallback_and_validation() -> None:
         prompt_version="v2",
     )
     prop = out.propositions[0]
-    meta = parse_judit_extraction_meta(prop.notes)
+    meta = resolve_extraction_meta_for_proposition(
+        notes=prop.notes,
+        extraction_debug_meta=prop.extraction_debug_meta,
+    )
     assert meta is not None
     assert meta.get("extraction_mode") == "local"
     assert meta.get("fallback_policy") == "fallback"
@@ -269,7 +273,10 @@ def test_definition_article_frontier_parse_failure_uses_definition_fallback() ->
         assert p.label.startswith("Definition — ")
         assert p.article_reference == "Article 2"
         assert p.fragment_locator == "article:2"
-        meta = parse_judit_extraction_meta(p.notes)
+        meta = resolve_extraction_meta_for_proposition(
+            notes=p.notes,
+            extraction_debug_meta=p.extraction_debug_meta,
+        )
         assert meta is not None
         assert meta.get("provision_type") == "definition"
         eq = str(meta.get("evidence_quote") or "")
@@ -303,6 +310,9 @@ def test_definition_fallback_mark_needs_review_keeps_high_confidence_rows_propos
     assert len(out.propositions) == 2
     assert all(p.review_status == ReviewStatus.PROPOSED for p in out.propositions)
     for p in out.propositions:
-        meta = parse_judit_extraction_meta(p.notes)
+        meta = resolve_extraction_meta_for_proposition(
+            notes=p.notes,
+            extraction_debug_meta=p.extraction_debug_meta,
+        )
         assert meta is not None
         assert meta.get("model_confidence") == "high"

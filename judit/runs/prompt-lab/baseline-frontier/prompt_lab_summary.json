@@ -1,0 +1,316 @@
+{
+  "output_root": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier",
+  "mode": "dry",
+  "generated_at": "2026-06-04T12:01:18.698877Z",
+  "fixture_count": 10,
+  "verdict": "pass_with_warnings",
+  "verdict_detail": "All runnable fixtures passed; some rows have warnings or were skipped.",
+  "failure_themes": {
+    "fixture_or_eval_policy_warning": [
+      "slurry-bad-over-compressed-crop-nitrogen-table",
+      "slurry-bad-unless-except-organic-manure-250kg",
+      "slurry-good-definition-slurry-sssaho-2010",
+      "slurry-good-simple-obligation-170kg-n",
+      "slurry-good-simple-prohibition-spread-buffer",
+      "slurry-ugly-appeal-nvz-designation-reg-6",
+      "slurry-ugly-cross-reference-derogation-directive",
+      "slurry-ugly-schedule-livestock-manure-table",
+      "slurry-ugly-transitional-nvz-wales-reg-2"
+    ]
+  },
+  "rows": [
+    {
+      "fixture_file": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/tests/fixtures/extraction_prompt_cases/slurry/slurry-bad-diffuse-2018-reg-1-boilerplate.json",
+      "case_id": "slurry-bad-diffuse-2018-reg-1-boilerplate",
+      "tier": "bad",
+      "label": "BAD — Regulation 1 boilerplate (Diffuse Pollution 2018)",
+      "evaluation_mode": "exhaustive",
+      "status": "pass",
+      "expected_proposition_count": 4,
+      "actual_proposition_count": 4,
+      "matched_expected": "4/4",
+      "expected_checkable_count": 0,
+      "actual_checkable_count": 0,
+      "extra_actual_count": 0,
+      "missing_legal_effects": [],
+      "unexpected_legal_effects": [],
+      "boilerplate_failures": 0,
+      "over_compression_warnings": 0,
+      "evidence_failures": 0,
+      "runtime_extraction_errors": [],
+      "run_directory": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-bad-diffuse-2018-reg-1-boilerplate",
+      "warnings": [],
+      "failure_themes": []
+    },
+    {
+      "fixture_file": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/tests/fixtures/extraction_prompt_cases/slurry/slurry-bad-over-compressed-crop-nitrogen-table.json",
+      "case_id": "slurry-bad-over-compressed-crop-nitrogen-table",
+      "tier": "bad",
+      "label": "BAD — crop nitrogen table (regulation 12, long label risk)",
+      "evaluation_mode": "minimum",
+      "status": "warn",
+      "expected_proposition_count": 1,
+      "actual_proposition_count": 8,
+      "matched_expected": "1/1",
+      "expected_checkable_count": null,
+      "actual_checkable_count": 1,
+      "extra_actual_count": 7,
+      "missing_legal_effects": [],
+      "unexpected_legal_effects": [
+        "cross_reference",
+        "definition",
+        "permission"
+      ],
+      "boilerplate_failures": 0,
+      "over_compression_warnings": 0,
+      "evidence_failures": 0,
+      "runtime_extraction_errors": [],
+      "run_directory": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-bad-over-compressed-crop-nitrogen-table",
+      "warnings": [
+        "7 extra actual propositions (allowed by minimum mode)"
+      ],
+      "failure_themes": [
+        "fixture_or_eval_policy_warning"
+      ]
+    },
+    {
+      "fixture_file": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/tests/fixtures/extraction_prompt_cases/slurry/slurry-bad-unless-except-organic-manure-250kg.json",
+      "case_id": "slurry-bad-unless-except-organic-manure-250kg",
+      "tier": "bad",
+      "label": "BAD — unless / except / conditions (organic manure 250 kg limit)",
+      "evaluation_mode": "minimum",
+      "status": "warn",
+      "expected_proposition_count": 8,
+      "actual_proposition_count": 8,
+      "matched_expected": "8/8",
+      "expected_checkable_count": null,
+      "actual_checkable_count": 3,
+      "extra_actual_count": 7,
+      "missing_legal_effects": [],
+      "unexpected_legal_effects": [],
+      "boilerplate_failures": 0,
+      "over_compression_warnings": 0,
+      "evidence_failures": 0,
+      "runtime_extraction_errors": [],
+      "run_directory": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-bad-unless-except-organic-manure-250kg",
+      "warnings": [
+        "7 extra actual propositions (allowed by minimum mode)",
+        "expected[0]: classification_mismatch (contained_in_actual); gold legal_effect accepted via equivalence",
+        "expected[1]: contained_in_actual match (expected row found inside actual conditions/evidence envelope)",
+        "expected[2]: contained_in_actual match (expected row found inside actual conditions/evidence envelope)",
+        "expected[3]: contained_in_actual match (expected row found inside actual conditions/evidence envelope)",
+        "expected[4]: classification_mismatch (contained_in_actual); gold legal_effect accepted via equivalence",
+        "expected[6]: classification_mismatch (contained_in_actual); gold legal_effect accepted via equivalence",
+        "expected[7]: contained_in_actual match (expected row found inside actual conditions/evidence envelope)"
+      ],
+      "failure_themes": [
+        "fixture_or_eval_policy_warning"
+      ]
+    },
+    {
+      "fixture_file": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/tests/fixtures/extraction_prompt_cases/slurry/slurry-good-definition-slurry-sssaho-2010.json",
+      "case_id": "slurry-good-definition-slurry-sssaho-2010",
+      "tier": "good",
+      "label": "GOOD — definition of slurry (SSSAHO England 2010)",
+      "evaluation_mode": "targeted",
+      "status": "warn",
+      "expected_proposition_count": 1,
+      "actual_proposition_count": 8,
+      "matched_expected": "1/1",
+      "expected_checkable_count": null,
+      "actual_checkable_count": 0,
+      "extra_actual_count": 7,
+      "missing_legal_effects": [],
+      "unexpected_legal_effects": [
+        "derogation",
+        "permission"
+      ],
+      "boilerplate_failures": 0,
+      "over_compression_warnings": 0,
+      "evidence_failures": 0,
+      "runtime_extraction_errors": [],
+      "run_directory": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-good-definition-slurry-sssaho-2010",
+      "warnings": [
+        "7 extra actual propositions (allowed by targeted mode)"
+      ],
+      "failure_themes": [
+        "fixture_or_eval_policy_warning"
+      ]
+    },
+    {
+      "fixture_file": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/tests/fixtures/extraction_prompt_cases/slurry/slurry-good-simple-obligation-170kg-n.json",
+      "case_id": "slurry-good-simple-obligation-170kg-n",
+      "tier": "good",
+      "label": "GOOD — simple obligation (170 kg N per hectare holding limit)",
+      "evaluation_mode": "targeted",
+      "status": "warn",
+      "expected_proposition_count": 1,
+      "actual_proposition_count": 5,
+      "matched_expected": "1/1",
+      "expected_checkable_count": null,
+      "actual_checkable_count": 2,
+      "extra_actual_count": 4,
+      "missing_legal_effects": [],
+      "unexpected_legal_effects": [
+        "definition",
+        "derogation"
+      ],
+      "boilerplate_failures": 0,
+      "over_compression_warnings": 0,
+      "evidence_failures": 0,
+      "runtime_extraction_errors": [],
+      "run_directory": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-good-simple-obligation-170kg-n",
+      "warnings": [
+        "4 extra actual propositions (allowed by targeted mode)"
+      ],
+      "failure_themes": [
+        "fixture_or_eval_policy_warning"
+      ]
+    },
+    {
+      "fixture_file": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/tests/fixtures/extraction_prompt_cases/slurry/slurry-good-simple-prohibition-spread-buffer.json",
+      "case_id": "slurry-good-simple-prohibition-spread-buffer",
+      "tier": "good",
+      "label": "GOOD — simple prohibition (organic manure spreading buffer)",
+      "evaluation_mode": "targeted",
+      "status": "warn",
+      "expected_proposition_count": 1,
+      "actual_proposition_count": 7,
+      "matched_expected": "1/1",
+      "expected_checkable_count": null,
+      "actual_checkable_count": 2,
+      "extra_actual_count": 6,
+      "missing_legal_effects": [],
+      "unexpected_legal_effects": [
+        "application_scope",
+        "definition",
+        "permission"
+      ],
+      "boilerplate_failures": 0,
+      "over_compression_warnings": 0,
+      "evidence_failures": 0,
+      "runtime_extraction_errors": [],
+      "run_directory": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-good-simple-prohibition-spread-buffer",
+      "warnings": [
+        "6 extra actual propositions (allowed by targeted mode)"
+      ],
+      "failure_themes": [
+        "fixture_or_eval_policy_warning"
+      ]
+    },
+    {
+      "fixture_file": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/tests/fixtures/extraction_prompt_cases/slurry/slurry-ugly-appeal-nvz-designation-reg-6.json",
+      "case_id": "slurry-ugly-appeal-nvz-designation-reg-6",
+      "tier": "ugly",
+      "label": "UGLY — appeal and designation procedure (regulation 6)",
+      "evaluation_mode": "minimum",
+      "status": "warn",
+      "expected_proposition_count": 1,
+      "actual_proposition_count": 8,
+      "matched_expected": "1/1",
+      "expected_checkable_count": null,
+      "actual_checkable_count": 0,
+      "extra_actual_count": 7,
+      "missing_legal_effects": [],
+      "unexpected_legal_effects": [],
+      "boilerplate_failures": 0,
+      "over_compression_warnings": 0,
+      "evidence_failures": 0,
+      "runtime_extraction_errors": [],
+      "run_directory": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-ugly-appeal-nvz-designation-reg-6",
+      "warnings": [
+        "7 extra actual propositions (allowed by minimum mode)"
+      ],
+      "failure_themes": [
+        "fixture_or_eval_policy_warning"
+      ]
+    },
+    {
+      "fixture_file": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/tests/fixtures/extraction_prompt_cases/slurry/slurry-ugly-cross-reference-derogation-directive.json",
+      "case_id": "slurry-ugly-cross-reference-derogation-directive",
+      "tier": "ugly",
+      "label": "UGLY — cross-reference-heavy derogation (regulation 36)",
+      "evaluation_mode": "minimum",
+      "status": "warn",
+      "expected_proposition_count": 2,
+      "actual_proposition_count": 8,
+      "matched_expected": "2/2",
+      "expected_checkable_count": null,
+      "actual_checkable_count": 3,
+      "extra_actual_count": 6,
+      "missing_legal_effects": [],
+      "unexpected_legal_effects": [
+        "derogation",
+        "obligation"
+      ],
+      "boilerplate_failures": 0,
+      "over_compression_warnings": 0,
+      "evidence_failures": 0,
+      "runtime_extraction_errors": [],
+      "run_directory": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-ugly-cross-reference-derogation-directive",
+      "warnings": [
+        "6 extra actual propositions (allowed by minimum mode)"
+      ],
+      "failure_themes": [
+        "fixture_or_eval_policy_warning"
+      ]
+    },
+    {
+      "fixture_file": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/tests/fixtures/extraction_prompt_cases/slurry/slurry-ugly-schedule-livestock-manure-table.json",
+      "case_id": "slurry-ugly-schedule-livestock-manure-table",
+      "tier": "ugly",
+      "label": "UGLY — Schedule 1 livestock manure / nitrogen table",
+      "evaluation_mode": "table_rows",
+      "status": "warn",
+      "expected_proposition_count": 4,
+      "actual_proposition_count": 8,
+      "matched_expected": "4/4",
+      "expected_checkable_count": null,
+      "actual_checkable_count": 0,
+      "extra_actual_count": 4,
+      "missing_legal_effects": [],
+      "unexpected_legal_effects": [],
+      "boilerplate_failures": 0,
+      "over_compression_warnings": 0,
+      "evidence_failures": 0,
+      "runtime_extraction_errors": [],
+      "run_directory": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-ugly-schedule-livestock-manure-table",
+      "warnings": [
+        "4 extra actual propositions (allowed by table_rows mode)"
+      ],
+      "failure_themes": [
+        "fixture_or_eval_policy_warning"
+      ]
+    },
+    {
+      "fixture_file": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/tests/fixtures/extraction_prompt_cases/slurry/slurry-ugly-transitional-nvz-wales-reg-2.json",
+      "case_id": "slurry-ugly-transitional-nvz-wales-reg-2",
+      "tier": "ugly",
+      "label": "UGLY — transitional commencement (Wales NVZ reg 2)",
+      "evaluation_mode": "minimum",
+      "status": "warn",
+      "expected_proposition_count": 2,
+      "actual_proposition_count": 4,
+      "matched_expected": "2/2",
+      "expected_checkable_count": null,
+      "actual_checkable_count": 0,
+      "extra_actual_count": 3,
+      "missing_legal_effects": [],
+      "unexpected_legal_effects": [
+        "derogation"
+      ],
+      "boilerplate_failures": 0,
+      "over_compression_warnings": 0,
+      "evidence_failures": 0,
+      "runtime_extraction_errors": [],
+      "run_directory": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-frontier/slurry-ugly-transitional-nvz-wales-reg-2",
+      "warnings": [
+        "3 extra actual propositions (allowed by minimum mode)",
+        "expected[0]: contained_in_actual match (expected row found inside actual conditions/evidence envelope)"
+      ],
+      "failure_themes": [
+        "fixture_or_eval_policy_warning"
+      ]
+    }
+  ]
+}

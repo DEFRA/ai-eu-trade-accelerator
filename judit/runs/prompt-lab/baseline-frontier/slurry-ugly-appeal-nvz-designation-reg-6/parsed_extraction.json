@@ -1,0 +1,159 @@
+[
+  {
+    "proposition_text": "An owner or occupier of a relevant holding who is sent a notice under regulation 5(3)(b) or 5(3A)(b) may appeal to the First-tier Tribunal against the proposals or designation referred to in the notice.",
+    "display_label": "Right of appeal to First-tier Tribunal",
+    "subject": "owner or occupier of a relevant holding",
+    "rule": "may appeal to the First-tier Tribunal against",
+    "object": "the proposals or designation referred to in the notice",
+    "conditions": [
+      "sent a notice under regulation 5(3)(b) or 5(3A)(b)"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 6(1)",
+    "evidence_text": "An owner or occupier of a relevant holding who is sent a notice under regulation 5(3)(b) or 5(3A)(b) may appeal to the First-tier Tribunal against the proposals or designation referred to in the notice.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Complete statement of the right of appeal, including triggering conditions and forum.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "The only ground of appeal is that the relevant holding (or any part of it) does not drain into water which the Secretary of State proposes to identify, or to continue to identify, as polluted or which has been similarly identified in Wales or Scotland.",
+    "display_label": "Ground of appeal: holding does not drain into proposed polluted water",
+    "subject": "relevant holding (or any part of it)",
+    "rule": "ground of appeal that it does not drain into",
+    "object": "water which the Secretary of State proposes to identify, or to continue to identify, as polluted or which has been similarly identified in Wales or Scotland",
+    "conditions": [
+      "appeal under this regulation"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 6(2)(a)",
+    "evidence_text": "does not drain into water which the Secretary of State proposes to identify, or to continue to identify, as polluted or which has been similarly identified in Wales or Scotland",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "First substantive ground of appeal extracted from list item (a).",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "In a case within regulation 5(3A), a ground of appeal is that the relevant holding (or any part of it) does not drain into water which the Secretary of State has identified as polluted or which has been similarly identified in Wales or Scotland.",
+    "display_label": "Ground of appeal: holding does not drain into identified polluted water (regulation 5(3A) cases)",
+    "subject": "relevant holding (or any part of it)",
+    "rule": "ground of appeal that it does not drain into",
+    "object": "water which the Secretary of State has identified as polluted or which has been similarly identified in Wales or Scotland",
+    "conditions": [
+      "case within regulation 5(3A)"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 6(2)(aa)",
+    "evidence_text": "in a case within regulation 5(3A), does not drain into water which the Secretary of State has identified as polluted or which has been similarly identified in Wales or Scotland",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Second substantive ground of appeal extracted from list item (aa), specific to regulation 5(3A) cases.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "A ground of appeal is that the relevant holding (or any part of it) drains into water which the Secretary of State should not identify, or should not continue to identify, as polluted.",
+    "display_label": "Ground of appeal: water should not be identified as polluted",
+    "subject": "relevant holding (or any part of it)",
+    "rule": "ground of appeal that it drains into water which the Secretary of State should not identify, or should not continue to identify, as",
+    "object": "polluted",
+    "conditions": [
+      "appeal under this regulation"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 6(2)(b)",
+    "evidence_text": "drains into water which the Secretary of State should not identify, or should not continue to identify, as polluted",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Third substantive ground of appeal extracted from list item (b), challenging the pollution identification itself.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "If the First-tier Tribunal upholds an appeal under paragraph (2)(a), the Secretary of State, when acting under regulation 4(5), must treat the relevant holding (or the part of it in respect of which the appeal was upheld) as not draining into the water concerned.",
+    "display_label": "Effect of successful appeal under paragraph (2)(a)",
+    "subject": "Secretary of State",
+    "rule": "must treat as not draining into the water concerned",
+    "object": "the relevant holding (or the part of it in respect of which the appeal was upheld)",
+    "conditions": [
+      "First-tier Tribunal upholds an appeal under paragraph (2)(a)",
+      "when acting under regulation 4(5)"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 6(3)",
+    "evidence_text": "If the First-tier Tribunal upholds an appeal under paragraph (2)(a), the Secretary of State, when acting under regulation 4(5), must treat the relevant holding (or the part of it in respect of which the appeal was upheld) as not draining into the water concerned.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Complete statement of the legal consequence when an appeal under paragraph (2)(a) succeeds.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "If the First-tier Tribunal upholds an appeal under paragraph (2)(b), the Secretary of State, when acting under regulation 4(5), must treat the water concerned as water which should not be identified, or should not continue to be identified, as polluted.",
+    "display_label": "Effect of successful appeal under paragraph (2)(b): water treatment",
+    "subject": "Secretary of State",
+    "rule": "must treat as water which should not be identified, or should not continue to be identified, as polluted",
+    "object": "the water concerned",
+    "conditions": [
+      "First-tier Tribunal upholds an appeal under paragraph (2)(b)",
+      "when acting under regulation 4(5)"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 6(4)(a)",
+    "evidence_text": "treat the water concerned as water which should not be identified, or should not continue to be identified, as polluted",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "First consequence of successful appeal under paragraph (2)(b), extracted from list item (a).",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "If the First-tier Tribunal upholds an appeal under paragraph (2)(b), the Secretary of State, when acting under regulation 4(5), must treat any holding (or part of any holding) which drains into that water accordingly (regardless of whether the owner or occupier of the relevant holding appealed under this regulation).",
+    "display_label": "Effect of successful appeal under paragraph (2)(b): treatment of all holdings draining into water",
+    "subject": "Secretary of State",
+    "rule": "must treat accordingly",
+    "object": "any holding (or part of any holding) which drains into that water",
+    "conditions": [
+      "First-tier Tribunal upholds an appeal under paragraph (2)(b)",
+      "when acting under regulation 4(5)"
+    ],
+    "exceptions": [
+      "regardless of whether the owner or occupier of the relevant holding appealed under this regulation"
+    ],
+    "temporal_condition": "",
+    "provision_type": "core",
+    "source_locator": "regulation 6(4)(b)",
+    "evidence_text": "treat any holding (or part of any holding) which drains into that water accordingly (regardless of whether the owner or occupier of the relevant holding appealed under this regulation)",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Second consequence of successful appeal under paragraph (2)(b), extracted from list item (b), with broad effect on all holdings draining into the water.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "For the purposes of rule 22(2)(g) of the Tribunal Procedure (First-tier Tribunal) (General Regulatory Chamber) Rules 2009 (notice of appeal: grounds), the only grounds of an appeal under this regulation are those specified in paragraph (2).",
+    "display_label": "Limitation of appeal grounds for tribunal procedure purposes",
+    "subject": "grounds of an appeal under this regulation",
+    "rule": "are limited to",
+    "object": "those specified in paragraph (2)",
+    "conditions": [
+      "for the purposes of rule 22(2)(g) of the Tribunal Procedure (First-tier Tribunal) (General Regulatory Chamber) Rules 2009"
+    ],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "cross_reference",
+    "source_locator": "regulation 6(2) (introductory text)",
+    "evidence_text": "For the purposes of rule 22(2)(g) of the Tribunal Procedure (First-tier Tribunal) (General Regulatory Chamber) Rules 2009 (notice of appeal: grounds), the only grounds of an appeal under this regulation are",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Cross-reference establishing that paragraph (2) exhaustively defines appeal grounds for tribunal procedure purposes.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  }
+]

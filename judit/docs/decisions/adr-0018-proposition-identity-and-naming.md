@@ -39,7 +39,7 @@ Judit separates **machine identity**, **source-derived lineage keys**, **human-r
 6. **Legal-area / category tags** must never be baked into **`Proposition.id`** (or substituted for it in APIs that require stable references).
 
    - Bad: `equine-movement-art109-001` as machine id.
-   - Good: opaque `id`, source lineage in `proposition_key`, readable text in `label` / `short_name`, tags in `categories` / `tags`.
+   - Good: opaque `id`, source lineage in `proposition_key`, readable text in `label` / `short_name`, canonical type in `proposition_tier` / `legal_effect_type`, legacy LLM tags in `categories` / heuristic tags in `tags`.
 
 ## Consequences
 

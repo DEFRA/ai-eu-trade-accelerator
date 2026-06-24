@@ -35,14 +35,12 @@ export type VerbatimEvidenceUi = {
   showTraceabilityWarning: boolean;
 };
 
-/** Mirrors `judit_pipeline.extract.attach_judit_extraction_meta`: first-line JSON holds pipeline metadata. */
-export function verbatimEvidenceUiFromNotes(notes: unknown): VerbatimEvidenceUi {
+function verbatimEvidenceUiFromMeta(data: UnknownRecord | null): VerbatimEvidenceUi {
   const none: VerbatimEvidenceUi = {
     known: false,
     quoteText: undefined,
     showTraceabilityWarning: false,
   };
-  const data = parseJuditExtractionMetaFromNotes(notes);
   if (!data) {
     return none;
   }
@@ -58,6 +56,62 @@ export function verbatimEvidenceUiFromNotes(notes: unknown): VerbatimEvidenceUi 
     quoteText: eq,
     showTraceabilityWarning: !eq.trim(),
   };
+}
+
+/** Legacy: first-line JSON in ``notes``. Prefer {@link extractionMetaFromProposition}. */
+export function verbatimEvidenceUiFromNotes(notes: unknown): VerbatimEvidenceUi {
+  return verbatimEvidenceUiFromMeta(parseJuditExtractionMetaFromNotes(notes));
+}
+
+/** Structured debug meta on the proposition, with legacy ``notes`` fallback. */
+export function extractionMetaFromProposition(oa: UnknownRecord): UnknownRecord | null {
+  const dbg = asRecord(oa.extraction_debug_meta);
+  if (dbg && Object.keys(dbg).length > 0) {
+    return dbg;
+  }
+  return parseJuditExtractionMetaFromNotes(oa.notes);
+}
+
+/** Human review text only — never the ``judit_extraction_meta`` blob. */
+export function humanReviewNotesForDisplay(oa: UnknownRecord): string | null {
+  const review = oa.review_notes;
+  if (typeof review === "string" && review.trim()) {
+    return review.trim();
+  }
+  const notes = oa.notes;
+  if (typeof notes !== "string" || !notes.trim()) {
+    return null;
+  }
+  if (notes.trim().startsWith(JUDIT_EXTRACTION_META_PREFIX)) {
+    return null;
+  }
+  return notes.trim();
+}
+
+export function verbatimEvidenceUiFromProposition(oa: UnknownRecord): VerbatimEvidenceUi {
+  return verbatimEvidenceUiFromMeta(extractionMetaFromProposition(oa));
+}
+
+/**
+ * Full extraction/debug payload for trace-oriented UI (raw/debug views only).
+ * Omits raw model excerpts unless ``includeRawModelOutput`` is true.
+ */
+export function extractionDebugPayloadForUi(
+  oa: UnknownRecord,
+  opts?: { includeRawModelOutput?: boolean },
+): UnknownRecord | null {
+  const meta = extractionMetaFromProposition(oa);
+  if (!meta) {
+    return null;
+  }
+  if (opts?.includeRawModelOutput) {
+    return meta;
+  }
+  const out: UnknownRecord = { ...meta };
+  delete out.raw_model_output_excerpt;
+  delete out.raw_model_output_truncated;
+  delete out.extraction_llm_call_traces;
+  return Object.keys(out).length > 0 ? out : null;
 }
 
 export function asRecord(value: unknown): UnknownRecord | null {
@@ -132,7 +186,7 @@ export function clientRepairableExtractionHintFromExplorerData(
   }
   for (const row of propositionRows) {
     const oa = asRecord(row.original_artifact) ?? {};
-    const meta = parseJuditExtractionMetaFromNotes(oa.notes);
+    const meta = extractionMetaFromProposition(oa);
     if (!meta) {
       continue;
     }
@@ -357,6 +411,59 @@ export function propositionMatchesPrimaryVisibleScopeFilter(
 /** Tooltip for EU / UK (and similar) chips: clarifies these are source versions, not divergence. */
 export const SOURCE_JURISDICTION_CHIP_TOOLTIP =
   "Source jurisdiction/version, not a divergence finding.";
+
+export const TERRITORIAL_APPLICATION_CHIP_TOOLTIP =
+  "Where this rule applies (territorial application). Prefer this over coarse source jurisdiction when browsing.";
+
+/** Normalised territorial_application from a proposition artifact (empty when absent). */
+export function territorialApplicationFromProposition(artifact: UnknownRecord): string[] {
+  const raw = artifact.territorial_application;
+  if (!Array.isArray(raw)) {
+    return [];
+  }
+  return raw.map((x) => String(x).trim()).filter(Boolean);
+}
+
+/** Law-making / source jurisdiction on the proposition, falling back to source record. */
+export function sourceJurisdictionFromProposition(
+  artifact: UnknownRecord,
+  sources: UnknownRecord[],
+  sourceId: string,
+): string {
+  const explicit = String(artifact.source_jurisdiction ?? "").trim();
+  if (explicit) {
+    return explicit;
+  }
+  return jurisdictionForSource(sources, sourceId);
+}
+
+/**
+ * Primary territory label for browsing/filter copy — prefers territorial_application
+ * over coarse jurisdiction on the proposition row.
+ */
+export function territoryBrowseLabel(artifact: UnknownRecord): string {
+  const terr = territorialApplicationFromProposition(artifact);
+  if (terr.length > 0) {
+    return terr.join(", ");
+  }
+  return "";
+}
+
+/** Distinct territorial_application labels across explorer rows in a section/group. */
+export function territoryLabelsRepresented(rows: ReadonlyArray<UnknownRecord>): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const row of rows) {
+    const oa = asRecord(row.original_artifact) ?? {};
+    for (const label of territorialApplicationFromProposition(oa)) {
+      if (!seen.has(label)) {
+        seen.add(label);
+        out.push(label);
+      }
+    }
+  }
+  return [...out].sort((a, b) => a.localeCompare(b));
+}
 
 const SCOPE_FILTER_DISPLAY_LABELS: Readonly<Record<string, string>> = {
   equine: "Equine",
@@ -891,6 +998,7 @@ export function formatExplorerSectionHeading(
   const provHeadline = formatArticleClusterDisplayHeading(provisionKey);
   const js = jurisdictionLabelsRepresented(sectionRows, sources);
   const jPretty = jurisdictionPrettyForMetadata(js);
+  const terrPretty = territoryLabelsRepresented(sectionRows);
   const cite = rep && typeof rep.citation === "string" ? rep.citation.trim() : "";
 
   const rawStoredTitle =
@@ -935,7 +1043,10 @@ export function formatExplorerSectionHeading(
     metadataLineParts.push(metaOfficial.trim());
   }
   if (jPretty) {
-    metadataLineParts.push(`jurisdiction: ${jPretty}`);
+    metadataLineParts.push(`source jurisdiction: ${jPretty}`);
+  }
+  if (terrPretty.length > 0) {
+    metadataLineParts.push(`applies in: ${terrPretty.join(", ")}`);
   }
   metadataLineParts.push(`source rows: ${rowCount}`);
   const metadataLine = metadataLineParts.join(" · ");

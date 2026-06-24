@@ -1,0 +1,68 @@
+=== system ===
+You extract legal propositions as strict JSON only.
+
+=== user ===
+Extract legal propositions from the source text. Return JSON only with this exact shape:
+{
+  "propositions": [
+    {
+      "proposition_text": "string",
+      "display_label": "string",
+      "subject": "string",
+      "rule": "string",
+      "object": "string",
+      "conditions": ["string"],
+      "exceptions": ["string"],
+      "temporal_condition": "string or empty",
+      "provision_type": "core | definition | exception | transitional | cross_reference",
+      "source_locator": "string",
+      "evidence_text": "string",
+      "completeness_status": "complete | context_dependent | fragmentary",
+      "confidence": "high | medium | low",
+      "reason": "string"
+    }
+  ]
+}
+
+Local extraction rules:
+- Extract at most 8 legally distinct propositions for this response (hard cap — omit lower-salience rows if needed).
+Structured lists:
+- Where the Source uses numbered paragraphs, lettered subparagraphs ((a), (b), …), or roman sub-items ((i), (ii), …), treat each substantive obligation as its own proposition when it is legally distinct from neighbouring rows.
+- Do not merge unrelated list items; do not stop after an early subset when later items in the same list remain legally distinct and within the cap below.
+No focus scopes:
+- Within the cap below, prefer the most legally salient obligations for the Topic and Cluster; stay within the cap rather than enumerating every peripheral line.
+- Returning propositions=[] is unusual for substantive regulatory text that was selected for extraction. Use propositions=[] only when the Source chunk contains no legally distinct obligation, definition, exception, or transitional rule you can support with schema fields — and set reason on any retained row explaining omissions.
+- source_locator SHOULD identify where the obligation sits when identifiable from the Source.
+- Returning propositions=[] is unusual for ordinary statutory provisions. If the text states citation, commencement, territorial extent, application, duty, prohibition, power, definition, exception, or cross-reference, extract at least one proposition.
+- Only return an empty propositions array when the fragment is genuinely non-substantive; add top-level "empty_rationale" (string) explaining why.
+- Invalid outputs: {}, {"propositions":null}, and any prose outside JSON. Valid output MUST have top-level "propositions" as an array.
+
+[LOCAL_FEWSHOT_V1]
+Worked example (local mode — match this JSON shape on the real fragment below):
+
+INVALID outputs (never return these): {} | {"propositions":null} | prose outside JSON
+
+Guidance:
+- For ordinary statutory provisions, returning no propositions is unusual.
+- If the text states citation, commencement, territorial extent, application, duty, prohibition, power, definition, exception, or cross-reference, extract at least one proposition.
+- Only return "propositions":[] when the fragment is genuinely non-substantive; include top-level "empty_rationale".
+
+SOURCE TEXT:
+1 These Regulations may be cited as the Example Regulations 2026.
+2 These Regulations come into force on 1 May 2026.
+3 These Regulations apply in relation to England only.
+
+VALID JSON:
+{"propositions":[{"proposition_text":"These Regulations may be cited as the Example Regulations 2026.","display_label":"Citation","subject":"These Regulations","rule":"may be cited as","object":"the Example Regulations 2026","conditions":[],"exceptions":[],"temporal_condition":"","provision_type":"core","source_locator":"regulation:1","evidence_text":"These Regulations may be cited as the Example Regulations 2026.","completeness_status":"complete","confidence":"high","reason":"The fragment states the short title/citation of the instrument."},{"proposition_text":"These Regulations come into force on 1 May 2026.","display_label":"Commencement","subject":"These Regulations","rule":"come into force on","object":"1 May 2026","conditions":[],"exceptions":[],"temporal_condition":"1 May 2026","provision_type":"transitional","source_locator":"regulation:1","evidence_text":"These Regulations come into force on 1 May 2026.","completeness_status":"complete","confidence":"high","reason":"The fragment states the commencement date."},{"proposition_text":"These Regulations apply in relation to England only.","display_label":"Territorial application","subject":"These Regulations","rule":"apply in relation to","object":"England only","conditions":[],"exceptions":[],"temporal_condition":"","provision_type":"core","source_locator":"regulation:1","evidence_text":"These Regulations apply in relation to England only.","completeness_status":"complete","confidence":"high","reason":"The fragment states the territorial application of the instrument."}]}
+
+Now extract from the following real fragment.
+
+Topic: slurry prompt-lab
+Cluster: The Nitrate Pollution Prevention Regulations 2015
+Jurisdiction: UK
+Citation: 
+
+Fragment locator (traceability): regulation:17
+
+Source text:
+17 1 A person must not spread organic manure within 10 metres of surface water, except in so far as doing so is permitted by paragraph (2) or (4). 2 Livestock manure (other than slurry or poultry manure) may be spread if— a it is spread on land managed for breeding wader birds or as a species-rich semi-natural grassland and the land comes within paragraph (3), b it is spread in the period that begins with 1st June and ends with the following 31st October, c it is not spread directly on to surface water, and d the total annual amount does not exceed 12.5 tonnes per hectare. 3 Land comes within this paragraph if it is— a notified as a site of special scientific interest under the Wildlife and Countryside Act 1981, or b subject to an agri-environmental commitment entered into under Council Regulation (EC) 1698/2005 or Regulation (EU) 1305/2013. 4 Organic manure in the form of slurry, sewage sludge or anaerobic digestate (or any combination of those) may be spread, except within 6 metres of surface water, if the spreading equipment used is— a a trailing hose band spreader or a trailing shoe band spreader, b an injector which injects the organic manure no deeper than 10cm below the surface of the soil, or c a dribble bar applicator. 5 In paragraph (4)— “anaerobic digestate” means the product of anaerobic digestion other than from sewage or material in a landfill; “sewage sludge” means sludge within the meaning of the Sludge (Use in Agriculture) Regulations 1989 the use of which complies with regulation 3 of those Regulations. 6 A person must not spread organic manure within 50 metres of a borehole, spring or well. 7 This regulation does not apply to land which is covered by a greenhouse.

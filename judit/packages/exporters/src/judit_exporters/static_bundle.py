@@ -62,6 +62,9 @@ def _artifact_payload(bundle: dict[str, Any], artifact_type: str) -> Any:
         "scope_inventory": bundle.get("scope_inventory", {}),
         "scope_review_candidates": bundle.get("scope_review_candidates", []),
         "source_family_candidates": bundle.get("source_family_candidates", []),
+        "proposition_relationships": bundle.get("proposition_relationships", {}),
+        "effective_law_statements": bundle.get("effective_law_statements", {}),
+        "beatrice_law_candidates": bundle.get("beatrice_law_candidates", {}),
     }
     return payload_by_type.get(
         artifact_type,
@@ -262,6 +265,39 @@ def _write_run_artifacts(
     )
 
 
+def _export_manifest_run_metadata(bundle: dict[str, Any]) -> dict[str, Any]:
+    meta = bundle.get("export_run_metadata")
+    if isinstance(meta, dict):
+        return {
+            "extraction_mode_requested": meta.get("extraction_mode_requested"),
+            "extraction_mode_effective": meta.get("extraction_mode_effective"),
+            "proposition_count": meta.get("proposition_count"),
+            "attempted_llm_calls": meta.get("attempted_llm_calls"),
+            "successful_llm_calls": meta.get("successful_llm_calls"),
+            "failed_llm_calls": meta.get("failed_llm_calls"),
+            "live_llm_calls_attempted": meta.get("live_llm_calls_attempted"),
+            "live_llm_calls_successful": meta.get("live_llm_calls_successful"),
+            "live_llm_calls_failed": meta.get("live_llm_calls_failed"),
+            "cached_llm_results_successful": meta.get("cached_llm_results_successful"),
+            "cached_llm_results_failed": meta.get("cached_llm_results_failed"),
+            "cached_successful_llm_results": meta.get("cached_successful_llm_results"),
+            "cached_failed_llm_results": meta.get("cached_failed_llm_results"),
+            "llm_results_reused_from_cache": meta.get("llm_results_reused_from_cache"),
+            "fallback_count": meta.get("fallback_count"),
+        }
+    quality = bundle.get("run_quality_summary")
+    if isinstance(quality, dict):
+        return {
+            "extraction_mode_requested": quality.get("extraction_mode_requested"),
+            "extraction_mode_effective": quality.get("extraction_mode_effective"),
+            "proposition_count": quality.get("proposition_count"),
+        }
+    props = bundle.get("propositions")
+    return {
+        "proposition_count": len(props) if isinstance(props, list) else 0,
+    }
+
+
 def export_static_bundle(bundle: dict[str, Any], output_dir: str) -> None:
     export_started_at = perf_counter()
     export_timestamp = _utc_now_iso()
@@ -314,6 +350,7 @@ def export_static_bundle(bundle: dict[str, Any], output_dir: str) -> None:
             "scope_review_candidate_count": len(bundle.get("scope_review_candidates", []) or []),
             "has_source_family_candidates": bool(bundle.get("source_family_candidates", [])),
             "source_family_candidate_count": len(bundle.get("source_family_candidates", []) or []),
+            **_export_manifest_run_metadata(bundle),
         },
     )
     _write_json(root / "topic.json", bundle["topic"])
@@ -350,6 +387,12 @@ def export_static_bundle(bundle: dict[str, Any], output_dir: str) -> None:
     llm_tr = bundle.get("extraction_llm_call_traces")
     if isinstance(llm_tr, list):
         _write_json(root / "extraction_llm_call_traces.json", llm_tr)
+    chunk_statuses = bundle.get("proposition_extraction_chunk_statuses")
+    if isinstance(chunk_statuses, list) and chunk_statuses:
+        _write_json(root / "proposition_extraction_chunk_statuses.json", chunk_statuses)
+    inspection_summary = bundle.get("extraction_inspection_summary")
+    if isinstance(inspection_summary, dict) and inspection_summary:
+        _write_json(root / "extraction_inspection_summary.json", inspection_summary)
     pci = bundle.get("pipeline_case_inputs")
     if isinstance(pci, dict) and pci:
         _write_json(root / "pipeline_case_inputs.json", pci)
@@ -373,6 +416,15 @@ def export_static_bundle(bundle: dict[str, Any], output_dir: str) -> None:
         bundle.get("proposition_completeness_assessments", []),
     )
     _write_json(root / "propositions.json", bundle["propositions"])
+    prel = bundle.get("proposition_relationships")
+    if isinstance(prel, dict) and prel:
+        _write_json(root / "proposition-relationships.json", prel)
+    lawstmts = bundle.get("effective_law_statements")
+    if isinstance(lawstmts, dict) and lawstmts:
+        _write_json(root / "effective_law_statements.json", lawstmts)
+    bcands = bundle.get("beatrice_law_candidates")
+    if isinstance(bcands, dict) and bcands:
+        _write_json(root / "beatrice_law_candidates.json", bcands)
     _write_json(root / "divergence_assessments.json", bundle["divergence_assessments"])
     _write_json(root / "divergence_observations.json", bundle["divergence_observations"])
     _write_json(root / "divergence_findings.json", bundle["divergence_findings"])

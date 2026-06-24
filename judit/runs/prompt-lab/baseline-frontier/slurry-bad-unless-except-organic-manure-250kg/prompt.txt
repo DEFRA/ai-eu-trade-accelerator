@@ -1,0 +1,52 @@
+=== system ===
+You extract legal propositions as strict JSON only.
+
+=== user ===
+Extract legal propositions from the source text. Return JSON only with this exact shape:
+{
+  "propositions": [
+    {
+      "proposition_text": "string",
+      "display_label": "string",
+      "subject": "string",
+      "rule": "string",
+      "object": "string",
+      "conditions": ["string"],
+      "exceptions": ["string"],
+      "temporal_condition": "string or empty",
+      "provision_type": "core | definition | exception | transitional | cross_reference",
+      "source_locator": "string",
+      "evidence_text": "string",
+      "completeness_status": "complete | context_dependent | fragmentary",
+      "confidence": "high | medium | low",
+      "reason": "string"
+    }
+  ]
+}
+
+Frontier extraction rules (critical for audits):
+- Extract at most 8 legally distinct propositions for this response (hard cap — omit lower-salience rows if needed).
+Structured lists:
+- Where the Source uses numbered paragraphs, lettered subparagraphs ((a), (b), …), or roman sub-items ((i), (ii), …), treat each substantive obligation as its own proposition when it is legally distinct from neighbouring rows.
+- Do not merge unrelated list items; do not stop after an early subset when later items in the same list remain legally distinct and within the cap below.
+No focus scopes:
+- Within the cap below, prefer the most legally salient obligations for the Topic and Cluster; stay within the cap rather than enumerating every peripheral line.
+- Returning propositions=[] is unusual for substantive regulatory text that was selected for extraction. Use propositions=[] only when the Source chunk contains no legally distinct obligation, definition, exception, or transitional rule you can support with schema fields — and set reason on any retained row explaining omissions.
+- proposition_text MAY be rewritten as a concise, readable legal proposition (normalized wording OK).
+- evidence_text MUST be copied verbatim from the Source text chunk — character-for-character as it appears there (subset / exact span selection). It must be the shortest contiguous span from the Source that suffices to justify the proposition. Do NOT paraphrase, summarise, or re-order words inside evidence_text.
+- source_locator MUST preserve traceability to the obligation's position (e.g. article/paragraph identifiers, list marks such as '(d)(ii)' or '(b)') consistent with the Source layout.
+- If no contiguous verbatim span can be selected (ambiguous layout, garbled OCR, contradictory instructions), set evidence_text to an empty string and use reason to explain briefly why verbatim evidence could not be provided.
+
+
+Semantics:
+- proposition_text: normalised legal proposition (readable).
+- evidence_text: exact quote from Source (verbatim span), or "" when impossible with rationale in reason.
+Topic: slurry prompt-lab
+Cluster: The Nitrate Pollution Prevention Regulations 2015
+Jurisdiction: UK
+Citation: 
+
+Fragment locator (traceability): regulation:8
+
+Source text:
+8 1 The occupier of a holding must ensure that in any twelve-month period, the total amount of nitrogen in organic manure spread on any given hectare of land on the holding does not exceed 250kg. 2 But the occupier may exceed that limit if the following three conditions are met. 3 Condition 1 is that organic manure is in the form of certified green compost or certified green/food compost. 4 Condition 2 is that the total amount of nitrogen in the form of green compost or green/food compost which is spread on any given hectare of land on the holding does not exceed— a 500kg in any two-year period, whether the compost is spread as mulch or incorporated into the soil, or b in the case of orchard land, 1,000kg in any four-year period if it is spread as mulch. 5 Condition 3 is that no other form of organic manure is spread over the land in question during the applicable period provided for under paragraph (4)(a) or (b). 6 This regulation does not apply in a case where— a the requirements in paragraph (7) are met, and b the occupier makes a record demonstrating that they are met. 7 The requirements in this paragraph are that throughout the year concerned— a at least 80% of the holding’s agricultural area is sown with grass, b the total amount of nitrogen in organic manure applied to the holding, whether directly by an animal or spreading, does not exceed 100kg multiplied by the area of the holding in hectares, c the total amount of nitrogen from manufactured nitrogen fertiliser applied to the holding does not exceed 90kg multiplied by the area of the holding in hectares, and d the occupier does not bring organic manure on to the holding. 8 For the purposes of paragraph (7), the area of the holding does not include any land on which the occupier does not spread fertiliser or work the soil. 9 For the purposes of this regulation, the total amount of nitrogen in organic manure is to be calculated by reference to the methods described in regulation 14. 10 The reference in paragraph (1) to the land on the holding does not include any land which is covered by a greenhouse for the whole of the period concerned. 11 In this regulation— “certified”, in relation to compost, means certified in a statement issued by the manufacturer or supplier as having been produced in accordance with the standards set out in the publication PAS 100:2011 dated January 2011; “green compost” means any nitrogen fertiliser derived exclusively from plant sources in the form of composted landscaping or garden waste; “green/food compost” means any nitrogen fertiliser derived from plant or animal sources in the form of composted catering waste in any combination with green compost, and which excludes organic manure from livestock; “orchard land” means land on which fruit of the genus Malus, Pyrus or Prunus is grown.

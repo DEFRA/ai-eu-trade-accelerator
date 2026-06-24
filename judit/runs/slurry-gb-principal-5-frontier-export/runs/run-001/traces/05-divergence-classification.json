@@ -1,0 +1,31 @@
+{
+  "stage_name": "divergence classification",
+  "run_id": "run-001",
+  "timestamp": "2026-06-02T12:55:34.584291Z",
+  "started_at": "2026-06-02T12:55:34.584291Z",
+  "finished_at": "2026-06-02T12:55:34.584294Z",
+  "status": "ok",
+  "inputs": {
+    "pair_count": 0,
+    "pair_ids": [],
+    "use_llm": true,
+    "derived_artifact_cache": {}
+  },
+  "outputs": {
+    "assessment_ids": [],
+    "divergence_types": [],
+    "review_decision_ids": [],
+    "evidence_context": [],
+    "review_transitions": []
+  },
+  "strategy_used": "divergence_skipped_single_jurisdiction",
+  "model_alias_used": null,
+  "duration_ms": 0,
+  "input_artifact_ids": [],
+  "output_artifact_ids": [],
+  "metrics": {},
+  "warnings": [
+    "Divergence classification skipped: single-jurisdiction analysis mode enabled."
+  ],
+  "errors": []
+}

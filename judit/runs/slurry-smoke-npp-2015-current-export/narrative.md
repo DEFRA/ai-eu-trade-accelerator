@@ -1,0 +1,10 @@
+# slurry manure agricultural effluent narrative
+
+This case inventories source-backed legal propositions for one jurisdiction.
+
+- Topic: slurry manure agricultural effluent
+- Cluster: slurry_manure_agricultural_effluent
+- Propositions extracted: 231
+- Proposition tiers: substantive_rule (175), definitional_rule (24), procedural_rule (16), instrument_metadata (7), scope_rule (7), relationship_reference (2); legal effects: obligation (117), definition (24), derogation (21), prohibition (15), permission (14), recordkeeping (8), application_scope (7), appeal (7)
+- Divergence analysis skipped in single-jurisdiction mode.
+- No divergence observations produced.

@@ -1,0 +1,122 @@
+{
+  "id": "artifact-run-001-source-inventory",
+  "run_id": "run-001",
+  "created_at": "2026-06-02T11:16:10.326619Z",
+  "inventory_version": "0.1",
+  "rows": [
+    {
+      "id": "source-inventory-lex-120b4f9c395b3f94",
+      "source_record_id": "lex-120b4f9c395b3f94",
+      "jurisdiction": "UK",
+      "instrument_id": "UKSI 2015/668",
+      "title": "The Nitrate Pollution Prevention Regulations 2015",
+      "instrument_type": "uksi",
+      "status": "working",
+      "version_id": "v1",
+      "consolidation_date": null,
+      "source_url": "https://www.legislation.gov.uk/uksi/2015/668/data.xml",
+      "citation": "UKSI 2015/668",
+      "content_hash": "bedd2b532b7ffa68f7aa15d1f2d6a3b39744f35ee6b644eee3f70ea91adb72b0",
+      "source_role": "unknown",
+      "relationship_to_analysis": "unknown",
+      "fetch_metadata_id": "fetch-lex-120b4f9c395b3f94",
+      "target_link_id": "target-link-lex-120b4f9c395b3f94",
+      "metadata": {
+        "provenance": "ada.judit_intake",
+        "authoritative_locator": "regulation:1"
+      }
+    },
+    {
+      "id": "source-inventory-lex-2459c955ee13be52",
+      "source_record_id": "lex-2459c955ee13be52",
+      "jurisdiction": "UK",
+      "instrument_id": "UKSI 2018/151",
+      "title": "The Reduction and Prevention of Agricultural Diffuse Pollution (England) Regulations 2018",
+      "instrument_type": "uksi",
+      "status": "working",
+      "version_id": "v1",
+      "consolidation_date": null,
+      "source_url": "https://www.legislation.gov.uk/uksi/2018/151/data.xml",
+      "citation": "UKSI 2018/151",
+      "content_hash": "e2435ea63b5967ee0142472b147cf81e3c01552a9c267a1108dbb4f8a1fcd66d",
+      "source_role": "unknown",
+      "relationship_to_analysis": "unknown",
+      "fetch_metadata_id": "fetch-lex-2459c955ee13be52",
+      "target_link_id": "target-link-lex-2459c955ee13be52",
+      "metadata": {
+        "provenance": "ada.judit_intake",
+        "authoritative_locator": "regulation:1"
+      }
+    },
+    {
+      "id": "source-inventory-lex-805b03f284dcf364",
+      "source_record_id": "lex-805b03f284dcf364",
+      "jurisdiction": "UK",
+      "instrument_id": "WSI 2021/77",
+      "title": "The Water Resources (Control of Agricultural Pollution) (Wales) Regulations 2021",
+      "instrument_type": "unknown",
+      "status": "working",
+      "version_id": "v1",
+      "consolidation_date": null,
+      "source_url": "https://www.legislation.gov.uk/wsi/2021/77/data.xml",
+      "citation": "WSI 2021/77",
+      "content_hash": "0b6c6f403f5ec6ff9ad327a9c45a6c3136405293c90f28ea96666bd8a9bfa86a",
+      "source_role": "unknown",
+      "relationship_to_analysis": "unknown",
+      "fetch_metadata_id": "fetch-lex-805b03f284dcf364",
+      "target_link_id": "target-link-lex-805b03f284dcf364",
+      "metadata": {
+        "provenance": "ada.judit_intake",
+        "authoritative_locator": "regulation:1"
+      }
+    },
+    {
+      "id": "source-inventory-lex-96613ffe71589e1e",
+      "source_record_id": "lex-96613ffe71589e1e",
+      "jurisdiction": "UK",
+      "instrument_id": "SSI 2003/531",
+      "title": "The Control of Pollution (Silage, Slurry and Agricultural Fuel Oil) (Scotland) Regulations 2003",
+      "instrument_type": "unknown",
+      "status": "working",
+      "version_id": "v1",
+      "consolidation_date": null,
+      "source_url": "https://www.legislation.gov.uk/ssi/2003/531/data.xml",
+      "citation": "SSI 2003/531",
+      "content_hash": "1f63c0c8a6d99644506ad8534053d4b93d92e36a2a06b637efb20dbc73969eb7",
+      "source_role": "unknown",
+      "relationship_to_analysis": "unknown",
+      "fetch_metadata_id": "fetch-lex-96613ffe71589e1e",
+      "target_link_id": "target-link-lex-96613ffe71589e1e",
+      "metadata": {
+        "provenance": "ada.judit_intake",
+        "authoritative_locator": "regulation:1"
+      }
+    },
+    {
+      "id": "source-inventory-lex-e71fbbe3342ac0be",
+      "source_record_id": "lex-e71fbbe3342ac0be",
+      "jurisdiction": "UK",
+      "instrument_id": "UKSI 2010/639",
+      "title": "The Water Resources (Control of Pollution) (Silage, Slurry and Agricultural Fuel Oil) (England) Regulations 2010",
+      "instrument_type": "uksi",
+      "status": "working",
+      "version_id": "v1",
+      "consolidation_date": null,
+      "source_url": "https://www.legislation.gov.uk/uksi/2010/639/data.xml",
+      "citation": "UKSI 2010/639",
+      "content_hash": "6beec0941d5ed66081cbb3737fa80f7cd4b69a33d655fb105e219bd059a3224d",
+      "source_role": "unknown",
+      "relationship_to_analysis": "unknown",
+      "fetch_metadata_id": "fetch-lex-e71fbbe3342ac0be",
+      "target_link_id": "target-link-lex-e71fbbe3342ac0be",
+      "metadata": {
+        "provenance": "ada.judit_intake",
+        "authoritative_locator": "regulation:1"
+      }
+    }
+  ],
+  "content_hash": "df4993ba915ec29bff18bcdb624a857f52dfb3d73fa4c878732d29d12b735077",
+  "metadata": {
+    "row_count": 5
+  }
+}

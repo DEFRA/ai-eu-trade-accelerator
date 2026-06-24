@@ -1,0 +1,137 @@
+[
+  {
+    "proposition_text": "Polluted water is freshwater containing a concentration of nitrates greater than 50 mg/l (or which could do so if these Regulations were not to apply there).",
+    "display_label": "Definition of polluted water (nitrate concentration)",
+    "subject": "freshwater",
+    "rule": "is polluted water if it contains",
+    "object": "a concentration of nitrates greater than 50 mg/l (or could do so if these Regulations were not to apply there)",
+    "conditions": [],
+    "exceptions": [
+      "subject to regulation 4(6)"
+    ],
+    "temporal_condition": "",
+    "provision_type": "definition",
+    "source_locator": "regulation 2, paragraph 2(a)",
+    "evidence_text": "A reference in these Regulations to polluted water is (subject to regulation 4(6)) a reference to water which—\nis freshwater and contains a concentration of nitrates greater than 50 mg/l (or could do so if these Regulations were not to apply there)",
+    "completeness_status": "context_dependent",
+    "confidence": "high",
+    "reason": "Clear statutory definition of polluted water based on nitrate concentration threshold.",
+    "_validated_evidence_match_strategy": "table_numeric_token_match",
+    "_trace_warnings": [
+      "evidence_matched_via_table_numeric_token_strategy"
+    ]
+  },
+  {
+    "proposition_text": "Polluted water is water which is eutrophic (or may in the near future become so if these Regulations were not to apply there).",
+    "display_label": "Definition of polluted water (eutrophic)",
+    "subject": "water",
+    "rule": "is polluted water if it is",
+    "object": "eutrophic (or may in the near future become so if these Regulations were not to apply there)",
+    "conditions": [],
+    "exceptions": [
+      "subject to regulation 4(6)"
+    ],
+    "temporal_condition": "",
+    "provision_type": "definition",
+    "source_locator": "regulation 2, paragraph 2(b)",
+    "evidence_text": "A reference in these Regulations to polluted water is (subject to regulation 4(6)) a reference to water which—\nbis eutrophic (or may in the near future become so if these Regulations were not to apply there)",
+    "completeness_status": "context_dependent",
+    "confidence": "high",
+    "reason": "Clear statutory definition of polluted water based on eutrophic status.",
+    "_validated_evidence_match_strategy": "table_numeric_token_match",
+    "_trace_warnings": [
+      "evidence_matched_via_table_numeric_token_strategy"
+    ]
+  },
+  {
+    "proposition_text": "Eutrophic water means water enriched by nitrogen compounds, causing an accelerated growth of algae and higher forms of plant life that produces an undesirable disturbance to the balance of organisms present in the water and to the quality of the water.",
+    "display_label": "Definition of eutrophic water",
+    "subject": "water",
+    "rule": "is eutrophic if it is",
+    "object": "enriched by nitrogen compounds, causing an accelerated growth of algae and higher forms of plant life that produces an undesirable disturbance to the balance of organisms present in the water and to the quality of the water",
+    "conditions": [],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "definition",
+    "source_locator": "regulation 2, paragraph 1, definition of 'eutrophic'",
+    "evidence_text": "\"eutrophic\", in relation to water, means enriched by nitrogen compounds, causing an accelerated growth of algae and higher forms of plant life that produces an undesirable disturbance to the balance of organisms present in the water and to the quality of the water;",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Complete statutory definition of eutrophic water.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "A holding means all the land located within a nitrate vulnerable zone and its associated buildings which are at the disposal of the occupier and which are used for the growing of crops in soil or rearing of livestock for agricultural purposes.",
+    "display_label": "Definition of holding",
+    "subject": "holding",
+    "rule": "means",
+    "object": "all the land located within a nitrate vulnerable zone and its associated buildings which are at the disposal of the occupier and which are used for the growing of crops in soil or rearing of livestock for agricultural purposes",
+    "conditions": [],
+    "exceptions": [
+      "except in the phrase 'relevant holding', as to which see regulation 5(5)"
+    ],
+    "temporal_condition": "",
+    "provision_type": "definition",
+    "source_locator": "regulation 2, paragraph 1, definition of 'holding'",
+    "evidence_text": "\"holding\" (except in the phrase \"relevant holding\", as to which see regulation 5(5)) means all the land located within a nitrate vulnerable zone and its associated buildings which are at the disposal of the occupier and which are used for the growing of crops in soil or rearing of livestock for agricultural purposes;",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Complete statutory definition of holding with explicit exception noted.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "Organic manure means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure).",
+    "display_label": "Definition of organic manure",
+    "subject": "organic manure",
+    "rule": "means",
+    "object": "a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure)",
+    "conditions": [],
+    "exceptions": [],
+    "temporal_condition": "",
+    "provision_type": "definition",
+    "source_locator": "regulation 2, paragraph 1, definition of 'organic manure'",
+    "evidence_text": "\"organic manure\" means a nitrogen fertiliser or phosphate fertiliser derived from animal, plant or human sources (and includes livestock manure);",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Complete statutory definition of organic manure.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "Slurry means excreta produced by livestock (other than poultry) while in a yard or building (including any bedding, rainwater or washings mixed with it) that has a consistency that allows it to be pumped or discharged by gravity (and in the case of excreta separated into its liquid and solid fractions, the slurry is the liquid fraction).",
+    "display_label": "Definition of slurry",
+    "subject": "slurry",
+    "rule": "means",
+    "object": "excreta produced by livestock (other than poultry) while in a yard or building (including any bedding, rainwater or washings mixed with it) that has a consistency that allows it to be pumped or discharged by gravity",
+    "conditions": [],
+    "exceptions": [
+      "other than poultry"
+    ],
+    "temporal_condition": "",
+    "provision_type": "definition",
+    "source_locator": "regulation 2, paragraph 1, definition of 'slurry'",
+    "evidence_text": "\"slurry\" means excreta produced by livestock (other than poultry) while in a yard or building (including any bedding, rainwater or washings mixed with it) that has a consistency that allows it to be pumped or discharged by gravity (and in the case of excreta separated into its liquid and solid fractions, the slurry is the liquid fraction);",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Complete statutory definition of slurry with explicit exclusion of poultry.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  },
+  {
+    "proposition_text": "A reference to an EU Directive is to be read as if any reference in that Directive to one or more member States in a provision imposing an obligation on, or conferring a discretion on, a member State or member States were a reference to the authority which, immediately before exit day, was responsible for the United Kingdom's compliance with that obligation, or able to exercise that discretion, in respect of England.",
+    "display_label": "Interpretation of EU Directives post-exit",
+    "subject": "reference to an EU Directive",
+    "rule": "is to be read as if any reference in that Directive to member States",
+    "object": "were a reference to the authority which, immediately before exit day, was responsible for the United Kingdom's compliance with that obligation, or able to exercise that discretion, in respect of England",
+    "conditions": [
+      "in a provision imposing an obligation on, or conferring a discretion on, a member State or member States"
+    ],
+    "exceptions": [],
+    "temporal_condition": "immediately before exit day",
+    "provision_type": "transitional",
+    "source_locator": "regulation 2, paragraph 4",
+    "evidence_text": "For the purposes of these Regulations, a reference to an EU Directive is to be read as if any reference in that Directive to one or more member States in a provision imposing an obligation on, or conferring a discretion on, a member State or member States were a reference to the authority which, immediately before exit day, was responsible for the United Kingdom's compliance with that obligation, or able to exercise that discretion, in respect of England.",
+    "completeness_status": "complete",
+    "confidence": "high",
+    "reason": "Complete transitional provision addressing post-Brexit interpretation of EU Directives.",
+    "_validated_evidence_match_strategy": "whitespace_quote_fold_lc_substring_match"
+  }
+]

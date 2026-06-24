@@ -1,0 +1,201 @@
+{
+  "case_id": "slurry-good-simple-prohibition-spread-buffer",
+  "label": "GOOD — simple prohibition (organic manure spreading buffer)",
+  "fixture_path": "tests/fixtures/extraction_prompt_cases/slurry/slurry-good-simple-prohibition-spread-buffer.json",
+  "run_dir": "/Users/bram/Code/defra/ai-eu-trade-accelerator/judit/runs/prompt-lab/baseline-good-prohibition",
+  "passed": true,
+  "eval_status": "pass",
+  "generated_at": "2026-06-04T11:28:34.571441Z",
+  "actual_count": 8,
+  "expected_count": 1,
+  "matched_expected_count": 1,
+  "warnings": [
+    "7 extra actual propositions (allowed by targeted mode)"
+  ],
+  "summary": {
+    "pass": true,
+    "eval_status": "pass",
+    "evaluation_mode": "targeted",
+    "allow_extra_actual": true,
+    "matched_expected": "1/1",
+    "extra_actual_count": 7,
+    "suggested_focus": []
+  },
+  "checks": {
+    "load": {
+      "passed": true,
+      "source_file": "propositions.normalised.json",
+      "warnings": [
+        "7 extra actual propositions (allowed by targeted mode)"
+      ]
+    },
+    "evaluation_mode": {
+      "passed": true,
+      "mode": "targeted",
+      "strict_proposition_count": false,
+      "allow_extra_actual": true,
+      "max_extra_actual": null
+    },
+    "proposition_count": {
+      "passed": true,
+      "status": "ok",
+      "strict": false,
+      "mode": "targeted",
+      "detail": "actual=8, expected=1, mode=targeted"
+    },
+    "extra_actual": {
+      "passed": true,
+      "status": "extras_allowed",
+      "extra_count": 7,
+      "allow_extra_actual": true,
+      "mode": "targeted",
+      "detail": "7 extra actual propositions (allowed by targeted mode)"
+    },
+    "no_actual_propositions": {
+      "passed": true,
+      "reason": null
+    },
+    "expected_row_matches": {
+      "passed": true,
+      "matched": 1,
+      "expected": 1
+    },
+    "legal_effect_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "prohibition"
+      ],
+      "actual": [
+        "application_scope",
+        "notification",
+        "permission",
+        "prohibition",
+        "unknown"
+      ]
+    },
+    "tier_coverage": {
+      "passed": true,
+      "missing": [],
+      "expected": [
+        "substantive_rule"
+      ],
+      "actual": [
+        "procedural_rule",
+        "scope_rule",
+        "substantive_rule",
+        "unknown"
+      ]
+    },
+    "boilerplate_classification": {
+      "passed": true,
+      "findings": []
+    },
+    "over_compression": {
+      "passed": true,
+      "findings": [],
+      "warn_only": true
+    },
+    "checkable_count": {
+      "passed": true,
+      "checkable_count": 3,
+      "unexpected_boilerplate_checkable": []
+    }
+  },
+  "expected_matches": [
+    {
+      "expected_index": 0,
+      "expected": {
+        "legal_effect_type": "prohibition",
+        "proposition_tier": "substantive_rule",
+        "proposition_text": "A person must not spread organic manure within 10 metres of surface water, except as permitted by paragraphs (2) or (4).",
+        "legal_subject": "a person",
+        "action": "must not spread organic manure within 10 metres of surface water",
+        "affected_subjects": [
+          "a person"
+        ],
+        "conditions": [],
+        "exceptions": [
+          "except in so far as permitted by paragraph (2) or (4)"
+        ],
+        "authority": null,
+        "required_documents": [],
+        "territorial_application": [
+          "England"
+        ],
+        "extent": [],
+        "evidence_quote": "A person must not spread organic manure within 10 metres of surface water"
+      },
+      "matched_actual_index": 0,
+      "matched_actual_id": "prop-lex-120b4f9c395b3f94-001",
+      "legal_effect_ok": true,
+      "tier_ok": true,
+      "evidence_ok": true,
+      "subject_ok": true,
+      "action_ok": false,
+      "conditions_ok": true,
+      "matched": true,
+      "match_score": 0.95,
+      "suggested_failure_reason": null
+    }
+  ],
+  "extra_actual": [
+    {
+      "actual_index": 1,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-002",
+      "legal_effect_type": "permission",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "Livestock manure (other than slurry or poultry manure) may be spread on land managed for breeding wader birds or species-rich semi-natural grassland that is notified as SSSI or subject to agri-environmental commitment, during 1st June to 31",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 2,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-003",
+      "legal_effect_type": "notification",
+      "proposition_tier": "procedural_rule",
+      "proposition_text": "Land is designated for the livestock manure exception if it is notified as a site of special scientific interest under the Wildlife and Countryside Act 1981.",
+      "is_compliance_relevant": true
+    },
+    {
+      "actual_index": 3,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-004",
+      "legal_effect_type": "unknown",
+      "proposition_tier": "unknown",
+      "proposition_text": "Land is designated for the livestock manure exception if it is subject to an agri-environmental commitment entered into under Council Regulation (EC) 1698/2005 or Regulation (EU) 1305/2013.",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 4,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-005",
+      "legal_effect_type": "permission",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "Organic manure in the form of slurry, sewage sludge or anaerobic digestate may be spread except within 6 metres of surface water if the spreading equipment is a trailing hose band spreader, a trailing shoe band spreader, an injector injecti",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 5,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-006",
+      "legal_effect_type": "unknown",
+      "proposition_tier": "unknown",
+      "proposition_text": "Anaerobic digestate means the product of anaerobic digestion other than from sewage or material in a landfill.",
+      "is_compliance_relevant": false
+    },
+    {
+      "actual_index": 6,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-007",
+      "legal_effect_type": "prohibition",
+      "proposition_tier": "substantive_rule",
+      "proposition_text": "A person must not spread organic manure within 50 metres of a borehole, spring or well.",
+      "is_compliance_relevant": true
+    },
+    {
+      "actual_index": 7,
+      "proposition_id": "prop-lex-120b4f9c395b3f94-008",
+      "legal_effect_type": "application_scope",
+      "proposition_tier": "scope_rule",
+      "proposition_text": "The regulation on spreading organic manure does not apply to land which is covered by a greenhouse.",
+      "is_compliance_relevant": false
+    }
+  ],
+  "missing_effects": []
+}

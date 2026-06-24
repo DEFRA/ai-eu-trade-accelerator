@@ -1,0 +1,41 @@
+{
+  "run_id": "run-001",
+  "stage_count": 7,
+  "stages": [
+    {
+      "order": 1,
+      "stage_name": "source intake",
+      "storage_uri": "runs/run-001/traces/01-source-intake.json"
+    },
+    {
+      "order": 2,
+      "stage_name": "proposition extraction",
+      "storage_uri": "runs/run-001/traces/02-proposition-extraction.json"
+    },
+    {
+      "order": 3,
+      "stage_name": "proposition inventory",
+      "storage_uri": "runs/run-001/traces/03-proposition-inventory.json"
+    },
+    {
+      "order": 4,
+      "stage_name": "proposition pairing",
+      "storage_uri": "runs/run-001/traces/04-proposition-pairing.json"
+    },
+    {
+      "order": 5,
+      "stage_name": "divergence classification",
+      "storage_uri": "runs/run-001/traces/05-divergence-classification.json"
+    },
+    {
+      "order": 6,
+      "stage_name": "narrative generation",
+      "storage_uri": "runs/run-001/traces/06-narrative-generation.json"
+    },
+    {
+      "order": 7,
+      "stage_name": "final export",
+      "storage_uri": "runs/run-001/traces/07-final-export.json"
+    }
+  ]
+}
