@@ -1,49 +1,32 @@
 """Unit tests for the Esther transform — pure, no IO."""
 
-from esther.build import build
+from esther.build import build, build_pages
 
 CATEGORY = {"id": "slurry", "title": "Slurry", "description": "Slurry management."}
 
 # One audited page, two guidance propositions, two law propositions.
-BEATRICE_CONTENT = [
-    {
-        "url": "https://www.gov.uk/a",
-        "content_id": "cid-a",
-        "meta_data": {
-            "title": "Page A",
-            "description": "About A",
-            "document_type": "guidance",
-            "updated_at": "2025-01-02T10:00:00Z",
-            "view_count": 42,
-        },
-    }
-]
-
-GUIDANCE_INPUT = [
-    {"id": "g-aaa-01", "page_url": "https://www.gov.uk/a", "proposition_text": "Do X."},
-    {"id": "g-aaa-02", "page_url": "https://www.gov.uk/a", "proposition_text": "Do Y."},
-]
-
-# Beatrice output: reordered, and the second prop has no match.
+# Beatrice output (results.json shape): reordered, carries its native id, and the
+# second prop has no match.
 BEATRICE_OUTPUT = [
     {
-        "guidance_proposition_text": "Do Y.",
-        "guidance_source_url": "https://www.gov.uk/a",
+        "id": "g-aaa-02",
+        "proposition_text": "Do Y.",
+        "url": "https://www.gov.uk/a",
         "matches": [
             {
-                "law_id": "prop:law1",
+                "law_proposition": {"id": "prop:law1", "proposition_text": "Law one."},
                 "relationship": "CONFLICT",  # normalises to CONFLICTS
                 "confidence": "high",
-                "cosine_score": 0.811234,
-                "bert_score_f1": 0.92,
+                "similarity_score": 0.811234,
                 "explanation": "conflicts with law1",
                 "correctness_score": 0.0,
             }
         ],
     },
     {
-        "guidance_proposition_text": "Do X.",
-        "guidance_source_url": "https://www.gov.uk/a",
+        "id": "g-aaa-01",
+        "proposition_text": "Do X.",
+        "url": "https://www.gov.uk/a",
         "matches": [],  # zero matches
     },
 ]
@@ -54,16 +37,31 @@ LAW_INPUT = [
 ]
 
 LEGISLATION_SEED = [
-    {"id": 1, "category_id": 1, "name": "Act 1", "url": "https://leg/1", "source_record_id": "lex-1"}
+    {"id": 1, "category_id": 1, "name": "Act 1", "url": "https://leg/1",
+     "source_record_id": "lex-1"}
 ]
 
 LEGACY_LAW_PROPS = [
     {"judit_id": "prop:law1", "short_name": "L1", "label": "Law One", "fragment_locator": "s.1"}
 ]
 
+# Radia carries the audited pages (metadata + analytics) and their scores. The
+# second page is in the audited corpus but has no guidance, so it is not emitted.
 RADIA_OUTPUT = [
-    {"url": "https://www.gov.uk/a", "content_id": "cid-a", "meta_data": {"scores": {"slurry": 0.73}}},
-    {"url": "https://www.gov.uk/other", "content_id": "cid-o", "meta_data": {"scores": {"slurry": 0.1}}},
+    {
+        "url": "https://www.gov.uk/a",
+        "content_id": "cid-a",
+        "meta_data": {
+            "title": "Page A",
+            "description": "About A",
+            "document_type": "guidance",
+            "updated_at": "2025-01-02T10:00:00Z",
+            "view_count": 42,
+            "scores": {"slurry": 0.73},
+        },
+    },
+    {"url": "https://www.gov.uk/other", "content_id": "cid-o",
+     "meta_data": {"scores": {"slurry": 0.1}}},
 ]
 
 READING_AGE = {"https://www.gov.uk/a": {"word_count": 120, "reading_age": 14}}
@@ -72,9 +70,7 @@ READING_AGE = {"https://www.gov.uk/a": {"word_count": 120, "reading_age": 14}}
 def _build():
     return build(
         beatrice_output=BEATRICE_OUTPUT,
-        guidance_input=GUIDANCE_INPUT,
         law_input=LAW_INPUT,
-        beatrice_content=BEATRICE_CONTENT,
         radia_output=RADIA_OUTPUT,
         legislation_seed=LEGISLATION_SEED,
         legacy_law_props=LEGACY_LAW_PROPS,
@@ -98,10 +94,10 @@ def test_pages_keyed_by_content_id_with_category_slug():
     ]
 
 
-def test_guidance_ids_recovered_from_input_by_text():
+def test_guidance_ids_taken_from_beatrice_native_id():
     files, _ = _build()
     ids = {g["id"] for g in files["guidance-propositions.json"]}
-    # Only "Do Y." produced a match row; both props are emitted as guidance props.
+    # Both props are emitted as guidance props, keyed by Beatrice's native id.
     assert ids == {"g-aaa-01", "g-aaa-02"}
     assert all(g["content_id"] == "cid-a" for g in files["guidance-propositions.json"])
 
@@ -119,7 +115,9 @@ def test_top_match_normalises_conflict_and_links_native_ids():
 
 def test_unmatched_law_prop_becomes_guidance_missing():
     files, _ = _build()
-    missing = [m for m in files["proposition-matches.json"] if m["relationship"] == "GUIDANCE_MISSING"]
+    missing = [
+        m for m in files["proposition-matches.json"] if m["relationship"] == "GUIDANCE_MISSING"
+    ]
     assert [m["law_proposition_id"] for m in missing] == ["prop:law2"]
     assert missing[0]["guidance_proposition_id"] is None
 
@@ -178,3 +176,27 @@ def test_analytics_and_reading_age_keyed_by_content_id():
     assert files["pages-reading-age.json"] == [
         {"content_id": "cid-a", "url": "https://www.gov.uk/a", "word_count": 120, "reading_age": 14}
     ]
+
+
+def test_build_pages_falls_back_to_content_api_title_when_corpus_has_none():
+    """Empty corpus title -> use the gov.uk content-API title; warn if none anywhere."""
+    warnings = []
+    records = [
+        {"url": "https://gov.uk/a", "content_id": "cid-a",
+         "meta_data": {"title": "", "description": "d"}},
+        {"url": "https://gov.uk/b", "content_id": "cid-b", "meta_data": {}},
+    ]
+    pages = build_pages(records, "slurry", warnings, {"https://gov.uk/a": "Fetched Title A"})
+    by_url = {p["url"]: p for p in pages}
+    assert by_url["https://gov.uk/a"]["title"] == "Fetched Title A"
+    assert by_url["https://gov.uk/b"]["title"] == ""
+    assert any("no title" in w for w in warnings)
+
+
+def test_build_pages_prefers_corpus_title_over_content_api():
+    pages = build_pages(
+        [{"url": "https://gov.uk/a", "content_id": "cid-a",
+          "meta_data": {"title": "Corpus Title"}}],
+        "slurry", [], {"https://gov.uk/a": "Fetched"},
+    )
+    assert pages[0]["title"] == "Corpus Title"

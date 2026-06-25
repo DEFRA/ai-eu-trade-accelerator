@@ -5,14 +5,15 @@ frontend's data files.
         --beatrice-run   <beatrice/runs/NAME> \
         --input-pair     <beatrice/inputs/PAIR> \
         --radia-run      <radia/runs/NAME/output.json> \
-        --seeds          <dir with categories.json + legislation.json + legislation-propositions.json> \
+        --seeds          <dir with the category + legislation seed files> \
         --dest           <ai-sdlc-content-audit/.../audit/data/data>
 
-Reads Beatrice's matched output, the input pair it ran on (for guidance ids and
-law propositions), Beatrice's content intermediate (page metadata + analytics),
-and Radia's run (relevance scores + audited-corpus size). Reading age is
-recomputed per page via the gov.uk content API (cached on disk). Writes the
-frontend data files in pipeline-native shape.
+Reads Beatrice's matched output (results.json, which carries the native guidance
+ids), the input pair's ``law.json`` (Judit law propositions), and Radia's run —
+which supplies both the audited pages (content_id + page metadata + analytics)
+and per-page relevance scores + corpus size. Reading age is recomputed per page
+via the gov.uk content API (cached on disk). Writes the frontend data files in
+pipeline-native shape.
 """
 
 from __future__ import annotations
@@ -59,16 +60,25 @@ def _resolve_category(seeds_dir: Path, slug: str) -> dict:
     if seed is None and len(cats) == 1:
         seed = cats[0]
     if seed is None:
-        raise typer.BadParameter(f"no category matching {slug!r} in {seeds_dir / 'categories.json'}")
-    return {"id": slug, "title": seed.get("title") or seed.get("name"), "description": seed["description"]}
+        raise typer.BadParameter(
+            f"no category matching {slug!r} in {seeds_dir / 'categories.json'}"
+        )
+    return {
+        "id": slug,
+        "title": seed.get("title") or seed.get("name"),
+        "description": seed["description"],
+    }
 
 
 @app.command()
 def build(
-    beatrice_run: Annotated[Path, typer.Option(help="Beatrice run dir (output.json + intermediates/)")],
-    input_pair: Annotated[Path, typer.Option(help="Beatrice input pair dir (guidance.json + law.json)")],
-    radia_run: Annotated[Path, typer.Option(help="Radia output.json (relevance + corpus size)")],
-    seeds: Annotated[Path, typer.Option(help="Dir with categories/legislation/legislation-propositions seeds")],
+    beatrice_run: Annotated[Path, typer.Option(help="Beatrice run dir (results.json)")],
+    input_pair: Annotated[Path, typer.Option(help="Beatrice input pair dir (law.json)")],
+    radia_run: Annotated[Path, typer.Option(help="Radia output.json (pages, relevance, corpus)")],
+    seeds: Annotated[
+        Path,
+        typer.Option(help="Dir with categories/legislation/legislation-propositions seeds"),
+    ],
     dest: Annotated[Path, typer.Option(help="Frontend data dir to write into")],
     category_slug: Annotated[str, typer.Option(help="Category slug (native id)")] = "slurry",
     reading_age_cache: Annotated[
@@ -76,9 +86,8 @@ def build(
     ] = None,
     dry_run: Annotated[bool, typer.Option(help="Compute and report, but write nothing")] = False,
 ) -> None:
-    output_path = beatrice_run / "output.json"
-    content_path = beatrice_run / "intermediates" / "01-content.json"
-    for p in (output_path, content_path, input_pair / "guidance.json", input_pair / "law.json", radia_run):
+    output_path = beatrice_run / "results.json"
+    for p in (output_path, input_pair / "law.json", radia_run):
         if not p.exists():
             raise typer.BadParameter(f"missing input: {p}")
     if not dry_run and not dest.exists():
@@ -87,8 +96,6 @@ def build(
     cache_dir = reading_age_cache or (beatrice_run.parent.parent.parent / "esther" / "cache")
 
     beatrice_output = _load(output_path)
-    beatrice_content = _load(content_path)
-    guidance_input = _load(input_pair / "guidance.json")
     law_input = _load_judit_propositions(_load(input_pair / "law.json"))
     radia_output = _load(radia_run)
     legislation_seed = _load(seeds / "legislation.json")
@@ -96,15 +103,19 @@ def build(
     category = _resolve_category(seeds, category_slug)
 
     # Reading age is recomputed per audited page (cached on disk -> cheap re-runs).
-    page_urls = sorted({p["url"] for p in beatrice_content if p.get("url")})
+    # Only the audited pages — those Beatrice produced guidance for — are scored;
+    # build() consumes reading age for exactly that set, so scoring the whole
+    # Radia corpus would fetch thousands of pages whose scores are never read.
+    audited_urls = {e["url"] for e in beatrice_output if e.get("url")}
+    page_urls = sorted(
+        {p["url"] for p in radia_output if p.get("url") and p["url"] in audited_urls}
+    )
     print(f"Scoring reading age for {len(page_urls)} pages (cache: {cache_dir})", file=sys.stderr)
     reading_age_by_url = ra.score_urls(page_urls, cache_dir, log=sys.stderr)
 
     files, warnings = build_mod.build(
         beatrice_output=beatrice_output,
-        guidance_input=guidance_input,
         law_input=law_input,
-        beatrice_content=beatrice_content,
         radia_output=radia_output,
         legislation_seed=legislation_seed,
         legacy_law_props=legacy_law_props,

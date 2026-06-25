@@ -6,9 +6,6 @@ Message Batches API (50% cost, async): a SINGLE request per guidance proposition
 sees all of its surviving law candidates and labels each one. Records exact
 tokens, cost, and wall-clock time into ``MODEL.md`` (human) and ``metrics.json``
 (machine).
-
-Prompts are shared with the in-process matcher via ``beatrice.matching.prompts``,
-so the two paths cannot drift.
 """
 
 from __future__ import annotations
@@ -20,7 +17,6 @@ import os
 import sys
 import time
 from pathlib import Path
-from typing import Any
 
 from openai import OpenAI
 
@@ -47,6 +43,13 @@ BATCH_DISCOUNT = 0.5
 CLASSIFY_MAX_TOKENS = 2048
 SUMMARISE_MAX_TOKENS = 512
 
+# Retrieval geometry — fixed across the whole benchmark ladder (alice-omar →
+# harvey-iris); the winning candidate never varied these, so they are config,
+# not knobs.
+TOP_K = 15            # hard cap on survivors per guidance proposition
+THRESHOLD = 0.65      # minimum cosine similarity for a survivor
+SCORE_GAP = 0.04      # adaptive-size window below the top score
+
 
 # ── local embeddings (Ollama, reuses beatrice's cosine matcher) ─────────────────
 
@@ -59,58 +62,13 @@ def _embed(texts: list[str], base_url: str, model: str) -> list[list[float]]:
     return out
 
 
-# ── law loading + enrichment ──────────────────────────────────────────────────
+# ── law loading ───────────────────────────────────────────────────────────────
 
 def _load_law(path: Path) -> list[Proposition]:
-    """Load Judit law propositions, lifting the extraction-quality flags Judit
-    stashes in ``notes.judit_extraction_meta`` onto the top-level fields the
-    group-rerank confidence sidebar reads."""
+    """Load Judit law propositions."""
     raw = json.loads(path.read_text())
     records = raw if isinstance(raw, list) else raw.get("propositions", [])
-    out: list[Proposition] = []
-    for rec in records:
-        lp = Proposition.model_validate(rec)
-        meta = _judit_meta(rec)
-        if meta:
-            if lp.model_confidence is None:
-                lp.model_confidence = meta.get("model_confidence")
-            if lp.completeness_status is None:
-                lp.completeness_status = meta.get("completeness_status")
-            if lp.fallback_policy is None:
-                lp.fallback_policy = meta.get("fallback_policy")
-            if lp.fallback_used is None:
-                lp.fallback_used = meta.get("fallback_used")
-        out.append(lp)
-    return out
-
-
-def _judit_meta(rec: dict) -> dict:
-    """Best-effort lift of Judit's extraction meta blob from a raw record."""
-    notes = rec.get("notes")
-    if isinstance(notes, dict):
-        meta = notes.get("judit_extraction_meta")
-        if isinstance(meta, dict):
-            return meta
-    meta = rec.get("judit_extraction_meta")
-    return meta if isinstance(meta, dict) else {}
-
-
-def _apply_cache(items: list, cache_path: Path | None, field: str, *, key: str = "id") -> int:
-    """Merge a ``{id: value}`` (or ``{id: {field: value}}``) cache onto a list of
-    pydantic objects by id. Returns the number of records enriched."""
-    if cache_path is None or not cache_path.exists():
-        return 0
-    cache = json.loads(cache_path.read_text())
-    n = 0
-    for obj in items:
-        entry = cache.get(getattr(obj, key))
-        if entry is None:
-            continue
-        value = entry.get(field) if isinstance(entry, dict) else entry
-        if value:
-            setattr(obj, field, value)
-            n += 1
-    return n
+    return [Proposition.model_validate(rec) for rec in records]
 
 
 # ── batch helper ────────────────────────────────────────────────────────────────
@@ -184,20 +142,11 @@ def main() -> None:
     ap.add_argument("--law", type=Path, required=True, help="Judit propositions.json")
     ap.add_argument("--out", type=Path, required=True, help="Output run directory")
     ap.add_argument("--model", default="claude-sonnet-4-6")
-    ap.add_argument("--top-k", type=int, default=15, help="Hard cap on survivors per guidance proposition.")
-    ap.add_argument("--threshold", type=float, default=0.65, help="Minimum cosine similarity for a survivor.")
-    ap.add_argument("--score-gap", type=float, default=0.04, help="Adaptive-size window below the top score.")
-    ap.add_argument("--no-sidebar", action="store_true", help="Omit Judit's per-candidate confidence sidebar.")
-    ap.add_argument("--clause-functions", type=Path, default=None, help="Optional {law_id: clause_function} cache.")
-    ap.add_argument("--law-topics", type=Path, default=None, help="Optional {law_id: topic} cache.")
-    ap.add_argument("--guidance-topics", type=Path, default=None, help="Optional {guidance_id: topic} cache.")
     ap.add_argument("--embed-base-url", default=os.getenv("EMBED_BASE_URL", "http://127.0.0.1:11434/v1"))
     ap.add_argument("--embed-model", default=os.getenv("EMBED_MODEL", "nomic-embed-text:v1.5"))
     ap.add_argument("--poll-seconds", type=int, default=30)
     ap.add_argument("--dry-run", action="store_true", help="Embed + retrieve + build requests, but do not submit batches.")
     args = ap.parse_args()
-
-    render_conf_sidebar = not args.no_sidebar
 
     import anthropic
     from anthropic.types.message_create_params import MessageCreateParamsNonStreaming as Params
@@ -212,12 +161,7 @@ def main() -> None:
     law_props = _load_law(args.law)
     law_by_id = {lp.id: lp for lp in law_props}
 
-    # ── optional typed-tag enrichment (clause_function / topic) ──────────────────
-    n_cf = _apply_cache(law_props, args.clause_functions, "clause_function")
-    n_lt = _apply_cache(law_props, args.law_topics, "topic")
-    n_gt = _apply_cache(guidance, args.guidance_topics, "topic")
     print(f"guidance: {len(guidance)} propositions | law: {len(law_props)} propositions", flush=True)
-    print(f"enrichment: clause_function {n_cf}/{len(law_props)} | law topic {n_lt}/{len(law_props)} | guidance topic {n_gt}/{len(guidance)}", flush=True)
 
     # ── embed + retrieve (local, timed) ─────────────────────────────────────────
     t_local = time.time()
@@ -226,7 +170,7 @@ def main() -> None:
     survivors_per_gp: list[list[tuple[str, float]]] = []
     for g_emb in g_embs:
         survivors_per_gp.append(
-            find_candidates(g_emb, law_index, top_k=args.top_k, threshold=args.threshold, score_gap=args.score_gap)
+            find_candidates(g_emb, law_index, top_k=TOP_K, threshold=THRESHOLD, score_gap=SCORE_GAP)
         )
     local_seconds = time.time() - t_local
 
@@ -238,7 +182,7 @@ def main() -> None:
         if not survivors:
             continue
         cands = [(law_by_id[law_id], score) for law_id, score in survivors]
-        prompt = build_group_rerank_prompt(guidance[gi], cands, render_conf_sidebar=render_conf_sidebar)
+        prompt = build_group_rerank_prompt(guidance[gi], cands)
         rerank_reqs.append(
             Request(
                 custom_id=f"g-{gi}",
@@ -322,11 +266,9 @@ def main() -> None:
     total_seconds = local_seconds + cls_secs + summ_secs
     metrics = {
         "model": args.model, "strategy": "group_rerank",
-        "top_k": args.top_k, "threshold": args.threshold, "score_gap": args.score_gap,
-        "render_conf_sidebar": render_conf_sidebar,
+        "top_k": TOP_K, "threshold": THRESHOLD, "score_gap": SCORE_GAP,
         "guidance_propositions": len(guidance), "law_propositions": len(law_props),
         "guidance_props_with_survivors": n_producing, "guidance_props_empty": n_empty,
-        "enrichment": {"clause_function": n_cf, "law_topic": n_lt, "guidance_topic": n_gt},
         "group_rerank": {"requests": len(rerank_reqs), "errored": cls_err, "batch_id": cls_id, **cls_usage, "cost_usd": round(cls_cost, 4)},
         "summarise": {"requests": len(summ_reqs), "errored": summ_err, "batch_id": summ_id, **summ_usage, "cost_usd": round(summ_cost, 4)},
         "tokens": {"input": cls_usage["input"] + summ_usage["input"], "output": cls_usage["output"] + summ_usage["output"]},
@@ -373,7 +315,6 @@ in-process matcher (`beatrice.matching.prompts`).
 - **Law propositions:** {m['law_propositions']}
 - **Guidance props with survivors (LLM calls):** {m['guidance_props_with_survivors']}
 - **Guidance props empty (no candidate, free):** {m['guidance_props_empty']}
-- **Typed-tag enrichment:** clause_function {m['enrichment']['clause_function']}, law topic {m['enrichment']['law_topic']}, guidance topic {m['enrichment']['guidance_topic']}
 
 ## Cost & runtime
 

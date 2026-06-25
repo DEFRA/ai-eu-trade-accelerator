@@ -117,6 +117,27 @@ def parse_message(message) -> list[GuidanceProposition]:
     return [GuidanceProposition(**d) for d in raw_dicts]
 
 
+def extract_with_usage(
+    page: FetchedPage,
+    *,
+    topic: str = "guidance",
+    model: str = DEFAULT_MODEL,
+    max_tokens: int = DEFAULT_MAX_TOKENS,
+    timeout: int = DEFAULT_TIMEOUT_SECONDS,
+) -> tuple[list[GuidanceProposition], object]:
+    """Extract propositions from one page and return them with the raw response.
+
+    Same behaviour as :func:`extract_propositions`; the response is returned so
+    callers can record its token usage for cost accounting.
+    """
+    import anthropic  # imported lazily so importing susan is cheap
+
+    params = build_request_params(page, topic=topic, model=model, max_tokens=max_tokens)
+    client = anthropic.Anthropic(timeout=timeout)
+    response = client.messages.create(**params)
+    return parse_message(response), response
+
+
 def extract_propositions(
     page: FetchedPage,
     *,
@@ -130,9 +151,7 @@ def extract_propositions(
     Raises ExtractionError on truncation, missing tool call, or schema
     mismatch. Raises anthropic exceptions on API failure.
     """
-    import anthropic  # imported lazily so importing susan is cheap
-
-    params = build_request_params(page, topic=topic, model=model, max_tokens=max_tokens)
-    client = anthropic.Anthropic(timeout=timeout)
-    response = client.messages.create(**params)
-    return parse_message(response)
+    propositions, _ = extract_with_usage(
+        page, topic=topic, model=model, max_tokens=max_tokens, timeout=timeout
+    )
+    return propositions

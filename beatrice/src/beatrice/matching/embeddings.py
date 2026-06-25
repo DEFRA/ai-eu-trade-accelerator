@@ -1,15 +1,4 @@
 import math
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from beatrice.llm import BeatriceLLMClient
-
-
-def embed_texts(texts: list[str], llm_client: "BeatriceLLMClient") -> list[list[float]]:
-    """Embed a list of texts in a single batched call to Ollama."""
-    if not texts:
-        return []
-    return llm_client.embed_texts(texts)
 
 
 def cosine_similarity(a: list[float], b: list[float]) -> float:

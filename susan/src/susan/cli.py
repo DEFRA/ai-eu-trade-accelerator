@@ -20,13 +20,14 @@ from pathlib import Path
 import typer
 from dotenv import load_dotenv
 
+from .cost import add_usage, cost_usd, new_usage
 from .extract import (
     DEFAULT_MAX_TOKENS,
     DEFAULT_MODEL,
     DEFAULT_TIMEOUT_SECONDS,
     ExtractionError,
     build_request_params,
-    extract_propositions,
+    extract_with_usage,
     parse_message,
 )
 from .fetch import fetch
@@ -94,13 +95,28 @@ def _write_output(out_path: Path, rows: dict[str, dict], page_order: list[str]) 
     out_path.write_text(json.dumps(ordered, indent=2))
 
 
+def _prior_usage(metrics_path: Path) -> dict[str, int]:
+    """Token totals already recorded for this run, so a resume adds to them
+    rather than overwriting — a multi-pass run reports its full spend."""
+    usage = new_usage()
+    if not metrics_path.exists():
+        return usage
+    try:
+        prior = json.loads(metrics_path.read_text()).get("tokens", {})
+    except (json.JSONDecodeError, OSError):
+        return usage
+    for k in usage:
+        usage[k] = int(prior.get(k, 0))
+    return usage
+
+
 def _prompt_hash() -> str:
     return hashlib.sha256(PROMPT.encode()).hexdigest()[:12]
 
 
 def _write_model_card(
     out_dir: Path, *, model: str, started_at: str, n_pages: int, n_propositions: int,
-    n_excluded: int = 0, mode: str = "batch",
+    n_excluded: int = 0, mode: str = "batch", metrics: dict | None = None,
 ) -> None:
     body = f"""# susan — {out_dir.name}
 
@@ -134,6 +150,18 @@ validators at `draft-pipelines/susan/validation/`.
 - **Propositions:** {n_propositions}
 - **Excluded (too big / errored):** {n_excluded} — see `excluded.json`
 """
+    if metrics is not None:
+        t = metrics["tokens"]
+        discount = " (batch-discounted)" if metrics["mode"] == "batch" else ""
+        body += f"""
+## Cost
+
+Cumulative across every invocation that wrote to this run (resumes included);
+full machine-readable breakdown in `metrics.json`.
+
+- **Tokens:** {t['input']:,} in / {t['output']:,} out
+- **Cost:** **${metrics['cost_usd']}**{discount}
+"""
     (out_dir / "MODEL.md").write_text(body)
 
 
@@ -149,7 +177,7 @@ def _row(url: str, page_meta: dict, fetched_title: str, propositions: list) -> d
     }
 
 
-def _run_sync(todo, rows, out_json, page_order, *, model, max_tokens, timeout, cache):
+def _run_sync(todo, rows, out_json, page_order, *, model, max_tokens, timeout, cache, usage):
     """Extract page-by-page on the synchronous Messages API."""
     failures: list[tuple[str, str]] = []
     for i, page_meta in enumerate(todo, 1):
@@ -157,9 +185,10 @@ def _run_sync(todo, rows, out_json, page_order, *, model, max_tokens, timeout, c
         print(f"[{i}/{len(todo)}] fetching + extracting: {url}")
         try:
             fetched = fetch(url, cache_dir=cache)
-            propositions = extract_propositions(
+            propositions, message = extract_with_usage(
                 fetched, model=model, max_tokens=max_tokens, timeout=timeout
             )
+            add_usage(usage, message)
         except Exception as e:
             msg = f"{type(e).__name__}: {e}"
             print(f"[FAILED] {url} -- {msg}", file=sys.stderr)
@@ -170,7 +199,7 @@ def _run_sync(todo, rows, out_json, page_order, *, model, max_tokens, timeout, c
     return failures
 
 
-def _run_batch(todo, rows, out_json, page_order, *, model, max_tokens, cache, poll_seconds):
+def _run_batch(todo, rows, out_json, page_order, *, model, max_tokens, cache, poll_seconds, usage):
     """Extract every page via the Message Batches API (50% cost, async, and
     no per-page client timeout — so large pages can't be billed-then-dropped)."""
     import anthropic
@@ -226,6 +255,8 @@ def _run_batch(todo, rows, out_json, page_order, *, model, max_tokens, cache, po
         if result.result.type != "succeeded":
             failures.append((url, f"batch result: {result.result.type}"))
             continue
+        # A succeeded message is billed even if its propositions fail to parse.
+        add_usage(usage, result.result.message)
         try:
             propositions = parse_message(result.result.message)
         except ExtractionError as e:
@@ -277,15 +308,17 @@ def run(
         f"{len(todo)} to process ({mode} mode)"
     )
 
+    metrics_path = out_dir / "metrics.json"
+    usage = _prior_usage(metrics_path)
     if sync:
         failures = _run_sync(
             todo, rows, out_json, page_order,
-            model=model, max_tokens=max_tokens, timeout=timeout, cache=cache,
+            model=model, max_tokens=max_tokens, timeout=timeout, cache=cache, usage=usage,
         )
     else:
         failures = _run_batch(
             todo, rows, out_json, page_order,
-            model=model, max_tokens=max_tokens, cache=cache, poll_seconds=poll_seconds,
+            model=model, max_tokens=max_tokens, cache=cache, poll_seconds=poll_seconds, usage=usage,
         )
 
     _write_output(out_json, rows, page_order)
@@ -304,6 +337,19 @@ def run(
     total_props = sum(
         len(r["meta_data"].get("propositions", [])) for r in rows.values()
     )
+
+    metrics = {
+        "model": model,
+        "mode": mode,
+        "pages": len(rows),
+        "propositions": total_props,
+        "excluded": len(excluded),
+        "tokens": dict(usage),
+        "cost_usd": round(cost_usd(usage, model, batch=not sync), 4),
+        "updated_at": started_at,
+    }
+    metrics_path.write_text(json.dumps(metrics, indent=2))
+
     _write_model_card(
         out_dir,
         model=model,
@@ -312,11 +358,13 @@ def run(
         n_propositions=total_props,
         n_excluded=len(excluded),
         mode=mode,
+        metrics=metrics,
     )
 
     print()
     print(
-        f"Done. {len(rows)} pages, {total_props} propositions, {len(excluded)} excluded -> {out_json}"
+        f"Done. {len(rows)} pages, {total_props} propositions, {len(excluded)} excluded "
+        f"| ${metrics['cost_usd']} -> {out_json}"
     )
     if excluded:
         print(f"  {len(excluded)} pages not processed -> {out_dir / 'excluded.json'}")

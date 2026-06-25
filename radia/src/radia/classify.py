@@ -20,14 +20,11 @@ from __future__ import annotations
 
 import json
 import os
-import sys
-import time
 
 import anthropic
-from anthropic.types import Message, TextBlock
-from anthropic.types.messages import MessageBatch
 from anthropic.types.messages.batch_create_params import Request
 
+from ._batch import submit_and_collect, text_of
 from .narrowing import select_categories
 
 DEFAULT_MODEL = os.getenv("LLM_MODEL_ANTHROPIC", "claude-haiku-4-5-20251001")
@@ -36,24 +33,6 @@ MAX_TOKENS = 512
 
 class ClassificationIncomplete(RuntimeError):
     """Raised when one or more routed pages could not be honestly classified."""
-
-
-def _text_of(message: Message) -> str:
-    """First text block of a model reply, or '' (skips thinking / tool blocks)."""
-    for block in message.content:
-        if isinstance(block, TextBlock):
-            return block.text
-    return ""
-
-
-def _log_batch_progress(batch: MessageBatch) -> None:
-    """Print one batch-poll line to stderr so a long run isn't a silent wait."""
-    c = batch.request_counts
-    print(
-        f"  batch {batch.id}: {c.succeeded} succeeded, {c.processing} processing, "
-        f"{c.errored} errored",
-        file=sys.stderr,
-    )
 
 
 def build_prompt(title: str, body_text: str, categories: list[dict]) -> str:
@@ -222,6 +201,8 @@ def classify(
     client = anthropic.Anthropic()
 
     raw: dict[str, str] = {}
+    batch_usage = {"input": 0, "output": 0}
+    rescue_usage = {"input": 0, "output": 0}
     if routed:
         requests: list[Request] = [
             {
@@ -243,14 +224,7 @@ def classify(
             }
             for i, it in enumerate(routed)
         ]
-        batch = client.messages.batches.create(requests=requests)
-        while batch.processing_status == "in_progress":
-            _log_batch_progress(batch)
-            time.sleep(10)
-            batch = client.messages.batches.retrieve(batch.id)
-        for r in client.messages.batches.results(batch.id):
-            if r.result.type == "succeeded":
-                raw[r.custom_id] = _text_of(r.result.message)
+        raw, batch_usage = submit_and_collect(client, requests, label="classify")
 
     unclassified: list[dict] = []
     for i, it in enumerate(routed):
@@ -266,7 +240,9 @@ def classify(
                 unclassified.append(it)
                 continue
             stats["n_rescued"] += 1
-            labels, scores, reasons, sel_meta = rescued
+            labels, scores, reasons, sel_meta, ru = rescued
+            rescue_usage["input"] += ru["input"]
+            rescue_usage["output"] += ru["output"]
         else:
             labels, scores, reasons = parsed
 
@@ -281,6 +257,8 @@ def classify(
             f"after rescue — refusing to default them to FALSE:\n{urls}"
         )
 
+    stats["usage"] = {"model": model, "batch": batch_usage, "rescue": rescue_usage}
+
     ordered = [results[it["url"]] for it in items]
     return ordered, stats
 
@@ -291,7 +269,7 @@ def _rescue(
     categories: list[dict],
     model: str,
     max_words: int,
-) -> tuple[dict[str, bool], dict[str, float], dict[str, str], dict] | None:
+) -> tuple[dict[str, bool], dict[str, float], dict[str, str], dict, dict[str, int]] | None:
     """Re-classify one batch-dropped page with a truncated body. None on failure.
 
     Only an Anthropic API error counts as a recoverable failure (the page ends up
@@ -312,7 +290,7 @@ def _rescue(
         )
     except anthropic.APIError:
         return None
-    parsed = parse_response(_text_of(resp), categories)
+    parsed = parse_response(text_of(resp), categories)
     if parsed is None:
         return None
     labels, scores, reasons = parsed
@@ -327,4 +305,5 @@ def _rescue(
         "max_words": max_words,
         "original_words": orig_n,
     }
-    return labels, scores, reasons, sel_meta
+    usage = {"input": resp.usage.input_tokens, "output": resp.usage.output_tokens}
+    return labels, scores, reasons, sel_meta, usage

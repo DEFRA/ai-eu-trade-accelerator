@@ -56,7 +56,35 @@ uv run susan run path/to/pages.json path/to/output_dir/
 - `output.json` — a list of `{url, meta_data: {title, candidate_id,
   candidate_name, propositions: [...]}}` entries. This is the shape the
   validators score against.
+- `excluded.json` — pages that were **not** extracted, each with a `category`
+  (`too_big` or `error`) and a `reason`. Never silently dropped (see below).
+- `metrics.json` — tokens and batch-discounted cost, cumulative across resumes.
 - `MODEL.md` — model name, prompt hash, started_at, n_pages, n_propositions.
+
+### Oversized pages — `too_big` exclusions are expected
+
+Susan caps output at `--max-tokens` (default **8192**). A long, proposition-dense
+page — capital-grants manuals, permit-compliance guides, anaerobic-digestion
+permit rules — can generate more proposition JSON than that cap, so the response
+truncates mid-JSON. Rather than write a half-parsed result, Susan raises
+`ExtractionError` and records the page in `excluded.json` under `category:
+too_big`. **This is the no-fallback contract working as designed, not a failure:**
+a run that extracts a subset and lists the rest as `too_big` is correct behaviour,
+and on a corpus skewed toward long guidance a sizeable fraction (e.g. ~1/3) landing
+in `excluded.json` is normal.
+
+To pull those pages in, re-run with a higher cap — Susan is resumable, and
+`--retry-excluded` re-attempts **only** the `excluded.json` pages (the already
+extracted pages are skipped, so you pay only for the retries):
+
+```bash
+uv run susan run pages.json out_dir/ --retry-excluded --max-tokens 32000
+```
+
+`claude-sonnet-4-6` supports far more than the 8192 default, so raising the cap is
+safe. A page that still truncates even at a high cap stays `too_big` — at that
+point the page genuinely needs splitting, which is a caller decision, not
+something Susan does silently.
 
 ## What this isn't
 

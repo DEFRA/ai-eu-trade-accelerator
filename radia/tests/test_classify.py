@@ -18,9 +18,12 @@ LEXICONS = json.loads((files("radia.data") / "lexicon.json").read_text())
 SLURRY_REPLY = '{"slurry": true, "slurry_score": 0.9, "slurry_reason": "about slurry"}'
 
 
-def reply(text):
-    """An Anthropic message carrying a single text block."""
-    return cast(Message, SimpleNamespace(content=[TextBlock(type="text", text=text)]))
+def reply(text, *, input_tokens=10, output_tokens=5):
+    """An Anthropic message carrying a single text block and token usage."""
+    return cast(Message, SimpleNamespace(
+        content=[TextBlock(type="text", text=text)],
+        usage=SimpleNamespace(input_tokens=input_tokens, output_tokens=output_tokens),
+    ))
 
 
 def succeeded(custom_id, text):

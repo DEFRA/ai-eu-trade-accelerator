@@ -2,9 +2,8 @@
 
 Susan emits ``{url, meta_data: {propositions: [{proposition_text, actor,
 regulatory_kind, source_paragraphs, ...}]}}``. The group-rerank matcher reads
-``proposition_text`` / ``source_url`` and the typed tags ``regulatory_kind`` /
-``topic``; the rest are mapped to the nearest GuidanceProposition field so
-nothing is lost.
+``proposition_text`` / ``source_url`` and the ``regulatory_kind`` tag; the rest
+are mapped to the nearest GuidanceProposition field so nothing is lost.
 """
 
 from __future__ import annotations
@@ -38,7 +37,6 @@ def guidance_from_susan_entry(entry: dict) -> list[GuidanceProposition]:
                 extraction_method="susan",
                 source_paragraphs=paras,
                 regulatory_kind=sp.get("regulatory_kind") or "",
-                topic=sp.get("topic") or "",
             )
         )
     return out

@@ -328,17 +328,6 @@ class Proposition(BaseModel):
     cross_reference_targets: list[str] = Field(default_factory=list)
     review_status: ReviewStatus = ReviewStatus.PROPOSED
     notes: str = ""
-    # ── Beatrice group-rerank matching enrichment ──
-    # Populated by the upstream typing/tagging passes (clause_function, topic) and
-    # lifted from Judit's extraction meta (the *_status / *_confidence fields).
-    # Empty/None until enriched; the matcher degrades to `unknown` tags gracefully.
-    clause_function: str = ""   # definition, operative_obligation, ceiling, floor, scope_clause,
-                                # procedure, delegation_of_power, transitional, exception
-    topic: str = ""             # closed-vocab topic id shared with the guidance side
-    model_confidence: str | None = None      # Judit extraction meta: high | medium | low
-    completeness_status: str | None = None    # Judit extraction meta: complete | partial | context_dependent
-    fallback_policy: str | None = None        # Judit extraction meta: fail_closed | mark_needs_review
-    fallback_used: bool | None = None         # Judit extraction meta: true when derived via fallback
 
 
 PropositionCompletenessStatus = Literal["complete", "context_dependent", "fragmentary"]

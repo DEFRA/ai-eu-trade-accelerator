@@ -161,17 +161,19 @@ def score_text(text: str) -> dict:
 
 
 def score_url(url: str, session: requests.Session, cache_dir: Path) -> dict:
-    """Fetch the page via the gov.uk content API (cached) and score it."""
+    """Fetch the page via the gov.uk content API (cached), score it, and carry the
+    authoritative page ``title`` from the same payload (the upstream corpus may
+    not have one)."""
     try:
         payload = fetch_content(to_api_url(url), session, cache_dir)
         text = extract_text(payload, session, cache_dir)
-        return score_text(text)
+        return {**score_text(text), "title": payload.get("title") or None}
     except Exception as exc:  # noqa: BLE001 — surface per-row, never abort the batch
-        return {"word_count": 0, "reading_age": None, "error": str(exc)}
+        return {"word_count": 0, "reading_age": None, "error": str(exc), "title": None}
 
 
 def score_urls(urls: list[str], cache_dir: Path, log=None) -> dict[str, dict]:
-    """Score a list of URLs, returning ``{url: {word_count, reading_age, error}}``."""
+    """Score URLs, returning ``{url: {word_count, reading_age, error, title}}``."""
     out: dict[str, dict] = {}
     with requests.Session() as session:
         session.headers["User-Agent"] = USER_AGENT

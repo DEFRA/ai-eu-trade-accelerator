@@ -8,7 +8,7 @@ Identity model (pipeline-native keys, one file per entity):
   - pages            keyed by ``content_id`` (gov.uk content id)
   - legislation      keyed by ``source_record_id`` (``lex-…``)
   - law propositions keyed by ``id`` (Judit ``prop:…``)
-  - guidance props   keyed by ``id`` (``g-…``, recovered from Beatrice's input)
+  - guidance props   keyed by ``id`` (native Susan id from Beatrice's output)
   - matches          keyed by a derived stable ``id`` (``m-…``) for feedback
 
 No silent fallbacks: anything that can't be derived is recorded in ``warnings``
@@ -18,7 +18,7 @@ and either left null or dropped with an explicit message.
 from __future__ import annotations
 
 import hashlib
-from collections import Counter, defaultdict
+from collections import Counter
 
 # Beatrice's six-way taxonomy, normalised onto the frontend's status values.
 # CONFLICT is the only rename (the prompt sometimes emits the singular).
@@ -56,20 +56,34 @@ def _radia_score(meta: dict, category: str) -> float | None:
     return None
 
 
-def build_pages(beatrice_content: list[dict], category: str, warnings: list[str]) -> list[dict]:
-    """Audited pages, sorted by URL. Keyed by content_id."""
+def build_pages(
+    page_records: list[dict],
+    category: str,
+    warnings: list[str],
+    title_by_url: dict[str, str] | None = None,
+) -> list[dict]:
+    """Audited pages, sorted by URL. Keyed by content_id.
+
+    Title prefers the upstream metadata, falling back to the authoritative gov.uk
+    content-API title (``title_by_url``, from the reading-age fetch) when the corpus
+    carried none — without it the frontend has no link text to click.
+    """
+    title_by_url = title_by_url or {}
     pages = []
-    for item in sorted(beatrice_content, key=lambda p: p["url"]):
+    for item in sorted(page_records, key=lambda p: p["url"]):
         content_id = item.get("content_id")
         if not content_id:
             warnings.append(f"page has no content_id, skipped: {item.get('url')}")
             continue
         md = item.get("meta_data", {}) or {}
+        title = md.get("title") or title_by_url.get(item["url"]) or ""
+        if not title:
+            warnings.append(f"page has no title from corpus or content API: {item['url']}")
         pages.append({
             "content_id": content_id,
             "category": category,
             "url": item["url"],
-            "title": md.get("title", ""),
+            "title": title,
             "description": md.get("description", ""),
             "document_type": md.get("document_type"),
         })
@@ -78,38 +92,32 @@ def build_pages(beatrice_content: list[dict], category: str, warnings: list[str]
 
 def build_guidance_propositions(
     beatrice_output: list[dict],
-    guidance_input: list[dict],
     url_to_content_id: dict[str, str],
     warnings: list[str],
 ) -> tuple[list[dict], list[str | None]]:
-    """Flatten Beatrice's guidance propositions, recovering their ``g-…`` ids.
+    """Flatten Beatrice's guidance propositions, keyed by their native id.
 
-    Beatrice's output is a reordered subset of its input and carries no id, so
-    we recover the id by ``(page_url, proposition_text)`` against the input
-    bundle. Returns the rows plus a per-output-row id list (aligned to
+    Beatrice's results.json carries the stable Susan id on each entry, so we use
+    it directly. Returns the rows plus a per-output-row id list (aligned to
     ``beatrice_output``) for the matches builder to reuse.
     """
-    id_by_key = {
-        (g["page_url"], g["proposition_text"]): g["id"]
-        for g in guidance_input
-        if g.get("id")
-    }
     rows: list[dict] = []
     row_ids: list[str | None] = []
     seen_ids: set[str] = set()
-    minted = 0
+    missing_id = 0
     for entry in beatrice_output:
-        url = entry["guidance_source_url"]
-        text = entry["guidance_proposition_text"]
+        url = entry["url"]
+        text = entry["proposition_text"]
         content_id = url_to_content_id.get(url)
         if content_id is None:
             warnings.append(f"guidance proposition source URL not in audited pages: {url}")
             row_ids.append(None)
             continue
-        gp_id = id_by_key.get((url, text))
-        if gp_id is None:
-            gp_id = f"g-{_sha8(url, text)}"
-            minted += 1
+        gp_id = entry.get("id")
+        if not gp_id:
+            missing_id += 1
+            row_ids.append(None)
+            continue
         row_ids.append(gp_id)
         if gp_id not in seen_ids:
             seen_ids.add(gp_id)
@@ -118,11 +126,8 @@ def build_guidance_propositions(
                 "content_id": content_id,
                 "proposition_text": text,
             })
-    if minted:
-        warnings.append(
-            f"{minted} guidance propositions had no id in the Beatrice input bundle; "
-            "minted a deterministic g-<hash> id from (url, text)."
-        )
+    if missing_id:
+        warnings.append(f"{missing_id} guidance propositions had no id in the Beatrice output")
     return rows, row_ids
 
 
@@ -212,9 +217,9 @@ def build_proposition_matches(
         if top is None:
             zero_match += 1
             continue
-        law_id = top["law_id"]
+        law_id = (top.get("law_proposition") or {}).get("id")
         if law_id not in law_prop_ids:
-            unknown_law_ids.add(law_id)
+            unknown_law_ids.add(str(law_id))
             continue
         relationship = RELATIONSHIP_NORMALISE.get(top.get("relationship"))
         if relationship is None:
@@ -227,7 +232,9 @@ def build_proposition_matches(
             "law_proposition_id": law_id,
             "relationship": relationship,
             "confidence": top.get("confidence"),
-            "cosine_score": round(top["cosine_score"], 4) if "cosine_score" in top else None,
+            "cosine_score": (
+                round(top["similarity_score"], 4) if "similarity_score" in top else None
+            ),
             "bert_score_f1": round(top["bert_score_f1"], 4) if "bert_score_f1" in top else None,
             "explanation": top.get("explanation"),
         })
@@ -298,8 +305,8 @@ def build_reading_age(pages: list[dict], reading_age_by_url: dict[str, dict]) ->
     return out
 
 
-def build_page_analytics(pages: list[dict], beatrice_content: list[dict]) -> list[dict]:
-    content_by_url = {c["url"]: c for c in beatrice_content}
+def build_page_analytics(pages: list[dict], page_records: list[dict]) -> list[dict]:
+    content_by_url = {c["url"]: c for c in page_records}
     out = []
     for p in pages:
         md = (content_by_url.get(p["url"], {}) or {}).get("meta_data", {}) or {}
@@ -333,9 +340,7 @@ def build_subject_summary(
 def build(
     *,
     beatrice_output: list[dict],
-    guidance_input: list[dict],
     law_input: list[dict],
-    beatrice_content: list[dict],
     radia_output: list[dict],
     legislation_seed: list[dict],
     legacy_law_props: list[dict],
@@ -348,11 +353,18 @@ def build(
     warnings: list[str] = []
     slug = category["id"]
 
-    pages = build_pages(beatrice_content, slug, warnings)
+    # The audited pages are the ones Beatrice produced guidance for; their
+    # metadata + analytics come from the Radia run (Beatrice no longer emits a
+    # content intermediate). Radia's full output is the audited-corpus size.
+    audited_urls = {entry["url"] for entry in beatrice_output if entry.get("url")}
+    page_records = [r for r in radia_output if r.get("url") in audited_urls]
+
+    title_by_url = {u: ra.get("title") for u, ra in reading_age_by_url.items() if ra.get("title")}
+    pages = build_pages(page_records, slug, warnings, title_by_url)
     url_to_content_id = {p["url"]: p["content_id"] for p in pages}
 
     guidance_props, guidance_row_ids = build_guidance_propositions(
-        beatrice_output, guidance_input, url_to_content_id, warnings
+        beatrice_output, url_to_content_id, warnings
     )
 
     legislation = build_legislation(legislation_seed, slug)
@@ -375,7 +387,7 @@ def build(
         "proposition-matches.json": matches,
         "page-relevance.json": build_page_relevance(pages, radia_output, slug, warnings),
         "pages-reading-age.json": build_reading_age(pages, reading_age_by_url),
-        "page-analytics.json": build_page_analytics(pages, beatrice_content),
+        "page-analytics.json": build_page_analytics(pages, page_records),
         "subject-summary.json": [
             build_subject_summary(slug, matches, pages, legislation, len(radia_output))
         ],

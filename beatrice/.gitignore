@@ -15,3 +15,7 @@ node_modules/
 !tsconfig*.json
 /tmp/
 .idea/
+
+# Local experiment scratch and run outputs — regenerable, kept out of the repo.
+/experiments/
+/runs/
